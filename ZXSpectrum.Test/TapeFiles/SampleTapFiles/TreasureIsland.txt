@@ -1,0 +1,3 @@
+﻿[TAP file : TreasureIsland]
+ + StandardHeader : HeaderType=ProgramHeader, FileName=treasure, FollowingDataLength=6848, AutoStartLine=1, ProgramLength=6188
+ + StandardDataBlock : TapeDataLength=6848, TapeData=|0 A ... 0 0|

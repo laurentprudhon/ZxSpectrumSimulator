@@ -1,0 +1,18 @@
+﻿[TZX file v1.10 : BuggyBoy]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=BUGGY BOY, FollowingDataLength=23, AutoStartLine=10, ProgramLength=23 }, PauseInMs=4
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=23, TapeData=|0 A ... 0 D| }, PauseInMs=10
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=48K, FollowingDataLength=128, StartAddress=63488 }, PauseInMs=10
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=128, TapeData=|F3 31 ... 0 0| }, PauseInMs=10
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6912, TapeData=|0 1 ... 4D F| }, PauseInMs=2095
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=38144, TapeData=|1B 5B ... 0 0| }, PauseInMs=3502
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=3, TapeData=|1 97 11 | }, PauseInMs=8
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=4503, TapeData=|6A 5B ... 0 0| }, PauseInMs=11
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=3, TapeData=|2 99 10 | }, PauseInMs=10
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=4249, TapeData=|7F 5B ... 52 5| }, PauseInMs=4
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=3, TapeData=|3 35 10 | }, PauseInMs=8
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=4149, TapeData=|1B 5B ... 5A 6| }, PauseInMs=9
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=3, TapeData=|4 66 11 | }, PauseInMs=3
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=4454, TapeData=|5D 5B ... 3C 14| }, PauseInMs=5
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=3, TapeData=|5 33 12 | }, PauseInMs=9
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=4659, TapeData=|55 5B ... 0 0| }, PauseInMs=27573

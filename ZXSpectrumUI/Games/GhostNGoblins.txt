@@ -1,0 +1,92 @@
+GHOSTS'N GOBLINS
+
+Introduction & Scenario
+
+Ghosts 'n' Goblins is the authentic home computer version of the classic
+coin-operated arcade game from Capcom, authors of best sellers including 
+the world beating Commando and 1942.
+
+Ghosts 'n' Goblins is the classic fighting fantasy story, heroic knight to
+rescue beautiful maiden from clutches of demonic Overlord. Featuring some
+stunning effects and graphics, this technically excellent game is clearly
+another winner from the Elite/Capcom stable.
+
+
+LOADING INSTRUCTIONS
+
+System			Format		Instruction
+
+Amstrad/		Cass		Run "ELITE"
+Schneider		Disc		Run "ELITE"
+
+Spectrum		Cass		Load ""
+
+Commodore 64/128	Cass		Shift & Run /Stop
+			Disc		Load "*",8,1
+
+Commodore 16				Load "Elite"
+
+BBC/Electron		Cass		Chain ""
+			Disc		Shift & Break
+
+
+PLAYING INSTRUCTIONS
+
+Spectrum
+
+Right		= 0
+Left		= 9
+Up		= 2
+Down/Crouch	= W
+Fire		= M
+Jump		= X
+or redefine keys, or use Kempston or Sinclair Joystick Interfaces.
+
+Amstrad/Schneider
+
+Abort		= ESC
+Right		= User definable
+Left		= User definable
+Up		= User definable
+Down/Crouch	= User definable
+Fire		= User definable
+Jump		= User definable
+Hold		= User definable
+or use joystick.
+
+Commodore 64/128
+
+Use joystick only.
+
+Commodore C16
+
+Use joystick only.
+
+
+(c) Copyright - Elite Systems Ltd - 1985
+
+All Rights Reserved Worldwide. Unauthorised copying, lending, broadcasting
+or resale without express written permission from Elite Systems Ltd is
+strictly prohibited.
+
+Guarantee: This software tape has been carefully developed and manufactured
+to the highest quality standards. Please read carefully the instructions 
+for loading which are included. If for any reason you have difficulty in
+running the program, and believe that the tape is defective, please return
+it directly to the following address:
+
+Customer Services Dept.,
+Elite Systems Ltd.,
+Anchor House,
+Anchor Road,
+Aldridge, Wallsall,
+England.
+
+Consumer Hot line:
+(0922) 59165
+Telex: 335622
+SPETEL G
+
+Our Quality Control Department will test the product, and supply an 
+immediate replacement, at no charge. Please note that this does not effect
+your statutory rights.

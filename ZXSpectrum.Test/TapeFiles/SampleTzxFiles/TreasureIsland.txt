@@ -1,0 +1,7 @@
+﻿[TZX file v1.10 : TreasureIsland]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=Treasure, FollowingDataLength=115, AutoStartLine=0, ProgramLength=115 }, PauseInMs=1010
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=115, TapeData=|0 0 ... 7 D| }, PauseInMs=1751
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=TIpic, FollowingDataLength=6970, StartAddress=40000 }, PauseInMs=634
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6970, TapeData=|0 0 ... 0 0| }, PauseInMs=3876
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=35250, TapeData=|31 E4 ... 0 0| }, PauseInMs=7087

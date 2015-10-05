@@ -1,0 +1,7 @@
+﻿[TAP file : Wizzball]
+ + StandardHeader : HeaderType=ProgramHeader, FileName=Wizball, FollowingDataLength=58, AutoStartLine=10, ProgramLength=58
+ + StandardDataBlock : TapeDataLength=58, TapeData=|0 A ... 22 D|
+ + StandardHeader : HeaderType=ByteArrayHeader, FileName=Wizball$, FollowingDataLength=6912, StartAddress=49152
+ + StandardDataBlock : TapeDataLength=6912, TapeData=|0 0 ... 7 7|
+ + StandardHeader : HeaderType=ByteArrayHeader, FileName=Wizball.c, FollowingDataLength=27211, StartAddress=24832
+ + StandardDataBlock : TapeDataLength=27211, TapeData=|21 E ... 19 AD|

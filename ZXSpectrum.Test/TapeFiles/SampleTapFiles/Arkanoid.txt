@@ -1,0 +1,14 @@
+﻿[TAP file : Arkanoid]
+ + StandardHeader : HeaderType=ProgramHeader, FileName=ARKANOID, FollowingDataLength=226, AutoStartLine=0, ProgramLength=207
+ + StandardDataBlock : TapeDataLength=226, TapeData=|0 0 ... 1 2|
+ + StandardHeader : HeaderType=ByteArrayHeader, FileName=a, FollowingDataLength=1770, StartAddress=0
+ + StandardDataBlock : TapeDataLength=1770, TapeData=|0 0 ... FF 0|
+ + StandardDataBlock : TapeDataLength=14, TapeData=|61 5C ... 22 70|
+ + StandardDataBlock : TapeDataLength=6912, TapeData=|FF FF ... 68 78|
+ + StandardDataBlock : TapeDataLength=8000, TapeData=|D4 ED ... 0 0|
+ + StandardDataBlock : TapeDataLength=2, TapeData=|3E 9 |
+ + StandardDataBlock : TapeDataLength=4, TapeData=|3E 9 AD C6 |
+ + StandardDataBlock : TapeDataLength=20080, TapeData=|0 7C ... 0 0|
+ + StandardDataBlock : TapeDataLength=26, TapeData=|3A 36 ... 0 80|
+ + StandardDataBlock : TapeDataLength=9000, TapeData=|0 C ... C6 2|
+ + StandardDataBlock : TapeDataLength=961, TapeData=|BC 20 ... DD 21|

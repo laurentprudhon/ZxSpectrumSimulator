@@ -1,0 +1,2107 @@
+Type;Instruction;Param Variant;Opcodes;Internal;Mnemonic;Param1;Param2;Param3;;Addressing mode 1;Addressing mode 2;Addressing mode 3;;;Bytes;Exec Variant;M Cycles;T States;Condition;M1;M2;M3;M4;M5;M6;Stack;M1 comment;;Instruction Group;Undocumented;User manual page;Operation;Description;Condition Bits Affected;Example
+instr;1;0;1;0;ADC;A;n;;;Register;Immediate;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;146;A <- A + s + CY;"This s operand is any of r, n, (HL), (IX+d), or (lY+d) as defined for the
+analogous ADD instruction.
+The s operand, along with the Carry Flag (C in the F register) is added to the
+contents of the Accumulator, and the result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7: reset otherwise";"If the Accumulator contents are 16H, the Carry Flag is set, the HL register
+pair contains 6666H, and address 6666H contains 10H, at execution of
+ADC A, (HL) the Accumulator contains 27H."
+instr;2;0;7;0;ADC;A;A,B,C,D,E,H,L;;;Register;Register;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;146;A <- A + s + CY;"This s operand is any of r, n, (HL), (IX+d), or (lY+d) as defined for the
+analogous ADD instruction.
+The s operand, along with the Carry Flag (C in the F register) is added to the
+contents of the Accumulator, and the result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7: reset otherwise";"If the Accumulator contents are 16H, the Carry Flag is set, the HL register
+pair contains 6666H, and address 6666H contains 10H, at execution of
+ADC A, (HL) the Accumulator contains 27H."
+instr;2;1;4;0;ADC;A;IXh,IXl,IYh,IYl;;;Register;Register;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A + s + CY;"This s operand is any of r, n, (HL), (IX+d), or (lY+d) as defined for the
+analogous ADD instruction.
+The s operand, along with the Carry Flag (C in the F register) is added to the
+contents of the Accumulator, and the result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7: reset otherwise";"If the Accumulator contents are 16H, the Carry Flag is set, the HL register
+pair contains 6666H, and address 6666H contains 10H, at execution of
+ADC A, (HL) the Accumulator contains 27H."
+instr;3;0;1;0;ADC;A;(HL);;;Register;Register Indirect;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;146;A <- A + s + CY;"This s operand is any of r, n, (HL), (IX+d), or (lY+d) as defined for the
+analogous ADD instruction.
+The s operand, along with the Carry Flag (C in the F register) is added to the
+contents of the Accumulator, and the result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7: reset otherwise";"If the Accumulator contents are 16H, the Carry Flag is set, the HL register
+pair contains 6666H, and address 6666H contains 10H, at execution of
+ADC A, (HL) the Accumulator contains 27H."
+instr;4;0;2;0;ADC;A;(IX+d),(IY+d);;;Register;Indexed;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;146;A <- A + s + CY;"This s operand is any of r, n, (HL), (IX+d), or (lY+d) as defined for the
+analogous ADD instruction.
+The s operand, along with the Carry Flag (C in the F register) is added to the
+contents of the Accumulator, and the result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7: reset otherwise";"If the Accumulator contents are 16H, the Carry Flag is set, the HL register
+pair contains 6666H, and address 6666H contains 10H, at execution of
+ADC A, (HL) the Accumulator contains 27H."
+instr;5;0;4;0;ADC;HL;BC,DE,HL,SP;;;Register Ext;Register Ext;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);CPU(4);CPU(3);;;;;;16-Bit Arithmetic;0;180;HL <- HL + ss + CY;"The contents of register pair ss (any of register pairs BC, DE, HL, or SP)
+are added with the Carry flag (C flag in the F register) to the contents of
+register pair HL, and the result is stored in HL.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+R is set if carry out of bit 11,. reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 15, reset otherwise";"If the register pair BC contains 2222H, register pair HL contains 5437H,
+and the Carry Flag is set, at execution of ADC HL, BC the contents of
+HL are 765AH."
+instr;6;0;1;0;ADD;A;n;;;Register;Immediate;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;142;A <- A + n;"The integer n is added to the contents of the Accumulator, and the results
+are stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7, reset otherwise";"If the contents of the Accumulator are 23H, at execution of ADD A, 33H
+the contents of the Accumulator are 56H."
+instr;7;0;7;0;ADD;A;A,B,C,D,E,H,L;;;Register;Register;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;140;A <- A + r;"The contents of register r are added to the contents of the Accumulator, and
+the result is stored in the Accumulator. The symbol r identifies the registers
+A, B, C, D, E, H, or L.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7, reset otherwise";"If the contents of the Accumulator are 44H, and the contents of register C
+are 11H, at execution of ADD A,C the contents of the Accumulator are
+55H."
+instr;7;1;4;0;ADD;A;IXh,IXl,IYh,IYl;;;Register;Register;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A + r;"The contents of register r are added to the contents of the Accumulator, and
+the result is stored in the Accumulator. The symbol r identifies the registers
+A, B, C, D, E, H, or L.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7, reset otherwise";"If the contents of the Accumulator are 44H, and the contents of register C
+are 11H, at execution of ADD A,C the contents of the Accumulator are
+55H."
+instr;8;0;1;0;ADD;A;(HL);;;Register;Register Indirect;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;143;A <- A + (HL);"The byte at the memory address specified by the contents of the HL register
+pair is added to the contents of the Accumulator, and the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7, reset otherwise";"If the contents of the Accumulator are A0H, and the content of the register
+pair HL is 2323H, and memory location 2323H contains byte 08H, at
+execution of ADD A, (HL) the Accumulator contains A8H."
+instr;9;0;2;0;ADD;A;(IX+d),(IY+d);;;Register;Indexed;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;"144
+145";A <- A + (IX+d);"The contents of the Index Register (register pair IX) is added to a two’s
+complement displacement d to point to an address in memory. The contents
+of this address is then added to the contents of the Accumulator and the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if overflow, reset otherwise
+N is reset
+C is set if carry from bit 7, reset otherwise";"If the Accumulator contents are 11H, the Index Register IX contains
+1000H, and if the contents of memory location 1005H is 22H, at execution
+of ADD A, (IX + 5H) the contents of the Accumulator are 33H."
+instr;10;0;4;0;ADD;HL;BC,DE,HL,SP;;;Register Ext;Register Ext;;;;1;0;3;11 (4, 4, 3);;OCF(4);CPU(4);CPU(3);;;;;;;16-Bit Arithmetic;0;179;HL <- HL + ss;"The contents of register pair ss (any of register pairs BC, DE, HL, or SP)
+are added to the contents of register pair HL and the result is stored in HL.";"S is not affected
+Z is not affected
+H is set if carry out of bit 11, reset otherwise
+P/V is not affected
+N is reset
+C is set if carry from bit 15, reset otherwise";"If register pair HL contains the integer 4242H, and register pair DE contains
+1111H, at execution of ADD HL, DE the HL register pair contains 5353H."
+instr;10;1;4;0;ADD;IX;BC,DE,IX,SP;;;Register Ext;Register Ext;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);CPU(4);CPU(3);;;;;;16-Bit Arithmetic;0;182;IX <- IX + pp;"The contents of register pair pp (any of register pairs BC, DE, IX, or SP) are
+added to the contents of the Index Register IX, and the results are stored in
+IX.";"S is not affected
+Z is not affected
+H is set if carry out of bit 11, reset otherwise
+P/V is not affected
+N is reset
+C is set if carry from bit 15, reset otherwise";"If the contents of Index Register IX are 333H, and the contents of register pair
+BC are 5555H, at execution of ADD IX, BC the contents of IX are 8888H."
+instr;10;2;4;0;ADD;IY;BC,DE,IY,SP;;;Register Ext;Register Ext;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);CPU(4);CPU(3);;;;;;16-Bit Arithmetic;0;183;IX <- IX + pp;"The contents of register pair pp (any of register pairs BC, DE, IX, or SP) are
+added to the contents of the Index Register IX, and the results are stored in
+IX.";"S is not affected
+Z is not affected
+H is set if carry out of bit 11, reset otherwise
+P/V is not affected
+N is reset
+C is set if carry from bit 15, reset otherwise";"If the contents of Index Register IX are 333H, and the contents of register pair
+BC are 5555H, at execution of ADD IX, BC the contents of IX are 8888H."
+instr;11;0;1;0;AND;n;;;;Immediate;;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;152;A <- A & s;"A logical AND operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set
+P/V is reset if overflow, reset otherwise
+N is reset
+C is reset";"If the B register contains 7BH (0111 1011), and the Accumulator contains
+C3H (1100 0011), at execution of AND B the Accumulator contains 43H
+(0100 0011)."
+instr;12;0;7;0;AND;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;152;A <- A & s;"A logical AND operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set
+P/V is reset if overflow, reset otherwise
+N is reset
+C is reset";"If the B register contains 7BH (0111 1011), and the Accumulator contains
+C3H (1100 0011), at execution of AND B the Accumulator contains 43H
+(0100 0011)."
+instr;12;1;4;0;AND;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A & s;"A logical AND operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set
+P/V is reset if overflow, reset otherwise
+N is reset
+C is reset";"If the B register contains 7BH (0111 1011), and the Accumulator contains
+C3H (1100 0011), at execution of AND B the Accumulator contains 43H
+(0100 0011)."
+instr;13;0;1;0;AND;(HL);;;;Register Indirect;;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;152;A <- A & s;"A logical AND operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set
+P/V is reset if overflow, reset otherwise
+N is reset
+C is reset";"If the B register contains 7BH (0111 1011), and the Accumulator contains
+C3H (1100 0011), at execution of AND B the Accumulator contains 43H
+(0100 0011)."
+instr;14;0;2;0;AND;(IX+d),(IY+d);;;;Indexed;;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;152;A <- A & s;"A logical AND operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set
+P/V is reset if overflow, reset otherwise
+N is reset
+C is reset";"If the B register contains 7BH (0111 1011), and the Accumulator contains
+C3H (1100 0011), at execution of AND B the Accumulator contains 43H
+(0100 0011)."
+instr;15;0;56;0;BIT;0,1,2,3,4,5,6,7;A,B,C,D,E,H,L;;;Bit;Register;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Bit Set, Reset, and Test;0;224;Z <- rb;This instruction tests bit b in register r and sets the Z flag accordingly.;"S is unknown
+Z is set if specified bit is 0, reset otherwise
+H is set
+P/V is unknown
+N is reset
+C is not affected";"If bit 2 in register B contains 0, at execution of BIT 2, B the Z flag in the
+F register contains 1, and bit 2 in register B remains 0. Bit 0 in register B is
+the least-significant bit."
+instr;16;0;8;0;BIT;0,1,2,3,4,5,6,7;(HL);;;Bit;Register Indirect;;;;2;0;3;12 (4, 4, 4);;OCF(4);OCF(4);MR(4);;;;;;;Bit Set, Reset, and Test;0;226;Z <- (HL)b;"This instruction tests bit b in the memory location specified by the contents
+of the HL register pair and sets the Z flag accordingly.";"S is unknown
+Z is set if specified Bit is 0, reset otherwise
+H is set
+P/V is unknown
+H is reset
+C is not affected";"If the HL register pair contains 4444H, and bit 4 in the memory location
+444H contains 1, at execution of BIT 4, (HL) the Z flag in the F register
+contains 0, and bit 4 in memory location 4444H still contains 1. Bit 0 in
+memory location 4444H is the least-significant bit."
+instr;17;0;16;0;BIT;0,1,2,3,4,5,6,7;(IX+d),(IY+d);;;Bit;Indexed;;;;4;0;5;20 (4, 4, 3, 5, 4);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);;;;;Bit Set, Reset, and Test;0;"228
+230";Z <- (IX+d)b;"This instruction tests bit b in the memory location specified by the contents
+of register pair IX combined with the two’s complement displacement d
+and sets the Z flag accordingly. Operand b is specified as follows in the
+assembled object code.";"S is unknown
+Z is set if specified Bit is 0, reset otherwise
+H is set
+P/V is unknown
+N is reset
+C is not affected";"If the contents of Index Register IX are 2000H, and bit 6 in memory
+location 2004H contains 1, at execution of BIT 6, (IX+4H) the Z flag in
+the F register contains 0, and bit 6 in memory location 2004H still contains
+1. Bit 0 in memory location 2004H is the least-significant bit."
+instr;18;0;1;0;CALL;nn;;;;Extended;;;;;3;0;5;17 (4, 3, 4, 3, 3);;OCF(4);ODL(3);ODH(4);SWH(3);SWL(3);;M3 -1, M4 -1;;;Call And Return;0;255;(SP-1) <- PCH, (SP-2) <- PCL, PC <- nn;"The current contents of the Program Counter (PC) are pushed onto the top
+of the external memory stack. The operands nn are then loaded to the PC to
+point to the address in memory where the first Op Code of a subroutine is to
+be fetched. At the end of the subroutine, a RETurn instruction can be used
+to return to the original program flow by popping the top of the stack back
+to the PC. The push is accomplished by first decrementing the current
+contents of the Stack Pointer (register pair SP), loading the high-order byte
+of the PC contents to the memory address now pointed to by the SP, then
+decrementing SP again, and loading the low order byte of the PC contents
+to the top of stack.
+Because this is a 3-byte instruction, the Program Counter was incremented
+by three before the push is executed.";None;"If the contents of the Program Counter are 1A47H, the contents of the Stack
+Pointer are 3002H, and memory locations have the contents:
+1A47H contains CDH
+IA48H contains 35H
+1A49H contains 21H
+If an instruction fetch sequence begins, the 3-byte instruction CD3521H is
+fetched to the CPU for execution. The mnemonic equivalent of this is CALL
+2135H. At execution of this instruction, the contents of memory address
+3001H is 1AH, the contents of address 3000H is 4AH, the contents of the
+Stack Pointer is 3000H, and the contents of the Program Counter is 2135H,
+pointing to the address of the first Op Code of the subroutine now to be
+executed."
+instr;19;0;8;0;CALL;C,M,NC,NZ,P,PE,PO,Z;nn;;;Flag Cond.;Extended;;;;3;0;5;17 (4, 3, 4, 3, 3);cc == 1;OCF(4);ODL(3);ODH(4);SWH(3);SWL(3);;M3 -1, M4 -1;;;Call And Return;0;257;"IF cc true: (sp-1) <- PCH
+(sp-2) <- PCL, pc <- nn";"If condition cc is true, this instruction pushes the current contents of the
+Program Counter (PC) onto the top of the external memory stack, then
+loads the operands nn to PC to point to the address in memory where the
+first Op Code of a subroutine is to be fetched. At the end of the subroutine,
+a RETurn instruction can be used to return to the original program flow by
+popping the top of the stack back to PC. If condition cc is false, the
+Program Counter is incremented as usual, and the program continues with
+the next sequential instruction. The stack push is accomplished by first
+decrementing the current contents of the Stack Pointer (SP), loading the
+high-order byte of the PC contents to the memory address now pointed to
+by SP, then decrementing SP again, and loading the low order byte of the
+PC contents to the top of the stack.
+Because this is a 3-byte instruction, the Program Counter was incremented
+by three before the push is executed.
+Condition cc is programmed as one of eight status that corresponds to
+condition bits in the Flag Register (register F). These eight status are
+defined in the table below :
+Condition Flag
+NZ non zero Z
+Z zero Z
+NC non carry C
+C carry Z
+PO parity odd P/V
+PE parity even P/V
+P sign positive S
+M sign negative S";None;"are 1A47H, the contents of the Stack Pointer are 3002H, and memory
+locations have the contents:
+Location Contents
+1A47H D4H
+1448H 35H
+1A49H 21H
+then if an instruction fetch sequence begins, the 3-byte instruction
+D43521H is fetched to the CPU for execution. The mnemonic equivalent of
+this is CALL NC, 2135H. At execution of this instruction, the contents of
+memory address 3001H is 1AH, the contents of address 3000H is 4AH, the
+contents of the Stack Pointer is 3000H, and the contents of the Program
+Counter is 2135H, pointing to the address of the first Op Code of the
+subroutine now to be executed."
+execvar;19;0;;0;;;;;;;;;;;3;1;3;10 (4, 3, 3);cc == 0;OCF(4);ODL(3);ODH(3);;;;;;;;;;;;;
+instr;20;0;1;0;CCF;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;General-Purpose Arithmetic;0;170;CY <- ~CY;The Carry flag in the F register is inverted.;"S is not affected
+Z is not affected
+H, previous carry is copied
+P/V is not affected
+N is reset
+C is set if CY was 0 before operation, reset otherwise";
+instr;21;0;1;0;CP;n;;;;Immediate;;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;158;A - s;"The contents of the s operand are compared with the contents of the
+Accumulator. If there is a true compare, the Z flag is set. The execution of
+this instruction does not affect the contents of the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 63H, the HL register pair contains 6000H, and
+memory location 6000H contains 60H, the instruction CP (HL) results in
+the PN flag in the F register resetting."
+instr;22;0;7;0;CP;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;158;A - s;"The contents of the s operand are compared with the contents of the
+Accumulator. If there is a true compare, the Z flag is set. The execution of
+this instruction does not affect the contents of the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 63H, the HL register pair contains 6000H, and
+memory location 6000H contains 60H, the instruction CP (HL) results in
+the PN flag in the F register resetting."
+instr;22;1;4;0;CP;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A - s;"The contents of the s operand are compared with the contents of the
+Accumulator. If there is a true compare, the Z flag is set. The execution of
+this instruction does not affect the contents of the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 63H, the HL register pair contains 6000H, and
+memory location 6000H contains 60H, the instruction CP (HL) results in
+the PN flag in the F register resetting."
+instr;23;0;1;0;CP;(HL);;;;Register Indirect;;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;158;A - s;"The contents of the s operand are compared with the contents of the
+Accumulator. If there is a true compare, the Z flag is set. The execution of
+this instruction does not affect the contents of the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 63H, the HL register pair contains 6000H, and
+memory location 6000H contains 60H, the instruction CP (HL) results in
+the PN flag in the F register resetting."
+instr;24;0;2;0;CP;(IX+d),(IY+d);;;;Indexed;;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;158;A - s;"The contents of the s operand are compared with the contents of the
+Accumulator. If there is a true compare, the Z flag is set. The execution of
+this instruction does not affect the contents of the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 63H, the HL register pair contains 6000H, and
+memory location 6000H contains 60H, the instruction CP (HL) results in
+the PN flag in the F register resetting."
+instr;25;0;1;0;CPD;;;;;;;;;;2;0;4;16 (4, 4, 3, 5);;OCF(4);OCF(4);MR(3);CPU(5);;;;;;Exchange, Block Transfer, and Search;0;137;A - (HL), HL <- HL -1, BC <- BC -1;"The contents of the memory location addressed by the HL register pair is
+compared with the contents of the Accumulator. In case of a true
+compare, a condition bit is set. The HL and Byte Counter (register pair
+BC) are decremented.";"S is set if result is negative, reset otherwise
+Z is set if A equals (HL), reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if BC -1 x 0, reset otherwise
+N is set
+C is not affected";"If the HL register pair contains 1111H, memory location 1111H contains
+3BH, the Accumulator contains 3BH, and the Byte Counter contains 0001H.
+At execution of CPD the Byte Counter contains 0000H, the HL register
+pair contains 1110H, the flag in the F register sets, and the P/V flag in the F
+register resets. There is no effect on the contents of the Accumulator or
+address 1111H."
+instr;26;0;1;0;CPDR;;;;;;;;;;2;0;5;21 (4, 4, 3, 5, 5);BC!=0;OCF(4);OCF(4);MR(3);CPU(5);CPU(5);;;;;Exchange, Block Transfer, and Search;0;138;A - (HL), HL <- HL -1, BC <- BC -1;"The contents of the memory location addressed by the HL register pair is
+compared with the contents of the Accumulator. In case of a true compare,
+a condition bit is set. The HL and BC (Byte Counter) register pairs are
+decremented. If decrementing causes the BC to go to zero or if A = (HL),
+the instruction is terminated. If BC is not zero and A = (HL), the program
+counter is decremented by two and the instruction is repeated. Interrupts are
+recognized and two refresh cycles execute after each data transfer. When
+BC is set to zero, prior to instruction execution, the instruction loops
+through 64 Kbytes if no match is found.";"S is set if result is negative, reset otherwise
+Z is set if A = (HL), reset otherwise
+H is set if borrow form bit 4, reset otherwise
+P/V is set if BC -1 ? 0, reset otherwise
+N is set
+C is not affected";"If the HL register pair contains 1118H, the Accumulator contains F3H, the
+Byte Counter contains 0007H, and memory locations have these contents.
+(1118H) contains 52H
+(1117H) contains 00H
+(1116H) contains F3H
+Then, at execution of CPDR the contents of register pair HL are 1115H,
+the contents of the Byte Counter are 0004H, the P/V flag in the F register
+sets, and the Z flag in the F register sets."
+execvar;26;0;;0;;;;;;;;;;;2;1;4;16 (4, 4, 3, 5);BC==0;OCF(4);OCF(4);MR(3);CPU(5);;;;;;;;;;;;
+instr;27;0;1;0;CPI;;;;;;;;;;2;0;4;16 (4, 4, 3, 5);;OCF(4);OCF(4);MR(3);CPU(5);;;;;;Exchange, Block Transfer, and Search;0;134;A - (HL), HL <- HL +1, BC <- BC -1;"The contents of the memory location addressed by the HL register is
+compared with the contents of the Accumulator. In case of a true compare,
+a condition bit is set. Then HL is incremented and the Byte Counter
+(register pair BC) is decremented.";"S is set if result is negative, reset otherwise
+Z is set if A is (HL), reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if BC -1 is not 0, reset otherwise
+N is set
+C is not affected";"If the HL register pair contains 1111H, memory location 1111H contains
+3BH, the Accumulator contains 3BH, and the Byte Counter contains 0001H.
+At execution of CPI the Byte Counter contains 0000H, the HL register
+pair contains 1112H, the Z flag in the F register sets, and the P/V flag in the
+F register resets. There is no effect on the contents of the Accumulator or
+address 1111H."
+instr;28;0;1;0;CPIR;;;;;;;;;;2;0;5;21 (4, 4, 3, 5, 5);BC!=0;OCF(4);OCF(4);MR(3);CPU(5);CPU(5);;;;;Exchange, Block Transfer, and Search;0;135;A - (HL), HL <- HL +1, BC <- BC -1;"The contents of the memory location addressed by the HL register pair is
+compared with the contents of the Accumulator. In case of a true compare, a
+condition bit is set. HL is incremented and the Byte Counter (register pair
+BC) is decremented. If decrementing causes BC to go to zero or if A = (HL),
+the instruction is terminated. If BC is not zero and A ? (HL), the program
+counter is decremented by two and the instruction is repeated. Interrupts are
+recognized and two refresh cycles are executed after each data transfer.
+If BC is set to zero before instruction execution, the instruction loops
+through 64 Kbytes if no match is found.";"S is set if result is negative, reset otherwise
+Z is set if A equals (HL), reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if BC -1 does not equal 0, reset otherwise
+N is set
+C is not affected";"If the HL register pair contains 1111H, the Accumulator contains F3H, the
+Byte Counter contains 0007H, and memory locations have these contents:
+(1111H) contains 52H
+(1112H) contains 00H
+(1113H) contains F3H
+Then, at execution of CPIR the contents of register pair HL is 1114H, the
+contents of the Byte Counter is 0004H, the P/V flag in the F register sets,
+and the Z flag in the F register sets."
+execvar;28;0;;0;;;;;;;;;;;2;1;4;16 (4, 4, 3, 5);BC==0;OCF(4);OCF(4);MR(3);CPU(5);;;;;;;;;;;;
+instr;29;0;1;0;CPL;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;General-Purpose Arithmetic;0;168;A <- ~A;"The contents of the Accumulator (register A) are inverted (one’s
+complement).";"S is not affected
+Z is not affected
+H is set
+P/V is not affected
+N is set
+C is not affected";"If the contents of the Accumulator are 1011 0100, at execution of CPL
+the Accumulator contents are 0100 1011."
+instr;30;0;1;0;DAA;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;General-Purpose Arithmetic;0;166;;"This instruction conditionally adjusts the Accumulator for BCD addition and
+subtraction operations. For addition (ADD, ADC, INC) or subtraction (SUB,
+SBC, DEC, NEG), the following table indicates the operation performed:
+Operation
+C Before
+DAA
+Hex Value In
+Upper Digit
+(bit 7-4)
+H Before
+DAA
+Hex Value
+In Lower
+Digit
+(bit 3-0)
+Number
+Added To
+Byte
+C After
+DAA
+0 9-0 0 0-9 00 0
+0 0-8 0 A-F 06 0
+0 0-9 1 0-3 06 0
+ADD 0 A-F 0 0-9 60 1
+ADC 0 9-F 0 A-F 66 1
+INC 0 A-F 1 0-3 66 1
+1 0-2 0 0-9 60 1
+1 0-2 0 A-F 66 1
+1 0-3 1 0-3 66 1
+SUB 0 0-9 0 0-9 00 0
+SBC 0 0-8 1 6-F FA 0
+DEC 1 7-F 0 0-9 A0 1
+NEG 1 6-7 1 6-F 9A 1";"S is set if most-significant bit of Accumulator is 1 after operation, reset
+otherwise
+Z is set if Accumulator is zero after operation, reset otherwise
+H, see instruction
+P/V is set if Accumulator is even parity after operation, reset otherwise
+N is not affected
+C, see instruction";"If an addition operation is performed between 15 (BCD) and 27 (BCD),
+simple decimal arithmetic gives this result:
+15
++27
+42
+But when the binary representations are added in the Accumulator
+according to standard binary arithmetic.
+0001 0101
++ 0010 0111
+0011 1100 = 3C
+the sum is ambiguous. The DAA instruction adjusts this result so that the
+correct BCD representation is obtained:
+0011 1100
++ 0000 0110
+0100 0010 = 42"
+instr;31;0;7;0;DEC;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;164;m <- m- 1;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous INC instructions.
+The byte specified by the m operand is decremented.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if m was 80H before operation, reset otherwise
+N is set
+C is not affected";"If the D register contains byte 2AH, at execution of DEC D register D
+contains 29H."
+instr;31;1;4;0;DEC;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;m <- m- 1;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous INC instructions.
+The byte specified by the m operand is decremented.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if m was 80H before operation, reset otherwise
+N is set
+C is not affected";"If the D register contains byte 2AH, at execution of DEC D register D
+contains 29H."
+instr;32;0;1;0;DEC;(HL);;;;Register Indirect;;;;;1;0;3;11 (4, 4, 3);;OCF(4);MR(4);MW(3);;;;;;;8-Bit Arithmetic;0;164;m <- m- 1;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous INC instructions.
+The byte specified by the m operand is decremented.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if m was 80H before operation, reset otherwise
+N is set
+C is not affected";"If the D register contains byte 2AH, at execution of DEC D register D
+contains 29H."
+instr;33;0;2;0;DEC;(IX+d),(IY+d);;;;Indexed;;;;;3;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(4);MW(3);;;;8-Bit Arithmetic;0;164;m <- m- 1;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous INC instructions.
+The byte specified by the m operand is decremented.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if m was 80H before operation, reset otherwise
+N is set
+C is not affected";"If the D register contains byte 2AH, at execution of DEC D register D
+contains 29H."
+instr;34;0;4;0;DEC;BC,DE,HL,SP;;;;Register Ext;;;;;1;0;1;6;;OCF(6);;;;;;;;;16-Bit Arithmetic;0;187;ss <- ss - 1;"The contents of register pair ss (any of the register pairs BC, DE, HL, or
+SP) are decremented.";None;"If register pair HL contains 1001H, at execution of DEC HL the contents
+of HL are 1000H."
+instr;34;1;2;0;DEC;IX,IY;;;;Register Ext;;;;;2;0;2;10 (4, 6);;OCF(4);OCF(6);;;;;;;;16-Bit Arithmetic;0;"188
+189";IX <- IX - 1;The contents of Index Register IX are decremented.;None;"If the contents of Index Register IX are 2006H, at execution of DEC IX
+the contents of Index Register IX are 2005H."
+instr;35;0;1;0;DI;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;CPU Control;0;174;IFF <- 0;"DI disables the maskable interrupt by resetting the interrupt enable flipflops
+(IFF1 and IFF2). Note that this instruction disables the maskable
+interrupt during its execution";None;"When the CPU executes the instruction DI the maskable interrupt is
+disabled until it is subsequently re-enabled by an EI instruction. The CPU
+does not respond to an Interrupt Request (INT) signal."
+instr;36;0;1;0;DJNZ;e;;;;Relative;;;;;2;0;3;13 (5,3, 5);B != 0;OCF(5);OD(3);CPU(5);;;;;;;Jump;0;253;;"This instruction is similar to the conditional jump instructions except that
+a register value is used to determine branching. The B register is
+decremented, and if a non zero value remains, the value of the
+displacement e is added to the Program Counter (PC). The next
+instruction is fetched from the location designated by the new contents of
+the PC. The jump is measured from the address of the instruction Op
+Code and has a range of -126 to +129 bytes. The assembler automatically
+adjusts for the twice incremented PC.
+If the result of decrementing leaves B with a zero value, the next instruction
+executed is taken from the location following this instruction.";None;"A typical software routine is used to demonstrate the use of the DJNZ
+instruction. This routine moves a line from an input buffer (INBUF) to an
+output buffer (OUTBUF). It moves the bytes until it finds a CR, or until it
+has moved 80 bytes, whichever occurs first.
+LD B, 80 ,Set up counter
+LD HL, Inbuf ,Set up pointers
+LD DE, Outbuf
+LOOP: LD A, (HL) ,Get next byte from
+,input buffer
+LD (DE), A ,Store in output buffer
+CP ODH ,Is it a CR?
+JR Z, DONE ,Yes finished
+INC HL ,Increment pointers
+INC DE
+DJNZ LOOP ,Loop back if 80
+,bytes have not
+,been moved
+DONE:"
+execvar;36;0;;0;;;;;;;;;;;2;1;2;8 (5, 3);B == 0;OCF(5);OD(3);;;;;;;;;;;;;;
+instr;37;0;1;0;EI;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;CPU Control;0;175;IFF <- 1;"The enable interrupt instruction sets both interrupt enable flip flops (IFFI
+and IFF2) to a logic 1, allowing recognition of any maskable interrupt. Note
+that during the execution of this instruction and the following instruction,
+maskable interrupts are disabled.";None;"When the CPU executes instruction EI the maskable interrupt is
+enabled."
+instr;38;0;1;0;EX;AF;AF';;;Register Ext;Register Ext;;;;1;0;1;4;;OCF(4);;;;;;;;;Exchange, Block Transfer, and Search;0;123;DE <-> HL;The 2-byte contents of register pairs DE and HL are exchanged.;None;"If the content of register pair DE is the number 2822H, and the content of
+the register pair HL is number 499AH, at instruction EX DE, HL the content
+of register pair DE is 499AH, and the content of register pair HL is 2822H."
+instr;38;1;1;0;EX;DE;HL;;;Register Ext;Register Ext;;;;1;0;1;4;;OCF(4);;;;;;;;;Exchange, Block Transfer, and Search;0;122;DE <-> HL;The 2-byte contents of register pairs DE and HL are exchanged.;None;"If the content of register pair DE is the number 2822H, and the content of
+the register pair HL is number 499AH, at instruction EX DE, HL the content
+of register pair DE is 499AH, and the content of register pair HL is 2822H."
+instr;39;0;1;0;EX;(SP);HL;;;Register Indirect;Register Ext;;;;1;0;5;19 (4, 3, 4, 3, 5);;OCF(4);SRL(3);SRH(4);SWH(3);SWL(5);;M2 -1, M4 -1;;;Exchange, Block Transfer, and Search;0;125;H <-> (SP+1), L <-> (SP);"The low order byte contained in register pair HL is exchanged with the
+contents of the memory address specified by the contents of register pair SP
+(Stack Pointer), and the high order byte of HL is exchanged with the next
+highest memory address (SP+1).";None;"If the HL register pair contains 7012H, the SP register pair contains 8856H,
+the memory location 8856H contains byte 11H, and memory location
+8857H contains byte 22H, then the instruction EX (SP), HL results in the
+HL register pair containing number 2211H, memory location 8856H
+containing byte 12H, memory location 8857H containing byte 70H and
+Stack Pointer containing 8856H."
+instr;39;1;2;0;EX;(SP);IX,IY;;;Register Indirect;Register Ext;;;;2;0;6;23 (4, 4, 3, 4, 3, 5);;OCF(4);OCF(4);SRL(3);SRH(4);SWH(3);SWL(5);M3 +1, M5 +1;;;Exchange, Block Transfer, and Search;0;"126
+127";IXH <-> (SP+1), IXL <-> (SP);"The low order byte in Index Register IX is exchanged with the contents of
+the memory address specified by the contents of register pair SP (Stack
+Pointer), and the high order byte of IX is exchanged with the next highest
+memory address (SP+1).";None;"If the Index Register IX contains 3988H, the SP register pair Contains
+0100H, memory location 0100H contains byte 90H, and memory location
+0101H contains byte 48H, then the instruction EX (SP), IX results in the
+IX register pair containing number 4890H, memory location 0100H
+containing 88H, memory location 0101H containing 39H, and the Stack
+Pointer containing 0100H."
+instr;40;0;1;0;EXX;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;Exchange, Block Transfer, and Search;0;124;BC <-> BC', DE <-> DE', HL <-> HL';"Each 2-byte value in register pairs BC, DE, and HL is exchanged with the
+2-byte value in BC', DE', and HL', respectively.";None;"If the contents of register pairs BC, DE, and HL are the numbers 445AH,
+3DA2H, and 8859H, respectively, and the contents of register pairs BC',
+DE', and HL' are 0988H, 9300H, and 00E7H, respectively, at instruction
+EXX the contents of the register pairs are as follows: BC' contains 0988H,
+DE' contains 9300H, HL contains 00E7H, BC' contains 445AH, DE'
+contains 3DA2H, and HL' contains 8859H."
+instr;41;0;1;0;HALT;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;CPU Control;0;173;;"The HALT instruction suspends CPU operation until a subsequent interrupt
+or reset is received. While in the HALT state, the processor executes NOPs
+to maintain memory refresh logic.";None;
+instr;42;0;3;0;IM;0,1,2;;;;Interrupt Mode;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;CPU Control;0;"176
+177
+178";;"The IM 0 instruction sets interrupt mode 0. In this mode, the interrupting
+device can insert any instruction on the data bus for execution by the
+CPU. The first byte of a multi-byte instruction is read during the interrupt
+acknowledge cycle. Subsequent bytes are read in by a normal memory
+read sequence.
+The IM 1 instruction sets interrupt mode 1. In this mode, the processor
+responds to an interrupt by executing a restart to location 0038H.
+The IM 2 instruction sets the vectored interrupt mode 2. This mode allows
+an indirect call to any memory location by an 8-bit vector supplied from the
+peripheral device. This vector then becomes the least-significant eight bits
+of the indirect pointer, while the I register in the CPU provides the most-significant
+eight bits. This address points to an address in a vector table that
+is the starting address for the interrupt service routine.";None;
+instr;43;0;1;0;IN;A;(n);;;Register;Immediate I/O Port;;;;2;0;3;11 (4, 3, 4);;OCF(4);OD(3);PR(4);;;;;;;Input and Output;0;269;A <- (n);"The operand n is placed on the bottom half (A0 through A7) of the address
+bus to select the I/O device at one of 256 possible ports. The contents of the
+Accumulator also appear on the top half (A8 through A15) of the address
+bus at this time. Then one byte from the selected port is placed on the data
+bus and written to the Accumulator (register A) in the CPU.";None;"If the contents of the Accumulator are 23H, and byte 7BH is available at the
+peripheral device mapped to I/O port address 01H. At execution of INA,
+(01H) the Accumulator contains 7BH."
+instr;44;0;7;0;IN;A,B,C,D,E,H,L;(C);;;Register;Register I/O Port;;;;2;0;3;12 (4, 4, 4);;OCF(4);OCF(4);PR(4);;;;;;;Input and Output;0;270;r <- (C);"The contents of register C are placed on the bottom half (A0 through A7) of
+the address bus to select the I/O device at one of 256 possible ports. The
+contents of Register B are placed on the top half (A8 through A15) of the
+address bus at this time. Then one byte from the selected port is placed on
+the data bus and written to register r in the CPU. Register r identifies any of
+the CPU registers shown in the following table, which also indicates the
+corresponding 3-bit r field for each. The flags are affected, checking the
+input data.";"S is set if input data is negative, reset otherwise
+Z is set if input data is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is not affected";"If the contents of register C are 07H, the contents of register B are 10H,
+and byte 7BH is available at the peripheral device mapped to I/O port
+address 07H. After execution of IN D, (C) register D contains 7BH."
+instr;45;0;1;0;IN;F;(C);;;Flags;Register I/O Port;;;;2;0;3;12 (4, 4, 4);;OCF(4);OCF(4);PR(4);;;;;;;Input and Output;1;;;The ED70 instruction reads from I/O port C, but does not store the result. It just affects the flags like the other IN x,(C) instructions.;"S is set if input data is negative, reset otherwise
+Z is set if input data is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is not affected";"If the contents of register C are 07H, the contents of register B are 10H,
+and byte 7BH is available at the peripheral device mapped to I/O port
+address 07H. After execution of IN F, (C) value 7BH is not stored in any register, only flag F is affected."
+instr;46;0;7;0;INC;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;160;r <- r + 1;"Register r is incremented and register r identifies any of the registers A, B,
+C, D, E, H, or L.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if r was 7FH before operation, reset otherwise
+N is reset
+C is not affected";"If the contents of register D are 28H, at execution of INC D the contents of
+register D are 29H."
+instr;46;1;4;0;INC;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;r <- r + 1;"Register r is incremented and register r identifies any of the registers A, B,
+C, D, E, H, or L.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if r was 7FH before operation, reset otherwise
+N is reset
+C is not affected";"If the contents of register D are 28H, at execution of INC D the contents of
+register D are 29H."
+instr;47;0;1;0;INC;(HL);;;;Register Indirect;;;;;1;0;3;11 (4, 4, 3);;OCF(4);MR(4);MW(3);;;;;;;8-Bit Arithmetic;0;161;(HL) <- (HL) + 1;"The byte contained in the address specified by the contents of the HL
+register pair is incremented.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if (HL) was 7FH before operation, reset otherwise
+N is reset
+C is not affected";"If the contents of the HL register pair are 3434H, and the contents of
+address 3434H are 82H, at execution of INC (HL) memory location
+3434H contains 83H."
+instr;48;0;2;0;INC;(IX+d),(IY+d);;;;Indexed;;;;;3;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(4);MW(3);;;;8-Bit Arithmetic;0;"162
+163";(IX+d) <- (IX+d) + 1;"The contents of the Index Register IX (register pair IX) are added to a two’s
+complement displacement integer d to point to an address in memory. The
+contents of this address are then incremented.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if carry from bit 3, reset otherwise
+P/V is set if (IX+d) was 7FH before operation, reset otherwise
+N is reset
+C is not affected";"If the contents of the Index Register pair IX are 2020H, and the memory
+location 2030H contains byte 34H, at execution of INC (IX+10H) the
+contents of memory location 2030H is 35H."
+instr;49;0;4;0;INC;BC,DE,HL,SP;;;;Register Ext;;;;;1;0;1;6;;OCF(6);;;;;;;;;16-Bit Arithmetic;0;184;ss <- ss + 1;"The contents of register pair ss (any of register pairs BC, DE, HL, or SP)
+are incremented.";None;"If the register pair contains 1000H, after the execution of INC HL, HL
+contains 1001H."
+instr;49;1;2;0;INC;IX,IY;;;;Register Ext;;;;;2;0;2;10 (4, 6);;OCF(4);OCF(6);;;;;;;;16-Bit Arithmetic;0;"185
+186";IX <- IX + 1;The contents of the Index Register IX are incremented.;None;"If the Index Register IX contains the integer 3300H. at execution of
+INC IX the contents of Index Register IX are 3301H."
+instr;50;0;1;0;IND;;;;;;;;;;2;0;4;16 (4, 5, 4, 3);;OCF(4);OCF(5);PR(4);MW(3);;;;;;Input and Output;0;275;(HL) <- (C), B <- B -1, HL <- HL -1;"The contents of register C are placed on the bottom half (A0 through A7) of
+the address bus to select the I/O device at one of 256 possible ports.
+Register B may be used as a byte counter, and its contents are placed on the
+top half (A8 through A15) of the address bus at this time. Then one byte
+from the selected port is placed on the data bus and written to the CPU. The
+contents of the HL register pair are placed on the address bus and the input
+byte is written to the corresponding location of memory. Finally, the byte
+counter and register pair HL are decremented.";"S is unknown
+Z is set if B–1 = 0, reset otherwise
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 10H, the
+contents of the HL register pair are 1000H, and byte 7BH is available at the
+peripheral device mapped to I/O port address 07H. At execution of IND
+memory location 1000H contains 7BH, the HL register pair contains
+0FFFH, and register B contains 0FH."
+instr;51;0;1;0;INDR;;;;;;;;;;2;0;5;21 (4, 5, 4, 3, 5);B!=0;OCF(4);OCF(5);PR(4);MW(3);CPU(5);;;;;Input and Output;0;277;(HL) <- (C), B <- B -1, HL <- HL -1;"The contents of register C are placed on the bottom half (A0 through A7)
+of the address bus to select the I/O device at one of 256 possible ports.
+Register B is used as a byte counter, and its contents are placed on the top
+half (A8 through A15) of the address bus at this time. Then one byte from
+the selected port is placed on the data bus and written to the CPU. The
+contents of the HL register pair are placed on the address bus and the
+input byte is written to the corresponding location of memory. Then HL
+and the byte counter are decremented. If decrementing causes B to go to
+zero, the instruction is terminated. If B is not zero, the PC is decremented
+by two and the instruction repeated. Interrupts are recognized and two
+refresh cycles are executed after each data transfer.
+When B is set to zero prior to instruction execution, 256 bytes of data are
+input.";"S is unknown
+Z is set
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 03H, the
+contents of the HL register pair are 1000H, and the following sequence of
+bytes are available at the peripheral device mapped to I/O port address 07H:
+51H
+A9H
+03H
+then at execution of INDR the HL register pair contains 0FFDH, register B
+contains zero, and memory locations contain the following:
+0FFEH contains 03H
+0FFFH contains A9H
+1000H contains 51H"
+execvar;51;0;;0;;;;;;;;;;;2;1;4;16 (4, 5, 4, 3);B=0;OCF(4);OCF(5);PR(4);MW(3);;;;;;;;;;;;
+instr;52;0;1;0;INI;;;;;;;;;;2;0;4;16 (4, 5, 4, 3);;OCF(4);OCF(5);PR(4);MW(3);;;;;;Input and Output;0;272;(HL) <- (C), B <- B -1, HL <- HL + 1;"The contents of register C are placed on the bottom half (A0 through A7) of
+the address bus to select the I/O device at one of 256 possible ports.
+Register B may be used as a byte counter, and its contents are placed on the
+top half (A8 through A15) of the address bus at this time. Then one byte
+from the selected port is placed on the data bus and written to the CPU. The
+contents of the HL register pair are then placed on the address bus and the
+input byte is written to the corresponding location of memory. Finally, the
+byte counter is decremented and register pair HL is incremented.";"S is unknown
+Z is set if B–1 = 0, reset otherwise
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 10H, the
+contents of the HL register pair are 1000H, and byte 7BH is available at the
+peripheral device mapped to I /O port address 07H. At execution of INI
+memory location 1000H contains 7BH, the HL register pair contains
+1001H, and register B contains 0FH."
+instr;53;0;1;0;INIR;;;;;;;;;;2;0;5;21 (4, 5, 4, 3, 5);B!=0;OCF(4);OCF(5);PR(4);MW(3);CPU(5);;;;;Input and Output;0;273;(HL) <- (C), B <- B -1, HL <- HL + 1;"The contents of register C are placed on the bottom half (A0 through A7) of
+the address bus to select the I/O device at one of 256 possible ports.
+Register B is used as a byte counter, and its contents are placed on the top
+half (A8 through A15) of the address bus at this time. Then one byte from
+the selected port is placed on the data bus and written to the CPU. The
+contents of the HL register pair are placed on the address bus and the input
+byte is written to the corresponding location of memory. Then register pair
+HL is incremented, the byte counter is decremented. If decrementing causes
+B to go to zero, the instruction is terminated. If B is not zero, the PC is
+decremented by two and the instruction repeated. Interrupts are recognized
+and two refresh cycles execute after each data transfer.
+Note: if B is set to zero prior to instruction execution, 256 bytes of data
+are input.";"S is unknown
+Z is set
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 03H,
+the contents of the HL register pair are 1000H, and the following
+sequence of bytes are available at the peripheral device mapped to I/O
+port of address 07H:
+51H
+A9H
+03H
+then at execution of INIR the HL register pair contains 1003H, register B
+contains zero, and memory locations contain the following:
+1000H contains 51H
+1001H contains A9H
+1002H contains 03H"
+execvar;53;0;;0;;;;;;;;;;;2;1;4;16 (4, 5, 4, 3);B=0;OCF(4);OCF(5);PR(4);MW(3);;;;;;;;;;;;
+instr;54;0;1;0;JP;nn;;;;Extended;;;;;3;0;3;10 (4, 3, 3);;OCF(4);ODL(3);ODH(3);;;;;;;Jump;0;238;PC <- nn;"Operand nn is loaded to register pair PC (Program Counter). The next
+instruction is fetched from the location designated by the new contents of
+the PC.";None;
+instr;55;0;1;0;JP;(HL);;;;Register Indirect;;;;;1;0;1;4;;OCF(4);;;;;;;;;Jump;0;250;pc <- hL;"The Program Counter (register pair PC) is loaded with the contents of the
+HL register pair. The next instruction is fetched from the location
+designated by the new contents of the PC.";None;"If the contents of the Program Counter are 1000H, and the contents of the
+HL register pair are 4800H, at execution of JP (HL) the contents of the
+Program Counter are 4800H."
+instr;55;1;2;0;JP;(IX),(IY);;;;Register Indirect;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Jump;0;"251
+252";pc <- IX;"The Program Counter (register pair PC) is loaded with the contents of the
+IX Register Pair. The next instruction is fetched from the location
+designated by the new contents of the PC.";None;"If the contents of the Program Counter are 1000H, and the contents of the
+IX Register Pair are 4800H, at execution of JP (IX) the contents of the
+Program Counter are 4800H."
+instr;56;0;8;0;JP;C,M,NC,NZ,P,PE,PO,Z;nn;;;Flag Cond.;Extended;;;;3;0;3;10 (4, 3, 3);;OCF(4);ODL(3);ODH(3);;;;;;;Jump;0;239;IF cc true, PC <- nn;"If condition cc is true, the instruction loads operand nn to register pair PC
+(Program Counter), and the program continues with the instruction
+beginning at address nn. If condition cc is false, the Program Counter is
+incremented as usual, and the program continues with the next sequential
+instruction. Condition cc is programmed as one of eight status that
+corresponds to condition bits in the Flag Register (register F). These eight
+status are defined in the table below :
+Condition Flag
+NZ non zero Z
+Z zero Z
+NC no carry C
+C carry C
+PO parity odd P/V
+PE parity even P/V
+P sign positive S
+M sign negative S";None;"If the Carry flag (C flag in the F register) is set and the contents of address
+1520 are 03H, at execution of JP C, 1520H the Program Counter contains
+1520H, and on the next machine cycle the CPD fetches byte 03H from
+address 1520H."
+instr;57;0;1;0;JR;e;;;;Relative;;;;;2;0;3;12 (4, 3, 5);;OCF(4);OD(3);CPU(5);;;;;;;Jump;0;241;PC <- PC + e;"This instruction provides for unconditional branching to other segments of
+a program. The value of the displacement e is added to the Program
+Counter (PC) and the next instruction is fetched from the location
+designated by the new contents of the PC. This jump is measured from the
+address of the instruction Op Code and has a range of-126 to +129 bytes.
+The assembler automatically adjusts for the twice incremented PC.";None;"To jump forward five locations from address 480, the following assembly
+language statement is used JR $+5
+The resulting object code and final PC value is shown below:
+Location Instruction
+480 18
+481 03
+482 -
+483 -
+484 -
+485 <- PC after jump"
+instr;58;0;4;0;JR;C,NC,NZ,Z;e;;;Flag Cond.;Relative;;;;2;0;3;12 (4, 3, 5);cc == 1;OCF(4);OD(3);CPU(5);;;;;;;Jump;0;"242
+244
+246
+248";"If C = 0, continue
+If C = 1, PC <- PC+ e";"This instruction provides for conditional branching to other segments of a
+program depending on the results of a test on the Carry Flag. If the flag is
+equal to a 1, the value of the displacement e is added to the Program
+Counter (PC) and the next instruction is fetched from the location
+designated by the new contents of the PC. The jump is measured from the
+address of the instruction Op Code and has a range of -126 to +129 bytes.
+The assembler automatically adjusts for the twice incremented PC.
+If the flag is equal to a 0, the next instruction executed is taken from the
+location following this instruction.";None;"The Carry flag is set and it is required to jump back four locations from
+480. The assembly language statement is JR C, $ - 4
+The resulting object code and final PC value is shown below:
+Location Instruction
+47C <- PC after jump
+47D -
+47E -
+47F -
+480 38
+481 FA (two’s complement - 6)"
+execvar;58;0;;0;;;;;;;;;;;2;1;2;7 (4,3);cc == 0;OCF(4);OD(3);;;;;;;;;;;;;;
+instr;59;0;7;0;LD;A,B,C,D,E,H,L;n;;;Register;Immediate;;;;2;0;2;7 (4,3);;OCF(4);OD(3);;;;;;;;8-Bit Load;0;82;r <- n;The 8-bit integer n is loaded to any register r, where r identifies register A,B, C, D, E, H, or L.;None;At execution of LD E, A5H the contents of register E are A5H.
+instr;59;1;4;0;LD;IXh,IXl,IYh,IYl;n;;;Register;Immediate;;;;3;0;3;11 (4,4,3);;OCF(4);OCF(4);OD(3);;;;;;;8-Bit Load;1;;r <- n;The 8-bit integer n is loaded to any register r, where r identifies register A,B, C, D, E, H, or L.;None;At execution of LD E, A5H the contents of register E are A5H.
+instr;60;0;49;0;LD;A,B,C,D,E,H,L;A,B,C,D,E,H,L;;;Register;Register;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Load;0;81;r <- r';"The contents of any register r' are loaded to any other register r. r, r'
+identifies any of the registers A, B, C, D, E, H, or L.";None;If the H register contains the number 8AH, and the E register contains 10H, the instruction LD H, E results in both registers containing 10H.
+instr;60;1;20;0;LD;A,B,C,D,E;IXh,IXl,IYh,IYl;;;Register;Register;;;;2;0;2;8 (4,4);;OCF(4);OCF(4);;;;;;;;8-Bit Load;1;;r <- r';"The contents of any register r' are loaded to any other register r. r, r'
+identifies any of the registers A, B, C, D, E, H, or L.";None;If the H register contains the number 8AH, and the E register contains 10H, the instruction LD H, E results in both registers containing 10H.
+instr;60;2;20;0;LD;IXh,IXl,IYh,IYl;A,B,C,D,E;;;Register;Register;;;;2;0;2;8 (4,4);;OCF(4);OCF(4);;;;;;;;8-Bit Load;1;;r <- r';"The contents of any register r' are loaded to any other register r. r, r'
+identifies any of the registers A, B, C, D, E, H, or L.";None;If the H register contains the number 8AH, and the E register contains 10H, the instruction LD H, E results in both registers containing 10H.
+instr;60;3;4;0;LD;IXh,IXl;IXh,IXl;;;Register;Register;;;;2;0;2;8 (4,4);;OCF(4);OCF(4);;;;;;;;8-Bit Load;1;;r <- r';"The contents of any register r' are loaded to any other register r. r, r'
+identifies any of the registers A, B, C, D, E, H, or L.";None;If the H register contains the number 8AH, and the E register contains 10H, the instruction LD H, E results in both registers containing 10H.
+instr;60;4;4;0;LD;IYh,IYl;IYh,IYl;;;Register;Register;;;;2;0;2;8 (4,4);;OCF(4);OCF(4);;;;;;;;8-Bit Load;1;;r <- r';"The contents of any register r' are loaded to any other register r. r, r'
+identifies any of the registers A, B, C, D, E, H, or L.";None;If the H register contains the number 8AH, and the E register contains 10H, the instruction LD H, E results in both registers containing 10H.
+instr;60;5;2;0;LD;A;R,I;;;Register;Register;;;;2;0;2;9 (4, 5);;OCF(4);OCF(5);;;;;;;;8-Bit Load;0;"98
+99";A <- I;The contents of the Interrupt Vector Register I are loaded to the Accumulator.;"S is set if I-Register is negative, reset otherwise
+Z is set if I-Register is zero, reset otherwise
+H is reset
+P/V contains contents of IFF2
+N is reset
+C is not affected
+If an interrupt occurs during execution of this instruction, the Parity
+flag contains a 0.";
+instr;60;6;2;0;LD;R,I;A;;;Register;Register;;;;2;0;2;9 (4, 5);;OCF(4);OCF(5);;;;;;;;8-Bit Load;0;"100
+101";I <- A;"The contents of the Accumulator are loaded to the Interrupt Control Vector
+Register, I.";None;
+instr;61;0;1;0;LD;A;(nn);;;Register;Extended;;;;3;0;4;13 (4, 3, 3, 3);;OCF(4);ODL(3);ODH(3);MR(3);;;;;;8-Bit Load;0;94;A <- (nn);"The contents of the memory location specified by the operands nn are
+loaded to the Accumulator. The first n operand after the Op Code is the low
+order byte of a 2-byte memory address.";None;"If the contents of nn is number 8832H, and the content of memory address
+8832H is byte 04H, at instruction LD A, (nn) byte 04H is in the
+Accumulator."
+instr;62;0;7;0;LD;A,B,C,D,E,H,L;(HL);;;Register;Register Indirect;;;;1;0;2;7 (4,3);;OCF(4);MR(3);;;;;;;;8-Bit Load;0;83;r <- (HL);"The 8-bit contents of memory location (HL) are loaded to register r,
+where r identifies register A, B, C, D, E, H, or L.";None;"If register pair HL contains the number 75A1H, and memory address
+75A1H contains byte 58H, the execution of LD C, (HL) results in 58H in
+register C."
+instr;62;1;2;0;LD;A;(BC),(DE);;;Register;Register Indirect;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Load;0;"92
+93";A <- (BC);"The contents of the memory location specified by the contents of the BC
+register pair are loaded to the Accumulator.";None;"If the BC register pair contains the number 4747H, and memory address
+4747H contains byte 12H, then the instruction LD A, (BC) results in byte
+12H in register A."
+instr;63;0;14;0;LD;A,B,C,D,E,H,L;(IX+d),(IY+d);;;Register;Indexed;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Load;0;"84
+85";r <- (IX+d);"The operand (IX+d), (the contents of the Index Register IX summed with
+a two’s complement displacement integer d) is loaded to register r, where r identifies register A, B, C, D, E, H, or L.";None;"If the Index Register IX contains the number 25AFH, the instruction LD B,
+(IX+19H) causes the calculation of the sum 25AFH + 19H, which points
+to memory location 25C8H. If this address contains byte 39H, the
+instruction results in register B also containing 39H."
+instr;64;0;4;0;LD;BC,DE,HL,SP;nn;;;Register Ext;Immediate Extended;;;;3;0;3;10 (4, 3, 3);;OCF(4);ODL(3);ODH(3);;;;;;;16-Bit Load;0;102;dd <- nn;"The 2-byte integer nn is loaded to the dd register pair, where dd defines the
+BC, DE, HL, or SP register pairs.";None;At execution of LD HL, 5000H the contents of the HL register pair is 5000H.
+instr;64;1;2;0;LD;IX,IY;nn;;;Register Ext;Immediate Extended;;;;4;0;4;14 (4, 4, 3, 3);;OCF(4);OCF(4);ODL(3);ODH(3);;;;;;16-Bit Load;0;"103
+104";IX <- nn;"Integer nn is loaded to the Index Register IX. The first n operand after the
+Op Code is the low order byte.";None;At instruction LD IX, 45A2H the Index Register contains integer 45A2H.
+instr;65;0;1;0;LD;SP;HL;;;Register Ext;Register Ext;;;;1;0;1;6;;OCF(6);;;;;;;;;16-Bit Load;0;113;SP <- HL;The contents of the register pair HL are loaded to the Stack Pointer (SP);None;"If the register pair HL contains 442EH, at instruction LD SP, HL the Stack
+Pointer also contains 442EH."
+instr;65;1;2;0;LD;SP;IX,IY;;;Register Ext;Register Ext;;;;2;0;2;10 (4, 6);;OCF(4);OCF(6);;;;;;;;16-Bit Load;0;"114
+115";SP <- IX;The 2-byte contents of Index Register IX are loaded to the Stack Pointer (SP);None;"If the contents of the Index Register IX are 98DAH, at instruction
+LD SP, IX the contents of the Stack Pointer are also 98DAH."
+instr;66;0;1;0;LD;HL;(nn);;;Register Ext;Extended;;;;3;0;5;16 (4, 3, 3, 3, 3);;OCF(4);ODL(3);ODH(3);MRL(3);MRH(3);;;;;16-Bit Load;0;105;H <- (nn+1), L <- (nn);"The contents of memory address (nn) are loaded to the low order portion of
+register pair HL (register L), and the contents of the next highest memory
+address (nn+1) are loaded to the high order portion of HL (register H). The
+first n operand after the Op Code is the low order byte of nn.";None;"If address 4545H contains 37H, and address 4546H contains A1H, at
+instruction LD HL, (4545H) the HL register pair contains A137H."
+instr;66;1;5;0;LD;BC,DE,IX,IY,SP;(nn);;;Register Ext;Extended;;;;4;0;6;20 (4, 4, 3, 3, 3, 3);;OCF(4);OCF(4);ODL(3);ODH(3);MRL(3);MRH(3);;;;16-Bit Load;0;"106
+107
+108";ddh <- (nn+1), ddl <- (nn);"The contents of address (nn) are loaded to the low order portion of register
+pair dd, and the contents of the next highest memory address (nn+1) are
+loaded to the high order portion of dd. Register pair dd defines BC, DE,
+HL, or SP register pairs.";None;"If Address 2130H contains 65H, and address 2131M contains 78H, at
+instruction LD BC, (2130H) the BC register pair contains 7865H."
+instr;66;2;1;0;LD;HL;(nn);;;Register Ext;Extended;;;;4;0;6;20 (4, 4, 3, 3, 3, 3);;OCF(4);OCF(4);ODL(3);ODH(3);MRL(3);MRH(3);;;;;;;;;;
+instr;67;0;1;0;LD;(nn);A;;;Extended;Register;;;;3;0;4;13 (4, 3, 3, 3);;OCF(4);ODL(3);ODH(3);MW(3);;;;;;8-Bit Load;0;97;(nn) <- A;"The contents of the Accumulator are loaded to the memory address
+specified by the operand nn. The first n operand after the Op Code is the
+low order byte of nn.";None;"If the contents of the Accumulator are byte D7H, at execution of
+LD (3141 H), AD7H results in memory location 3141H."
+instr;68;0;1;0;LD;(nn);HL;;;Extended;Register Ext;;;;3;0;5;16 (4, 3, 3, 3, 3);;OCF(4);ODL(3);ODH(3);MWL(3);MWH(3);;;;;16-Bit Load;0;109;(nn+1) <- H, (nn) <- L;"The contents of the low order portion of register pair HL (register L) are
+loaded to memory address (nn), and the contents of the high order portion
+of HL (register H) are loaded to the next highest memory address (nn+1).
+The first n operand after the Op Code is the low order byte of nn.";None;"If the content of register pair HL is 483AH, at instruction
+LD (B2291-1), HL address B229H contains 3AH, and address B22AH
+contains 48H."
+instr;68;1;5;0;LD;(nn);BC,DE,IX,IY,SP;;;Extended;Register Ext;;;;4;0;6;20 (4, 4, 3, 3, 3, 3);;OCF(4);OCF(4);ODL(3);ODH(3);MWL(3);MWH(3);;;;16-Bit Load;0;"110
+111
+112";(nn+1) <- ddh, (nn) <- ddl;"The low order byte of register pair dd is loaded to memory address (nn), the
+upper byte is loaded to memory address (nn+1). Register pair dd defines
+either BC, DE, HL, or SP.";None;"If register pair BC contains the number 4644H, the instruction LD
+(1000H), BC results in 44H in memory location 1000H, and 46H in
+memory location 1001H."
+instr;68;2;1;0;LD;(nn);HL;;;Extended;Register Ext;;;;4;0;6;20 (4, 4, 3, 3, 3, 3);;OCF(4);OCF(4);ODL(3);ODH(3);MWL(3);MWH(3);;;;;;;;;;
+instr;69;0;1;0;LD;(HL);n;;;Register Indirect;Immediate;;;;2;0;3;10 (4, 3, 3);;OCF(4);OD(3);MW(3);;;;;;;8-Bit Load;0;89;(HL) <- n;"Integer n is loaded to the memory address specified by the contents of the
+HL register pair.";None;"If the HL register pair contains 4444H, the instruction LD (HL), 28H
+results in the memory location 4444H containing byte 28H."
+instr;70;0;7;0;LD;(HL);A,B,C,D,E,H,L;;;Register Indirect;Register;;;;1;0;2;7 (4, 3);;OCF(4);MW(3);;;;;;;;8-Bit Load;0;86;(HL) <- r;"The contents of register r are loaded to the memory location specified by
+the contents of the HL register pair. The symbol r identifies register A, B,
+C, D, E, H, or L.";None;"If the contents of register pair HL specifies memory location 2146H, and
+the B register contains byte 29H, at execution of LD (HL), B memory
+address 2146H also contains 29H."
+instr;70;1;2;0;LD;(BC),(DE);A;;;Register Indirect;Register;;;;1;0;2;7 (4, 3);;OCF(4);MW(3);;;;;;;;8-Bit Load;0;"95
+96";(BC) <- A;"The contents of the Accumulator are loaded to the memory location
+specified by the contents of the register pair BC.";None;"If the Accumulator contains 7AH and the BC register pair contains 1212H
+the instruction LD (BC), A results in 7AH in memory location 1212H."
+instr;71;0;2;0;LD;(IX+d),(IY+d);n;;;Indexed;Immediate;;;;4;0;5;19 (4, 4, 3,5,3);;OCF(4);OCF(4);OD(3);OD(5);MW(3);;;;;8-Bit Load;0;"90
+91";(IX+d) <- n;"The n operand is loaded to the memory address specified by the sum of the
+Index Register IX and the two’s complement displacement operand d.";None;"If the Index Register IX contains the number 219AH, the instruction
+LD (IX+5H), 5AH results in byte 5AH in the memory address 219FH."
+instr;72;0;14;0;LD;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MW(3);;;;;8-Bit Load;0;"87
+88";(IX+d) <- r;"The contents of register r are loaded to the memory address specified by the
+contents of Index Register IX summed with d, a two’s complement
+displacement integer. The symbol r identifies register A, B, C, D, E, H, or
+L.";None;"If the C register contains byte 1CH, and the Index Register IX contains
+3100H, then the instruction LID (IX+6H), C performs the sum 3100H +
+6H and loads 1CH to memory location 3106H."
+instr;73;0;1;0;LDD;;;;;;;;;;2;0;4;16 (4, 4, 3, 5);;OCF(4);OCF(4);MR(3);        MW(5);;;;;;Exchange, Block Transfer, and Search;0;131;(DE) <- (HL), DE <- DE -1, HL <- HL-1, BC <- BC-1;"This 2-byte instruction transfers a byte of data from the memory location
+addressed by the contents of the HL register pair to the memory location
+addressed by the contents of the DE register pair. Then both of these register
+pairs including the BC (Byte Counter) register pair are decremented.";"S is not affected
+Z is not affected
+H is reset
+P/V is set if BC -1 ? 0, reset otherwise
+N is reset
+C is not affected";"If the HL register pair contains 1111H, memory location 1111H contains
+byte 88H, the DE register pair contains 2222H, memory location 2222H
+contains byte 66H, and the BC register pair contains 7H, then instruction
+LDD results in the following contents in register pairs and memory
+addresses:
+HL contains 1110H
+(1111H) contains 88H
+DE contains 2221H
+(2222H) contains 88H
+BC contains 6H"
+instr;74;0;1;0;LDDR;;;;;;;;;;2;0;5;21 (4, 4, 3, 5, 5);BC!=0;OCF(4);OCF(4);MR(3);        MW(5);CPU(5);;;;;Exchange, Block Transfer, and Search;0;132;(DE) <- (HL), DE <- DE -1, HL <- HL-1, BC <- BC-1;"This 2-byte instruction transfers a byte of data from the memory
+location addressed by the contents of the HL register pair to the memory
+location addressed by the contents of the DE register pair. Then both of
+these registers, as well as the BC (Byte Counter), are decremented. If
+decrementing causes BC to go to zero, the instruction is terminated. If
+BC is not zero, the program counter is decremented by two and the
+instruction is repeated. Interrupts are recognized and two refresh cycles
+execute after each data transfer.
+When BC is set to zero, prior to instruction execution, the instruction loops
+through 64 Kbytes.";"S is not affected
+Z is not affected
+H is reset
+P/V is reset
+N is reset
+C is not affected";"If the HL register pair contains 1114H, the DE register pair contains
+2225H, the BC register pair contains 0003H, and memory locations have
+these contents:
+(1114H) contains A5H (2225H) contains C5H
+(1113H) contains 36H (2224H) contains 59H
+(1112H) contains 88H (2223H) contains 66H
+Then at execution of LDDR the contents of register pairs and memory
+locations are:
+HL contains 1111H
+DE contains 2222H
+DC contains 0000H
+(1114H) contains A5H (2225H) contains A5H
+(1113H) contains 36H (2224H) contains 36H
+(1112H) contains 88H (2223H) contains 88H"
+execvar;74;0;;0;;;;;;;;;;;2;1;4;16 (4, 4, 3, 5);BC==0;OCF(4);OCF(4);MR(3);        MW(5);;;;;;;;;;;;
+instr;75;0;1;0;LDI;;;;;;;;;;2;0;4;16 (4, 4, 3, 5);;OCF(4);OCF(4);MR(3);        MW(5);;;;;;Exchange, Block Transfer, and Search;0;128;(DE) <- (HL), DE <- DE + 1, HL <- HL + 1, BC <- BC -1;"A byte of data is transferred from the memory location addressed, by the
+contents of the HL register pair to the memory location addressed by the
+contents of the DE register pair. Then both these register pairs are
+incremented and the BC (Byte Counter) register pair is decremented.";"S is not affected
+Z is not affected
+H is reset
+P/V is set if BC -1 ? 0, reset otherwise
+N is reset
+C is not affected";"If the HL register pair contains 1111H, memory location 1111H contains
+byte 88H, the DE register pair contains 2222H, the memory location 2222H
+contains byte 66H, and the BC register pair contains 7H, then the instruction
+LDI results in the following contents in register pairs and memory addresses:
+HL contains 1112H
+(1111H) contains 88H
+DE contains 2223H
+(2222H) contains 88H
+BC contains 6H"
+instr;76;0;1;0;LDIR;;;;;;;;;;2;0;5;21 (4, 4, 3, 5, 5);BC!=0;OCF(4);OCF(4);MR(3);        MW(5);CPU(5);;;;;Exchange, Block Transfer, and Search;0;129;(DE) <- (HL), DE <- DE + 1, HL <- HL + 1, BC <- BC -1;"This 2-byte instruction transfers a byte of data from the memory location
+addressed by the contents of the HL register pair to the memory location
+addressed by the DE register pair. Both these register pairs are incremented
+and the BC (Byte Counter) register pair is decremented. If decrementing
+causes the BC to go to zero, the instruction is terminated. If BC is not zero,
+the program counter is decremented by two and the instruction is repeated.
+Interrupts are recognized and two refresh cycles are executed after each
+data transfer. When BC is set to zero prior to instruction execution, the
+instruction loops through 64 Kbytes.";"S is not affected
+Z is not affected
+H is reset
+P/V is reset
+N is reset
+C is not affected";"2222H, the BC register pair contains 0003H, and memory locations have
+these contents:
+(1111H) contains 88H (2222H) contains 66H
+(1112H) contains 36H (2223H) contains 59H
+(1113H) contains A5H (2224H) contains C5H
+then at execution of LDIR the contents of register pairs and memory
+locations are:
+HL contains 1114H
+DE contains 2225H
+BC contains 0000H
+(1111H) contains 88H (2222H) contains 88H
+(1112H) contains 36H (2223H) contains 36H
+(1113H) contains A5H (2224H) contains A5H"
+execvar;76;0;;0;;;;;;;;;;;2;1;4;16 (4, 4, 3, 5);BC==0;OCF(4);OCF(4);MR(3);        MW(5);;;;;;;;;;;;
+instr;77;0;1;0;NEG;;;;;;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;General-Purpose Arithmetic;0;169;A <- 0 - A;"The contents of the Accumulator are negated (two’s complement). This is
+the same as subtracting the contents of the Accumulator from zero. Note
+that 80H is left unchanged.";"S is set if result is negative, reset otherwise
+Z is set if result is 0, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if Accumulator was 80H before operation, reset otherwise
+N is set
+C is set if Accumulator was not 00H before operation, reset otherwise";"If the contents of the Accumulator are
+1 0 0 1 1 0 0 0
+at execution of NEG the Accumulator contents are
+0 1 1 0 1 0 0 0"
+instr;78;0;1;0;NOP;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;CPU Control;0;172;;The CPU performs no operation during this machine cycle.;None;
+instr;78;1;1;0;NOP;;;;;;;;;;2;0;2;8 (4,4);;OCF(4);OCF(4);;;;;;;;CPU Control;1;;;The CPU performs no operation during this machine cycle.;None;
+instr;79;0;1;0;OR;n;;;;Immediate;;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;154;A <- A | s;"A logical OR operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if overflow, reset otherwise
+N is reset
+C is reset";"If the H register contains 48H (0100 0100), and the Accumulator contains
+12H (0001 0010), at execution of OR H the Accumulator contains 5AH
+(0101 1010)."
+instr;80;0;7;0;OR;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;154;A <- A | s;"A logical OR operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if overflow, reset otherwise
+N is reset
+C is reset";"If the H register contains 48H (0100 0100), and the Accumulator contains
+12H (0001 0010), at execution of OR H the Accumulator contains 5AH
+(0101 1010)."
+instr;80;1;4;0;OR;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A | s;"A logical OR operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if overflow, reset otherwise
+N is reset
+C is reset";"If the H register contains 48H (0100 0100), and the Accumulator contains
+12H (0001 0010), at execution of OR H the Accumulator contains 5AH
+(0101 1010)."
+instr;81;0;1;0;OR;(HL);;;;Register Indirect;;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;154;A <- A | s;"A logical OR operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if overflow, reset otherwise
+N is reset
+C is reset";"If the H register contains 48H (0100 0100), and the Accumulator contains
+12H (0001 0010), at execution of OR H the Accumulator contains 5AH
+(0101 1010)."
+instr;82;0;2;0;OR;(IX+d),(IY+d);;;;Indexed;;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;154;A <- A | s;"A logical OR operation is performed between the byte specified by the s
+operand and the byte contained in the Accumulator, the result is stored in
+the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if overflow, reset otherwise
+N is reset
+C is reset";"If the H register contains 48H (0100 0100), and the Accumulator contains
+12H (0001 0010), at execution of OR H the Accumulator contains 5AH
+(0101 1010)."
+instr;83;0;1;0;OTDR;;;;;;;;;;2;0;5;21 (4, 5, 3, 4, 5);B!=0 ;OCF(4);OCF(5);MR(3);PW(4);CPU(5);;;;;Input and Output;0;286;(C) <- (HL), B <- B -1, HL <- HL - 1;"The contents of the HL register pair are placed on the address bus to select a
+location in memory. The byte contained in this memory location is temporarily
+stored in the CPU. Then, after the byte counter (B) is decremented,
+the contents of register C are placed on the bottom half (A0 through A7) of
+the address bus to select the I/O device at one of 256 possible ports. Register
+B may be used as a byte counter, and its decremented value is placed on
+the top half (A8 through A15) of the address bus at this time. Next, the byte
+to be output is placed on the data bus and written to the selected peripheral
+device. Then, register pair HL is decremented and if the decremented B
+register is not zero, the Program Counter (PC) is decremented by two and
+the instruction is repeated. If B has gone to zero, the instruction is terminated.
+Interrupts are recognized and two refresh cycles are executed after
+each data transfer.
+Note: When B is set to zero prior to instruction execution, the instruction
+outputs 256 bytes of data.";"Z is set
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 03H, the
+contents of the HL register pair are 1000H, and memory locations have the
+following contents:
+0FFEH contains 51H
+0FFFH contains A9H
+1000H contains 03H
+then at execution of OTDR the HL register pair contain 0FFDH, register B
+contains zero, and a group of bytes is written to the peripheral device
+mapped to I/O port address 07H in the following sequence:
+03H
+A9H
+51H"
+execvar;83;0;;0;;;;;;;;;;;2;1;4;16 (4, 5, 3, 4);B=0;OCF(4);OCF(5);MR(3);PW(4);;;;;;;;;;;;
+instr;84;0;1;0;OTIR;;;;;;;;;;2;0;5;21 (4, 5, 3, 4, 5);B!=0;OCF(4);OCF(5);MR(3);PW(4);CPU(5);;;;;Input and Output;0;283;(C) <- (HL), B <- B -1, HL <- HL + 1;"The contents of the HL register pair are placed on the address bus to select
+a location in memory. The byte contained in this memory location is temporarily
+stored in the CPU. Then, after the byte counter (B) is decremented, the
+contents of register C are placed on the bottom half (A0 through A7) of the
+address bus to select the I/O device at one of 256 possible ports. Register B
+may be used as a byte counter, and its decremented value is placed on the top
+half (A8 through A15) of the address bus at this time. Next, the byte to be
+output is placed on the data bus and written to the selected peripheral device.
+Then register pair HL is incremented. If the decremented B register is not
+zero, the Program Counter (PC) is decremented by two and the instruction is
+repeated. If B has gone to zero, the instruction is terminated. Interrupts are
+recognized and two refresh cycles are executed after each data transfer.
+Note: When B is set to zero prior to instruction execution, the instruction
+outputs 256 bytes of data.";"S is unknown
+Z is set
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 03H, the
+contents of the HL register pair are 1000H, and memory locations have the
+following contents:
+1000H contains 51H
+1001H contains A9H
+1002H contains 03H
+then at execution of OTIR the HL register pair contains 1003H, register B
+contains zero, and a group of bytes is written to the peripheral device
+mapped to I/O port address 07H in the following sequence:
+51H
+A9H
+03H"
+execvar;84;0;;0;;;;;;;;;;;2;1;4;16 (4, 5, 3, 4);B=0;OCF(4);OCF(5);MR(3);PW(4);;;;;;;;;;;;
+instr;85;0;1;0;OUT;(n);A;;;Immediate I/O Port;Register;;;;2;0;3;11 (4, 3, 4);;OCF(4) ;OD(3);PW(4);;;;;;;Input and Output;0;279;(n) <- A;"The operand n is placed on the bottom half (A0 through A7) of the address
+bus to select the I/O device at one of 256 possible ports. The contents of the
+Accumulator (register A) also appear on the top half (A8 through A15) of
+the address bus at this time. Then the byte contained in the Accumulator is
+placed on the data bus and written to the selected peripheral device.";None;"If the contents of the Accumulator are 23H, at execution of OUT (01H),
+byte 23H is written to the peripheral device mapped to I/O port address 01H."
+instr;86;0;1;0;OUT;(C);;;;Register I/O Port;;;;;2;0;3;12 (4, 4, 4);;OCF(4);OCF(4);PW(4);;;;;;;Input and Output;1;;(C) <- 0;ED71 simply outs the value 0 to I/O port C.;None;"If the contents of register C are 01H, at execution of OUT (C), byte 0 is written to the peripheral device
+mapped to I/O port address 01H."
+instr;87;0;7;0;OUT;(C);A,B,C,D,E,H,L;;;Register I/O Port;Register;;;;2;0;3;12 (4, 4, 4);;OCF(4);OCF(4);PW(4);;;;;;;Input and Output;0;280;(C) <- r;"The contents of register C are placed on the bottom half (A0 through A7) of
+the address bus to select the I/O device at one of 256 possible ports. The
+contents of Register B are placed on the top half (A8 through A15) of the
+address bus at this time. Then the byte contained in register r is placed on
+the data bus and written to the selected peripheral device. Register r
+identifies any of the CPU registers shown in the following table :
+B, C, D, E, H, L, A";None;"If the contents of register C are 01H, and the contents of register D are 5AH,
+at execution of OUT (C),D byte 5AH is written to the peripheral device
+mapped to I/O port address 01H."
+instr;88;0;1;0;OUTD;;;;;;;;;;2;0;4;16 (4, 5, 3, 4);;OCF(4);OCF(5);MR(3);PW(4);;;;;;Input and Output;0;285;(C) <- (HL), B <- B -1, HL <- HL - 1;"The contents of the HL register pair are placed on the address bus to select a
+location in memory. The byte contained in this memory location is
+temporarily stored in the CPU. Then, after the byte counter (B) is
+decremented, the contents of register C are placed on the bottom half (A0
+through A7) of the address bus to select the I/O device at one of 256
+possible ports. Register B may be used as a byte counter, and its
+decremented value is placed on the top half (A8 through A15) of the
+address bus at this time. Next, the byte to be output is placed on the data bus
+and written to the selected peripheral device. Finally, the register pair HL is
+decremented.";"S is unknown
+Z is set if B–1 = 0, reset otherwise
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 10H, the
+contents of the HL register pair are 1000H, and the contents of memory
+location 1000H are 59H, at execution of OUTD register B contains 0FH, the
+HL register pair contains 0FFFH, and byte 59H is written to the peripheral
+device mapped to I/O port address 07H."
+instr;89;0;1;0;OUTI;;;;;;;;;;2;0;4;16 (4, 5, 3, 4);;OCF(4);OCF(5);MR(3);PW(4);;;;;;Input and Output;0;282;(C) <- (HL), B <- B -1, HL <- HL + 1;"The contents of the HL register pair are placed on the address bus to select a
+location in memory. The byte contained in this memory location is
+temporarily stored in the CPU. Then, after the byte counter (B) is
+decremented, the contents of register C are placed on the bottom half (A0
+through A7) of the address bus to select the I/O device at one of 256
+possible ports. Register B may be used as a byte counter, and its
+decremented value is placed on the top half (A8 through A15) of the
+address bus. The byte to be output is placed on the data bus and written to a
+selected peripheral device. Finally, the register pair HL is incremented.";"S is unknown
+Z is set if B–1 = 0, reset otherwise
+H is unknown
+P/V is unknown
+N is set
+C is not affected";"If the contents of register C are 07H, the contents of register B are 10H, the
+contents of the HL register pair are 100014, and the contents of memory
+address 1000H are 5914, then after thee execution of OUTI register B
+contains 0FH, the HL register pair contains 1001H, and byte 59H is written
+to the peripheral device mapped to I/O port address 07H."
+instr;90;0;4;0;POP;AF,BC,DE,HL;;;;Register Ext;;;;;1;0;3;10 (4, 3, 3);;OCF(4);SRL(3) ;SRH(3);;;;M2 +1, M3 +1;;;16-Bit Load;0;119;qqH <- (SP+1), qqL <- (SP);"The top two bytes of the external memory LIFO (last-in, first-out) Stack
+are popped to register pair qq. The Stack Pointer (SP) register pair holds
+the 16-bit address of the current top of the Stack. This instruction first
+loads to the low order portion of qq, the byte at memory location
+corresponding to the contents of SP, then SP is incriminated and the
+contents of the corresponding adjacent memory location are loaded to the
+high order portion of qq and the SP is now incriminated again. The
+operand qq identifies register pair BC, DE, HL, or AF.";None;"If the Stack Pointer contains 1000H, memory location 1000H contains 55H,
+and location 1001H contains 33H, the instruction POP HL results in register
+pair HL containing 3355H, and the Stack Pointer containing 1002H."
+instr;90;1;2;0;POP;IX,IY;;;;Register Ext;;;;;2;0;4;14 (4, 4, 3, 3);;OCF(4);OCF(4);SRL(3) ;SRH(3);;;M3 +1, M4 +1;;;16-Bit Load;0;"120
+121";IXH <- (SP+1), IXL <- (SP);"The top two bytes of the external memory LIFO (last-in, first-out) Stack are
+popped to Index Register IX. The Stack Pointer (SP) register pair holds the
+16-bit address of the current top of the Stack. This instruction first loads to
+the low order portion of IX the byte at the memory location corresponding
+to the contents of SP, then SP is incremented and the contents of the
+corresponding adjacent memory location are loaded to the high order
+portion of IX. The SP is incremented again.";None;"If the Stack Pointer contains 1000H, memory location 1000H contains 55H,
+and location 1001H contains 33H, the instruction POP IX results in Index
+Register IX containing 3355H, and the Stack Pointer containing 1002H."
+instr;91;0;4;0;PUSH;AF,BC,DE,HL;;;;Register Ext;;;;;1;0;3;11 (5, 3, 3);;OCF(5);SWH(3);SWL(3);;;;M1 -1, M2 -1;;;16-Bit Load;0;116;(SP-2) <- qqL, (SP-1) <- qqH;"The contents of the register pair qq are pushed to the external memory
+LIFO (last-in, first-out) Stack. The Stack Pointer (SP) register pair holds the
+16-bit address of the current top of the Stack. This instruction first
+decrements SP and loads the high order byte of register pair qq to the
+memory address specified by the SP. The SP is decremented again and
+loads the low order byte of qq to the memory location corresponding to this
+new address in the SP. The operand qq identifies register pair BC, DE, HL,
+or AF.";None;"If the AF register pair contains 2233H and the Stack Pointer contains
+1007H, at instruction PUSH AF memory address 1006H contains 22H,
+memory address 1005H contains 33H, and the Stack Pointer contains
+1005H."
+instr;91;1;2;0;PUSH;IX,IY;;;;Register Ext;;;;;2;0;4;15 (4, 5, 3, 3);;OCF(4);OCF(5);SWH(3);SWL(3);;;M2 -1, M3 -1;;;16-Bit Load;0;"117
+118";(SP-2) <- IXL, (SP-1) <- IXH;"The contents of the Index Register IX are pushed to the external memory
+LIFO (last-in, first-out) Stack. The Stack Pointer (SP) register pair holds the
+16-bit address of the current top of the Stack. This instruction first
+decrements SP and loads the high order byte of IX to the memory address
+specified by SP, then decrements SP again and loads the low order byte to
+the memory location corresponding to this new address in SP.";None;"If the Index Register IX contains 2233H and the Stack Pointer contains
+1007H, at instruction PUSH IX memory address 1006H contains 22H,
+memory address 1005H contains 33H, and the Stack Pointer contains
+1005H."
+instr;92;0;56;0;RES;0,1,2,3,4,5,6,7;A,B,C,D,E,H,L;;;Bit;Register;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Bit Set, Reset, and Test;0;236;sb <- 0;"Operand b is any bit (7 through 0) of the contents of the m operand, (any of
+r, (HL), (IX+d), or (lY+d)) as defined for the analogous SET instructions.
+Bit b in operand m is reset.";None;"At execution of RES 6, D, bit 6 in register 0 resets. Bit 0 in register D is the
+least-significant bit."
+instr;93;0;8;0;RES;0,1,2,3,4,5,6,7;(HL);;;Bit;Register Indirect;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Bit Set, Reset, and Test;0;236;sb <- 0;"Operand b is any bit (7 through 0) of the contents of the m operand, (any of
+r, (HL), (IX+d), or (lY+d)) as defined for the analogous SET instructions.
+Bit b in operand m is reset.";None;"At execution of RES 6, D, bit 6 in register 0 resets. Bit 0 in register D is the
+least-significant bit."
+instr;94;0;16;0;RES;0,1,2,3,4,5,6,7;(IX+d),(IY+d);;;Bit;Indexed;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Bit Set, Reset, and Test;0;236;sb <- 0;"Operand b is any bit (7 through 0) of the contents of the m operand, (any of
+r, (HL), (IX+d), or (lY+d)) as defined for the analogous SET instructions.
+Bit b in operand m is reset.";None;"At execution of RES 6, D, bit 6 in register 0 resets. Bit 0 in register D is the
+least-significant bit."
+instr;95;0;112;0;RES;0,1,2,3,4,5,6,7;(IX+d),(IY+d);A,B,C,D,E,H,L;;Bit;Indexed;Register;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Bit Set, Reset, and Test;1;;"sb <- 0
+r <- value";"Operand b is any bit (7 through 0) of the contents of the m operand, (any of
+r, (HL), (IX+d), or (lY+d)) as defined for the analogous SET instructions.
+Bit b in operand m is reset.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";None;"At execution of RES 6, D, bit 6 in register 0 resets. Bit 0 in register D is the
+least-significant bit."
+instr;96;0;1;0;RET;;;;;;;;;;1;0;3;10 (4, 3, 3);;OCF(4);SRL(3);SRH(3);;;;M2 +1, M3 +1;;;Call And Return;0;260;pCL <- (sp), pCH <- (sp+1);"The byte at the memory location specified by the contents of the Stack
+Pointer (SP) register pair is moved to the low order eight bits of the
+Program Counter (PC). The SP is now incremented and the byte at the
+memory location specified by the new contents of this instruction is fetched
+from the memory location specified by the PC. This instruction is normally
+used to return to the main line program at the completion of a routine
+entered by a CALL instruction.";None;"If the contents of the Program Counter are 3535H, the contents of the Stack
+Pointer are 2000H, the contents of memory location 2000H are B5H, and
+the contents of memory location of memory location 2001H are 18H. At
+execution of RET the contents of the Stack Pointer is 2002H, and the
+contents of the Program Counter is 18B5H, pointing to the address of the
+next program Op Code to be fetched."
+instr;97;0;8;0;RET;C,M,NC,NZ,P,PE,PO,Z;;;;Flag Cond.;;;;;1;0;3;11 (5, 3, 3);cc == 1;OCF(5);SRL(3);SRH(3);;;;M2 +1, M3 +1;;;Call And Return;0;261;If cc true: PCL <- (sp), pCH <- (sp+1);"If condition cc is true, the byte at the memory location specified by the
+contents of the Stack Pointer (SP) register pair is moved to the low order
+eight bits of the Program Counter (PC). The SP is incremented and the byte
+at the memory location specified by the new contents of the SP are moved
+to the high order eight bits of the PC. The SP is incremented again. The
+next Op Code following this instruction is fetched from the memory
+location specified by the PC. This instruction is normally used to return to
+the main line program at the completion of a routine entered by a CALL
+instruction. If condition cc is false, the PC is simply incremented as usual,
+and the program continues with the next sequential instruction. Condition
+cc is programmed as one of eight status that correspond to condition bits in
+the Flag Register (register F). These eight status are defined in the table below :
+Condition Flag
+NZ non zero Z
+Z zero Z
+NC no carry C
+C carry C
+PO parity odd P/V
+PE parity even P/V
+P sign positive S
+M sign negative S";None;"If the S flag in the F register is set, the contents of the Program Counter are
+3535H, the contents of the Stack Pointer are 2000H, the contents of
+memory location 2000H are B5H, and the contents of memory location
+2001H are 18H. At execution of RET M the contents of the Stack Pointer
+is 2002H, and the contents of the Program Counter is 18B5H, pointing to
+the address of the next program Op Code to be fetched."
+execvar;97;0;;0;;;;;;;;;;;1;0;1;5;cc == 0;OCF(5);;;;;;;;;;;;;;;
+instr;98;0;1;0;RETI;;;;;;;;;;2;0;4;14 (4, 4, 3, 3);;OCF(4);OCF(4);SRL(3) ;SRH(3);;;M3 +1, M4 +1;;;Call And Return;0;263;Return from Interrupt;"This instruction is used at the end of a maskable interrupt service routine to:
+- Restore the contents of the Program Counter (PC) (analogous to the
+RET instruction)
+- Signal an I/O device that the interrupt routine is completed. The RETI
+instruction also facilitates the nesting of interrupts, allowing higher
+priority devices to temporarily suspend service of lower priority
+service routines. However, this instruction does not enable interrupts
+that were disabled when the interrupt routine was entered. Before
+doing the RETI instruction, the enable interrupt instruction (EI)
+should be executed to allow recognition of interrupts after completion
+of the current service routine.";None;"Given: Two interrupting devices, with A and B connected in a daisy-chain
+configuration and A having a higher priority than B.
+B generates an interrupt and is acknowledged. The interrupt
+enable out, IEO, of B goes Low, blocking any lower priority
+devices from interrupting while B is being serviced. Then A generates
+an interrupt, suspending service of B. The IEO of A goes
+Low, indicating that a higher priority device is being serviced.
+The A routine is completed and a RETI is issued resetting the IEO
+of A, allowing the B routine to continue. A second RETI is issued
+on completion of the B routine and the IE0 of B is reset (high)
+allowing lower priority devices interrupt access."
+instr;99;0;1;0;RETN;;;;;;;;;;2;0;4;14 (4, 4, 3, 3);;OCF(4);OCF(4);SRL(3) ;SRH(3);;;M3 +1, M4 +1;;;Call And Return;0;265;Return from non maskable interrupt;"This instruction is used at the end of a non-maskable interrupts service
+routine to restore the contents of the Program Counter (PC) (analogous to
+the RET instruction). The state of IFF2 is copied back to IFF1 so that
+maskable interrupts are enabled immediately following the RETN if they
+were enabled before the nonmaskable interrupt.";None;"If the contents of the Stack Pointer are 1000H, and the contents of the
+Program Counter are 1A45H, when a non maskable interrupt (NMI) signal
+is received, the CPU ignores the next instruction and instead restarts to
+memory address 0066H. The current Program Counter contents of 1A45H
+is pushed onto the external stack address of 0FFFH and 0FFEH, high orderbyte
+first, and 0066H is loaded onto the Program Counter. That address
+begins an interrupt service routine that ends with a RETN instruction.
+Upon the execution of RETN the former Program Counter contents are
+popped off the external memory stack, low order first, resulting in a Stack
+Pointer contents again of 1000H. The program flow continues where it
+left off with an Op Code fetch to address 1A45H, order-byte first, and
+0066H is loaded onto the Program Counter. That address begins an
+interrupt service routine that ends with a RETN instruction. At execution of
+RETN the former Program Counter contents are popped off the external
+memory stack, low order first, resulting in a Stack Pointer contents again of
+1000H. The program flow continues where it left off with an Op Code fetch
+to address 1A45H."
+instr;100;0;7;0;RL;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;202;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated left 1-bit position. The content of
+bit 7 is copied to the Carry flag and the previous content of the Carry flag is
+copied to bit 0.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of register D and the Carry flag are
+0 - 1 0 0 0 1 1 1 1
+at execution of RL D the contents of register D and the Carry flag are
+1 - 0 0 0 1 1 1 1 0"
+instr;101;0;1;0;RL;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;202;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated left 1-bit position. The content of
+bit 7 is copied to the Carry flag and the previous content of the Carry flag is
+copied to bit 0.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of register D and the Carry flag are
+0 - 1 0 0 0 1 1 1 1
+at execution of RL D the contents of register D and the Carry flag are
+1 - 0 0 0 1 1 1 1 0"
+instr;102;0;2;0;RL;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;202;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated left 1-bit position. The content of
+bit 7 is copied to the Carry flag and the previous content of the Carry flag is
+copied to bit 0.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of register D and the Carry flag are
+0 - 1 0 0 0 1 1 1 1
+at execution of RL D the contents of register D and the Carry flag are
+1 - 0 0 0 1 1 1 1 0"
+instr;103;0;14;0;RL;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated left 1-bit position. The content of
+bit 7 is copied to the Carry flag and the previous content of the Carry flag is
+copied to bit 0.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of register D and the Carry flag are
+0 - 1 0 0 0 1 1 1 1
+at execution of RL D the contents of register D and the Carry flag are
+1 - 0 0 0 1 1 1 1 0"
+instr;104;0;1;0;RLA;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;Rotate and Shift;0;191;;"The contents of the Accumulator (register A) are rotated left 1-bit position
+through the Carry flag. The previous content of the Carry flag is copied to
+bit 0. Bit 0 is the least-significant bit.";"S is not affected
+Z is not affected
+H is reset
+P/V is not affected
+N is reset
+C is data from bit 7 of Accumulator";"If the contents of the Accumulator and the Carry flag are
+0 - 0 1 1 1 0 1 1 0
+at execution of RLA the contents of the Accumulator and the Carry flag are
+0 - 1 1 1 0 1 1 0 1"
+instr;105;0;7;0;RLC;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;194;;"The contents of register r are rotated left 1-bit position. The content of bit 7
+is copied to the Carry flag and also to bit 0.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of register r are
+1 0 0 0 1 0 0 0
+at execution of RLC r the contents of register r and the Carry flag are
+1 - 0 0 0 1 0 0 0 1"
+instr;106;0;1;0;RLC;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;196;;"The contents of the memory address specified by the contents of register
+pair HL are rotated left 1-bit position. The content of bit 7 is copied to the
+Carry flag and also to bit 0. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of the HL register pair are 2828H, and the contents of
+memory location 2828H are
+1 0 0 0 1 0 0 0
+at execution of RLC(HL) the contents of memory location 2828H and the
+Carry flag are
+1 - 0 0 0 1 0 0 0 1"
+instr;107;0;2;0;RLC;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;"198
+200";;"The contents of the memory address specified by the sum of the contents of
+the Index Register IX and a two’s complement displacement integer d, are
+rotated left 1-bit position. The content of bit 7 is copied to the Carry flag
+and also to bit 0. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of the Index Register IX are 1000H, and the contents of
+memory location 1022H are
+1 0 0 0 1 0 0 0
+at execution of RLC (IX+2H) the contents of memory location 1002H
+and the Carry flag are
+1 - 0 0 0 1 0 0 0 1"
+instr;108;0;14;0;RLC;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The contents of the memory address specified by the sum of the contents of
+the Index Register IX and a two’s complement displacement integer d, are
+rotated left 1-bit position. The content of bit 7 is copied to the Carry flag
+and also to bit 0. Bit 0 is the least-significant bit.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is data from bit 7 of source register";"If the contents of the Index Register IX are 1000H, and the contents of
+memory location 1022H are
+1 0 0 0 1 0 0 0
+at execution of RLC (IX+2H) the contents of memory location 1002H
+and the Carry flag are
+1 - 0 0 0 1 0 0 0 1"
+instr;109;0;1;0;RLCA;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;Rotate and Shift;0;190;;"The contents of the Accumulator (register A) are rotated left 1-bit position.
+The sign bit (bit 7) is copied to the Carry flag and also to bit 0. Bit 0 is the
+least-significant bit.";"S is not affected
+Z is not affected
+H is reset
+P/V is not affected
+N is reset
+C is data from bit 7 of Accumulator";"If the contents of the Accumulator are
+1 0 0 0 1 0 0 0
+at execution of RLCA the contents of the Accumulator and Carry flag are
+1 - 0 0 0 1 0 0 0 1"
+instr;110;0;1;0;RLD;;;;;;;;;;2;0;5;18 (4, 4, 3, 4, 3);;OCF(4);OCF(4);MR(3);CPU(4);MW(3);;;;;Rotate and Shift;0;220;;"The contents of the low order four bits (bits 3, 2, 1, and 0) of the memory
+location (HL) are copied to the high order four bits (7, 6, 5, and 4) of that
+same memory location, the previous contents of those high order four bits
+are copied to the low order four bits of the Accumulator (register A), and
+the previous contents of the low order four bits of the Accumulator are
+copied to the low order four bits of memory location (HL). The contents of
+the high order bits of the Accumulator are unaffected.";"S is set if Accumulator is negative after operation, reset otherwise
+Z is set if Accumulator is zero after operation, reset otherwise
+H is reset
+P/V is set if parity of Accumulator is even after operation, reset otherwise
+N is reset
+C is not affected";"If the contents of the HL register pair are 5000H, and the contents of the
+Accumulator and memory location 5000H are
+0 1 1 1 1 0 1 0 Accumulator
+0 0 1 1 0 0 0 1 (5000H)
+at execution of RLD the contents of the Accumulator and memory location
+5000H are
+0 1 1 1 0 0 1 1 Accumulator
+0 0 0 1 1 0 1 0 (5000H)"
+instr;111;0;7;0;RR;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;208;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are rotated right 1-bit position through the Carry
+flag. The content of bit 0 is copied to the Carry flag and the previous
+content of the Carry flag is copied to bit 7. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+1 1 0 1 1 1 0 1 - 0
+at execution of RR D the contents of register D and the Carry flag are
+0 1 1 0 1 1 1 0 - 1"
+instr;112;0;1;0;RR;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;208;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are rotated right 1-bit position through the Carry
+flag. The content of bit 0 is copied to the Carry flag and the previous
+content of the Carry flag is copied to bit 7. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+1 1 0 1 1 1 0 1 - 0
+at execution of RR D the contents of register D and the Carry flag are
+0 1 1 0 1 1 1 0 - 1"
+instr;113;0;2;0;RR;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;208;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are rotated right 1-bit position through the Carry
+flag. The content of bit 0 is copied to the Carry flag and the previous
+content of the Carry flag is copied to bit 7. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+1 1 0 1 1 1 0 1 - 0
+at execution of RR D the contents of register D and the Carry flag are
+0 1 1 0 1 1 1 0 - 1"
+instr;114;0;14;0;RR;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are rotated right 1-bit position through the Carry
+flag. The content of bit 0 is copied to the Carry flag and the previous
+content of the Carry flag is copied to bit 7. Bit 0 is the least-significant bit.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+1 1 0 1 1 1 0 1 - 0
+at execution of RR D the contents of register D and the Carry flag are
+0 1 1 0 1 1 1 0 - 1"
+instr;115;0;1;0;RRA;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;Rotate and Shift;0;193;;"The contents of the Accumulator (register A) are rotated right 1-bit position
+through the Carry flag. The previous content of the Carry flag is copied to
+bit 7. Bit 0 is the least-significant bit.";"S is not affected
+Z is not affected
+H is reset
+P/V is not affected
+N is reset
+C is data from bit 0 of Accumulator";"If the contents of the Accumulator are
+1 1 1 0 0 0 0 1 - 0
+at execution of RRA the contents of the Accumulator and the Carry flag are
+0 1 1 1 0 0 0 0 - 1
+
+"
+instr;116;0;7;0;RRC;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;205;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated right 1-bit position. The content
+of bit 0 is copied to the Carry flag and also to bit 7. Bit 0 is the leastsignificant
+bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+0 0 1 1 0 0 0 1
+at execution of RRC D the contents of register D and the Carry flag are
+1 0 0 1 1 0 0 0 - 1"
+instr;117;0;1;0;RRC;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;205;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated right 1-bit position. The content
+of bit 0 is copied to the Carry flag and also to bit 7. Bit 0 is the leastsignificant
+bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+0 0 1 1 0 0 0 1
+at execution of RRC D the contents of register D and the Carry flag are
+1 0 0 1 1 0 0 0 - 1"
+instr;118;0;2;0;RRC;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;205;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated right 1-bit position. The content
+of bit 0 is copied to the Carry flag and also to bit 7. Bit 0 is the leastsignificant
+bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+0 0 1 1 0 0 0 1
+at execution of RRC D the contents of register D and the Carry flag are
+1 0 0 1 1 0 0 0 - 1"
+instr;119;0;14;0;RRC;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of the m operand are rotated right 1-bit position. The content
+of bit 0 is copied to the Carry flag and also to bit 7. Bit 0 is the leastsignificant
+bit.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise,
+N is reset
+C is data from bit 0 of source register";"If the contents of register D and the Carry flag are
+0 0 1 1 0 0 0 1
+at execution of RRC D the contents of register D and the Carry flag are
+1 0 0 1 1 0 0 0 - 1"
+instr;120;0;1;0;RRCA;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;Rotate and Shift;0;192;;"The contents of the Accumulator (register A) are rotated right 1-bit
+position. Bit 0 is copied to the Carry flag and also to bit 7. Bit 0 is the leastsignificant
+bit.";"S is not affected
+Z is not affected
+H is reset
+P/V is not affected
+N is reset
+C is data from bit 0 of Accumulator";"If the contents of the Accumulator are
+0 0 1 0 0 0 1 - 0
+at execution of RRCA the contents of the Accumulator and the Carry flag are
+1 0 0 1 0 0 0 - 1
+
+"
+instr;121;0;1;0;RRD;;;;;;;;;;2;0;5;18 (4, 4, 3, 4, 3);;OCF(4);OCF(4);MR(3);CPU(4);MW(3);;;;;Rotate and Shift;0;222;;"The contents of the low order four bits (bits 3, 2, 1, and 0) of memory
+location (HL) are copied to the low order four bits of the Accumulator
+(register A). The previous contents of the low order four bits of the
+Accumulator are copied to the high order four bits (7, 6, 5, and 4) of
+location (HL), and the previous contents of the high order four bits of (HL)
+are copied to the low order four bits of (HL). The contents of the high order
+bits of the Accumulator are unaffected.";"S is set if Accumulator is negative after operation, reset otherwise
+Z is set if Accumulator is zero after operation, reset otherwise
+H is reset
+P/V is set if parity of Accumulator is even after operation, reset otherwise
+N is reset
+C is not affected";"If the contents of the HL register pair are 5000H, and the contents of the
+Accumulator and memory location 5000H are
+1 0 0 0 0 1 0 0 Accumulator
+0 0 1 0 0 0 0 0 (5000H)
+at execution of RRD the contents of the Accumulator and memory location
+5000H are
+1 0 0 0 0 0 0 0 Accumulator
+0 1 0 0 0 0 1 0 (5000H)"
+instr;122;0;8;0;RST;0H,8H,10H,18H,20H,28H,30H,38H;;;;Modified Page Zero;;;;;1;0;3;11 (5, 3, 3);;OCF(5);SWH(3) ;SWL(3);;;;M1 -1, M2 -1;;;Call And Return;0;267;(SP-1) <- PCH, (SP-2) <- PCL, PCH <- 0, PCL <- P;"The current Program Counter (PC) contents are pushed onto the external
+memory stack, and the page zero memory location given by operand p is
+loaded to the PC. Program execution then begins with the Op Code in the
+address now pointed to by PC. The push is performed by first decrementing
+the contents of the Stack Pointer (SP), loading the high-order byte of PC to
+the memory address now pointed to by SP, decrementing SP again, and
+loading the low order byte of PC to the address now pointed to by SP. The
+Restart instruction allows for a jump to one of eight addresses indicated in
+the table below. The operand p is assembled to the object code using the
+corresponding T state.
+Because all addresses are in page zero of memory, the high order byte of
+PC is loaded with 00H. The number selected from the p column of the table
+is loaded to the low order byte of PC.
+p
+00H
+08H
+10H
+18H
+20H
+28H
+30H
+38H";None;"If the contents of the Program Counter are 15B3H, at execution of
+RST 18H (Object code 1101111) the PC contains 0018H, as the address
+of the next Op Code fetched."
+instr;123;0;1;0;SBC;A;n;;;Register;Immediate;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;150;A <- A - s - CY;"The s operand, along with the Carry flag (C in the F register) is subtracted
+from the contents of the Accumulator, and the result is stored in the
+Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is reset if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 16H, the carry flag is set, the HL register pair
+contains 3433H, and address 3433H contains 05H, at execution of
+SBC A, (HL) the Accumulator contains 10H."
+instr;124;0;7;0;SBC;A;A,B,C,D,E,H,L;;;Register;Register;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;150;A <- A - s - CY;"The s operand, along with the Carry flag (C in the F register) is subtracted
+from the contents of the Accumulator, and the result is stored in the
+Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is reset if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 16H, the carry flag is set, the HL register pair
+contains 3433H, and address 3433H contains 05H, at execution of
+SBC A, (HL) the Accumulator contains 10H."
+instr;124;1;4;0;SBC;A;IXh,IXl,IYh,IYl;;;Register;Register;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A - s - CY;"The s operand, along with the Carry flag (C in the F register) is subtracted
+from the contents of the Accumulator, and the result is stored in the
+Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is reset if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 16H, the carry flag is set, the HL register pair
+contains 3433H, and address 3433H contains 05H, at execution of
+SBC A, (HL) the Accumulator contains 10H."
+instr;125;0;1;0;SBC;A;(HL);;;Register;Register Indirect;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;150;A <- A - s - CY;"The s operand, along with the Carry flag (C in the F register) is subtracted
+from the contents of the Accumulator, and the result is stored in the
+Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is reset if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 16H, the carry flag is set, the HL register pair
+contains 3433H, and address 3433H contains 05H, at execution of
+SBC A, (HL) the Accumulator contains 10H."
+instr;126;0;2;0;SBC;A;(IX+d),(IY+d);;;Register;Indexed;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;150;A <- A - s - CY;"The s operand, along with the Carry flag (C in the F register) is subtracted
+from the contents of the Accumulator, and the result is stored in the
+Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is reset if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contains 16H, the carry flag is set, the HL register pair
+contains 3433H, and address 3433H contains 05H, at execution of
+SBC A, (HL) the Accumulator contains 10H."
+instr;127;0;4;0;SBC;HL;BC,DE,HL,SP;;;Register Ext;Register Ext;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);CPU(4);CPU(3);;;;;;16-Bit Arithmetic;0;181;HL <- HL - ss - CY;"The contents of the register pair ss (any of register pairs BC, DE, HL, or
+SP) and the Carry Flag (C flag in the F register) are subtracted from the
+contents of register pair HL, and the result is stored in HL.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if a borrow from bit 12, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the contents of the HL, register pair are 9999H, the contents of register
+pair DE are 1111H, and the Carry flag is set. At execution of SBC HL, DE
+the contents of HL are 8887H."
+instr;128;0;1;0;SCF;;;;;;;;;;1;0;1;4;;OCF(4);;;;;;;;;General-Purpose Arithmetic;0;171;CY <- 1;The Carry flag in the F register is set.;"S is not affected
+Z is not affected
+H is reset
+P/V is not affected
+N is reset
+C is set";
+instr;129;0;56;0;SET;0,1,2,3,4,5,6,7;A,B,C,D,E,H,L;;;Bit;Register;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Bit Set, Reset, and Test;0;232;rb <- 1;Bit b in register r (any of registers B, C, D, E, H, L, or A) is set.;None;"At execution of SET 4, A bit 4 in register A sets. Bit 0 is the leastsignificant
+bit."
+instr;130;0;8;0;SET;0,1,2,3,4,5,6,7;(HL);;;Bit;Register Indirect;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Bit Set, Reset, and Test;0;233;(HL)b <- 1;"Bit b in the memory location addressed by the contents of register pair HL
+is set.";None;"If the contents of the HL register pair are 3000H, at execution of
+SET 4, (HL) bit 4 in memory location 3000H is 1. Bit 0 in memory
+location 3000H is the least-significant bit."
+instr;131;0;16;0;SET;0,1,2,3,4,5,6,7;(IX+d),(IY+d);;;Bit;Indexed;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Bit Set, Reset, and Test;0;"234
+235";(IX+d)b <- 1;"Bit b in the memory location addressed by the sum of the contents of the IX
+register pair and the two’s complement integer d is set.";None;"If the contents of Index Register are 2000H, at execution of
+SET 0, (IX + 3H) bit 0 in memory location 2003H is 1.
+Bit 0 in memory location 2003H is the least-significant bit."
+instr;132;0;112;0;SET;0,1,2,3,4,5,6,7;(IX+d),(IY+d);A,B,C,D,E,H,L;;Bit;Indexed;Register;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Bit Set, Reset, and Test;1;;(IX+d)b <- 1;"Bit b in the memory location addressed by the sum of the contents of the IX
+register pair and the two’s complement integer d is set.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";None;"If the contents of Index Register are 2000H, at execution of
+SET 0, (IX + 3H) bit 0 in memory location 2003H is 1.
+Bit 0 in memory location 2003H is the least-significant bit."
+instr;133;0;7;0;SLA;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;211;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+An arithmetic shift left 1-bit position is performed on the contents of
+operand m. The content of bit 7 is copied to the Carry flag. Bit 0 is the
+least-significant bit.";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLA L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 0"
+instr;134;0;1;0;SLA;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;211;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+An arithmetic shift left 1-bit position is performed on the contents of
+operand m. The content of bit 7 is copied to the Carry flag. Bit 0 is the
+least-significant bit.";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLA L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 0"
+instr;135;0;2;0;SLA;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;211;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+An arithmetic shift left 1-bit position is performed on the contents of
+operand m. The content of bit 7 is copied to the Carry flag. Bit 0 is the
+least-significant bit.";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLA L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 0"
+instr;136;0;14;0;SLA;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+An arithmetic shift left 1-bit position is performed on the contents of
+operand m. The content of bit 7 is copied to the Carry flag. Bit 0 is the
+least-significant bit.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLA L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 0"
+instr;137;0;7;0;SLL;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;1;;;"There are a few
+instructions missing from the o±cial list, which are usually denoted with SLL (Shift Logical Left).
+It works like SLA, for one exception: it sets bit 0 (SLA resets it).";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLL L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 1"
+instr;138;0;1;0;SLL;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;1;;;"There are a few
+instructions missing from the o±cial list, which are usually denoted with SLL (Shift Logical Left).
+It works like SLA, for one exception: it sets bit 0 (SLA resets it).";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLL L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 1"
+instr;139;0;2;0;SLL;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"There are a few
+instructions missing from the o±cial list, which are usually denoted with SLL (Shift Logical Left).
+It works like SLA, for one exception: it sets bit 0 (SLA resets it).";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLL L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 1"
+instr;140;0;14;0;SLL;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"There are a few
+instructions missing from the o±cial list, which are usually denoted with SLL (Shift Logical Left).
+It works like SLA, for one exception: it sets bit 0 (SLA resets it).
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 7";"If the contents of register L are
+1 0 1 1 0 0 0 1
+at execution of SLL L the contents of register L and the Carry flag are
+1 - 0 1 1 0 0 0 1 1"
+instr;141;0;7;0;SRA;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;214;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous PLC instructions.
+An arithmetic shift right 1-bit position is performed on the contents of
+operand m. The content of bit 0 is copied to the Carry flag and the previous
+content of bit 7 is unchanged. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of the Index Register IX are 1000H, and the contents of
+memory location 1003H are
+1 0 1 1 1 0 0 0
+at execution of SRA (IX+3H) the contents of memory location 1003H
+and the Carry flag are
+1 1 0 1 1 1 0 0 - 0"
+instr;142;0;1;0;SRA;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;214;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous PLC instructions.
+An arithmetic shift right 1-bit position is performed on the contents of
+operand m. The content of bit 0 is copied to the Carry flag and the previous
+content of bit 7 is unchanged. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of the Index Register IX are 1000H, and the contents of
+memory location 1003H are
+1 0 1 1 1 0 0 0
+at execution of SRA (IX+3H) the contents of memory location 1003H
+and the Carry flag are
+1 1 0 1 1 1 0 0 - 0"
+instr;143;0;2;0;SRA;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;214;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous PLC instructions.
+An arithmetic shift right 1-bit position is performed on the contents of
+operand m. The content of bit 0 is copied to the Carry flag and the previous
+content of bit 7 is unchanged. Bit 0 is the least-significant bit.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of the Index Register IX are 1000H, and the contents of
+memory location 1003H are
+1 0 1 1 1 0 0 0
+at execution of SRA (IX+3H) the contents of memory location 1003H
+and the Carry flag are
+1 1 0 1 1 1 0 0 - 0"
+instr;144;0;14;0;SRA;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The m operand is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous PLC instructions.
+An arithmetic shift right 1-bit position is performed on the contents of
+operand m. The content of bit 0 is copied to the Carry flag and the previous
+content of bit 7 is unchanged. Bit 0 is the least-significant bit.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of the Index Register IX are 1000H, and the contents of
+memory location 1003H are
+1 0 1 1 1 0 0 0
+at execution of SRA (IX+3H) the contents of memory location 1003H
+and the Carry flag are
+1 1 0 1 1 1 0 0 - 0"
+instr;145;0;7;0;SRL;A,B,C,D,E,H,L;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;Rotate and Shift;0;217;;"The operand m is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are shifted right 1-bit position. The content of
+bit 0 is copied to the Carry flag, and bit 7 is reset. Bit 0 is the leastsignificant
+bit.";"S is reset
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of register B are
+1 0 0 0 1 1 1 1
+at execution of SRL B the contents of register B and the Carry flag are
+0 1 0 0 0 1 1 1 - 1"
+instr;146;0;1;0;SRL;(HL);;;;Register Indirect;;;;;2;0;4;15 (4, 4, 4, 3);;OCF(4);OCF(4);MR(4);MW(3);;;;;;Rotate and Shift;0;217;;"The operand m is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are shifted right 1-bit position. The content of
+bit 0 is copied to the Carry flag, and bit 7 is reset. Bit 0 is the leastsignificant
+bit.";"S is reset
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of register B are
+1 0 0 0 1 1 1 1
+at execution of SRL B the contents of register B and the Carry flag are
+0 1 0 0 0 1 1 1 - 1"
+instr;147;0;2;0;SRL;(IX+d),(IY+d);;;;Indexed;;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;0;217;;"The operand m is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are shifted right 1-bit position. The content of
+bit 0 is copied to the Carry flag, and bit 7 is reset. Bit 0 is the leastsignificant
+bit.";"S is reset
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of register B are
+1 0 0 0 1 1 1 1
+at execution of SRL B the contents of register B and the Carry flag are
+0 1 0 0 0 1 1 1 - 1"
+instr;148;0;14;0;SRL;(IX+d),(IY+d);A,B,C,D,E,H,L;;;Indexed;Register;;;;4;0;6;23 (4, 4, 3, 5, 4, 3);;OCF(4);OCF(4);OD(3);OC4(5);MR(4);MW(3);;;;Rotate and Shift;1;;;"The operand m is any of r, (HL), (IX+d), or (lY+d), as defined for the
+analogous RLC instructions.
+The contents of operand m are shifted right 1-bit position. The content of
+bit 0 is copied to the Carry flag, and bit 7 is reset. Bit 0 is the leastsignificant
+bit.
+The undocumented DDCB instructions store the result (if any) of the operation in one of the
+seven all-purpose registers.";"S is reset
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity is even, reset otherwise
+N is reset
+C is data from bit 0 of source register";"If the contents of register B are
+1 0 0 0 1 1 1 1
+at execution of SRL B the contents of register B and the Carry flag are
+0 1 0 0 0 1 1 1 - 1"
+instr;149;0;1;0;SUB;n;;;;Immediate;;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;148;A <- A - s;"The s operand is subtracted from the contents of the Accumulator, and the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contents are 29H, and register D contains 11H, at
+execution of SUB D the Accumulator contains 18H."
+instr;150;0;7;0;SUB;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;148;A <- A - s;"The s operand is subtracted from the contents of the Accumulator, and the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contents are 29H, and register D contains 11H, at
+execution of SUB D the Accumulator contains 18H."
+instr;150;1;4;0;SUB;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A - s;"The s operand is subtracted from the contents of the Accumulator, and the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contents are 29H, and register D contains 11H, at
+execution of SUB D the Accumulator contains 18H."
+instr;151;0;1;0;SUB;(HL);;;;Register Indirect;;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;148;A <- A - s;"The s operand is subtracted from the contents of the Accumulator, and the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contents are 29H, and register D contains 11H, at
+execution of SUB D the Accumulator contains 18H."
+instr;152;0;2;0;SUB;(IX+d),(IY+d);;;;Indexed;;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;148;A <- A - s;"The s operand is subtracted from the contents of the Accumulator, and the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is set if borrow from bit 4, reset otherwise
+P/V is set if overflow, reset otherwise
+N is set
+C is set if borrow, reset otherwise";"If the Accumulator contents are 29H, and register D contains 11H, at
+execution of SUB D the Accumulator contains 18H."
+instr;153;0;1;0;XOR;n;;;;Immediate;;;;;2;0;2;7 (4, 3);;OCF(4);OD(3);;;;;;;;8-Bit Arithmetic;0;156;A <- A ^ s;"The logical exclusive-OR operation is performed between the byte
+specified by the s operand and the byte contained in the Accumulator, the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is reset";
+instr;154;0;7;0;XOR;A,B,C,D,E,H,L;;;;Register;;;;;1;0;1;4;;OCF(4);;;;;;;;;8-Bit Arithmetic;0;156;A <- A ^ s;"The logical exclusive-OR operation is performed between the byte
+specified by the s operand and the byte contained in the Accumulator, the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is reset";
+instr;154;1;4;0;XOR;IXh,IXl,IYh,IYl;;;;Register;;;;;2;0;2;8 (4, 4);;OCF(4);OCF(4);;;;;;;;8-Bit Arithmetic;1;;A <- A ^ s;"The logical exclusive-OR operation is performed between the byte
+specified by the s operand and the byte contained in the Accumulator, the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is reset";
+instr;155;0;1;0;XOR;(HL);;;;Register Indirect;;;;;1;0;2;7 (4, 3);;OCF(4);MR(3);;;;;;;;8-Bit Arithmetic;0;156;A <- A ^ s;"The logical exclusive-OR operation is performed between the byte
+specified by the s operand and the byte contained in the Accumulator, the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is reset";
+instr;156;0;2;0;XOR;(IX+d),(IY+d);;;;Indexed;;;;;3;0;5;19 (4, 4, 3, 5, 3);;OCF(4);OCF(4);OD(3);CPU(5);MR(3);;;;;8-Bit Arithmetic;0;156;A <- A ^ s;"The logical exclusive-OR operation is performed between the byte
+specified by the s operand and the byte contained in the Accumulator, the
+result is stored in the Accumulator.";"S is set if result is negative, reset otherwise
+Z is set if result is zero, reset otherwise
+H is reset
+P/V is set if parity even, reset otherwise
+N is reset
+C is reset";
+instr;157;0;0;1;NMI;;;;;;;;;;0;0;3;11 (5,3,3);;OCF(5);SWH(3);SWL(3);;;;M1 -1, M2 -1;Op Code Ignored;;;0;;;"It takes 11 clock cycles to get to #0066: 
+M1 cycle: 5 T states to do an opcode read and decrement SP 
+M2 cycle: 3 T states write high byte of PC to the stack and decrement SP 
+M3 cycle: 3 T states write the low byte of PC and jump to #0066. ";;"If the Accumulator contains 96H (1001 0110), at execution of XOR 5DH
+(5DH = 0101 1101) the Accumulator contains CBH (1100 1011)."
+instr;158;0;0;1;INT 0;;;;;;;;;;0;0;5;19 (7,3,3,3,3);if call;INTA(7);ODL(3);ODH(3);SWH(3);SWL(3);;M3 -1, M4 -1;(CALL INSERTED);;;0;;;"In this mode, timing depends on the instruction put on the bus. The interrupt processing last 2 clock cycles more than this instruction usually needs.
+Two typical examples follow:
+- a RST n on the data bus, it takes 13 cycles to get to 'n': 
+M1 cycle: 7 ticks
+acknowledge interrupt and decrement SP 
+M2 cycle: 3 ticks
+write high byte and decrement SP 
+M3 cycle: 3 ticks
+write low byte and jump to 'n' 
+- With a CALL nnnn on the data bus, it takes 19 cycles: 
+M1 cycle: 7 ticks
+acknowledge interrupt 
+M2 cycle: 3 ticks
+read low byte of 'nnnn' from data bus 
+M3 cycle: 3 ticks
+read high byte of 'nnnn' and decrement SP 
+M4 cycle: 3 ticks
+write high byte of PC to the stack and decrement SP 
+M5 cycle: 3 ticks
+write low byte of PC and jump to 'nnnn'. ";;
+execvar;158;0;;1;;;;;;;;;;;0;0;3;13 (7,3,3);if rst;INTA(7);SWH(3);SWL(3);;;;M1 -1, M2 -1;(RST INSERTED);;;;;;;;
+instr;159;0;0;1;INT 1;;;;;;;;;;0;0;3;13 (7,3,3);;INTA(7);SWH(3);SWL(3);;;;M1 -1, M2 -1;(RST 38H INTERNAL);;;0;;;"It takes 13 clock cycles to reach #0038: 
+M1 cycle: 7 ticks
+acknowledge interrupt and decrement SP 
+M2 cycle: 3 ticks
+write high byte of PC onto the stack and decrement SP 
+M3 cycle: 3 ticks
+write low byte onto the stack and to set PC to #0038. ";;
+instr;160;0;0;1;INT 2;;;;;;;;;;0;0;5;19 (7,3,3,3,3);;INTA(7);SWH(3);SWL(3) ;MRL(3);MRH(3);;M1 -1, M2 -1;(VECTOR SUPPLIED);;;0;;;"It takes 19 clock cycles to get to the interrupt routine: 
+M1 cycle: 7 ticks
+acknowledge interrupt and decrement SP 
+M2 cycle: 3 ticks
+write high byte of PC onto stack and decrement SP 
+M3 cycle: 3 ticks
+write low byte onto the stack 
+M4 cycle: 3 ticks
+read low byte from the interrupt vector 
+M5 cycle: 3 ticks
+read high byte from bus and jump to interrupt routine ";;
+instr;161;0;0;1;RESET;;;;;;;;;;0;0;1;3;;CPU(3);;;;;;;;;;0;;;"It takes 3 clock cycles: 
+IFF1 and IFF2 as well as interrupt mode is set to 0 
+PC is set to 0, I and R registers are reset also. 
+SP is set to 0xffff as well as the A and the F register is set to 0xff. ";;
+instr;162;0;0;1;?;;;;;;;;;;0;0;4;16 (4, 4, 3, 5);;OCF(4);OCF(4);OD(3);OC4(5);;;;;;;0;;;"This generic instruction is executed by the CPU during the opcode fetch phase.
+It is then replaced by the instruction that was decoded from the fetched opcode during the last OCF machine cycle.";;

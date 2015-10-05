@@ -1,0 +1,2680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://www.zxmodules.de/fileformats/tzxformat.html -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<META name="GENERATOR" content="MSHTML 10.00.9200.16458"> <TITLE>Claus Jahn's ZX 
+Spectrum Homepage</TITLE> </HEAD> 
+<BODY background="TZX%20file%20format_fichiers/backgrnd.jpg" style="font-family: Arial;" 
+bgcolor="#33cccc">
+<P align="center"><B><U><FONT size="4">TZX tape format</FONT></U></B></P>
+<P align="center">Format name: TZX tape format; format creator: Tomaz Kac,
+ Martijn van der Heide and Ramsoft.</P>
+<P align="center"><B><FONT face="Arial" size="2"><IMG width="16" height="16" 
+align="absmiddle" src="TZX%20file%20format_fichiers/go_to_link.gif" 
+border="0"></FONT></B><A 
+href="http://www.worldofspectrum.org/TZXformat.html">Link to the specification 
+homepage</A></P>
+<P align="center">The TZX file format is a generic file format that can store
+ either standard tape loading blocks as well as custom- and turbo loading 
+blocks. The format has been enhanced several times. The last revision 1.20 
+declared some datablocks as 'deprecated' and introduced some new block types. 
+The format has been structured so that it would be easy to implement new block 
+types. TZX files are supported by nearly all newer ZX-Spectrum emulators.</P>
+<DIV align="center">
+<CENTER>
+<CENTER></CENTER>
+<CENTER></CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#00ffff" colspan="5"><FONT color="#0000ff"><B>TZX 
+             file format:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center"><FONT color="#0000ff"><B>Offset:</B></FONT></P></TD>
+    <TD align="center" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#header"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/header.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">
+      <P align="center">10</P></TD>
+    <TD align="center" nowrap="">header</TD>
+    <TD align="left">        identification &amp; version     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5"><B><FONT color="#0000ff">Data 
+             blocks:</FONT></B></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#data block"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/datablock.jpg" 
+      border="0"></A>        #1</TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="center" nowrap="">first data block</TD>
+    <TD align="left" nowrap="" rowspan="4">        list of data blocks (may be 
+      empty)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#data block"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/datablock.jpg" 
+      border="0"></A>        #2</TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="center" nowrap="">second data block</TD></TR>
+  <TR>
+    <TD align="center" nowrap="" colspan="4"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#data block"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/datablock.jpg" 
+      border="0"></A>        #N</TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="center" nowrap="">last (Nth) data 
+block</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">TZX files use the following sub-formats:</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5"><FONT color="#0000ff"><B><A 
+      name="header"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/header.jpg" 
+      border="0">        (10 bytes):</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center"><FONT color="#0000ff"><B>Offset:</B></FONT></P></TD>
+    <TD align="center" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">7</P></TD>
+    <TD align="center" nowrap="">signature</TD>
+    <TD align="left">        = value "ZXTape!"     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">7</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="">end of file marker</TD>
+    <TD align="left">        = value 26 (eof)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">8</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="">major version number</TD>
+    <TD align="left">        = value 1     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">9</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="">minor version number</TD>
+    <TD align="left">        = e.g. 13 or 20 (for version 1.13 or 1.20)     
+  </TD></TR></TBODY></TABLE>
+<P align="center">&nbsp;</P>
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5"><FONT color="#0000ff"><B><A 
+      name="data block"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/datablock.jpg" 
+      border="0">:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center"><FONT color="#0000ff"><B>Offset:</B></FONT></P></TD>
+    <TD align="center" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap=""><FONT color="#ff00ff"><B>[ID]</B></FONT></TD>
+    <TD align="left">        selector for the type of following data block     
+    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#standard speed datablock"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id10block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=        
+      10h</P></TD>
+    <TD align="left"><B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/standardblock.bmp" 
+      border="0">         </B>Standard speed data block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#turbo speed datablock"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id11block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=11h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/standardblock.bmp" 
+      border="0">        Turbo speed data block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#pure tone"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id12block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        4</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=12h</P></TD>
+    <TD align="left"><B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/puretone.bmp" 
+      border="0"></B>        Pure tone     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#pulse sequence"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id13block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=13h</P></TD>
+    <TD align="left"><IMG width="16" height="16" src="TZX%20file%20format_fichiers/pulses.bmp" 
+      border="0">        Pulse sequence     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#pure datablock"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id14block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=14h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/standardblock.bmp" 
+      border="0">        Pure data block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#direct recording"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id15block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=15h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/directrecording.bmp" 
+      border="0">        Direct recording block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        1</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc"><IMG width="50" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#C64 block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id16block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        ???</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=16h</P></TD>
+    <TD align="left" bgcolor="#cccccc"><IMG width="16" height="16" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/c64block.bmp" border="0">        C64 ROM 
+      block (deprecated)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        1</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc"><IMG width="50" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#C64 turbo block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id17block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        ???</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=17h</P></TD>
+    <TD align="left" bgcolor="#cccccc"><IMG width="16" height="16" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/c64turboblock.bmp" border="0">        
+      C64 turbo block (deprecated)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#CSW recording"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id18block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=18h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/cswrecording.bmp" 
+      border="0">        CSW recording block v1.20     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#generalised datablock"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id19block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=19h</P></TD>
+    <TD align="left"><IMG width="17" height="17" align="absmiddle" src="TZX%20file%20format_fichiers/generalizedsync.bmp" 
+      border="0">         <IMG width="17" height="17" align="absmiddle" src="TZX%20file%20format_fichiers/generalizeddata.bmp" 
+      border="0">        Generalized data block v1.20     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#pause block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id20block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=20h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/pauseblock.bmp" 
+      border="0">        Pause or <IMG width="16" height="16" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/stopblock.bmp" border="0">        Stop 
+      the tape     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#group start"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id21block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=21h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/groupstartblock.bmp" 
+      border="0">        Group start     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><IMG width="160" 
+      height="20" src="TZX%20file%20format_fichiers/id22block.jpg" 
+border="0"></TD>
+    <TD align="center" nowrap="">        0</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=22h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/groupendblock.bmp" 
+      border="0">        Group end     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#jump to block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id23block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=23h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/jumpblock.bmp" 
+      border="0">        Jump to block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#loop start"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id24block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=24h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/loopstartblock.bmp" 
+      border="0">        Loop start     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><IMG width="160" 
+      height="20" src="TZX%20file%20format_fichiers/id25block.jpg" 
+border="0"></TD>
+    <TD align="center" nowrap="">        0</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=25h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/loopendblock.bmp" 
+      border="0">        Loop end     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#call sequence"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id26block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=26h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/callblock.bmp" 
+      border="0">        Call sequence     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><IMG width="160" 
+      height="20" src="TZX%20file%20format_fichiers/id27block.jpg" 
+border="0"></TD>
+    <TD align="center" nowrap="">        0</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=27h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/returnblock.bmp" 
+      border="0">        Return from sequence     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#select block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id28block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=28h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/selectionblock.bmp" 
+      border="0">        Select block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#stop at 48k"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id2ablock.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        4</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=2Ah</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/stoptape48kblock.bmp" 
+      border="0">        Stop tape in 48k mode     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#set signal"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id2bblock.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        5</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=2Bh</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/setsignallevel.bmp" 
+      border="0">        Set signal level v1.20     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#text description"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id30block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=30h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/textblock.bmp" 
+      border="0">        Text description     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#message block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id31block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=31h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/messageblock.bmp" 
+      border="0">        Message     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#archive info"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id32block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=32h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/archiveblock.bmp" 
+      border="0">        Archive info     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#hardware type"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id33block.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=33h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/hardwareblock.bmp" 
+      border="0">        Hardware type     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        1</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc"><IMG width="50" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0"><IMG width="160" height="20" src="TZX%20file%20format_fichiers/id34block.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        8</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=34h</P></TD>
+    <TD align="left" bgcolor="#cccccc"><IMG width="16" height="16" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/emulationblock.bmp" border="0">        
+      Emulation info (deprecated)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><IMG width="160" 
+      height="20" src="TZX%20file%20format_fichiers/id35block.jpg" 
+border="0"></TD>
+    <TD align="center" nowrap="">        ???</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=35h</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/custominfoblock.bmp" 
+      border="0">        Custom info     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        1</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc"><IMG width="50" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0"><IMG width="160" height="20" src="TZX%20file%20format_fichiers/id40block.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" bgcolor="#cccccc">        ???</TD>
+    <TD align="left" nowrap="" bgcolor="#cccccc">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=40h</P></TD>
+    <TD align="left" bgcolor="#cccccc"><IMG width="16" height="16" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/separatescreensblock.bmp" border="0">    
+          SCREEN$ block (deprecated)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="50" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/arrow-case.gif" border="0"><A href="http://www.zxmodules.de/fileformats/tzxformat.html#skip block"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/id5ablock.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap="">        9</TD>
+    <TD align="left" nowrap="">
+      <P align="center">if <FONT color="#ff00ff"><B>[ID]</B></FONT>=5Ah</P></TD>
+    <TD align="left"><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/skipblock.bmp" 
+      border="0">        Skip (glue) block     
+</TD></TR></TBODY></TABLE></CENTER></DIV>
+<HR>
+
+<P align="center">Here follows the list of all possible block types which are
+ used by the above<BR><A href="http://www.zxmodules.de/fileformats/tzxformat.html#data block"><IMG 
+width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/datablock.jpg" 
+border="0"></A> sub-structure:</P>
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="standard speed datablock"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id10block.jpg" 
+      border="0"> <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/standardblock.bmp" 
+      border="0">        Standard speed data block (4+<FONT 
+      color="#ff0000">[DataLen]</FONT>        bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pause in ms</TD>
+    <TD align="center">
+      <P align="left">pause after this block&nbsp;<BR> (default value = 1000 ms) 
+          </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="center">
+      <P align="left">length of the following data block     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#tape data"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/tape_data.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[DataLen]</FONT></B></TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="center">
+      <P align="left">refer to the <A href="http://www.zxmodules.de/fileformats/tapformat.html" 
+      target="Hauptframe"><SPAN 
+      style="background-color: rgb(255, 255, 255);"><B>TAP file        
+      format</B></SPAN></A> description     
+</P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">The standard speed data block has to be played by the
+ ZX-Spectrum ROM routines using standardized timing values (refer to default
+ values of ID 11h). Depending on the flag byte, the pilot tone performs 8063 
+pulses (flag &lt; 128) or 3223 pulses (flag &gt;= 128).</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<CENTER></CENTER>
+<CENTER></CENTER>
+<CENTER></CENTER>
+<CENTER></CENTER>
+<CENTER></CENTER>
+<CENTER></CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="turbo speed datablock"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id11block.jpg" 
+      border="0">&nbsp;<IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/standardblock.bmp" 
+      border="0">        Turbo        speed data block (18+<FONT 
+      color="#ff0000">[DataLen]</FONT> bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pilot tone pulse length</TD>
+    <TD align="center">
+      <P align="left">(default value = 2168)     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">1st sync pulse length</TD>
+    <TD align="center">
+      <P align="left">(default value = 667)     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">2nd sync pulse length</TD>
+    <TD align="center">
+      <P align="left">(default value = 735)     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">6</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">0-bit pulse length</TD>
+    <TD align="left">        (default value = 855)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">8</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">1-bit pulse length</TD>
+    <TD align="left">        (default value = 1710)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pilot tone pulse count</TD>
+    <TD align="center">
+      <P align="left">(default values = 8063 for headers,<BR>        3223 for 
+      data blocks)     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">12</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">used bits of&nbsp;<BR> the last byte</TD>
+    <TD align="center">
+      <P align="left">1..8<BR>        Used bits, where the most significant bit 
+      is the leftmost bit; e.g. 6 means ++++++00        (+ means a used bit, 0 
+      means unused; default value = 8)      </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">13</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pause in ms</TD>
+    <TD align="center">
+      <P align="left">pause after this block&nbsp;<BR> (default value = 1000)    
+       </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">15</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="center">
+      <P align="left">length of the following data block     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">18</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#tape data"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/tape_data.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="center">
+      <P align="left">refer to the <A href="http://www.zxmodules.de/fileformats/tapformat.html" 
+      target="Hauptframe"><SPAN 
+      style="background-color: rgb(255, 255, 255);"><B>TAP file        
+      format</B></SPAN></A> description     
+</P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">The turbo speed data block allows different timings for
+ special loaders. If the default values are used, the result is a standard speed
+ data block. Some loaders change some of the values to build protections or
+ speed-ups.</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<CENTER></CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A 
+      name="pure tone"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id12block.jpg" 
+      border="0">&nbsp;<IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/puretone.bmp" 
+      border="0">        Pure tone (4 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">T-State length</TD>
+    <TD align="center">
+      <P align="left">length of one pulse in 1 / 3,500,000 s.     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pulse count</TD>
+    <TD align="center">
+      <P align="left">number of pulses for the tone     
+</P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">This block will produce one tone - pretty much like the
+ Spectrum's pilot tone</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<CENTER></CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="pulse sequence"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id13block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/pulses.bmp" 
+      border="0">&nbsp;Pulse        sequence (2*<FONT color="#ff0000">[pulse 
+      count]</FONT>+1 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT color="#ff0000"><B>[pulse 
+      count]</B></FONT></TD>
+    <TD align="center">
+      <P align="left">Number of pulses (1..255)     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">1st pulse length</TD>
+    <TD align="center" rowspan="4">
+      <P align="left">List of pulse lengths. Must have at least one entry.     
+      </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">2nd pulse length</TD></TR>
+  <TR>
+    <TD align="center" nowrap="" colspan="4"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT color="#ff0000"><B>[pulse&nbsp;<BR>     
+         count]</B></FONT>*2-1</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">last pulse 
+length</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">This block will produce a sequence of tones with individual
+ pulse lengths and is also used by some protections.</P>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="pure datablock"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id14block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/standardblock.bmp" 
+      border="0">        Pure data block (10+<FONT 
+      color="#ff0000">[DataLen]</FONT> bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">0-bit pulse length</TD>
+    <TD align="left">        (default value = 855)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">1-bit pulse length</TD>
+    <TD align="left">        (default value = 1710)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">used bits of&nbsp;<BR> the last byte</TD>
+    <TD align="center">
+      <P align="left">1..8<BR>        Used bits, where the most significant bit 
+      is the leftmost bit; e.g. 6 means ++++++00 <BR>        (+ means a used 
+      bit, 0 means unused;<BR>        default value = 8).      </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">5</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pause in ms</TD>
+    <TD align="center">
+      <P align="left">pause after this block&nbsp;<BR> (default value = 1000)    
+       </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">7</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="center">
+      <P align="left">length of the following data block     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#tape data"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/tape_data.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="center">
+      <P align="left">refer to the <A href="http://www.zxmodules.de/fileformats/tapformat.html" 
+      target="Hauptframe"><SPAN 
+      style="background-color: rgb(255, 255, 255);"><B>TAP file        
+      format</B></SPAN></A> description     </P></TD></TR></TBODY></TABLE>
+<P align="center">Identical to the <A href="http://www.zxmodules.de/fileformats/tzxformat.html#turbo speed datablock"> 
+turbo speed data block</A>, but without pilot or       sync pulses.</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="direct recording"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id15block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/directrecording.bmp" 
+      border="0">        Direct recording block (8+<FONT 
+      color="#ff0000">[DataLen]</FONT> bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">T-States per sample</TD>
+    <TD align="left">        Number of T-States per sample. One T-State is 1 / 
+      3,500,000 s.<BR>        158 means 22050 Hz<BR>        79 means 44100 
+      Hz<BR>        other values are not recommended!     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pause in ms</TD>
+    <TD align="left">        Pause after this block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">used bits of&nbsp;<BR> the last byte</TD>
+    <TD align="left">        1..8<BR>        Used bits (samples), of the last 
+      data byte. E.g.&nbsp; 6 means that only        the first 6 samples of the 
+      last byte are played.     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">5</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="left">        length of the following data block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">8</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="center" nowrap="">bit stream</TD>
+    <TD align="left">        The bits that represent the samples to be played. 
+      0 means low, 1 means        high signal of the EAR port. The most 
+      significant bit is played first.     </TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">Stores sample recordings in a binary coded format.</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="CSW recording"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id18block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/cswrecording.bmp" 
+      border="0">        CSW Recording (14+<FONT 
+      color="#ff0000">[DataLen]</FONT> bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="center" nowrap="">block length</TD>
+    <TD align="left">        block length of the <U>following</U> data of this 
+      block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">pause in ms</TD>
+    <TD align="left">        pause after this block     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">6</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap="">sampling rate</TD>
+    <TD align="left">        the sampling rate, the data bytes<BR>        are 
+      based; e.g. 44100     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="2">9</TD>
+    <TD align="left" nowrap="" rowspan="2"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="2">1</TD>
+    <TD align="center" nowrap="" rowspan="2">compression type</TD>
+    <TD align="left"><IMG width="50" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0">1:        run length encoding     </TD></TR>
+  <TR>
+    <TD align="left"><IMG width="50" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0">2:        zero-based run length encoding     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="center" nowrap="">number of pulses</TD>
+    <TD align="left">        only for validation - pulses after uncompression  
+         </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">14</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[DataLen]</FONT></B></TD>
+    <TD align="center" nowrap="">CSW data</TD>
+    <TD align="left">        CSW data     </TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">Contains a       sequence of a CSW format (version 2).</P>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD width="708" align="center" bgcolor="#ffff00" colspan="5"><B><A name="generalised datablock"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id19block.jpg" 
+      border="0">         <IMG width="17" height="17" align="absmiddle" src="TZX%20file%20format_fichiers/generalizedsync.bmp" 
+      border="0"><IMG width="17" height="17" align="absmiddle" src="TZX%20file%20format_fichiers/generalizeddata.bmp" 
+      border="0">        Generalized datablock:</B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD width="216" align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD width="77" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD width="104" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD width="223" align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">0</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">4</TD>
+    <TD width="104" align="center" nowrap="">block length</TD>
+    <TD width="223" align="left">        block length of the <U>following</U> 
+      data of this block     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">4</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">2</TD>
+    <TD width="104" align="center" nowrap="">pause</TD>
+    <TD width="223" align="left">        pause after this block, in 
+      milliseconds     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">6</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">4</TD>
+    <TD width="104" align="center" nowrap=""><FONT 
+      color="#00ff00"><B>[TOTP]</B></FONT></TD>
+    <TD width="223" align="left">        total number of symbols in pilot/sync 
+      part; may be =0     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">10</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap=""><B><FONT 
+      color="#00ff00">[NPP]</FONT></B></TD>
+    <TD width="223" align="left">        max. number of pulses per pilot/sync 
+      symbol     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">11</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap=""><B><FONT 
+      color="#00ff00">[ASP]</FONT></B></TD>
+    <TD width="223" align="left">        number of pilot/sync symbols in 
+      alphabet table;<BR>        0 meaning 256!     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">12</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">4</TD>
+    <TD width="104" align="center" nowrap=""><B><FONT 
+      color="#ff0000">[TOTD]</FONT></B></TD>
+    <TD width="223" align="left">        Total number of symbols in data 
+      stream; may be =0     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">16</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap=""><B><FONT 
+      color="#ff0000">[NPD]</FONT></B></TD>
+    <TD width="223" align="left">        max. number of pulses per data symbol 
+          </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">17</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap=""><B><FONT 
+      color="#ff0000">[ASD]</FONT></B></TD>
+    <TD width="223" align="left">        number of data symbols in alphabet 
+      table;<BR>        0 meaning 256!     </TD></TR>
+  <TR>
+    <TD width="704" align="center" nowrap="" bgcolor="#ffff00" 
+      colspan="5"><B><FONT color="#0000ff">Symbol        definitions for 
+      pilot/sync, only present if </FONT><FONT 
+      color="#00ff00">[TOTP]</FONT><FONT color="#0000ff">&gt;0:</FONT></B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="" valign="top" bgcolor="#ccffff" 
+    rowspan="4">18</TD>
+    <TD width="216" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#SYMDEF"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/symdef.jpg" 
+      border="0">         </A> #1</TD>
+    <TD width="77" align="center" nowrap="">2*<FONT 
+      color="#00ff00"><B>[NPP]</B></FONT>+1</TD>
+    <TD width="104" align="center" nowrap="">first symbol</TD>
+    <TD width="223" align="left" rowspan="4">        symbol alphabet 
+      definitions for pilot/sync;<BR>        total size <B><FONT 
+      color="#00ff00">[SYMPLEN]</FONT></B> =<BR>        (2*<B><FONT color="#00ff00">[NPP]</FONT></B>+1) 
+      *<FONT color="#00ff00"><B>[ASP]<BR><BR></B></FONT>if <FONT 
+      color="#00ff00"><B>[TOTP]</B></FONT>=0, <B><FONT 
+      color="#00ff00">[SYMPLEN]</FONT></B>        =0     </TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#SYMDEF"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/symdef.jpg" 
+      border="0">         </A> #2</TD>
+    <TD width="77" align="center" nowrap="">2*<FONT 
+      color="#00ff00"><B>[NPP]</B></FONT>+1</TD>
+    <TD width="104" align="center" nowrap="">2nd symbol</TD></TR>
+  <TR>
+    <TD width="405" align="center" nowrap="" colspan="3"><IMG width="64" 
+      height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+  border="0"></TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#SYMDEF"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/symdef.jpg" 
+      border="0"></A>        #<FONT color="#00ff00"><B>[ASP]</B></FONT></TD>
+    <TD width="77" align="center" nowrap="">2*<FONT 
+      color="#00ff00"><B>[NPP]</B></FONT>+1</TD>
+    <TD width="104" align="center" nowrap="">last symbol</TD></TR>
+  <TR>
+    <TD width="704" align="center" nowrap="" bgcolor="#ffff00" 
+      colspan="5"><B><FONT color="#0000ff">Pilot/sync        data stream, only 
+      present if </FONT><FONT color="#00ff00">[TOTP]</FONT><FONT 
+      color="#0000ff">&gt;0:</FONT></B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="" valign="top" bgcolor="#ccffff" 
+    rowspan="4">18+<BR><FONT color="#00ff00"><B>[SYMPLEN]</B></FONT></TD>
+    <TD width="216" align="left" nowrap=""><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/prle.jpg" border="0">        #1</TD>
+    <TD width="77" align="center" nowrap="">3</TD>
+    <TD width="104" align="center" nowrap="">first symbol</TD>
+    <TD width="223" align="left" rowspan="4">        pilot/sync data stream    
+     </TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/prle.jpg" border="0">        #2</TD>
+    <TD width="77" align="center" nowrap="">3</TD>
+    <TD width="104" align="center" nowrap="">2nd symbol</TD></TR>
+  <TR>
+    <TD width="397" align="left" nowrap="" colspan="3">
+      <P align="center"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></P></TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/prle.jpg" border="0">#<FONT color="#00ff00"><B>[TOTP]</B></FONT></TD>
+    <TD width="77" align="center" nowrap="">3</TD>
+    <TD width="104" align="center" nowrap="">last symbol</TD></TR>
+  <TR>
+    <TD width="704" align="center" nowrap="" bgcolor="#ffff00" 
+      colspan="5"><B><FONT color="#0000ff">Symbol        definitions for data 
+      stream, only present if </FONT><FONT color="#ff0000">[TOTD]</FONT><FONT 
+      color="#0000ff">&gt;0:</FONT></B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="" valign="top" bgcolor="#ccffff" 
+    rowspan="4">18+<BR><FONT 
+      color="#00ff00"><B>[SYMPLEN]<BR></B></FONT>+3*<FONT 
+      color="#00ff00"><B>[TOTP]</B></FONT></TD>
+    <TD width="216" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#SYMDEF"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/symdef.jpg" 
+      border="0">         </A> #1</TD>
+    <TD width="77" align="center" nowrap="">2*<B><FONT 
+      color="#ff0000">[NPD]</FONT></B>+1</TD>
+    <TD width="104" align="center" nowrap="">first symbol</TD>
+    <TD width="223" align="left" rowspan="4">        symbol alphabet 
+      definitions for data stream;<BR>        total size <FONT 
+      color="#ff0000"><B>[SYMDLEN]</B></FONT> =<BR>        (2*<FONT color="#ff0000"><B>[NPD]</B></FONT>+1) 
+      *<FONT color="#ff0000"><B>[ASD]</B></FONT>         
+      <P>if <FONT color="#ff0000"><B>[TOTD]</B></FONT>=0, <FONT 
+      color="#ff0000"><B>[SYMDLEN]</B></FONT>        =0</P></TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#SYMDEF"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/symdef.jpg" 
+      border="0">         </A> #2</TD>
+    <TD width="77" align="center" nowrap="">2*<B><FONT 
+      color="#ff0000">[NPD]</FONT></B>+1</TD>
+    <TD width="104" align="center" nowrap="">2nd symbol</TD></TR>
+  <TR>
+    <TD width="405" align="center" nowrap="" colspan="3"><IMG width="64" 
+      height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+  border="0"></TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#SYMDEF"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/symdef.jpg" 
+      border="0"></A>        #<B><FONT color="#ff0000">[ASD]</FONT></B></TD>
+    <TD width="77" align="center" nowrap="">2*<B><FONT 
+      color="#ff0000">[NPD]</FONT></B>+1</TD>
+    <TD width="104" align="center" nowrap="">last symbol</TD></TR>
+  <TR>
+    <TD width="704" align="center" nowrap="" bgcolor="#ffff00" 
+      colspan="5"><B><FONT color="#0000ff">Data        bit stream, only present 
+      if </FONT><FONT color="#ff0000">[TOTD]</FONT><FONT 
+      color="#0000ff">&gt;0:</FONT></B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="" valign="top" bgcolor="#ccffff" 
+    rowspan="4">18+<BR><FONT 
+      color="#00ff00"><B>[SYMPLEN]<BR></B></FONT>+3*<FONT 
+      color="#00ff00"><B>[TOTP]<BR></B></FONT>+<B><FONT 
+      color="#00ff00"><BR></FONT><FONT color="#ff0000">[SYMDLEN]</FONT></B></TD>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/byte.jpg" border="0">        #1</TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap="">first data byte</TD>
+    <TD width="223" align="left" rowspan="4">        data stream, 
+      bit-coded;<BR><FONT color="#ff0000"><B>[BITS]</B></FONT> = ceil(log2(<FONT 
+      color="#ff0000"><B>[ASD]</B></FONT>));<BR><FONT 
+      color="#ff0000"><B>[DSIZE]</B></FONT> = ceil(<FONT 
+      color="#ff0000"><B>[BITS]</B></FONT>*<FONT 
+      color="#ff0000"><B>[TOTD]</B></FONT>/8)<BR>        bit groups are coded 
+      in&nbsp;<BR>        most significant bits first     </TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/byte.jpg" border="0">        #2</TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap="">2nd data byte</TD></TR>
+  <TR>
+    <TD width="397" align="left" nowrap="" colspan="3">
+      <P align="center"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></P></TD></TR>
+  <TR>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/byte.jpg" border="0">        #<B><FONT 
+      color="#ff0000">[DSIZE]</FONT></B></TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap="">last data 
+byte</TD></TR></TBODY></TABLE>
+<P align="center">The generalized datablock can either be a pilot/sync sequence,
+ or a data sequence, or both together. It can store a wide range of different
+ block types, as it is very flexible with its symbol alphabets.</P>
+<P align="center">The generalized data block uses the following sub-formats:</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD width="708" align="center" nowrap="" bgcolor="#ffff00" 
+      colspan="6"><B><A name="SYMDEF"></A><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/symdef.jpg" border="0">        symbol 
+      definition (2*<FONT color="#ff00ff">[MAXP]</FONT>+1 bytes):</B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD width="216" align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD width="77" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD width="104" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD width="223" align="center" nowrap="" colspan="2"><FONT 
+      color="#0000ff"><B>Additional        information:</B></FONT></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="" rowspan="5">0</TD>
+    <TD width="216" align="left" nowrap="" rowspan="5"><IMG width="40" height="20" 
+      src="TZX%20file%20format_fichiers/byte.jpg" border="0"></TD>
+    <TD width="77" align="center" nowrap="" rowspan="5">1</TD>
+    <TD width="104" align="center" nowrap="" rowspan="5">symbol flags</TD>
+    <TD width="223" align="left" nowrap="" colspan="2">        only bits 0 and 
+      1 are used:     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        00     </TD>
+    <TD align="left" nowrap="">        opposite to current level     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        01     </TD>
+    <TD align="left" nowrap="">        same as current level     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        10     </TD>
+    <TD align="left" nowrap="">        force low level     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        11     </TD>
+    <TD align="left" nowrap="">        force high level     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">1</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="80" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/word.jpg" border="0">        #1</TD>
+    <TD width="77" align="center" nowrap="">2</TD>
+    <TD width="104" align="center" nowrap="">1st pulse len</TD>
+    <TD align="left" nowrap="" rowspan="4" colspan="2">        Array of pulse 
+      lengths;<BR><FONT color="#ff00ff"><B>[MAXP]</B></FONT> = <B><FONT color="#00ff00">[NPP]</FONT></B> 
+             or <FONT color="#ff0000"><B>[NPD]</B></FONT>&nbsp;<BR>        
+      (depending on the usage)     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">3</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="80" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/word.jpg" border="0">        #2</TD>
+    <TD width="77" align="center" nowrap="">2</TD>
+    <TD width="104" align="center" nowrap="">2nd pulse len</TD></TR>
+  <TR>
+    <TD width="469" align="center" nowrap="" colspan="4"><IMG width="64" 
+      height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+  border="0"></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">???</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="80" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/word.jpg" border="0">        #<FONT 
+      color="#ff00ff"><B>[MAXP]</B></FONT></TD>
+    <TD width="77" align="center" nowrap="">2</TD>
+    <TD width="104" align="center" nowrap="">last pulse 
+len</TD></TR></TBODY></TABLE>
+<P align="center">The symbol flags in the SYMDEF structure describe the initial
+ pulse level before the pulses of the symbol are played. All symbols in the
+ symbol alphabet tables always have the same number of pulses; only the maximum
+ count of pulses per symbol is defined as <FONT 
+color="#ff00ff"><B>[MAXP]</B></FONT>. Unused pulses are filled with 0-words. 
+These 0-pulses have to be ignored while playing the waves.</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD width="708" align="center" nowrap="" bgcolor="#ffff00" colspan="5"><A 
+      name="PRLE"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/prle.jpg" 
+      border="0"><B>        symbol repeater (3 bytes):</B></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD width="216" align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD width="77" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD width="104" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD width="223" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Additional        information:</B></FONT></TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">0</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">1</TD>
+    <TD width="104" align="center" nowrap="">symbol index</TD>
+    <TD width="223" align="left" nowrap="">        symbol to be represented    
+     </TD></TR>
+  <TR>
+    <TD width="72" align="center" nowrap="">1</TD>
+    <TD width="216" align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD width="77" align="center" nowrap="">2</TD>
+    <TD width="104" align="center" nowrap="">repeater</TD>
+    <TD width="223" align="left" nowrap="">        number of repetitions     
+    </TD></TR></TBODY></TABLE>
+<P align="center">The PRLE represents 1..65535 of one of the defined symbols</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A 
+      name="pause block"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id20block.jpg" 
+      border="0">&nbsp;<IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/pauseblock.bmp" 
+      border="0">        pause or <IMG width="16" height="16" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/stopblock.bmp" border="0">        stop 
+      the tape (2 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">milliseconds</TD>
+    <TD align="center">
+      <P align="left">length of the pause (silence) or<BR>        =0 for "stop 
+      the tape"     </P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A 
+      name="group start"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id21block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/groupstartblock.bmp" 
+      border="0">        group start (1+<FONT color="#ff00ff">[StringLen]</FONT> 
+      bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#ff00ff"><B>[StringLen]</B></FONT></TD>
+    <TD align="left">        length of group name     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#ff00ff"><B>[StringLen]</B></FONT></TD>
+    <TD align="center" nowrap="">group name</TD>
+    <TD align="left">        the group name itself; should be max. 30 
+      characters long     </TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">The group start and group end include a group of sub-blocks
+ that belong together, for instance Speedlock or Bleepload blocks. They have 
+only documentary function.</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A name="jump to block"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id23block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/jumpblock.bmp" 
+      border="0">        jump to block (2 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/integer16bit.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">jump distance</TD>
+    <TD align="left">        relative jump value;<BR>        0 = endless 
+      loop;<BR>        1 = jump to next block (=nop)<BR>        2 = skip next 
+      block<BR>        -1 = jump to previous block     
+</TD></TR></TBODY></TABLE></CENTER></DIV>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A 
+      name="loop start"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id24block.jpg" 
+      border="0">         <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/loopstartblock.bmp" 
+      border="0">        loop start (2 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">repeat count</TD>
+    <TD align="left">        must be greater than 1     
+</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">A loop start and loop end block include a group of blocks that
+ have to be repeated. Nested loops are not allowed!</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A 
+      name="call sequence"></A><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/id26block.jpg" border="0"><B>         
+      <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/callblock.bmp" 
+      border="0">        call sequence (2*<FONT 
+      color="#ff0000">[CallCount]</FONT>+2 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#ff0000"><B>[CallCount]</B></FONT></TD>
+    <TD align="left">        number of calls     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/integer16bit.jpg" border="0">        
+    #1</TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">first call</TD>
+    <TD align="left" rowspan="4">        relative block position (analog to 
+      jump block); the destination routine        must be terminated by a 
+      'return from sequence'     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/integer16bit.jpg" border="0">        
+    #2</TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">2nd call</TD></TR>
+  <TR>
+    <TD align="center" nowrap="" colspan="4"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/integer16bit.jpg" border="0">        
+      #<FONT color="#ff0000"><B>[CallCount]</B></FONT></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">last call</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">Defines a list of calls to subroutines. Nested subroutines are
+ not allowed!</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A 
+      name="select block"></A><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/id28block.jpg" border="0"><B>         
+      <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/selectionblock.bmp" 
+      border="0">        select sequence (<FONT 
+      color="#ff0000">[BlockLen]</FONT>+2 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[BlockLen]</FONT></B></TD>
+    <TD align="left">        length of the <U>following</U> data block     
+  </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">[Count]</TD>
+    <TD align="left">        number of selections     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#select"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/select.jpg" 
+      border="0"></A>        #1</TD>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="center" nowrap="">first selection</TD>
+    <TD align="left" rowspan="4">        List of selections     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#select"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/select.jpg" 
+      border="0"></A>        #2</TD>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="center" nowrap="">2nd selection</TD></TR>
+  <TR>
+    <TD align="center" nowrap="" colspan="4"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#select"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/select.jpg" 
+      border="0"></A>        #<B><FONT color="#ff0000">[Count]</FONT></B></TD>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="center" nowrap="">last 
+selection</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">A SELECT sequence is something like a list of contents; it's
+ used for tapes that have several sections. The block numbers are the starting
+ positions for each section.&nbsp;<BR>The SELECT sequence uses the following 
+sub-block:</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A name="select"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/select.jpg" 
+      border="0"><B>        select block (<FONT 
+      color="#00ff00">[TextLen]</FONT>+3 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/integer16bit.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">relative position</TD>
+    <TD align="left">        relative block position (refer to jump block)     
+    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#00ff00"><B>[TextLen]</B></FONT></TD>
+    <TD align="left">        length of description     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#00ff00"><B>[TextLen]</B></FONT></TD>
+    <TD align="center" nowrap="">description</TD>
+    <TD align="left">        description string (should not have more than<BR> 
+             30 characters and no line-feeds)     </TD></TR></TBODY></TABLE>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A 
+      name="stop at 48k"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id2ablock.jpg" 
+      border="0">         <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/stoptape48kblock.bmp" 
+      border="0">        stop tape at 48k (4 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="center" nowrap="">block length</TD>
+    <TD align="left">        always =0     </TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">Lets the emulator stop when it's in 48k mode.</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A 
+      name="set signal"></A><IMG width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id2bblock.jpg" 
+      border="0">         <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/setsignallevel.bmp" 
+      border="0">        set signal (5 bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="center" nowrap="">block length</TD>
+    <TD align="left">        always =1     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">signal level</TD>
+    <TD align="left">        0 = low<BR>        1 = high     
+</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">Useful for loaders that take care about the signal level.</P>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A name="text description"></A><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/id30block.jpg" 
+      border="0">         <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/textblock.bmp" 
+      border="0">        text description (1+<FONT 
+      color="#ff0000">[TextLen]</FONT> bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[TextLen]</B></FONT></TD>
+    <TD align="left">        length of text description     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[TextLen]</B></FONT></TD>
+    <TD align="center" nowrap="">any text</TD>
+    <TD align="left">        ASCII text; should have max. 30 characters and 
+      one line     </TD></TR></TBODY></TABLE>
+<P align="center">Should be used as a text marker in the tape (for browsing
+ through the tape blocks etc.)</P>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><A 
+      name="message block"></A><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/id31block.jpg" border="0">         
+      <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/messageblock.bmp" 
+      border="0">        message (2+<FONT color="#ff0000">[MsgLen]</FONT> 
+      bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">duration</TD>
+    <TD align="left">        time duration (in seconds), the message should be 
+      displayed; 0 means        waiting for a key     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[MsgLen]</B></FONT></TD>
+    <TD align="left">        length of message     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[MsgLen]</B></FONT></TD>
+    <TD align="center" nowrap="">any text</TD>
+    <TD align="left">        ASCII text; should have max. 30 characters per 
+      line and max. 8 lines.        Lline should be separated with CHR$(13) 
+      character.     </TD></TR></TBODY></TABLE>
+<P align="center">Displays a message for a given time.&nbsp; 
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5">
+      <P align="center"><A name="archive info"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id32block.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/archiveblock.bmp" 
+      border="0">        archive info (2+<FONT color="#ff00ff">[BlockLen]</FONT> 
+      bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff00ff"><B>[BlockLen]</B></FONT></TD>
+    <TD align="left">        length of the <U>following</U> data     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+color="#00ff00"><B>[Count]</B></FONT></TD>
+    <TD align="left">        number of archive texts     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#archive text"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/archivetext.jpg" 
+      border="0"></A>        #1</TD>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="center" nowrap="">1st item</TD>
+    <TD align="left" rowspan="4">        list of archive info items     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#archive text"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/archivetext.jpg" 
+      border="0"></A>        #2</TD>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="center" nowrap="">2nd item</TD></TR>
+  <TR>
+    <TD align="center" nowrap="" colspan="4"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#archive text"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/archivetext.jpg" 
+      border="0"></A>        #<FONT color="#00ff00"><B>[Count]</B></FONT></TD>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="center" nowrap="">last item</TD></TR></TBODY></TABLE>
+<P align="center">Use the archive info at the beginning of the tape to identify
+ the game/program. E.g. you can define the game name, publisher, year etc. Some
+ fields can appear more than 1 times (e.g. comments). You don't need to add all
+ items; you may skip Language, if the tape language is English, for example.</P>
+<P align="center">The archive info stores the information of the tape, like game
+ name, publisher, etc.</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5"><B><A 
+      name="archive text"></A><IMG width="160" height="20" align="absmiddle" 
+      src="TZX%20file%20format_fichiers/archivetext.jpg" border="0">        
+      (2+<FONT color="#ff0000">[TextLen]</FONT> bytes):</B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">Text type</TD>
+    <TD align="left">        00h - Full             title<BR>01h - Software    
+               house/publisher<BR>02h -             Author(s)<BR>03h - 
+      Year<BR>04h -             Language<BR>05h - Game/program             
+      type<BR>06h - Price<BR>07h -             Protection scheme/loader<BR>08h - 
+                  Origin<BR>FFh - Comment(s)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[TextLen]</B></FONT></TD>
+    <TD align="left">        length of archive text     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[TextLen]</B></FONT></TD>
+    <TD align="center" nowrap="">any text</TD>
+    <TD align="left">        ASCII text that describes the archive item     
+  </TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5">
+      <P align="center"><A name="hardware type"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id33block.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/hardwareblock.bmp" 
+      border="0">        hardware info (3*<FONT color="#00ff00">[Count]</FONT>+1 
+      bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap=""><FONT 
+color="#00ff00"><B>[Count]</B></FONT></TD>
+    <TD align="left">        number of hardware items     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#hardware info"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/hardware%2520info.jpg" 
+      border="0"></A>        #1</TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap="">1st item</TD>
+    <TD align="left" rowspan="4">        list of hardware info items     
+</TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#hardware info"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/hardware%2520info.jpg" 
+      border="0"></A>        #2</TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap="">2nd item</TD></TR>
+  <TR>
+    <TD align="center" nowrap="" colspan="4"><IMG width="64" height="32" src="TZX%20file%20format_fichiers/arrow-gap.gif" 
+      border="0"></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">???</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tzxformat.html#hardware info"><IMG 
+      width="160" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/hardware%2520info.jpg" 
+      border="0"></A>        #<FONT color="#00ff00"><B>[Count]</B></FONT></TD>
+    <TD align="center" nowrap="">3</TD>
+    <TD align="center" nowrap="">last item</TD></TR></TBODY></TABLE>
+<P align="center">The hardware info uses the following sub-format:</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="6">
+      <P align="center"><A name="hardware info"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/hardware%2520info.jpg" 
+      border="0">         <B>(3 bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center" nowrap="" colspan="2"><FONT 
+      color="#0000ff"><B>Additional        information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">hardware type</TD>
+    <TD align="left" nowrap="" colspan="2">        hardware type (refer to <A 
+      href="http://www.zxmodules.de/fileformats/hardwaretables.html" target="Hauptframe">hardware 
+             table</A>)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">hardware ID</TD>
+    <TD align="left" nowrap="" colspan="2">        hardware ID (refer to <A 
+      href="http://www.zxmodules.de/fileformats/hardwaretables.html" target="Hauptframe">hardware 
+             table)</A>     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="4">1</TD>
+    <TD align="left" nowrap="" rowspan="4"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="4">1</TD>
+    <TD align="center" nowrap="" rowspan="4">run ability</TD>
+    <TD align="left" nowrap="">        0:     </TD>
+    <TD align="left" nowrap="">        The hardware can be <SPAN style="text-decoration: underline;">fully</SPAN> 
+             used&nbsp;<BR> on the emulated machine     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        1:     </TD>
+    <TD align="left" nowrap="">        The hardware is used on the        
+      emulated&nbsp;<BR> machine     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        2:     </TD>
+    <TD align="left" nowrap="">        The hardware works, but is        
+      not&nbsp;<BR> used on the emulated machine     </TD></TR>
+  <TR>
+    <TD align="left" nowrap="">        3:     </TD>
+    <TD align="left" nowrap="">        The hardware is not working        
+      with&nbsp;<BR> the emulated machine     </TD></TR></TBODY></TABLE>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5">
+      <P align="center"><A name="custom info"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id35block.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/custominfoblock.bmp" 
+      border="0">        custom info (<FONT color="#ff0000">[DataLen]</FONT>+20 
+      bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="18" height="20" src="TZX%20file%20format_fichiers/array-right.gif" 
+      border="0"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">16</TD>
+    <TD align="center" nowrap="">identification</TD>
+    <TD align="left">        ASCII identification string     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">16</TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">4</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#ff0000"><B>[DataLen]</B></FONT></TD>
+    <TD align="left">        length of custom info     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">20</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[DataLen]</FONT></B></TD>
+    <TD align="center" nowrap="">custom info</TD>
+    <TD align="left">        Any data     </TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">Custom info blocks store any data; please notice that there  
+are some deprecated standard custom info blocks!</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5">
+      <P align="center"><A name="skip block"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id5ablock.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/skipblock.bmp" 
+      border="0">        skip block (9 bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TZX%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TZX%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">6</P></TD>
+    <TD align="center" nowrap="">signature</TD>
+    <TD align="left">        = value "XTape!"     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">7</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="">end of file marker</TD>
+    <TD align="left">        = value 26 (eof)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">8</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="">major version number</TD>
+    <TD align="left">        = value 1     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">9</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="">minor version number</TD>
+    <TD align="left">        = e.g. 13 or 20 (for version 1.13 or 1.20)     
+  </TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">This block appears if two or more TZX files are concatenated  
+together. 5a is the "Z" character. So, the Z is missing in the  signature above. 
+This block has to be skipped.</P>
+<HR>
+
+<P align="left"><B><SPAN 
+style="background-color: rgb(255, 255, 0);"><U>Deprecated  
+blocks:</U></SPAN></B></P>
+<P align="center">There are some deprecated blocks that were used until TZX  
+version 1.13. These should not be used in TZX files with version 1.20 and  
+later.&nbsp;</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="6">
+      <P align="center"><A name="C64 block"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id16block.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/c64block.bmp" 
+      border="0">        C64 block (<FONT color="#ff0000">[BlockLen]</FONT> 
+      bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center" colspan="2"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">4</P></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[BlockLen]</FONT></B></TD>
+    <TD align="left" colspan="2">        length of the whole data (incl.<BR>   
+           these 4 bytes)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        4</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">pilot tone length</TD>
+    <TD align="left" colspan="2">        default value =616     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        6</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">pilot tone wave count</TD>
+    <TD align="left" colspan="2">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        8</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">sync 1st pulse length</TD>
+    <TD align="left" colspan="2">        default value = 1176     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        10</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">sync 2nd pulse length</TD>
+    <TD align="left" colspan="2">        default value = 896     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        12</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">0-bit 1st pulse length</TD>
+    <TD align="left" colspan="2">        default value = 616     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        14</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">0-bit 2nd pulse length</TD>
+    <TD align="left" colspan="2">        default value = 896     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        16</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">1-bit 1st pulse length</TD>
+    <TD align="left" colspan="2">        default value = 896     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        18</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">1-bit 2nd pulse length</TD>
+    <TD align="left" colspan="2">        default value = 616     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="3">        20</TD>
+    <TD align="left" nowrap="" rowspan="3"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="3">        1</TD>
+    <TD align="center" nowrap="" rowspan="3">xor checksum bit<BR>        for 
+      each data byte</TD>
+    <TD align="left">        0:     </TD>
+    <TD align="left">        start xor checksum with 0     </TD></TR>
+  <TR>
+    <TD align="left">        1:     </TD>
+    <TD align="left">        start xor checksum with 1     </TD></TR>
+  <TR>
+    <TD align="left">        255:     </TD>
+    <TD align="left">        no checksum bit     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        21</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">finish byte 1st pulse length</TD>
+    <TD align="left" colspan="2">        default value = 1176     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        23</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">finish byte 2nd pulse length</TD>
+    <TD align="left" colspan="2">        default value = 896     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        25</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">finish data 1st pulse length</TD>
+    <TD align="left" colspan="2">        default value = 1176     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        27</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">finish data 2nd pulse length</TD>
+    <TD align="left" colspan="2">        default value = 616     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        29</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">trailing tone pulse length</TD>
+    <TD align="left" colspan="2">        default value = 616     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        31</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">trailing tone wave count</TD>
+    <TD align="left" colspan="2">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        33</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="center" nowrap="">last used bits</TD>
+    <TD align="left" colspan="2">        used bits of the last byte; 1..8;<BR> 
+             e.g. if the value is 6, then<BR>        the upper 6 bits xxxxxx00 
+      are<BR>        used. Other bits = 0.     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="2">        34</TD>
+    <TD align="left" nowrap="" rowspan="2"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="2">        1</TD>
+    <TD align="center" nowrap="" rowspan="2">data endianess</TD>
+    <TD align="left">        bit 0=0:     </TD>
+    <TD align="left">        less significant bit first     </TD></TR>
+  <TR>
+    <TD align="left">        bit 0=1:     </TD>
+    <TD align="left">        most significant bit first     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        35</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">pause after this block</TD>
+    <TD align="left" colspan="2">        in milliseconds     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        37</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        3</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#00ff00"><B>[DataLen]</B></FONT></TD>
+    <TD align="left" colspan="2">        length of following data     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        40</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#tape data"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/tape_data.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#00ff00">[DataLen]</FONT></B></TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="left" colspan="2">        refer to the <A href="http://www.zxmodules.de/fileformats/tapformat.html" 
+      target="Hauptframe"><SPAN 
+      style="background-color: rgb(255, 255, 255);"><B>TAP file        
+      format</B></SPAN></A> description     </TD></TR></TBODY></TABLE>
+<P align="center">This block is used for storing a ROM standard C64 tape  
+loading block.</P>
+<HR>
+
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="6">
+      <P align="center"><A name="C64 turbo block"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id17block.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/c64turboblock.bmp" 
+      border="0">        C64 turbo block (<FONT 
+      color="#ff0000">[BlockLen]</FONT> bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center" colspan="2"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap=""><IMG width="160" height="20" src="TZX%20file%20format_fichiers/longword.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">
+      <P align="center">4</P></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[BlockLen]</FONT></B></TD>
+    <TD align="left" colspan="2">        length of the whole data (incl.<BR>   
+           these 4 bytes)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        4</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">0-bit pulse</TD>
+    <TD align="left" colspan="2">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        6</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">1-bit pulse</TD>
+    <TD align="left" colspan="2">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="3">        8</TD>
+    <TD align="left" nowrap="" rowspan="3"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="3">        1</TD>
+    <TD align="center" nowrap="" rowspan="3">additional bits</TD>
+    <TD align="left">        bit 0-1:     </TD>
+    <TD align="left">        number of bits     </TD></TR>
+  <TR>
+    <TD align="left">        bit 2:     </TD>
+    <TD align="left">        play before (0) or&nbsp;<BR>        after (1) the 
+      byte     </TD></TR>
+  <TR>
+    <TD align="left">        bit 3:     </TD>
+    <TD align="left">        value of add. bits     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        9</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">lead-in bytes</TD>
+    <TD align="left" colspan="2">        number of lead-in bytes     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        11</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="center" nowrap="">lead-in byte</TD>
+    <TD align="left" colspan="2">        value of lead-in byte     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        12</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="center" nowrap="">last used bits</TD>
+    <TD align="left" colspan="2">        used bits of the last byte; 1..8;<BR> 
+             e.g. if the value is 6, then<BR>        the upper 6 bits xxxxxx00 
+      are<BR>        used. Other bits = 0.     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="2">        13</TD>
+    <TD align="left" nowrap="" rowspan="2"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="2">        1</TD>
+    <TD align="center" nowrap="" rowspan="2">data endianess</TD>
+    <TD align="left">        bit 0=0:     </TD>
+    <TD align="left">        less significant bit first     </TD></TR>
+  <TR>
+    <TD align="left">        bit 0=1:     </TD>
+    <TD align="left">        most significant bit first     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        14</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">trailing bytes</TD>
+    <TD align="left" colspan="2">        number of trailing bytes     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        16</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="center" nowrap="">trailing byte</TD>
+    <TD align="left" colspan="2">        value of trailing byte     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        17</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">pause after this block</TD>
+    <TD align="left" colspan="2">        in milliseconds     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        19</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        3</TD>
+    <TD align="center" nowrap=""><FONT 
+    color="#00ff00"><B>[DataLen]</B></FONT></TD>
+    <TD align="left" colspan="2">        length of following data     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        22</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#tape data"><IMG 
+      width="160" height="20" src="TZX%20file%20format_fichiers/tape_data.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#00ff00">[DataLen]</FONT></B></TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="left" colspan="2">        refer to the <A href="http://www.zxmodules.de/fileformats/tapformat.html" 
+      target="Hauptframe"><SPAN 
+      style="background-color: rgb(255, 255, 255);"><B>TAP file        
+      format</B></SPAN></A> description     </TD></TR></TBODY></TABLE></CENTER></DIV>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="6">
+      <P align="center"><A name="emulation info"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id34block.jpg" border="0"> 
+              <IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/emulationblock.bmp" 
+      border="0"><B>        Emulation info (8 bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center" colspan="2"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="12">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap="" rowspan="12"><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="12">
+      <P align="center">2</P></TD>
+    <TD align="center" nowrap="" rowspan="12">flags</TD>
+    <TD align="left">        bit 0:     </TD>
+    <TD align="left">        R-register emulation (default = 1)     </TD></TR>
+  <TR>
+    <TD align="left">        bit 1:     </TD>
+    <TD align="left">        ldir emulation (default = 1)     </TD></TR>
+  <TR>
+    <TD align="left">        bit 2:     </TD>
+    <TD align="left">        hi-res colour emulation (default = 1)     </TD></TR>
+  <TR>
+    <TD align="left" rowspan="4">        bit 3-4:     </TD>
+    <TD align="left">        00: normal video-synchronisation&nbsp;<BR>        
+      (default)     </TD></TR>
+  <TR>
+    <TD align="left">        01: high video-synchronisation     </TD></TR>
+  <TR>
+    <TD align="left">        10: normal video-synchronisation     </TD></TR>
+  <TR>
+    <TD align="left">        11: low video-synchronisation     </TD></TR>
+  <TR>
+    <TD align="left">        bit 5:     </TD>
+    <TD align="left">        fast ROM loading (default = 1)     </TD></TR>
+  <TR>
+    <TD align="left">        bit 6:     </TD>
+    <TD align="left">        border emulation (default = 1)     </TD></TR>
+  <TR>
+    <TD align="left">        bit 7:     </TD>
+    <TD align="left">        screen refresh mode (default = 1)     </TD></TR>
+  <TR>
+    <TD align="left">        bit 8:     </TD>
+    <TD align="left">        start playing the tape immediately (1)<BR>        
+      (default = 0)     </TD></TR>
+  <TR>
+    <TD align="left">        bit 9:     </TD>
+    <TD align="left">        auto LOAD"" (default = 1)     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="center" nowrap="">screen refresh<BR>        delay</TD>
+    <TD align="left" colspan="2">        interrupts between screen refreshes 
+      1..255<BR>        (default = 1); only used when screen refresh&nbsp;<BR>   
+           mode is enabled.     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        3</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TZX%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        2</TD>
+    <TD align="center" nowrap="">int. freq.</TD>
+    <TD align="left" colspan="2">        interrupt frequency 0..999 in Hz     
+    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        5</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        3</TD>
+    <TD align="center" nowrap="">reserved</TD>
+    <TD align="left" colspan="2">        should be zero     
+</TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="6">
+      <P align="center"><A name="snapshot block"></A><IMG width="160" height="20" 
+      align="absmiddle" src="TZX%20file%20format_fichiers/id40block.jpg" border="0"> 
+              <B><IMG width="16" height="16" align="absmiddle" src="TZX%20file%20format_fichiers/separatescreensblock.bmp" 
+      border="0">        SCREEN$ block (<FONT color="#ff0000">[SnapLen]</FONT>+4 
+      bytes):</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center" colspan="2"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="" rowspan="2">
+      <P align="center">0</P></TD>
+    <TD align="left" nowrap="" rowspan="2"><IMG width="40" height="20" src="TZX%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="" rowspan="2">
+      <P align="center">1</P></TD>
+    <TD align="center" nowrap="" rowspan="2">snapshot type</TD>
+    <TD align="left">        0:     </TD>
+    <TD align="left">        Z80 format     </TD></TR>
+  <TR>
+    <TD align="left">        1:     </TD>
+    <TD align="left">        SNA format     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        1</TD>
+    <TD align="left" nowrap=""><IMG width="120" height="20" src="TZX%20file%20format_fichiers/triple.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">        3</TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[SnapLen]</FONT></B></TD>
+    <TD align="left" colspan="2">        snapshot length     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#fff000" colspan="6">
+      <P align="left"><B><IMG width="50" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0">if        snapshot type is Z80 format:</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        4</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/z80format.html" 
+      target="Hauptframe"><IMG width="160" height="20" src="TZX%20file%20format_fichiers/z80snapshot.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[SnapLen]</FONT></B></TD>
+    <TD align="center" nowrap="">snapshot itself</TD>
+    <TD align="left" colspan="2">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#fff000" colspan="6">
+      <P align="left"><B><IMG width="50" height="20" align="absmiddle" src="TZX%20file%20format_fichiers/arrow-case.gif" 
+      border="0">if        snapshot type is SNA format:</B></P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">        4</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/snaformat.html" 
+      target="Hauptframe"><IMG width="160" height="20" src="TZX%20file%20format_fichiers/snasnapshot.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><B><FONT 
+    color="#ff0000">[SnapLen]</FONT></B></TD>
+    <TD align="center" nowrap="">snapshot itself</TD>
+    <TD align="left" colspan="2">        &nbsp;    </TD></TR></TBODY></TABLE>
+<P align="center">A snapshot block should always be the first active block of  a 
+TZX file.</P></BODY></HTML>

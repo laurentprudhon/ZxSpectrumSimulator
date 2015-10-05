@@ -1,0 +1,11 @@
+zxtests
+
+Now should work on 128. Not tested
+
+Since version 3 requires pasmo assembler.
+http://www.speccy.org/pasmo/
+
+Use mktap Basic files.
+http://wizard.ae.krakow.pl/~jb/qaop/tests.html
+
+Jan Bobrowski

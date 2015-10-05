@@ -1,0 +1,449 @@
+﻿; The memory.
+;
+; +---------+-----------+------------+--------------+-------------+--
+; | BASIC   |  Display  | Attributes  | ZX Printer   |    System   | 
+; |  ROM    |   File    |    File     |   Buffer     |  Variables  | 
+; +---------+-----------+------------+--------------+-------------+--
+; ^         ^           ^             ^              ^             ^
+; $0000   $4000       $5800         $5B00          $5C00         $5CB6 = CHANS 
+;
+;
+;  --+----------+---+---------+-----------+---+------------+--+---+--
+;    | Channel  |$80|  BASIC  | Variables  |$80| Edit Line  |NL|$80|
+;    |   Info   |   | Program |   Area     |   | or Command |  |   |
+;  --+----------+---+---------+-----------+---+------------+--+---+--
+;    ^              ^         ^                ^                   ^
+;  CHANS           PROG      VARS            E_LINE              WORKSP
+;
+;
+;                             ---5-->         <---2---  <--3---
+;  --+-------+--+------------+-------+-------+---------+-------+-+---+------+
+;    | INPUT |NL| Temporary  | Calc.  | Spare | Machine | GOSUB  |?|$3E| UDGs |
+;    | data  |  | Work Space | Stack  |       |  Stack  | Stack  | |   |      |
+;  --+-------+--+------------+-------+-------+---------+-------+-+---+------+
+;    ^                       ^        ^       ^                    ^   ^      ^
+;  WORKSP                  STKBOT   STKEND   sp                RAMTOP UDG  P_RAMT
+
+
+; System variables
+ 	Address		Name		Contents
+5C00	23552	KSTATE	N8	Used in reading the keyboard.
+5C08	23560	LAST K	N1	Stores newly pressed key. 
+5C09	23561	REPDEL	1	Time (in 50ths of a second in 60ths of a second in N. America) that a key must be held down before it repeats. This starts off at 35, but you can POKE in other values. 
+5C0A	23562	REPPER	1	Delay (in 50ths of a second in 60ths of a second in N. America) between successive repeats of a key held down: initially 5. 
+5C0B	23563	DEFADD	N2	Address of arguments of user defined function if one is being evaluated; otherwise 0. 
+5C0D	23565	K DATA	N1	Stores 2nd byte of colour controls entered from keyboard . 
+5C0E	23566	TVDATA	N2	Stores bytes of colour, AT and TAB controls going to television. 
+5C10	23568	STRMS	X38	Addresses of channels attached to streams. 
+5C36	23606	CHARS	2	256 less than address of character set (which starts with space and carries on to the copyright symbol). Normally in ROM, but you can set up your own in RAM and make CHARS point to it. 
+5C38	23608	RASP	1	Length of warning buzz. 
+5C39	23609	PIP		1	Length of keyboard click. 
+5C3A	23610	ERR NR	1	1 less than the report code. Starts off at 255 (for 1) so PEEK 23610 gives 255. 
+5C3B	23611	FLAGS	X1	Various flags to control the BASIC system. 
+5C3C	23612	TV FLAG	X1	Flags associated with the television. 
+5C3D	23613	ERR SP	X2	Address of item on machine stack to be used as error return. 
+5C3F	23615	LIST SP	N2	Address of return address from automatic listing. 
+5C41	23617	MODE	N1	Specifies K, L, C. E or G cursor. 
+5C42	23618	NEWPPC	2	Line to be jumped to. 
+5C44	23620	NSPPC	1	Statement number in line to be jumped to. Poking first NEWPPC and then NSPPC forces a jump to a specified statement in a line. 
+5C45	23621	PPC		2	Line number of statement currently being executed. 
+5C47	23623	SUBPPC	1	Number within line of statement being executed. 
+5C48	23624	BORDCR	1	Border colour * 8; also contains the attributes normally used for the lower half of the screen. 
+5C49	23625	E PPC	2	Number of current line (with program cursor). 
+5C4B	23627	VARS	X2	Address of variables. 
+5C4D	23629	DEST	N2	Address of variable in assignment. 
+5C4F	23631	CHANS	X2	Address of channel data. 
+5C51	23633	CURCHL	X2	Address of information currently being used for input and output. 
+5C53	23635	PROG	X2	Address of BASIC program. 
+5C55	23637	NXTLIN	X2	Address of next line in program. 
+5C57	23639	DATADD	X2	Address of terminator of last DATA item. 
+5C59	23641	E LINE	X2	Address of command being typed in. 
+5C5B	23643	K CUR	2	Address of cursor. 
+5C5D	23645	CH ADD	X2	Address of the next character to be interpreted: the character after the argument of PEEK, or the NEWLINE at the end of a POKE statement. 
+5C5F	23647	X PTR	2	Address of the character after the ? marker. 
+5C61	23649	WORKSP	X2	Address of temporary work space. 
+5C63	23651	STKBOT	X2	Address of bottom of calculator stack. 
+5C65	23653	STKEND	X2	Address of start of spare space. 
+5C67	23655	BREG	N1	Calculator's b register. 
+5C68	23656	MEM		N2	Address of area used for calculator's memory. (Usually MEMBOT, but not always.) 
+5C6A	23658	FLAGS2	1	More flags. 
+5C6B	23659	DF SZ	X1	The number of lines (including one blank line) in the lower part of the screen. 
+5C6C	23660	S TOP	2	The number of the top program line in automatic listings. 
+5C6E	23662	OLDPPC	2	Line number to which CONTINUE jumps. 
+5C70	23664	OSPCC	1	Number within line of statement to which CONTINUE jumps. 
+5C71	23665	FLAGX	N1	Various flags. 
+5C72	23666	STRLEN	N2	Length of string type destination in assignment. 
+5C74	23668	T ADDR	N2	Address of next item in syntax table (very unlikely to be useful). 
+5C76	23670	SEED	2	The seed for RND. This is the variable that is set by RANDOMIZE. 
+5C78	23672	FRAMES	3	3 byte (least significant first), frame counter. Incremented every 20ms. See Chapter 18. 
+5C7B	23675	UDG	2	Address of 1st user defined graphic You can change this for instance to save space by having fewer user defined graphics. 
+5C7D	23677	COORDS	1	x-coordinate of last point plotted. 
+5C7E	23678	 		1	y-coordinate of last point plotted. 
+5C7F	23679	P POSN	1	33 column number of printer position 
+5C80	23680	PR CC	X2	Full address of next position for LPRINT to print at (in ZX printer buffer). Legal values 5B00 - 5B1F. [Not used in 128K mode or when certain peripherals are attached]
+5C82	23682	ECHO E	2	33 column number and 24 line number (in lower half) of end of input buffer. 
+5C84	23684	DF CC	2	Address in display file of PRINT position. 
+5C86	23686	DFCCL	2	Like DF CC for lower part of screen. 
+5C88	23688	S POSN	X1	33 column number for PRINT position 
+5C89	23689	 		X1	24 line number for PRINT position. 
+5C8A	23690	SPOSNL	X2	Like S POSN for lower part 
+5C8C	23692	SCR CT	1	Counts scrolls: it is always 1 more than the number of scrolls that will be done before stopping with scroll? If you keep poking this with a number bigger than 1 (say 255), the screen will scroll on and on without asking you. 
+5C8D	23693	ATTR P	1	Permanent current colours, etc (as set up by colour statements). 
+5C8E	23694	MASK P	1	Used for transparent colours, etc. Any bit that is 1 shows that the corresponding attribute bit is taken not from ATTR P, but from what is already on the screen. 
+5C8F	23695	ATTR T	N1	Temporary current colours, etc (as set up by colour items). 
+5C90	23696	MASK T	N1	Like MASK P, but temporary. 
+5C91	23697	P FLAG	1	More flags. 
+5C92	23698	MEMBOT	N30	Calculator's memory area; used to store numbers that cannot conveniently be put on the calculator stack. 
+5CB0	23728	NMIADD	2	This is the address of a user supplied NMI address which is read by the standard ROM when a peripheral activates the NMI. Probably intentionally disabled so that the effect is to perform a reset if both locations hold zero, but do nothing if the locations hold a non-zero value. Interface 1's with serial number greater than 87315 will initialize these locations to 0 and 80 to allow the RS232 "T" channel to use a variable line width. 23728 is the current print position and 23729 the width - default 80.
+5CB2	23730	RAMTOP	2	Address of last byte of BASIC system area. 
+5CB4	23732	P RAMT	2	Address of last byte of physical RAM. 
+
+
+;***************************************************
+;** Part 7. BASIC LINE AND COMMAND INTERPRETATION **
+;***************************************************
+
+; ----------------
+; The offset table
+; ----------------
+; The BASIC interpreter has found a command code $CE - $FF
+; which is then reduced to range $00 - $31 and added to the base address
+; of this table to give the address of an offset which, when added to
+; the offset therein, gives the location in the following parameter table
+; where a list of class codes, separators and addresses relevant to the
+; command exists.
+
+;; offst-tbl
+L1A48:  DEFB    L1AF9 - $       ; B1 offset to Address: P-DEF-FN
+        DEFB    L1B14 - $       ; CB offset to Address: P-CAT
+        DEFB    L1B06 - $       ; BC offset to Address: P-FORMAT
+        DEFB    L1B0A - $       ; BF offset to Address: P-MOVE
+        DEFB    L1B10 - $       ; C4 offset to Address: P-ERASE
+        DEFB    L1AFC - $       ; AF offset to Address: P-OPEN
+        DEFB    L1B02 - $       ; B4 offset to Address: P-CLOSE
+        DEFB    L1AE2 - $       ; 93 offset to Address: P-MERGE
+        DEFB    L1AE1 - $       ; 91 offset to Address: P-VERIFY
+        DEFB    L1AE3 - $       ; 92 offset to Address: P-BEEP
+        DEFB    L1AE7 - $       ; 95 offset to Address: P-CIRCLE
+        DEFB    L1AEB - $       ; 98 offset to Address: P-INK
+        DEFB    L1AEC - $       ; 98 offset to Address: P-PAPER
+        DEFB    L1AED - $       ; 98 offset to Address: P-FLASH
+        DEFB    L1AEE - $       ; 98 offset to Address: P-BRIGHT
+        DEFB    L1AEF - $       ; 98 offset to Address: P-INVERSE
+        DEFB    L1AF0 - $       ; 98 offset to Address: P-OVER
+        DEFB    L1AF1 - $       ; 98 offset to Address: P-OUT
+        DEFB    L1AD9 - $       ; 7F offset to Address: P-LPRINT
+        DEFB    L1ADC - $       ; 81 offset to Address: P-LLIST
+        DEFB    L1A8A - $       ; 2E offset to Address: P-STOP
+        DEFB    L1AC9 - $       ; 6C offset to Address: P-READ
+        DEFB    L1ACC - $       ; 6E offset to Address: P-DATA
+        DEFB    L1ACF - $       ; 70 offset to Address: P-RESTORE
+        DEFB    L1AA8 - $       ; 48 offset to Address: P-NEW
+        DEFB    L1AF5 - $       ; 94 offset to Address: P-BORDER
+        DEFB    L1AB8 - $       ; 56 offset to Address: P-CONT
+        DEFB    L1AA2 - $       ; 3F offset to Address: P-DIM
+        DEFB    L1AA5 - $       ; 41 offset to Address: P-REM
+        DEFB    L1A90 - $       ; 2B offset to Address: P-FOR
+        DEFB    L1A7D - $       ; 17 offset to Address: P-GO-TO
+        DEFB    L1A86 - $       ; 1F offset to Address: P-GO-SUB
+        DEFB    L1A9F - $       ; 37 offset to Address: P-INPUT
+        DEFB    L1AE0 - $       ; 77 offset to Address: P-LOAD
+        DEFB    L1AAE - $       ; 44 offset to Address: P-LIST
+        DEFB    L1A7A - $       ; 0F offset to Address: P-LET
+        DEFB    L1AC5 - $       ; 59 offset to Address: P-PAUSE
+        DEFB    L1A98 - $       ; 2B offset to Address: P-NEXT
+        DEFB    L1AB1 - $       ; 43 offset to Address: P-POKE
+        DEFB    L1A9C - $       ; 2D offset to Address: P-PRINT
+        DEFB    L1AC1 - $       ; 51 offset to Address: P-PLOT
+        DEFB    L1AAB - $       ; 3A offset to Address: P-RUN
+        DEFB    L1ADF - $       ; 6D offset to Address: P-SAVE
+        DEFB    L1AB5 - $       ; 42 offset to Address: P-RANDOM
+        DEFB    L1A81 - $       ; 0D offset to Address: P-IF
+        DEFB    L1ABE - $       ; 49 offset to Address: P-CLS
+        DEFB    L1AD2 - $       ; 5C offset to Address: P-DRAW
+        DEFB    L1ABB - $       ; 44 offset to Address: P-CLEAR
+        DEFB    L1A8D - $       ; 15 offset to Address: P-RETURN
+        DEFB    L1AD6 - $       ; 5D offset to Address: P-COPY
+
+
+; -------------------------------
+; The parameter or "Syntax" table
+; -------------------------------
+; For each command there exists a variable list of parameters.
+; If the character is greater than a space it is a required separator.
+; If less, then it is a command class in the range 00 - 0B.
+; Note that classes 00, 03 and 05 will fetch the addresses from this table.
+; Some classes e.g. 07 and 0B have the same address in all invocations
+; and the command is re-computed from the low-byte of the parameter address.
+; Some e.g. 02 are only called once so a call to the command is made from
+; within the class routine rather than holding the address within the table.
+; Some class routines check syntax entirely and some leave this task for the
+; command itself.
+; Others for example CIRCLE (x,y,z) check the first part (x,y) using the
+; class routine and the final part (,z) within the command.
+; The last few commands appear to have been added in a rush but their syntax
+; is rather simple e.g. MOVE "M1","M2"
+
+;; P-LET
+L1A7A:  DEFB    $01             ; Class-01 - A variable is required.
+        DEFB    $3D             ; Separator:  '='
+        DEFB    $02             ; Class-02 - An expression, numeric or string,
+                                ; must follow.
+
+;; P-GO-TO
+L1A7D:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1E67           ; Address: $1E67; Address: GO-TO
+
+;; P-IF
+L1A81:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $CB             ; Separator:  'THEN'
+        DEFB    $05             ; Class-05 - Variable syntax checked
+                                ; by routine.
+        DEFW    L1CF0           ; Address: $1CF0; Address: IF
+
+;; P-GO-SUB
+L1A86:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1EED           ; Address: $1EED; Address: GO-SUB
+
+;; P-STOP
+L1A8A:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1CEE           ; Address: $1CEE; Address: STOP
+
+;; P-RETURN
+L1A8D:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1F23           ; Address: $1F23; Address: RETURN
+
+;; P-FOR
+L1A90:  DEFB    $04             ; Class-04 - A single character variable must
+                                ; follow.
+        DEFB    $3D             ; Separator:  '='
+        DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $CC             ; Separator:  'TO'
+        DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $05             ; Class-05 - Variable syntax checked
+                                ; by routine.
+        DEFW    L1D03           ; Address: $1D03; Address: FOR
+
+;; P-NEXT
+L1A98:  DEFB    $04             ; Class-04 - A single character variable must
+                                ; follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1DAB           ; Address: $1DAB; Address: NEXT
+
+;; P-PRINT
+L1A9C:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L1FCD           ; Address: $1FCD; Address: PRINT
+
+;; P-INPUT
+L1A9F:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L2089           ; Address: $2089; Address: INPUT
+
+;; P-DIM
+L1AA2:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L2C02           ; Address: $2C02; Address: DIM
+
+;; P-REM
+L1AA5:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L1BB2           ; Address: $1BB2; Address: REM
+
+;; P-NEW
+L1AA8:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L11B7           ; Address: $11B7; Address: NEW
+
+;; P-RUN
+L1AAB:  DEFB    $03             ; Class-03 - A numeric expression may follow
+                                ; else default to zero.
+        DEFW    L1EA1           ; Address: $1EA1; Address: RUN
+
+;; P-LIST
+L1AAE:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L17F9           ; Address: $17F9; Address: LIST
+
+;; P-POKE
+L1AB1:  DEFB    $08             ; Class-08 - Two comma-separated numeric
+                                ; expressions required.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1E80           ; Address: $1E80; Address: POKE
+
+;; P-RANDOM
+L1AB5:  DEFB    $03             ; Class-03 - A numeric expression may follow
+                                ; else default to zero.
+        DEFW    L1E4F           ; Address: $1E4F; Address: RANDOMIZE
+
+;; P-CONT
+L1AB8:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1E5F           ; Address: $1E5F; Address: CONTINUE
+
+;; P-CLEAR
+L1ABB:  DEFB    $03             ; Class-03 - A numeric expression may follow
+                                ; else default to zero.
+        DEFW    L1EAC           ; Address: $1EAC; Address: CLEAR
+
+;; P-CLS
+L1ABE:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L0D6B           ; Address: $0D6B; Address: CLS
+
+;; P-PLOT
+L1AC1:  DEFB    $09             ; Class-09 - Two comma-separated numeric
+                                ; expressions required with optional colour
+                                ; items.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L22DC           ; Address: $22DC; Address: PLOT
+
+;; P-PAUSE
+L1AC5:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1F3A           ; Address: $1F3A; Address: PAUSE
+
+;; P-READ
+L1AC9:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L1DED           ; Address: $1DED; Address: READ
+
+;; P-DATA
+L1ACC:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L1E27           ; Address: $1E27; Address: DATA
+
+;; P-RESTORE
+L1ACF:  DEFB    $03             ; Class-03 - A numeric expression may follow
+                                ; else default to zero.
+        DEFW    L1E42           ; Address: $1E42; Address: RESTORE
+
+;; P-DRAW
+L1AD2:  DEFB    $09             ; Class-09 - Two comma-separated numeric
+                                ; expressions required with optional colour
+                                ; items.
+        DEFB    $05             ; Class-05 - Variable syntax checked
+                                ; by routine.
+        DEFW    L2382           ; Address: $2382; Address: DRAW
+
+;; P-COPY
+L1AD6:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L0EAC           ; Address: $0EAC; Address: COPY
+
+;; P-LPRINT
+L1AD9:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L1FC9           ; Address: $1FC9; Address: LPRINT
+
+;; P-LLIST
+L1ADC:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L17F5           ; Address: $17F5; Address: LLIST
+
+;; P-SAVE
+L1ADF:  DEFB    $0B             ; Class-0B - Offset address converted to tape
+                                ; command.
+
+;; P-LOAD
+L1AE0:  DEFB    $0B             ; Class-0B - Offset address converted to tape
+                                ; command.
+
+;; P-VERIFY
+L1AE1:  DEFB    $0B             ; Class-0B - Offset address converted to tape
+                                ; command.
+
+;; P-MERGE
+L1AE2:  DEFB    $0B             ; Class-0B - Offset address converted to tape
+                                ; command.
+
+;; P-BEEP
+L1AE3:  DEFB    $08             ; Class-08 - Two comma-separated numeric
+                                ; expressions required.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L03F8           ; Address: $03F8; Address: BEEP
+
+;; P-CIRCLE
+L1AE7:  DEFB    $09             ; Class-09 - Two comma-separated numeric
+                                ; expressions required with optional colour
+                                ; items.
+        DEFB    $05             ; Class-05 - Variable syntax checked
+                                ; by routine.
+        DEFW    L2320           ; Address: $2320; Address: CIRCLE
+
+;; P-INK
+L1AEB:  DEFB    $07             ; Class-07 - Offset address is converted to
+                                ; colour code.
+
+;; P-PAPER
+L1AEC:  DEFB    $07             ; Class-07 - Offset address is converted to
+                                ; colour code.
+
+;; P-FLASH
+L1AED:  DEFB    $07             ; Class-07 - Offset address is converted to
+                                ; colour code.
+
+;; P-BRIGHT
+L1AEE:  DEFB    $07             ; Class-07 - Offset address is converted to
+                                ; colour code.
+
+;; P-INVERSE
+L1AEF:  DEFB    $07             ; Class-07 - Offset address is converted to
+                                ; colour code.
+
+;; P-OVER
+L1AF0:  DEFB    $07             ; Class-07 - Offset address is converted to
+                                ; colour code.
+
+;; P-OUT
+L1AF1:  DEFB    $08             ; Class-08 - Two comma-separated numeric
+                                ; expressions required.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1E7A           ; Address: $1E7A; Address: OUT
+
+;; P-BORDER
+L1AF5:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L2294           ; Address: $2294; Address: BORDER
+
+;; P-DEF-FN
+L1AF9:  DEFB    $05             ; Class-05 - Variable syntax checked entirely
+                                ; by routine.
+        DEFW    L1F60           ; Address: $1F60; Address: DEF-FN
+
+;; P-OPEN
+L1AFC:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $2C             ; Separator:  ','          see Footnote *
+        DEFB    $0A             ; Class-0A - A string expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1736           ; Address: $1736; Address: OPEN
+
+;; P-CLOSE
+L1B02:  DEFB    $06             ; Class-06 - A numeric expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L16E5           ; Address: $16E5; Address: CLOSE
+
+;; P-FORMAT
+L1B06:  DEFB    $0A             ; Class-0A - A string expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1793           ; Address: $1793; Address: CAT-ETC
+
+;; P-MOVE
+L1B0A:  DEFB    $0A             ; Class-0A - A string expression must follow.
+        DEFB    $2C             ; Separator:  ','
+        DEFB    $0A             ; Class-0A - A string expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1793           ; Address: $1793; Address: CAT-ETC
+
+;; P-ERASE
+L1B10:  DEFB    $0A             ; Class-0A - A string expression must follow.
+        DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1793           ; Address: $1793; Address: CAT-ETC
+
+;; P-CAT
+L1B14:  DEFB    $00             ; Class-00 - No further operands.
+        DEFW    L1793           ; Address: $1793; Address: CAT-ETC
+
+; * Note that a comma is required as a separator with the OPEN command
+; but the Interface 1 programmers relaxed this allowing ';' as an
+; alternative for their channels creating a confusing mixture of
+; allowable syntax as it is this ROM which opens or re-opens the
+; normal channels.

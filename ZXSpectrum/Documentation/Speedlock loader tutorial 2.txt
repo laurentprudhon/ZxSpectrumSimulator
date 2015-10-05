@@ -1,0 +1,671 @@
+                               Ramsoft presents
+
+                     -= The ZX Spectrum Loaders Guide =-
+
+                                   VOLUME 3
+
+                         The Speedlock 2 Tape-Loader
+
+INDEX
+
+Introduction...........................................
+PART I............Basic Knowledges And Signal Structure
+PART II........The Speedlock 2 Loading Routine Analysis
+Appendix.......................Frequencies And T-states
+Final Words............................................
+
+
+------------------------------------------------------------------------------
+Introduction
+
+Welcome to Ramsoft's ZX Spectrum loader guide.
+These documents are intended to provide a useful help for anyone interested on
+learning loader working. All the most common loader types have been treated to
+give a complete view of the mainly used protection systems. The very first
+volume of this guide is dedicated to the normal speed loader in the Spectrum 
+ROM, which is the base for understanding loaders like Speedlock and Alkatraz
+and their amazing effects.
+
+NOTE: the author takes NO responsibility and won't be liable, under any
+      circumstances, for copyright infringements or any other direct or 
+      indirect damage.      
+
+Last revised on 10-5-1997
+
+------------------------------------------------------------------------------
+
+PART I - Basic knowledges and signal structure.
+
+Speedlock 2 is obviously the evolution of Speedlock 1 loader. At first, it
+seems there aren't big differences between Speedlock 1 and 2, apart from the
+loading colours; actually Speedlock 2 loader uses data encrypting and can load
+a full 128K program in memory at once, i.e. with only one big block of code,
+while type 1 could not (since in 1984, when Speedlock 1 was developed, there
+weren't any Spectrum 128K).
+To load a 128K program with only one block, we have to reinitialise IX and DE
+almost after having loaded each page or the code in static memory; this is
+easy to do, since there's a lot of time between an edge and another.
+But Speedlock authors have played a bit with the signal...let's have a look.
+
+The first block is structured as a Speedlock 1 block, i.e. clicking leader,
+long sync pulse, 6-bit marker and then fast loading data.
+The second big block is a little more complicate: it's splitted in several
+little sub-blocks of variable length; these blocks in the tape are separated
+by a so-called "mid-sync" sequence of pulses. This mid-sync is made of 21 bits
+(in the sequence 000001111111111100000) played at normal speed: again a new
+trick to void software piracy!
+
+So the second block looks like this:
+
+                            KLRB [DB] [DB] ... C
+                             
+where K=clicKing leader, L=Long sync, R=short maRker, B=bytes, D=miD-sync and
+C=Checksum.
+
+------------------------------------------------------------------------------
+
+PART II - The Speedlock 2 loading routine analysis.
+
+We are now going to follow each step of Speedlock 2 loading routine. I took 
+Enduro Racer as example since is one of the few Speedlock 2 files I have.
+This routine is very similar to Speedlock 1 loader, so only different parts
+will have a detailed description; for more details see volume 2 of this guide.
+Here we go...
+
+NOTE: Some of the labels used in this disassembled piece of code are not
+      official, while others are taken from:
+
+      "The complete ZX Spectrum ROM disassembly" , Melbourne House 1983.
+
+      by Dr. Ian Logan & Dr. Franklin O'Hara    ISBN 0 86759 117 X
+                                              
+------------------------------------------------------------------------------
+
+FD20 Ld-Error  LD   IY,0000h     
+FD24 Fill-mem  LD   (IY+75h),00h  
+FD28           INC  IY          
+FD2A           JR   FD24h         (Fill-mem)        
+
+This piece of code completely resets the computer's memory preserving the
+locations from FD25h to FFFFh; it is called in case of tape loading error.
+
+FD2C Ld-Edge   DEC  A
+FD2D           JR   NZ,FD2Ch      (Ld-Edge)     
+FD2F           AND  A           
+FD30 Ld-Sample INC  B           
+FD31           RET  Z           
+FD32           LD   A,7Fh        
+FD34           IN   A,(FEh)      
+FD36           RRA              
+FD37           XOR  C           
+FD38           AND  20h          
+FD3A           JR   Z,FD30h       (Ld-Sample)      
+FD3C           LD   A,C         
+FD3D           CPL              
+FD3E           LD   C,A         
+FD3F           AND  02h          
+FD41           OR   08h          
+FD43           OUT  (FEh),A      
+FD45           SCF              
+FD46           RET              
+
+This routine looks for one edge and is very similar to the one held in the
+Spectrum ROM (LD-EDGE-1): it only lacks the A register intialisation and BREAK
+key status check. For detailed informations see volume 1 of this guide.
+
+FD47 Loader    DI
+FD48           INC  D           
+FD49           DEC  D           
+FD4A           LD   A,02        
+FD4C           LD   (FD40h),A     (Bord-Clr)
+FD4F           LD   A,0Fh        
+FD51           OUT  (FE),A      
+FD53           LD   HL,FF7Bh      (Ld-Ret)     
+FD56           PUSH HL          
+FD57           IN   A,(FEh)      
+FD59           RRA              
+FD5A           AND  20h          
+FD5C           LD   C,A         
+FD5D           CP   A           
+FD5E Ld-Start  CALL FD2Ch         (Ld-Edge)        
+FD61           JR   NC,FD5Eh      (Ld-Break)     
+FD63           LD   HL,0415h     
+FD66 Ld-Wait   DJNZ FD66h         (Ld-Wait)        
+FD68           DEC  HL          
+FD69           LD   A,H         
+FD6A           OR   L           
+FD6B           JR   NZ,FD66h      (Ld-Wait)     
+FD6D           LD   A,0Ah        
+FD6F           CALL FD2Ch         (Ld-Edge)        
+FD72           JR   NC,FD5Eh      (Ld-Start)     
+
+Even this piece of code is very similar to the one in the Spectrum ROM. Please
+refer to volume 1 of this guide for detailed description. Note that the LD A,n
+instruction before the last call to Ld-Edge is put there because it's missing
+in that routine. The value 02h is put in FD40h to change loading colours to
+RED/BLACK
+
+FD74 Ld-Lead-1 LD   B,C4h
+FD76           LD   A,16h        
+FD78           CALL FD2Ch         (Ld-Edge)        
+FD7B           JR   NC,FD5Eh      (Ld-Start)     
+FD7D           LD   A,D6h        
+FD7F           CP   B           
+FD80           JR   C,FD74h       (Ld-Lead-1)      
+FD82 Ld-Lead-2 LD   B,C4h        
+FD84           LD   A,16h        
+FD86           CALL FD2Ch         (Ld-Edge)        
+FD89           JR   NC,FD5Eh      (Ld-Start)     
+FD8B           LD   A,DFh        
+FD8D           CP   B           
+FD8E           JR   C,FD74h       (Ld-Lead-1)      
+FD90 Rst-Table LD   IY,FF85h      (Click-Tbl)     
+FD94 Rd-Table  LD   H,(IY)      
+FD97 Ld-Lead-3 LD   B,C4h        
+FD99           LD   A,16h        
+FD9B           CALL FD2Ch         (Ld-Edge)        
+FD9E           JR   NC,FD5Eh      (Ld-Start)     
+FDA0           LD   A,CDh        
+FDA2           CP   B           
+FDA3           JR   NC,FD82h      (Ld-Lead-2)     
+FDA5           INC  H           
+FDA6           JR   NZ,FD97h      (Ld-Lead-3)     
+FDA8           LD   B,60h        
+FDAA           LD   A,16h        
+FDAC           CALL FD2Ch         (Ld-Edge)        
+FDAF           JR   NC,FD5Eh      (Ld-Start)     
+FDB1           LD   A,16h        
+FDB3           CALL FD2Ch         (Ld-Edge)        
+FDB6           JR   NC,FD5Eh      (Ld-Start)
+FDB8           LD   A,ABh        
+FDBA           CP   B           
+FDBB           JR   C,FDC7h       (Ld-Data)      
+FDBD           INC  IY          
+FDBF           LD   A,IYL       
+FDC1           CP   89h          
+FDC3           JR   NZ,FD94h      (Rd-Table)     
+FDC5           JR   FD90h         (Rst-Table)        
+
+This is the clicking leader loading part: it's the very same of Speedlock 1
+loader, so please refer to volume 2 for details.
+
+FDC7 Ld-Data   LD   A,01h
+FDC9           LD   (FD40h),A     (Bord-Clr)
+
+Change border colours from RED/BLACK to BLUE/BLACK
+
+FDCC           LD   B,B0h
+FDCE           LD   L,04h        
+FDD0           LD   A,0Bh        
+FDD2           JR   FDD6h         (Ld-Marker)        
+
+Set L to load 6 bits and load A and B with the timing constants
+
+FDD4 Ld-Mark-1 LD   A,0Ch
+FDD6 Ld-Marker CALL FD2Ch         (Ld-Edge)        
+FDD9           RET  NC          
+FDDA           NOP              
+FDDB           NOP              
+FDDC           LD   A,0Eh        
+FDDE           CALL FD2Ch         (Ld-Edge)        
+FDE1           RET  NC          
+FDE2           LD   A,13h        
+FDE4           LD   A,C3h        
+FDE6           CP   B           
+FDE7           RL   L           
+FDE9           LD   B,B0h        
+FDEB           JP   NC,FDD4h      (Ld-Mark-1)     
+
+Load the 6-bit marker at high speed
+
+FDEE           LD   A,3Ah
+FDF0           CP   L           
+FDF1           JP   NZ,FD20h      (Ld-Err)     
+
+Check if the marker is the expected one
+
+FDF4           LD   H,86h
+FDF6           LD   H,00h        
+FDF8           LD   B,C4h        
+FDFA           LD   L,01        
+
+Prepare L to load 8 bits, reset the checksum register H, set b with the timing
+constant after having lost 4 T 
+
+FDFC           LD   IY,FF89h      (Block-Tbl)
+
+Make IY point to the start of the table that holds the values for the next
+block to load
+
+FE00           LD   A,07h
+FE02           JR   FE1Ah         (Ld-8-Bits)        
+
+Set A with timing constant and jump forward to load data
+
+FE04 Stor-Data LD   A,98h                     (*)
+FE06           XOR  L
+FE07           ADD  A,0B
+
+Decrypt the loaded byte in L
+
+(*) The value loaded in A will be overwritten with a new value while loading
+
+FE09           LD   (IX),A
+
+Store it in memory
+
+FE0C           INC  IX
+FE0E           DEC  DE          
+
+Fixup pointer and byte counter
+
+FE0F           LD   B,C4h
+FE11           LD   L,01h        
+FE13           NOP              
+FE14           LD   A,05h        
+FE16           JR   FE1Ah         (Ld-8-Bits)        
+
+Prepare to load another 8 bits, lose 4 T and set A and B with the appropriate
+timing constants
+
+FE18 Ld-8-Bt-1 LD   A,0Ch
+FE1A Ld-8-Bits CALL FD2Ch         (Ld-Edge)        
+FE1D           RET  NC          
+FE1E           NOP              
+FE1F           NOP              
+FE20           LD   A,0Eh        
+FE22           CALL FD2Ch         (Ld-Edge)        
+FE25           RET  NC          
+FE26           LD   A,13h        
+FE28           LD   A,D7h        
+FE2A           CP   B           
+FE2B           RL   L           
+FE2D           LD   B,C4h        
+FE2F           JP   NC,FE18h      (Ld-8-Bt-1)     
+
+Load a byte with the usual procedure
+
+FE32           LD   A,H
+FE33           XOR  L           
+FE34           LD   H,A         
+
+Update the checksum register
+
+FE35           LD   A,D
+FE36           OR   E           
+FE37           JR   NZ,FE04h      (Stor-Data)     
+
+Check for end of loading; if not then jump to decrypt the byte that has been
+just loaded
+
+FE39 Ld-Ret    JP   FF7Ah         (Ld-End-1)
+                    FE3Ch         (Ld-End-2)
+
+Otherwise jump somewhere. The jump address is changed after loading the first
+block and after loading the last sub-block; the initial value is FF7Ah.
+
+FE3C Ld-End-2  LD   A,98h
+FE3E           XOR  L           
+FE3F           ADD  A,0Bh        
+FE41           LD   (IX),A
+
+This is the end-of-loading manager: start decrypting the loaded byte and
+storing it in memory
+
+FE44           INC  IX          
+FE46           DEC  DE          
+
+Then update the memory pointer and the byte counter (increasing DE actually
+only loses 6 T since DE content will be overwritten
+
+FE47           LD   L,02h
+
+Prepare L to load the first part of mid-sync (7 bits)
+
+FE49           LD   A,04h
+FE4B           LD   B,B3h        
+
+Set A and B with timing constants for normal speed
+
+FE4D           CALL FEB3h         (Ld-7-Bits)
+
+Load 7 bits
+
+FE50           RET  NC
+
+Return if error
+
+FE51           LD   A,(IY+04h)
+
+Get the page number to swap to from table
+
+FE54           OR   A
+
+Check if it's good
+
+FE55           JR   Z,FEADh       (No-IX-Upd)
+
+Jump forward if not: this won't alter the loading address and the RAM page
+
+FE57           LD   L,C
+
+Keep EAR status safe
+
+FE58           LD   BC,7FFDh
+
+Load BC with paging circuitry port number
+
+FE5B           OUT  (C),A
+
+Change RAM page
+
+FE5D           LD   C,(IY)
+FE60           LD   B,(IY+01h)   
+
+Load BC with the new block start from table
+
+FE63           LD   IX,0000h
+FE67           ADD  IX,BC       
+
+Load IX with BC
+
+FE69           LD   C,L
+
+Restore EAR port status
+
+FE6A           LD   A,01h
+FE6C Ld-M-Mid  LD   L,02h        
+FE6E           LD   B,B3h        
+
+Prepare to load the second part of mid-sync
+
+FE70           CALL FEB3h         (Ld-7-Bits)
+FE73           RET  NC          
+
+Load 7 bits
+
+FE74           LD   A,7Fh
+FE76           CP   L           
+FE77           JR   Z,FE7Ch       (No-Copy)
+
+Check if mid-sync has been loaded correctly; if so jump forward
+
+FE79           LD   (FF36h),A     (Copy-Flag)
+
+Otherwise alter the "copy flag"
+
+FE7C No-Copy   LD   L,02h
+FE7E           LD   A,08h        
+FE80           LD   B,B3h        
+FE82           CALL FEB3h         (Ld-7-Bits)
+FE85           RET  NC           
+
+Load the last 7 bits of mid-sync
+
+FE86           LD   E,(IY+02h)
+FE89           LD   D,(IY+03h)   
+
+Fetch the new sub-block length from table
+
+FE8C           LD   L,C
+
+Save EAR port status
+
+FE8D           LD   BC,0005h
+FE90           ADD  IY,BC       
+
+Update table pointer
+
+FE92           LD   C,L
+
+Restore EAR status
+
+FE93           LD   A,E
+FE94           OR   D           
+
+Check if there are more blocks to load (DE=0 means no more blocks)
+
+FE95           LD   B,C4h
+FE97           LD   L,01h        
+FE99           LD   A,05h        
+
+Set L to load 8 bits and A and B with the appropriate timing constants
+
+FE9B           JP   NZ,FE1Ah      (Ld-8-Bits)
+
+Jump to load the first byte of the new sub-block
+
+FE9E           LD   DE,FF7Ah      (Ld-End-1)
+
+Load DE with the address of the other end-of-loading routine
+
+FEA1           LD   (FE3Ah),DE    (Ld-Ret)+1
+
+Change the JP address at the end of loading
+
+FEA5           LD   DE,0E00h
+
+Prepare DE to load 3584 bytes (this value is often different)
+
+FEA8           LD   A,01h
+FEAA           JP   FE1Ah         (Ld-8-Bits)
+
+Set A with the appropriate timing constant and jump back for loading
+
+FEAD No-IX-Upd LD   A,06h
+FEAF           JR   FE6Ch         (Ld-M-Mid)
+
+In case that the fetched page number is not good, then set A to lose more time
+and then jump back
+
+FEB1 Ld-7-Bits LD   A,0Ch
+FEB3           CALL FD2Ch         (Ld-Edge)
+FEB6           NOP              
+FEB7           NOP              
+FEB8           LD   A,0Eh        
+FEBA           CALL FD2Ch         (Ld-Edge)
+FEBD           RET  NC          
+FEBE           LD   A,DBh        
+FEC0           CP   B           
+FEC1           RL   L           
+FEC3           LD   B,B3h        
+FEC5           JP   NC,FEB1h      (Ld-7-Bits)
+FEC8           RET              
+
+This is the routine that loads 7 bits at normal speed with the usual procedure
+and then returns control to the end-of-loading program part
+
+FEC9 Ld-Blk-1  CALL FD47h         (Loader)
+FECC           LD   HL,9000h     
+FECF           LD   B,FFh        
+FED1           PUSH BC          
+FED2           CALL FEDEh         (Samp-255)        
+FED5           LD   (HL),E      
+FED6           INC  HL          
+FED7           POP  BC          
+FED8           DJNZ FED1h        
+FEDA           CALL FEFAh         (Chk-Near)        
+FEDD           RET              
+
+Call the loader to load first Speedlock 2 block and then call the pause check
+routines as in Speedlock 1
+
+FEDE Samp-255  LD   E,00h
+FEE0           LD   C,E         
+FEE1           LD   B,FF        
+FEE3 Get-Samp  LD   A,7Fh        
+FEE5           IN   A,(FEh)      
+FEE7           AND  40h          
+FEE9           XOR  C           
+FEEA           JR   Z,FEF5h       (Same-Lev)      
+FEEC           INC  E           
+FEED           LD   A,C         
+FEEE           CPL              
+FEEF           AND  40h          
+FEF1           LD   C,A         
+FEF2 Nxt-Samp  DJNZ FEE3h         (Get-Samp)        
+FEF4           RET              
+FEF5 Same-Lev  NOP              
+FEF6           NOP              
+FEF7           JP   FEF2h         (Nxt-Samp)        
+
+This is the same sampling routine as Speedlock 1
+
+FEFA Chk-Near  LD   HL,0000h
+FEFD           LD   DE,9032h     
+FF00           LD   B,32h        
+FF02 Add-Edg-1 PUSH BC          
+FF03           LD   A,(DE)      
+FF04           LD   B,00h        
+FF06           LD   C,A         
+FF07           ADD  HL,BC       
+FF08           INC  DE          
+FF09           POP  BC          
+FF0A           DJNZ FF02h         (Add-Edg-1)        
+FF0C           PUSH HL          
+FF0D           LD   HL,0000h     
+FF10           LD   DE,90CDh     
+FF13           LD   B,32h        
+FF15 Add-Edg-2 PUSH BC          
+FF16           LD   A,(DE)      
+FF17           LD   B,00h        
+FF19           LD   C,A         
+FF1A           ADD  HL,BC       
+FF1B           INC  DE          
+FF1C           POP  BC          
+FF1D           DJNZ FF15h         (Add-Edg-2)        
+FF1F           POP  BC          
+FF20           LD   A,H         
+FF21           CP   0Dh          
+FF23           JR   NC,FF32h      (Set-Near)     
+FF25           AND  A           
+FF26           SBC  HL,BC       
+FF28           RET  C           
+FF29           LD   BC,0032h     
+FF2C           AND  A           
+FF2D           SBC  HL,BC       
+FF2F           RET  C           
+FF30           LD   A,01h        
+FF32 Set-Near  LD   (FF36h),A     (Copy-Flag)
+FF35           RET              
+
+This is the same pause checking routine as Speedlock 1 except for the CP value
+at FF21h (changed from 00h to 0Dh; it means that in the last 50 series there
+should be less than 3328) and the immediate loading of A at FF30h (to make
+sure it is non-zero)
+
+FF36 Copy-Flag DEFB 0
+
+This location holds the copy protection flag and is initially set to 0
+(no error)
+
+FF37 Start     DI
+FF38           LD   SP,FFFFh
+
+Disable interrupts and set the stack to a safe address
+
+FF3B           LD   HL,5800h
+FF3E           LD   BC,0003h     
+FF41           LD   (HL),00h     
+FF43           INC  HL          
+FF44           DJNZ FF41h        
+FF46           DEC  C           
+FF47           JR   NZ,FF41h     
+
+Clear the whole attributes area
+
+FF49           LD   IX,A000h
+FF4D           LD   DE,0011h     
+FF50           CALL FEC9h         (Ld-Blk-1)        
+
+Load 17 bytes at 40960 and then check the pause duration
+
+FF53           LD   IX,4000h
+FF57           LD   DE,1AFFh     
+
+Prepare IX and DE to load at 16384 for 6912 bytes; DE is 6912-1 because the
+last byte will be managed by the end-of-loading routine at FE3Ch
+
+FF5A           LD   HL,FE3Ch
+FF5D           LD   (FE3Ah),HL
+
+Change the end-of-loading routine JP address
+
+FF60           CALL FD47h         (Loader)
+
+Call the loader to load the second Speedlock block
+
+FF63           LD   A,(FF36h)
+FF66           OR   A           
+FF67           CALL NZ,FD20h      (Ld-Error)     
+FF6A           LD   IY,5C3Ah     
+FF6E           IM   1           
+FF70           LD   HL,2758h     
+FF73           EXX              
+FF74           XOR  A           
+FF75           LD   R,A         
+FF77           JP   6000h                     
+
+This routine will be completely overwritten while loading, but the only thing
+that changes is the address of jump (which is useless since this piece of code
+will never be executed - see below); however this will delete any breakpoint
+inserted by a possible pirate...
+ 
+FF7A Ld-End-1  POP  DE
+FF7B           XOR  A           
+FF7C           OUT  (FE),A      
+FF7E           LD   A,H         
+FF7F           CP   01h          
+FF81           RET  C           
+FF82           CALL FD20h        
+
+Even this piece of code will be overwritten, but only locations from FF81 will
+be changed to
+
+FF81           JP C,5B00h
+FF84           JP 0000h
+
+taking a little bit of the "preloaded half periods" table that follows
+
+FF85 Click-Tbl DEFB 16h,1Eh,1Ah,18h  (234,226,230,232)
+
+This is the "preloaded half periods" table as in Speedlock 1 (needed for
+clicking leader)
+
+FF89 Block-Tbl DEFW 70C8h,11FFh; DEFB 10h
+               DEFW A0C8h,0FFFh; DEFB 10h  
+               DEFW FE04h,0001h; DEFB 10h  
+               DEFW FE3Ch,0003h; DEFB 10h  
+               DEFW 5BC8h,14FFh; DEFB 10h  
+               DEFW FF63h,0016h; DEFB 10h  
+               DEFW B0C8h,4957h; DEFB 10h  
+               DEFW FF7Ah,000Ch; DEFB 10h  
+               DEFW 5B00h,003Fh; DEFB 10h  
+               DEFW 82C8h,0FFFh; DEFB 10h  
+               DEFW 0000h,0000h; DEFB 00h  
+
+This is the table for the new values of the sub-blocks. Each entry is arranged
+as follows:
+
+Offset 0 = LSB of start address
+  "    1 = MSB of start address
+  "    2 = LSB of (length-1)
+  "    3 = MSB of (length-1)
+  "    4 = RAM page number
+
+The group of five zeros is the end marker.
+
+------------------------------------------------------------------------------
+
+Appendix - Frequencies and T-states
+
+Some of the values in this document may appear strange or maybe someone's
+wondering how to calculate them. There's a well known formula to do this and
+it's the following:
+
+                 CPU Clock                             CPU Clock
+     T-States = -----------     or vice-versa    f =  ------------
+                   2 * f                              2 * T-States  
+
+The CPU Clock and the frequency are given in Hz; so for the ZX Spectrum 48K
+the value for CPU Clock is 3500000 and for 128K is 3540000.

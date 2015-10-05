@@ -1,0 +1,16 @@
+http://mdfs.net/Software/Z80/Exerciser/Spectrum/
+- zexall.tap
+http://wizard.ae.krakow.pl/~jb/qaop/tests.html
+- btime.tap : ULA border timing
+- stime.tap : ULA screen timing
+- ulatest3.tap : floating bus and contention
+- minfo.tap : frame length etc. 
+- fusetest, contention, iocontentio
+- z80tests
+- Timing Tests
+- zexall
+- timingtest by Patrik Rak (src) 
+http://ramsoft.bbk.org.omegahg.com/floatingbus.html
+- floatspy.tap
+http://www.zxdesign.info/wideMemContention.shtml
+- ulatest3-modified.tap

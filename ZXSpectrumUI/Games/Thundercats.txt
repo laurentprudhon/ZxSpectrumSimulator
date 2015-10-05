@@ -1,0 +1,81 @@
+THUNDERCATS
+Elite
+
+During a raid by the wicked MOLEMEN, agents of the evil MUMM-RA entered the
+CATS-LAIR, kidnapped several members of the Thundercats team and stole the
+Eye of Thundera, the magical jewel which holds the mystical power of the
+sword of omens.  LION-O was out on a mission when the raid took place but
+vows that, as the eye was given into his safe-keeping, he must go to Castle
+Plundar, rescue his team-mates and retrieve the Eye. Can LION-O battle his
+way past MUMM-RA's henchmen in the forests and underground caverns, and
+return the power of the sword of omens and glory to the Thundercats name?
+
+Loading Instructions
+--------------------
+
+Spectrum +2/+3
+Use Loader
+
+Spectrum (48K Cassette)
+LOAD ""
+
+Amstrad/Schneider (Cassette)
+RUN ""
+
+Amstrad/Schneider (Disk)
+RUN "ELITE"
+
+Commodore 64 (Cassette)
+SHIFT + RUN/STOP
+
+Commodore 64 (Disk)
+LOAD "THUNDER",8,1
+
+Playing Instructions
+--------------------
+
+Spectrum
+Joystick or redefinable keyboard.
+
+Amstrad
+Joystick or keyboard.
+
+Commodore 64
+Joystick only (Port 2).
+
+Extra weapons, bonuses and lives can be collected by hitting mushrooms and
+tress with your current weapon. A bonus is awarded if the level is 
+completed within the time limit. You also get a "kill" bonus according to
+the number of enemies destroyed. On the special mission levels where you 
+have to rescue a team-mate be careful as you only get one chance. If you 
+get into a tight spot try jumping over the enemy and killing him from 
+behind. Good luck!
+
+
+(c) Elite Systems Limited - 1987
+
+All rights reserved worldwide. Unauthorised copying, lending, broadcasting
+or resale without the express written permission from Elite Systems is
+strictly prohibited.
+
+Guarantee
+
+This software tape has been carefully developed and manufactured to the 
+highest quality standards. Please read carefully the instructions for 
+loading which are included. If for any reason you have difficulty in
+running the program, and believe that the tape is defective, please return
+it directly to the following address:
+
+Consumer Services Department,
+Elite Systems Limited,
+Eastern Avenue,
+Lichfield,
+England
+WS13 6RX
+
+Our QUALITY CONTROL DEPARTMENT will test the product, and supply an 
+immediate replacement, at no charge. Please note that this not affect your
+statutory rights.
+
+
+(c) Telepicture Corp., Leisure Concepts, Inc. Ted Wolf. All rights reserved.

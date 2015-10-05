@@ -1,0 +1,31 @@
+DISCO DAN
+---------
+
+Loading Instructions:
+Turn on the computer, and select 48K mode by pressing cursor up (the key to
+the right of the space bar) followed by ENTER. The message
+
+(C) 1982 Amstrad
+
+will appear. Press J""; and the words LOAD"" will appear on the screen.
+Press ENTER, and the screen should go blank. Place the rewound tape in the
+datacorder, and press PLAY. After a short while, the edge of the screen will
+change colour, and some writing will appear at the top of the screen. The
+program will then start to load, and everything will run automatically.
+
+DISCO DAN
+Can poor Dan decontaminate the atomic fuel rods in time? In this new 3D
+machine code game, you control Dan Dan The Atomiser Man, jumping him from
+disc to disc, trying to reduce the ever increasing radiation levels in an
+atomic pile.
+
+However, Up 'n' Atom 'Arry and his gang of vagrant particles are thirsting
+for the energy in your back pack, which makes life a bit awkward at times.
+Then there's Ron the Rapacious Robot, not the sort to meet in a dark alley
+(or anywhere else for that matter)!!
+
+(C) 1984 Gem Software - All rights reserved.
+
+SINCLAIR IS A REGISTERED TRADEMARK OF AMSTRAD CONSUMER ELECTRONICS PLC
+
+(Transcribed by Robin Stuart)

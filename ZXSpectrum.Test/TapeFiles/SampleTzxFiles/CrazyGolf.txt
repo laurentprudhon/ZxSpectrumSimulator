@@ -1,0 +1,10 @@
+﻿[TZX file v1.10 : CrazyGolf]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=Golf, FollowingDataLength=13881, AutoStartLine=10, ProgramLength=13125 }, PauseInMs=1004
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=13881, TapeData=|0 A ... 6E 67| }, PauseInMs=3441
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=issi, FollowingDataLength=6912, StartAddress=40000 }, PauseInMs=1011
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6912, TapeData=|0 0 ... 42 42| }, PauseInMs=4297
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=code, FollowingDataLength=9270, StartAddress=50000 }, PauseInMs=1008
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=9270, TapeData=|3C 1 ... 71 E| }, PauseInMs=2754
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=udg's, FollowingDataLength=168, StartAddress=65368 }, PauseInMs=1000
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=168, TapeData=|0 4 ... 40 40| }, PauseInMs=13082

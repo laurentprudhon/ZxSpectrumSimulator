@@ -1,0 +1,73 @@
+Punchy
+------
+
+NASTY PUNCH has locked JUDY away in the Punch & Judy booth. You must rescue
+her by guiding brave BOBBY the policeman across the stage.
+
+To achieve success you must, amongst other challenges, make BOBBY leap the
+obstacles, land on a flying carpet and ROCK THE BABY.
+
+All the well known characters from the traditional Punch & Judy show make
+an appearance in this unique game.
+
+The graphics and speech combine to produce one of the best programs available
+for the 48K Spectrum.
+
+
+Playing Instructions:
+
+Punch has locked Judy away in the Punch & Judy booth and Judy has called
+upon the brave Bobby to rescue her. In true Punch & Judy tradition you the
+audience can help by guiding Bobby over the stage, telling him when to jump
+the many obstacles which are in his way. Jump over the gaps in the stage
+and leap over Punch himself, whilst dodging the rotten tomatoes and the
+custard pies which are thrown at Bobby from stage left and stage right. With
+perfect timing land Bobby onto the flying carpet to cheat the alligators and
+dealth. Then at the end of each screen "Rock the Baby", before moving on.
+
+Every once in a while Judy will send a sausage, which Bobby can catch. When
+3 have been caught, pressing key 8 will magically transport Bobby to the
+next screen unharmed. This magic should be saved for really tough sections.
+
+Bobby's progress is shown on the top scroll scanner which depicts the stage
+and booth. Each screen has a time penalty which is shown top right - this
+varies with the level selected. As each screen is completed a bonus helmet
+is awarded in the top left scroll. For every five helmets collected, a
+bonus is added. However, each time Bobby fails, he loses all bonus helmets
+and sausages collected at that stage. When Bobby is regenerated he starts
+again from the beginning of the stage in which he failed.
+
+At the commencement of the game Bobby can survive 3 failures. This rises by
+one when a score of 60,000 points is achieved. There are 16 screens to pass
+through before reaching the booth and the rescue of JUDY.
+
+Should you succeed then you may find that Punch once again abjucts poor
+Judy and so you and brave Bobby are destined to fight for eternity - or until
+you switch off the computer!
+
+Keyboard Controls:
+
+Key 6 = Left
+Key 7 = Right
+Key 0 = Jump
+Key 8 = Use sausages
+Key H = Hold game (0 to continue)
+
+To start the game press the Jump key 0.
+Joysticks other than the Kemston may be compatible with the above keys.
+
+Options:
+The game contains several skill options which are displayed on screen at the
+start. Pressing 1-5 will select the option required. 1 is the easiest and 5
+is the hardest.
+
+High Score Table:
+If you achieve a score which is higher than those already entered in the
+high score table then in true arcade tradition you will be able to enter
+your name in the hall of fame. To do this use the left and right controls
+to select the letter of the alphabet you require, pressing the jump key
+to enter each one on the screen.
+
+(C) MR MICRO LTD.
+
+(Transcribed by Robin Stuart)

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{803A492E-B5E9-47F5-AF24-9D2FFFF5B866}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Z80Simulator.GenerateTables</RootNamespace>
+    <AssemblyName>Z80Simulator.GenerateTables</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>%24/z80simulator/Z80VisualSimulator/Z80Simulator.GenerateTables</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>https://z80.visualstudio.com/defaultcollection</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PlatformSpecific.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InstructionTables\z80_instructions.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_1byte.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_2bytes_CB.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_2bytes_DD.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_2bytes_ED.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_2bytes_FD.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_4bytes_DDCB.csv" />
+    <EmbeddedResource Include="InstructionTables\z80_opcodes_table_4bytes_FDCB.csv" />
+    <None Include="Documentation\Flags_study.xlsx" />
+    <None Include="Documentation\Memptr_study.xlsx" />
+    <None Include="Documentation\Z80 internal state.xlsx" />
+    <None Include="Documentation\Z80 memory interfacing.pdf" />
+    <None Include="Documentation\Z80 overview.pdf" />
+    <None Include="Documentation\Z80 CPU User Manual.pdf" />
+    <None Include="Documentation\The Undocumented Z80 Documented.pdf" />
+    <None Include="Documentation\Z80 Program Interrupt Structure.pdf" />
+    <None Include="Documentation\Zilog Z80 datasheet.pdf" />
+    <None Include="Documentation\Z80 instructions tables.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj">
+      <Project>{86d7ef8a-d0c3-4961-8a89-47611a3fe7f7}</Project>
+      <Name>Z80Simulator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\Decoding Z80 Opcodes.htm" />
+    <Content Include="Documentation\Interrupt Behaviour of the Z80 CPU.htm" />
+    <Content Include="Documentation\MEMPTR internal register.txt" />
+    <Content Include="Documentation\MEMPTR_further_discussion_2012.txt" />
+    <Content Include="Documentation\Micro instructions study.txt" />
+    <Content Include="Documentation\Z80 instruction breakdown by machine cycle.txt" />
+    <Content Include="Documentation\Z80 interruptions - doc summary.txt" />
+    <Content Include="Documentation\Z80 assembler grammar.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

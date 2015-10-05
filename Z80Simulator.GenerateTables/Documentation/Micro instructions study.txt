@@ -1,0 +1,366 @@
+﻿CPUControl_ExitResetMode()
+	Instruction_161_RESET
+
+InternalAddressBus_SendTo(InternalAddressBusConnection.PC)
+	Instruction_18_CALL_Address
+	Instruction_19_CALL_FlagCondition_Address
+	Instruction_36_DJNZ_RelativeDisplacement
+	Instruction_55_JP_Register16Address
+	Instruction_57_JR_RelativeDisplacement
+	Instruction_58_JR_FlagCondition_RelativeDisplacement
+
+InternalDataBus_SendTo(InternalDataBusConnection.PCh/PCl)
+	Instruction_96_RET
+	Instruction_97_RET_FlagCondition
+	Instruction_98_RETI
+	Instruction_99_RETN
+	Instruction_160_INT_2
+	Instruction_56_JP_FlagCondition_Address
+	Instruction_54_JP_Address	
+
+Register16_Increment(InternalAddressBusConnection.PC)
+	CPUControl_ExitHaltMode()
+		ExecuteOnClockEdge()
+			if (nonMaskableInterruptPending)
+                	if (maskableInterruptPending)
+	InternalAddressBus_SampleFromAndIncrement(InternalAddressBusConnection.PC)
+		 MemoryRead() 
+			case MachineCycleType.OD
+                        case MachineCycleType.ODH
+                        case MachineCycleType.ODL
+		FetchOpcode()
+			if (instructionSource != InstructionSource.Internal && !cpuIsInHaltMode)
+	
+Register16_Decrement(InternalAddressBusConnection.PC)
+	CPUControl_EnterHaltMode()
+		Instruction_41_HALT	
+
+RegisterPC_Reset(AddressModifiedPageZero resetAddress)
+	Instruction_122_RST_ResetAddress
+	Instruction_159_INT_1
+
+RegisterPC_Reset0066H()
+	Instruction_157_NMI
+
+RegisterPC_RepeatInstruction()
+	Instruction_28_CPIR
+	Instruction_74_LDDR
+	Instruction_76_LDIR
+	Instruction_26_CPDR
+	Instruction_51_INDR
+	Instruction_53_INIR
+	Instruction_83_OTDR
+	Instruction_84_OTIR
+
+
+RegisterThirdByteDisplacementWhileDecodingFourBytesOpcode
+FourBytesOpcodeDecodingExecutionTimings 
+                            new MachineCycle() { Type = MachineCycleType.OCF, TStates = 4 },
+                            new MachineCycle() { Type = MachineCycleType.OCF, TStates = 4 },
+                            new MachineCycle() { Type = MachineCycleType.OD, TStates = 3 },
+                            new MachineCycle() { Type = MachineCycleType.OCF, TStates = 5 }},
+
+
+ public enum AddressingMode
+    {
+        Extended,  PC <- nn / A <- (nn) : ODL - ODH
+        Immediate, r <- n / A <- A - s : OD
+        Immediate16, dd <- nn : ODL - ODH
+        IOPortImmediate, A <- (n) : OD
+        Indexed, : OD
+        Relative : OD
+    }
+
+
+AlternateExecutionTiming
+---------------	
+Instruction_19_CALL_FlagCondition_Address
+Instruction_26_CPDR
+Instruction_28_CPIR
+Instruction_36_DJNZ_RelativeDisplacement
+Instruction_51_INDR
+Instruction_53_INIR
+Instruction_58_JR_FlagCondition_RelativeDisplacement
+Instruction_74_LDDR
+Instruction_76_LDIR
+Instruction_83_OTDR
+Instruction_84_OTIR
+Instruction_97_RET_FlagCondition
+
+If condition in instructions
+------------
+Instruction_19_CALL_FlagCondition_Address
+	if (!CheckFlagCondition((FlagCondition)instructionCode.Param1))
+	SelectAlternateExecutionTiming();
+Instruction_97_RET_FlagCondition(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+	if (!CheckFlagCondition((FlagCondition)instructionCode.Param1))
+	SelectAlternateExecutionTiming();
+Instruction_19_CALL_FlagCondition_Address(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+	if (!CheckFlagCondition((FlagCondition)instructionCode.Param1))
+	SelectAlternateExecutionTiming();
+Instruction_41_HALT(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+ 	if (!cpuIsInHaltMode)
+	CPUControl_EnterHaltMode();
+Instruction_26_CPDR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if (RegisterBC_CheckZero() || CheckFlagCondition(FlagCondition.Z))
+	SelectAlternateExecutionTiming();
+Instruction_28_CPIR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if (RegisterBC_CheckZero() || CheckFlagCondition(FlagCondition.Z))
+	SelectAlternateExecutionTiming();
+Instruction_38_EX_Register16_Register16(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if ((Register16)instructionCode.Param1 == Register16.AF)
+	SwitchALUAlternateRegisterSet();
+Instruction_74_LDDR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if (RegisterBC_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_76_LDIR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if (RegisterBC_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_51_INDR
+	if (RegisterB_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_53_INIR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+ 	if (RegisterB_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_83_OTDR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+ 	if (RegisterB_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_84_OTIR(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if (RegisterB_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_36_DJNZ_RelativeDisplacement(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+	if (RegisterB_CheckZero())
+	SelectAlternateExecutionTiming();
+Instruction_56_JP_FlagCondition_Address(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+	if (CheckFlagCondition((FlagCondition)instructionCode.Param1))
+	InternalDataBus_SendTo(InternalDataBusConnection.PCh);
+	InternalDataBus_SampleFrom(InternalDataBusConnection.W);
+	InternalDataBus_SendTo(InternalDataBusConnection.PCl);
+Instruction_58_JR_FlagCondition_RelativeDisplacement(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+	if (!CheckFlagCondition((FlagCondition)instructionCode.Param1))
+	SelectAlternateExecutionTiming();
+Instruction_60_LD_Register_Register(byte machineCycleCountAfterInstruction, byte halfTStateIndex)
+	if (instructionCode.InstructionTypeParamVariant == 5)
+	ComputeFlagsForLDAIandR();
+
+If condition in MachineCycles
+---------------------------
+private void FetchOpcode(byte halfTStateIndex)
+    case 0:
+        if (instructionSource != InstructionSource.Internal && !cpuIsInHaltMode)
+            InternalAddressBus_SampleFromAndIncrement(InternalAddressBusConnection.PC);
+        else
+            InternalAddressBus_SampleFrom(InternalAddressBusConnection.PC);
+    case 4:
+         if (instructionSource != InstructionSource.Internal)
+            DecodeInstruction();
+
+private void MemoryRead(byte halfTStateIndex)
+    case 0:
+        switch (currentMachineCycle.Type)    
+            // Read operand -> send PC to address bus and increment PC
+            case MachineCycleType.OD:
+            case MachineCycleType.ODH:
+            case MachineCycleType.ODL:
+                InternalAddressBus_SampleFromAndIncrement(InternalAddressBusConnection.PC);
+            // Pop data from the stack in memory -> send SP to addressBus and increment SP
+            case MachineCycleType.SRH:
+            case MachineCycleType.SRL:
+                InternalAddressBus_SampleFromAndIncrement(InternalAddressBusConnection.SP);
+            // Read an address in memory -> the source of the address depends on the instruction
+            case MachineCycleType.MR:
+            case MachineCycleType.MRH:
+            case MachineCycleType.MRL:
+                // The instruction must place a memory address on the internal address bus
+                executeInstruction(machineCycleCountAfterInstruction, halfTStateIndex);
+                   
+private void MemoryWrite(byte halfTStateIndex)
+    case 0:
+        switch (currentMachineCycle.Type)
+            // Push data to the stack in memory -> decrement SP and send SP to addressBus
+            case MachineCycleType.SWH:
+            case MachineCycleType.SWL:
+                InternalAddressBus_DecrementAndSampleFrom(InternalAddressBusConnection.SP);
+        default:
+            // The instruction must place a memory address on the internal address bus
+ 
+private void BusRequestAcknowledge(byte halfTStateIndex)
+    // Enter DMA mode during the first halfTState
+    if (halfTStateIndex == 0)
+    // Exit DMA mode at the beginning and at the end of the last halfTState, after BUSREQ has been released
+    else if (busRequestReleased)
+    // During all other half TStates
+    else
+	
+Internal state summary
+----------------------
+
+#region Instructions and machine cycles Sequencer
+
+        // Absolute counters since power on (only for debug & display purposes)
+        private long tStateCounter = 0;
+        private long machineCycleCounter = 0;
+        private long instructionCounter = 0;
+
+        // Special states of operation of the CPU
+        bool cpuIsInResetMode = false;
+        bool cpuIsInDMAMode = false;
+        bool cpuIsInHaltMode = false;
+        
+        // Relative counters within one instruction
+        private bool instructionInProgress = false;
+        private byte halfTStateIndex = 0;
+        private byte machineCycleIndex = 0;        // Incremented for each machine cycle
+        private byte machineCycleCountAfterInstruction = 0; // Not incremented while reading a prefix
+
+        // Current machine cycle
+        private MachineCycle currentMachineCycle;
+        private ExecuteMachineCycle executeMachineCycle;
+
+        // Sample of BUSREQ signal
+        // (at the rising edge of the last clock period of any machine cycle)
+        private bool busRequestPending = false;
+        // Sample of INT signal
+        // (at the rising edge of the last clock period at the end of any instruction if IFF1 is set)
+        private bool maskableInterruptPending = false;
+        // Sample of NMI signal
+        // (at the rising edge of the last clock period at the end of any instruction)
+        private bool nonMaskableInterruptPending = false;
+        // Sample of WAIT signal
+        // (at the falling edge of T2 or T3 of some machine cycles)
+        private bool addOneWaitState = false;
+
+# Instruction Decoder
+
+		private InstructionSource instructionSource;
+
+#region Decode instructions from memory opcodes during opcode fetch
+
+        /// <summary>
+        /// Instruction Register (IR)
+        /// 
+        /// The instruction register is 8 bits wide and is used to contain the instruction
+        /// just fetched from memory. It is not accessible to the programmer.
+        /// Once the instruction is contained in IR, the control unit of the microprocessor
+        /// will be able to generate the correct sequence of internal and external signals
+        /// for the execution of the specified instruction.
+        /// </summary>
+        private byte IR { get; set; }
+
+        // Table used to decode the instruction being fetched from memory (see Z80OpCodes.Tables)
+        private byte opcodeTableIndex = 0;
+
+        // Remember the value of PC where the first byte of the opcode was read
+        private ushort instructionAddress;
+        
+        // Current instruction code decoded from several IR values
+        private InstructionCode instructionCode;
+
+#region Internal CPU control instructions
+
+        // Current internal instruction
+        private InternalInstruction internalInstruction;
+
+#region Prepare CPU internal state to execute an instruction
+
+        // Current instruction timings for each machine cycle
+        private InstructionParametersVariant instructionParamVariant = null;
+        private InstructionExecutionVariant instructionExecutionTimings = null;
+
+        // Method used to execute current instruction
+        private ExecuteInstruction executeInstruction = null;   
+
+#region Exit conditions : breakpoints and tests
+
+        private IList<IExitCondition> exitConditions = new List<IExitCondition>();
+        private int[] conditionCountByEvent = new int[5];
+
+/// Bus Request/Acknowledge Cycle (user manual page 16)
+
+        private bool busRequestReleased = false;
+
+#region Accumulator and Flag Registers
+
+        // Registers memory storage
+        private byte[,] aluRegisters = new byte[2, 2];
+
+        // Registers multiplexer
+        private int activeALURegistersSet = 0;      
+
+#region General Purpose Registers
+
+        // Registers memory storage
+        private byte[,] gpRegisters = new byte[6, 2];
+
+        // Registers multiplexer
+        private int activeRegistersSet = 0;
+
+#region Temporary Storage Registers
+
+        private byte W { get; set; }
+        private byte Z { get; set; }
+
+#region Special-Purpose Registers
+
+	public ushort PC { get; private set; }
+	public ushort SP { get; private set; }
+	public ushort IX { get; private set; }
+	public ushort IY { get; private set; }
+
+#region Memory refresh
+
+        /// Interrupt Page Address Register (I)
+        public byte I { get; private set; }
+
+        /// Memory Refresh Register (R)
+        public byte R { get; private set; }      
+
+#region Internal Buses
+
+        private byte InternalDataBus { get; set; }
+		private ushort InternalAddressBus { get; set; }
+
+#region Interrupts
+
+        public bool IFF1
+        {
+            get;
+            private set;
+        }
+		public bool IFF2
+        {
+            get;
+            private set;
+        }
+
+        /// Interrupt Mode
+        public byte IM
+        {
+            get;
+            private set;
+        }
+
+#region ALU input buffer Registers
+
+        /// <summary>
+        /// This internal register is used to buffer the left input of the ALU.
+        /// It is connected to the Accumulator (A) register.
+        /// </summary>
+        private byte ALULeftBuffer { get; set; }
+
+        /// <summary>
+        /// This internal register is used to buffer the right input of the ALU.
+        /// It is connected to the internal data bus of the CPU.
+        /// </summary>
+        private byte ALURightBuffer { get; set; }
+
+Direct access to internal state
+-------------------------------
+Instruction_42_IM_InterruptMode(byte machineCycleCountAfterInstruction, byte halfTStateIndex) 
+	IM = 0;
+
+Input pins access
+----------------
+
+Output pins access
+----------------

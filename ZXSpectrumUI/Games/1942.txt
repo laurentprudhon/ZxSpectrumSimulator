@@ -1,0 +1,36 @@
+INLAY TEXT FOR 1942:
+
+Game features Progressively faster shoot-em-up action, based on historic
+battle of Midway in 1942. Superb conversion of a classic coin-op.
+Over 200,000 copies already sold worldwide.
+Reached number 2 in the Gallup Chart.
+
+SCENARIO
+It is 1942, and war is raging in the Pacific. The enemy's fleet and airforce
+are growing in strength. It is up to you to restrict their numbers in a
+daring solo mission. Your carrier will take you as far as it dares, but
+from then on you are on your own. Fly your plane over enemy territory and
+installations, scattered islands and rough terrain. Smart manoeuvring and
+skillful aerobatics are required to outwit the enemy planes; recovering
+the mystery POWer capsules will give your plane extra capabilities. Be
+prepared - enemy gunners have their sights set on you, and their pilots are
+prepared to die to thwart your mission. The carrier awaits your safe return
+- but have you the skill to survive?!
+
+LOADING INSTRUCTIONS
+SPECTRUM                        LOAD""
+AMSTRAD                         RUN"ELITE"
+COMMODORE 64/128 (Cassette)     SHIFT & RUN/STOP
+COMMODORE 64 (Disc)             LOAD"*",8,1
+
+PLAYING INSTRUCTIONS
+SPECTRUM & AMSTRAD
+All keyboard and joystick options are displayed on the screen.
+To roll the plane use keys 0, 1, 2, 3 or 4.
+
+COMMODORE 64/128
+Use joystick in port 2 and press the space bar to roll the plane.
+
+(C) 1989 ELITE SYSTEMS LTD.
+All rights reserved worldwide.
+Elite Systems Limited, Eastern Avenue, Lichfield WS13 6RX, England.

@@ -1,0 +1,699 @@
+                               Ramsoft presents
+
+                     -= The ZX Spectrum Loaders Guide =-
+
+                                   VOLUME 2
+
+                         The Speedlock 1 Tape-Loader
+
+INDEX
+
+Introduction...........................................
+PART I............Basic Knowledges And Signal Structure
+PART II........The Speedlock 1 Loading Routine Analysis
+Appendix.......................Frequencies And T-states
+
+
+------------------------------------------------------------------------------
+Introduction
+
+Welcome to Ramsoft's ZX Spectrum loader guide.
+These documents are intended to provide a useful help for anyone interested on
+learning loader working. All the most common loader types have been treated to
+give a complete view of the mainly used protection systems. The very first
+volume of this guide is dedicated to the normal speed loader in the Spectrum 
+ROM, which is the base for understanding loaders like Speedlock and Alkatraz
+and their amazing effects.
+
+NOTE: the author takes NO responsibility and won't be liable, under any
+      circumstances, for copyright infringements or any other direct or 
+      indirect damage.      
+
+Last revised on 9-28-1997
+
+------------------------------------------------------------------------------
+
+PART I - Basic knowledges and signal structure.
+
+Speedlock loaders were born to bring protection against software piracy, but
+also to please us with nice on-screen effects. Type 1 is obviously the first
+developed version and the noticeable new thing that makes it differ from
+standard is the clicking leader, but actually there is more so here we go with
+signal analysis.
+
+The clicking tone leader is made of a repeated sequence of short tones each
+one followed by a click: their frequencies are respectively the one of the
+standard leader (2168 T for ~808 Hz) and sync pulse (667 and 735 T for ~2450
+Hz); this has the purpose to fool tape copiers when they try to load in the
+block. The clicking leader has a precise structure and is different for each
+program; until now i found 2 kinds of clicking leader:
+
+1) A fixed number of pilot half periods and then a sync pulse repeated 32
+   times (you can find it in Daley Thompson's Decathlon Day 1: there must be
+   250 half periods before the fake sync pulse);
+
+2) A fixed group of 4 clicking leader bits (where a bit is intended to be a
+   combination of leader and sync), each one having a different leader length,
+   repeated 8 times (find it in Jetset Willy: the sequence is 228,220,224,222
+   and so on);
+
+But how do Speedlock inventors separate leader from data, since the standard
+sync has been used to fool copiers? They used a sync pulse that has a lower
+frequency than leader: the new sync pulse period is 3000 T that means ~580 Hz
+(actually I rounded 580 to 555 Hz making 3153 T from 3000 since that frequency
+works better in VOC files with low samples rates).
+
+Enough for the clicking leader. Another thing that has been introduced is the
+new marker length: it could be 7 bits (as in DTD Day 1 - probably this is an
+early Speedlock 1 version, let's say 0.5) or 6 bits (like in JSW) played at a
+frequency of 3100 Hz for bit 0 and 1550 for bit 1; the plain data is played at
+the same frequency (which is nearly 150% of normal speed) with no encoding.
+
+Finally there's another feature: there must be a pause of complete silence of
+at least 1500 ms. between the 2 Speedlock blocks, otherwise even good loading
+will result in a bad loading!
+
+So here's the complete outline for a Speedlock 1 block:
+
+                                   KLRBC
+
+where K=clicKing leader, L=Long sync, R=short maRker, B=bytes, C=Checksum.
+
+------------------------------------------------------------------------------
+
+PART II - The Speedlock 1 loading routine analysis.
+
+We are now going to follow each step of Speedlock 1 loading routine. I took 
+JetSet Willy (a very old game that I think every real good-old Speccy freak
+should have) as the main example; thus since there are slightly different
+versions of Speedlock 1 loaders, I took even Daley Thompson's Decathlon Day 1
+which seems to belong to this "family" of earlier Speedlocks. Here we go...
+
+NOTES: 1) An asterisk means that the following comment is valid for earlier
+          Speedlock 1 loaders *ONLY* and the values between brackets are
+          specific to DTD Day 1 loader.
+       2) Some of the labels used in this disassembled piece of code are not
+          official, while others are taken from:
+
+          "The complete ZX Spectrum ROM disassembly" , Melbourne House 1983.
+
+          by Dr. Ian Logan & Dr. Franklin O'Hara    ISBN 0 86759 117 X
+                                              
+------------------------------------------------------------------------------
+                                              
+F07D Ld-Error  LD   IY,0000h
+F081 Fill-mem  LD   (IY+75h),00h   
+               INC  IY        
+               JR   F081h         (Fill-mem)
+
+This piece of code completely resets the computer's memory preserving the
+locations from F082h to FFFFh; it is called in case of tape loading error.
+
+F089 Ld-Edge   DEC  A
+               JR   NZ,F089h      (Ld-Edge)
+               AND  A
+F08D Ld-Sample INC  B
+               RET  Z
+               LD   A,7Fh
+               IN   A,(FE)
+               RRA
+               XOR  C           
+               AND  20h          
+               JR   Z,F08Dh       (Ld-Sample)
+               LD   A,C         
+               CPL              
+               LD   C,A         
+               AND  07h          
+               OR   08h          
+               OUT  (FEh),A      
+               SCF              
+               RET              
+
+This routine looks for one edge and is very similar to the one held in the
+Spectrum ROM (LD-EDGE-1): it only lacks the A register intialisation and BREAK
+key status check. Each unsuccessful pass takes 53 T; for successful passes it
+takes 99 T; add (<A>-1)*16+11 if the routine is entered at F089. For detailed
+informations see volume 1 of this guide.
+
+
+
+F0A4 Loader    DI
+               INC  D           
+               DEC  D           
+               LD   A,0Fh        
+               OUT  (FEh),A      
+               LD   HL,F252h      (Ld-Ret)
+               PUSH HL          
+               IN   A,(FEh)      
+               RRA              
+               AND  20h          
+               OR   02          
+               LD   C,A         
+               CP   A           
+F0B8 Ld-Start  CALL F089h         (Ld-Edge)
+               JR   NC,F0B8h      (Ld-Break)
+               LD   HL,0415h     
+F0C0 Ld-Wait   DJNZ F0C0h         (Ld-Wait)
+               DEC  HL          
+               LD   A,H         
+               OR   L           
+               JR   NZ,F0C0h      (Ld-Wait)
+               LD   A,0Ah
+               CALL F089h         (Ld-Edge)
+               JR   NC,F0B8h      (Ld-Break) 
+
+Even this piece of code is very similar to the one in the Spectrum ROM. Please
+refer to volume 1 of this guide for detailed description. Note that the LD A,n
+instruction before the last call to Ld-Edge is put there because it's missing
+in that routine.
+
+F0CE Ld-Lead-1 LD   B,C4h
+
+Load B with the timing constant
+
+               LD   A,16h
+               CALL F089h         (Ld-Edge)
+
+Look for an edge (1st half period)
+
+               JR   NC,F0B8h      (Ld-Start)
+
+Restart if not found in 60 sampling loops
+
+               LD   A,D6h
+               CP   B           
+               JR   C,F0CEh       (Ld-Lead-1)
+
+A real leader edge must be found in less than 18 samplings, otherwise the edge
+is considered as part of noise and the loading restarts
+                                               
+F0DC Ld-Lead-2 LD   B,C4h
+
+Reload B with the timing constant
+
+               LD   A,16h
+               CALL F089h         (Ld-Edge)
+
+Look for another edge (2nd half period)
+
+               JR   NC,F0B8h      (Ld-Start)
+
+Restart if not found in 60 sampling loops
+
+               LD   A,DF
+               CP   B           
+               JR   C,F0CEh       (Ld-Lead-1)
+
+Again, a real leader edge must be found in less than 27 samplings, otherwise
+the edge is considered as part of noise and the loading restarts
+                                               
+F0EA Rst-Table LD   IY,F260h      (Click-Tbl)   (*)
+
+Initialise IY to point at the start of the table that holds the expected pilot
+lengths in that form: 100h-(half periods to load). 
+
+(*) This instruction is missing (the table doesn't exist)
+
+F0EE Rd-Table  LD   H,(IY)                      (*)
+
+Get the first value. This is interpreted as the number of "preloaded" half
+periods.
+
+(*) H is loaded with a fixed value (06h)
+
+F0F1 Ld-Lead-3 LD   B,C4h
+               LD   A,16h        
+               CALL F089h         (Ld-Edge)
+               JR   NC,F0B8h      (Ld-Start)
+
+Search an edge with the usual procedure
+
+               LD   A,CDh        
+               CP   B           
+               JR   NC,F0DCh      (Ld-Lead-2)
+
+Here a real leader edge must be found in less than 9 samplings, otherwise the
+edge is considered as part of noise and the loading restarts
+
+               INC  H
+
+Increase the half periods counter
+
+               JR   NZ,F0F1h      (Ld-Lead-3)
+
+Has the counter reached 100h? If not, then jump back and load another leader
+edge; otherwise it's time to try to load a click or the sync pulse.
+
+               LD   B,60h
+               LD   A,16h        
+               CALL F089h         (Ld-Edge)
+               JR   NC,F0B8h      (Ld-Start)
+               LD   A,16h        
+               CALL F089h         (Ld-Edge)
+               JR   NC,F0B8h      (Ld-Start)
+
+Search 2 edges allowing a big tolerance of 160 samplings - remember after a
+PRECISE number of half periods!!!
+
+               LD   A,ABh        
+               CP   B           
+               JR   C,F121h       (Ld-Data)   (*)
+
+Check if the edges are the ones forming the long sync pulse; if so, then jump
+forward to load data
+
+(*) This instruction is a JR NC where H is reinitialised to the fixed value
+
+               INC  IY                         (*)
+
+Increase the table pointer 
+
+(*) This instruction is missing
+
+               LD   A,IYL                      (*)
+               CP   64h                        (*)
+               JR   NZ,F0EEh      (Rd-Table)   (*)
+
+Check for the end of table: if not at the end, go picking next value; 
+
+(*) These instructions are missing
+
+               JR   F0EAh         (Rst-Table)
+
+Otherwise reset the table pointer and start over with next sequence
+
+(*) This instruction is missing
+
+F121 Ld-Data   LD   A,C         
+               XOR  03h          
+               LD   C,A         
+
+Change border stripes color - see volume 1
+
+               LD   B,B0h
+               LD   L,04h                       (*)
+               LD   A,0Bh        
+               JR   F12Fh         (Ld-Marker)
+
+Load A and B with timing constants, set L to load 6 bits (the resulting byte
+will then be 00xxxxxxb) and jump forward to load marker
+
+(*) This instruction is changed to LD L,02h to load 7 bits (i.e. the resulting
+    byte will then be 0xxxxxxx)
+
+F12D Ld-Mark-1 LD   A,0Ch
+
+Load A with timing constant 
+
+F12F Ld-Marker CALL F089h         (Ld-Edge)
+               RET  NC
+
+Look for an edge and return if error
+
+               LD   A,B         
+               EX   AF,AF'
+
+It seems to keep the number of samplings safe, but it simply loses 8 T states
+since AF won't be swapped again
+
+               LD   A,0Eh        
+               CALL F089h         (Ld-Edge)
+               RET  NC
+
+Load another edge setting A with another timing constant; return if error
+
+               LD   A,13h        
+
+Lose 7 T states for timing purpose
+
+               LD   A,C3h
+               CP   B           
+
+Decide whether if it's bit 0 or 1 from the half period length
+
+               RL   L
+               LD   B,B0h        
+               JP   NC,F12Dh      (Ld-Mark-1)
+
+Store the bit in L with the usual procedure until it is full
+
+               LD   A,3Ah                       (*)
+               CP   L           
+               JP   NZ,F07Dh      (Ld-Err)
+
+Check for correct marker; wrong marker will halt loading
+
+(*) This instruction is changed to LD A,74h
+
+               LD   H,A
+               LD   H,86h        
+               LD   H,00h        
+
+Lose 11 T states and initialise H as the checksum register: this means that
+the 6 (or 7) bit marker is *NOT* involved in checksum calculation
+
+               LD   B,C4h
+               LD   L,01h        
+               LD   A,08h        
+               JR   F16Bh         (Ld-8-Bits)
+
+Load A and B with timing constants, set L to load 8 bits and jump forward to
+start data loading
+
+F15A Stor-Data LD   (IX),L
+               INC  IX          
+               DEC  DE          
+
+Store the loaded byte in memory, increase memory pointer and decrease byte
+counter
+
+               LD   B,C4h
+               LD   L,01h        
+               NOP              
+               LD   A,06h        
+               JR   F16Bh         (Ld-8-Bits)
+Lose 4 T states, load A and B with timing constants, set L to load 8 bits and
+jump forward to load another byte
+
+F169 Ld-8-Bt-1 LD   A,0Ch
+F16B Ld-8-Bits CALL F089h         (Ld-Edge)
+               RET  NC          
+               LD   A,B         
+               EX   AF,AF'      
+               LD   A,0Eh        
+               CALL F089h         (Ld-Edge)
+               RET  NC          
+               LD   A,13h        
+               LD   A,D7h        
+               CP   B           
+               RL   L           
+               LD   B,C4h        
+               JP   NC,F169      (Ld-8-Bt-1)
+
+Load a byte with the above illustrated procedure
+
+               LD   A,H
+               XOR  L           
+               LD   H,A         
+
+Update the checksum
+
+               LD   A,D
+               OR   E           
+               JR   NZ,F15Ah      (Stor-Data)
+
+Check for end of loading
+
+               LD   A,H
+               CP   01          
+               RET              
+
+Check for correct loading and return (real check is done later)
+
+F18E Ld-Blk-1  CALL F0A4h         (Loader)
+
+Call the loading routine that will load the first Speedlock block
+
+               LD   HL,8000h
+
+Here starts the pause checking routine: HL points to a temporary area of 255
+bytes; each byte will hold the number of signal transactions detected in a
+series of 255 sampling (for a total of 65025 samplings)
+                                                       
+               LD   B,FFh
+               PUSH BC          
+
+Set B to repeat samplings 255 times
+
+               CALL F1A3h         (Samp-255)
+
+Make 255 samplings
+
+               LD   (HL),E
+
+Store the number of signal transactions in the area
+
+               INC  HL
+
+Increase the area pointer
+
+               POP  BC
+               DJNZ F196h        
+
+And repeat
+
+               CALL F1BFh         (Chk-Near)
+
+Call the signal analysis routine
+
+               RET
+
+Return the control to the main program
+
+F1A3 Samp-255  LD   E,00h
+               LD   C,E
+
+Reset edge counter E and port status C
+                                      
+               LD   B,FFh
+
+Initialise B for 255 samplings
+
+F1A8 Get-Samp  LD   A,7Fh
+               IN   A,(FEh)      
+
+Sample EAR port
+
+               AND  40h
+               XOR  C           
+               JR   Z,F1BAh       (Same-Lev)
+
+Compare the previous port status with the current one and jump forward if is
+the same
+
+               INC  E
+
+Increase E if an edge is found
+
+               LD   A,C
+               CPL              
+               AND  40h          
+               LD   C,A         
+
+Change EAR status register
+
+F1B7 Nxt-Samp  DJNZ F1A8h         (Get-Samp)
+
+Repeat till the end
+
+               RET
+
+Return
+
+F1BA Same-Lev  NOP
+               NOP              
+
+Lose 8 T for timings
+
+               JP   F1B7h         (Nxt-Samp)
+
+Jump back to close loop
+
+F1BF Chk-Near  LD   HL,0000h
+
+Reset global edge counter
+
+               LD   DE,8000h
+
+DE points to start of the temporary area (this value may differ on other
+programs)
+
+               LD   B,32h
+
+Initialise B to examine 50 sampling series
+
+F1C7 Add-Edg-1 PUSH BC
+               LD   A,(DE)      
+
+Take the number of transactions from table
+
+               LD   B,00h
+               LD   C,A         
+               ADD  HL,BC       
+
+Add it to the global edge counter 
+
+               INC  DE
+
+Increase area pointer
+
+               POP  BC
+               DJNZ F1C7h         (Add-Edg-1)
+
+Repeat for 50 times
+
+               PUSH HL
+
+Save sum of edges
+
+               LD   HL,0000h
+
+Re-initialise another global edge counter
+
+               LD   DE,80CDh
+
+Point to last 50 series of samplings
+
+               LD   B,32h
+
+Again set B to repeat for 50 times
+
+F1DA Add-Edg-2 PUSH BC
+               LD   A,(DE)      
+               LD   B,00h        
+               LD   C,A         
+               ADD  HL,BC       
+               INC  DE          
+               POP  BC          
+               DJNZ F1DAh         (Add-Edg-2)
+               POP  BC          
+
+Add the numbers of signal transactions with the procedure described above
+
+               LD   A,H
+               CP   00h          
+               JR   NZ,F1FDh      (Set-Near)
+
+It seems that in the last 50 series there shouldn't be more than 255 edges; if
+there are more, then jump forward to set the copy protection flag
+
+               AND  A
+               SBC  HL,BC       
+
+Otherwise subtract the result of first sum from the second one
+
+               LD   BC,0032h
+               AND  A           
+               SBC  HL,BC       
+               RET  C           
+               ADD  HL,BC       
+               LD   BC,FFCDh     
+               AND  A           
+               SBC  HL,BC       
+               RET  NC          
+
+The difference between the two sums should be between -50 and 50,
+i.e.: abs(sum1-sum2)<50; in this case the copy protection flag won't be
+altered (reset)
+
+               INC  A           
+
+This will make A any value but 0
+
+F1FD Set-Near  LD   (F201h),A     (Copy-Flag)
+
+Alter the copy protection flag location
+
+               RET
+
+Return control to main program
+
+F201 Copy-Flag DEFB 0              
+
+This location holds the copy protection flag and is initially set to 0
+(no error)
+
+F202 Start     LD   B,40h
+               LD   HL,5AC0h
+F207 Clr-64    LD   (HL),00h     
+               INC  HL          
+               DJNZ F207h         (Clr-64) 
+
+This is the entry point to the program loader i.e. you can RANDOMIZE USR at
+this address. It starts cleaning up the last 64 bytes of the attribute area
+(last 2 text lines).
+
+               LD   IX,8000h     
+               LD   DE,0014h
+               CALL F18Eh         (Ld-Blk-1)
+
+Load the first Speedlock block by initialising IX and DE like the ROM loader;
+after loading the block, the pause checking routine is automatically called
+
+               LD   IX,4000h
+               LD   DE,A1A8h     
+               CALL F0A4h         (Loader)
+
+Load the second Speedlock block
+
+               LD   A,(F201h)
+               CP   00h          
+               JP   NZ,F07Dh      (Ld-Error)
+
+Check for copy protection (A=0 means the program is not a copy)
+
+               LD   HL,F236h      (Run-Code)
+               LD   DE,5B00h     
+               LD   BC,001Ch     
+               LDIR             
+               JP   5B00h         
+
+Copy the start code at 5B00h and then jump there
+
+F236 Run-Code  LD   DE,FFFFh
+               LD   HL,E1A7h     
+               LD   BC,8000h     
+               LDDR             
+
+This is the start code that will be copied to 5B00h; it starts shifting the
+code to the top of memory
+
+               LD   HL,2758h
+               EXX              
+               LD   IY,5C3Ah      (Err-Nr)
+
+Reset HL and IY for no crash if returning to BASIC
+
+               LD   SP,61A7h
+               IM   1
+               EI               
+               JP   8400h
+
+Set stack pointer, switch to IM 1, enable interrupts and start the game
+
+F252 Ld-Ret    PUSH AF          
+               XOR  A           
+               AND  38h          
+               RRCA             
+               RRCA             
+               RRCA             
+               OUT  (FEh),A      
+               POP  AF          
+               RET  C           
+               JP   F07Dh   	 (Ld-Error)    
+
+This piece of code restores the border colour to black and returns if loading
+was good, otherwise jumps to reset the whole memory
+
+F260 Click-Tbl DEFB 1Ch,24h,20h,22h
+
+This is the table that holds the numbers of "preloaded leader half periods";
+in this case the sequence of leader expected hpulses is 228,220,224,222 so we
+have: 256-228=28 (1Ch), 256-220=36 (24h), 256-224=32 (20h), 256-222=34 (22h).
+Note that this table is not present on earlier Speedlock 1 loaders since the
+clicking leader has another structure as said above.
+
+------------------------------------------------------------------------------
+
+Appendix - Frequencies and T-states
+
+Some of the values in this document may appear strange or maybe someone's
+wondering how to calculate them. There's a well known formula to do this and
+it's the following:
+
+                 CPU Clock                             CPU Clock
+     T-States = -----------     or vice-versa    f =  ------------
+                   2 * f                              2 * T-States  
+
+The CPU Clock and the frequency are given in Hz; so for the ZX Spectrum 48K
+the value for CPU Clock is 3500000 and for 128K is 3540000.

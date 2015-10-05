@@ -1,0 +1,169 @@
+INT
+
+Interrupt Request (input, active Low).
+The CPU honors a request at the end of the current instruction if the internal software-controlled interrupt enable flip-flop (IFF) is enabled.
+
+The CPU samples the interrupt signal (INT) with the rising edge of the last clock at the end of any instruction. 
+The signal is not accepted if the internal CPU software controlled interrupt enable flip-flop is not set or if the BUSREQ signal is active. 
+
+When the signal is accepted, a special M1 cycle is generated. 
+During this special M1 cycle, the IORQ signal becomes active (instead of the normal MREQ) to indicate that the interrupting device can place an 8-bit vector on the data bus. 
+Two wait states are automatically added to this cycle. 
+
+DD and FD are prefixes, which only slightly affects the next opcode. 
+If you test a large sequence of DDs or FDs, the same happens as with the EI instruction: no interrupts are accepted during the execution of these sequences.
+Although I haven't tested this, as I imagine the same holds for NMI interrupts.
+
+If the INT line is low and IFF1 is set, a maskable interrupt is accepted whether or not the last INT routine has finished. 
+That's why you should not enable interrupts during such a routine, and make sure that the device that generated it has put the INT line up again before ending the routine.
+
+A device can place a value on the databus when the interrupt is accepted. 
+Some computer systems do not utilize this feature, and this value ends up being FFh.
+
+At the end of a maskable interrupt, the interrupts should be enabled again. 
+You can assume that was the state of the IFFs because otherwise the interrupt wasn't accepted. 
+So, an INT routine always ends with an EI and a RET (RETI according to the offcial documentation).
+Note a fact about EI: a maskable interrupt isn't accepted directly after it, so the next opportunity for an interrupt is after the RETI. 
+This is very useful; if the INT line is still low, an interrupt is accepted again. 
+If this happens a lot and the interrupt is generated before the RETI, the stack could overflow (since the routine would be called again and again). 
+But this property of EI prevents this.
+DI is not necessary at the start of the interrupt routine: the interrupt flip-flops are cleared when accepting the interrupt.
+You can use RET instead of RETI, depending on the hardware setup. 
+RETI is only useful if you have something like a Z80 PIO to support daisy-chaining: queuing interrupts. 
+The PIO can detect that the routine has ended by the opcode of RETI, and let another device generate an interrupt.
+That is why I called all the undocumented EDxx RET instructions RETN: All of them operate alike, the only difference of RETI is its specific opcode which the Z80 PIO recognises.
+
+
+Interrupt Mode 0 
+
+This is the 8080 compatibility mode. 
+The instruction on the bus is executed (usually an RST instruction, but it can be anything).
+The I register is not used. 
+
+Assuming it is a RST instruction, accepting this takes 13 t-states.
+
+This mode is similar to the 8080A interrupt response mode. 
+With this mode, the interrupting device can place any instruction on the data bus and the CPU executes it. 
+Thus, the interrupting device provides the next instruction to be executed. 
+Often this is a restart instruction because the interrupting device only need supply a single byte instruction. 
+Alternatively, any other instruction such as a 3-byte call to any location in memory could be executed.
+
+The number of clock cycles necessary to execute this instruction is two more than the normal number for the instruction. 
+This occurs because the CPU automatically adds two wait states to an Interrupt response cycle to allow sufficient time to implement an external daisy-chain for priority control. 
+Figure 9 and Figure 10 illustrate the detailed timing for an interrupt response. 
+
+
+Interrupt Mode 1 
+
+An RST 38h is executed, no matter what value is put on the bus or what value the I register has. 
+
+Accepting this type costs 13 t-states.
+
+When this mode is selected by the programmer, the CPU responds to an interrupt by executing a restart to location 0038H. 
+Thus, the response is identical to that for a non-maskable interrupt except that the call location is 0038H instead of 0066H.
+
+The number of cycles required to complete the restart instruction is two more than normal due to the two added wait states.
+
+Interrupt Mode 2 
+
+A call is made to the address read from memory. 
+What address is read from is calculated as follows: (I register) x 256 + (value on bus). 
+Zilog's user manual states (very convincingly) that the least significant bit of the address is always 0, so they calculate the address that is read from as: (I register) x 256 + (value on bus & 0xFE). 
+I have tested this and it not correct. 
+Of course a word (two bytes) are read, making the address where the call is made to. 
+In this way, you can have a vector table for interrupts.
+
+Accepting this of interrupt type costs 19 t-states.
+
+This mode is the most powerful interrupt response mode. 
+With a single 8-bit byte from the user, an indirect call can be made to any memory location.
+In this mode, the programmer maintains a table of 16-bit starting addresses for every interrupt service routine. 
+This table may be located anywhere in memory. 
+When an interrupt is accepted, a 16-bit pointer must be formed to obtain the desired interrupt service routine starting address from the table.
+The upper eight bits of this pointer is formed from the contents of the I register. 
+The I register must be loaded with the applicable value by the programmer, such as LD I, A. 
+A CPU reset clears the I register so that it is initialized to zero. 
+The lower eight bits of the pointer must be supplied by the interrupting device.
+
+The first byte in the table is the least-significant (low order portion of the address). 
+The programmer must complete this table with the correct addresses before any interrupts are accepted.
+The programmer can change this table by storing it in Read/Write Memory, which also allows individual peripherals to be serviced by different service routines.
+
+When the interrupting device supplies the lower portion of the pointer, the CPU automatically pushes the program counter onto the stack, obtains the starting address from the table, and performs a jump to this address. 
+
+This mode of response requires 19 clock periods to complete (seven to fetch the lower eight bits from the interrupting device, six to save the program counter, and six to obtain the jump address).
+
+NMI
+
+Non-Maskable Interrupt (input, negative edge-triggered). 
+NMI has a higher priority than INT. 
+NMI is always recognized at the end of the current instruction, independent of the status of the interrupt enable flip-flop. 
+NMI automatically forces the CPU to restart at location 0066H.
+
+This signal is sampled at the same time as the interrupt line, but this line takes priority over the normal interrupt and it can not be disabled under software control. 
+The CPU response to a non-maskable interrupt is similar to a normal memory read operation.
+The only difference is that the content of the data bus is ignored while the processor automatically stores the PC in the external stack and jumps to location 0066H. 
+
+DD and FD are prefixes, which only slightly affects the next opcode. 
+If you test a large sequence of DDs or FDs, the same happens as with the EI instruction: no interrupts are accepted during the execution of these sequences.
+Although I haven't tested this, as I imagine the same holds for NMI interrupts.
+
+The routine should end with an RETN (RETurn from Nmi) which is just a usual RET, but also copies IFF2 to IFF1, so the IFFs are the same as before the interrupt.
+
+Accepting an NMI costs 11 t-states.
+
+The CPU always accepts a non-maskable interrupt. 
+When this occurs, the CPU ignores the next instruction that it fetches and instead performs a restart to location 0066H.
+The CPU functions as if it had recycled a restart instruction, but to a location other than one of the eight software restart locations. 
+A restart is merely a call to a specific address in page 0 of memory.
+
+IFF1 / IFF2
+
+A CPU reset forces both the IFF1 and IFF2 to the reset state, which disables interrupts.
+
+EI instruction sets both IFF1 and IFF2 to the enable state.
+When an EI instruction is executed, any pending interrupt request is not accepted until after the instruction following EI is executed.
+This single instruction delay is necessary when the next instruction is a return instruction. Interrupts are not allowed until a return is completed.
+
+When the CPU accepts a maskable interrupt, both IFF1 and IFF2 are automatically reset, inhibiting further interrupts until the programmer issues a new EI instruction. 
+Note that for all of the previous cases, IFF1 and IFF2 are always equal.
+
+When a non-maskable interrupt is accepted, IFF1 resets to prevent further interrupts until reenabled by the programmer. 
+Thus, after a non-maskable interrupt is accepted, maskable interrupts are disabled but the previous state of IFF1 is still present in IFF2, so that the complete state of the CPU just prior to the non-maskable interrupt can be restored at any time. 
+
+When a Load Register A with Register I (LD A, I) instruction or a Load Register A with Register R (LD A, R) instruction is executed, the state of IFF2 is copied to the parity flag where it can be tested or stored.
+
+*ALL* the EDxx RETI/N instructions
+A second method of restoring the status of IFF1 is through the execution of a Return From Non-Maskable Interrupt (RETN) instruction. 
+This instruction indicates that the non-maskable interrupt service routine is complete and the contents of IFF2 are now copied back into IFF1.
+(so that the status of IFF1 just prior to the acceptance of the non-maskable interrupt is restored automatically)
+
+
+IM
+
+After the application of RESET, the CPU automatically enters interrupt Mode 0.
+
+
+
+BUSREQ
+
+Bus Request (input, active Low). Bus Request has a higher priority than
+NMI and is always recognized at the end of the current machine cycle.
+BUSREQ forces the CPU address bus, data bus, and control signals MREQ
+IORQ, RD, and WR to go to a high-impedance state so that other devices
+can control these lines.
+
+The
+BUSREQ signal is sampled by the CPU with the rising edge of the last clock
+period of any machine cycle. If the BUSREQ signal is active, the CPU sets
+its address, data, and tristate control signals to the high-impedance state with
+the rising edge of the next clock pulse. At that time, any external device can
+control the buses to transfer data between memory and I/O devices. (This
+operation is generally known as Direct Memory Access [DMA] using cycle
+stealing.) The maximum time for the CPU to respond to a bus request is the
+length of a machine cycle and the external controller can maintain control of
+the bus for as many clock cycles as is required. If very long DMA cycles are
+used, and dynamic memories are used, the external controller also performs
+the refresh function. This situation only occurs if very large blocks of data
+are transferred under DMA control. During a bus request cycle, the CPU
+cannot be interrupted by either an NMI or an INT signal.

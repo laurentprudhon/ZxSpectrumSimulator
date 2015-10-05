@@ -1,0 +1,6 @@
+﻿[TZX file v1.10 : DiscoDan]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=DISCO DAN, FollowingDataLength=3354, AutoStartLine=1, ProgramLength=3342 }, PauseInMs=5
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=3354, TapeData=|0 1 ... 0 0| }, PauseInMs=1538
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=CODE, FollowingDataLength=16100, StartAddress=32771 }, PauseInMs=11
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=16100, TapeData=|CD 0 ... 0 0| }, PauseInMs=19132

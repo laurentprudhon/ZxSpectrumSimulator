@@ -1,0 +1,18 @@
+﻿[TZX file v1.10 : BattleShips]
+ + ID 32 - ArchiveInfo : Full title="BATTLE SHIPS" Software house/publisher="ELITE / MCM" Game/utility type="GAME" Comment(s)="D.L. M-14106-1988. TZXed by johnny farragut" 
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=BaSh, FollowingDataLength=1398, AutoStartLine=100, ProgramLength=1331 }, PauseInMs=1074
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=1398, TapeData=|0 64 ... 0 79| }, PauseInMs=3873
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=BaShLoad, FollowingDataLength=806, StartAddress=64730 }, PauseInMs=1056
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=806, TapeData=|21 0 ... 0 0| }, PauseInMs=3670
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=6912, TapeData=|FF FF ... 4D 4A| }, PauseInMs=4448
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|0 0 ... 0 0| }, PauseInMs=5055
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|0 6 ... 59 D| }, PauseInMs=5067
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|17 35 ... 1A A9| }, PauseInMs=4088
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|AE 77 ... BD A4| }, PauseInMs=4341
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|D1 C1 ... 72 96| }, PauseInMs=3904
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|E1 3A ... 20 6F| }, PauseInMs=4281
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|38 4 ... 0 0| }, PauseInMs=4489
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|0 0 ... 0 0| }, PauseInMs=5047
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|0 0 ... D5 62| }, PauseInMs=5406
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=1793, TapeData=|62 AB ... 0 0| }, PauseInMs=0

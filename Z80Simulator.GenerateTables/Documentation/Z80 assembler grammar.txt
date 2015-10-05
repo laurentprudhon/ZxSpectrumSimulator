@@ -1,0 +1,173 @@
+program := line*
+
+line := (label? instruction)? comment? (\n | EOF)
+
+label := symbol ':'
+
+instruction := (opcode | directive | symbol) \s param? (',' param){1..2}
+
+param := bit | immediate | register | extended | registerindirect | indexed | flag | macroparam
+
+bit := [0-7]
+
+immediate := numexpr
+
+extended := '(' numexpr ')'
+
+registerindirect  := '(' register ')'
+
+indexed := '(IX+' numexpr ')' | '(IY+' numexpr ')'
+
+macroparam := '#' [A-Z]
+
+numexpr := addexpr (('+' | '-' | NOT | '\' | RES) addexpr)*
+
+addexpr := expoexpr ('**' expoexpr)*
+
+expoexpr := multexpr (('*' | '/' | MOD | SHR | SHL) multexpr)*
+
+multexpr := andexpr ((AND | '&') andexpr)*
+
+andexpr := orexpr ((OR | '|' | XOR) orexpr)*
+
+orexpr := exprelem ((EQ | '=' | GT | '>' | LT | '<' | UGT | ULT) exprelem)*
+
+exprelem := literal | symbol | $
+
+comment := ';' [^\n]*
+
+symbol := [A-Z][A-Z1-9-]{0..9} --exclude-- opcodes, registers, flags, directives
+
+literal := decimal | hexadecimal | octal | binary | ascii
+
+decimal := [0-9]+ 'D'?
+
+hexadecimal := [0-9A-F]+ 'H'
+
+decimal := [0-7]+ ('O'|'Q')
+
+binary := [01]+ 'B'
+
+ascii := 'ascii symbol'
+
+opcode := 
+ADC
+ADD
+AND
+BIT
+CALL
+CCF
+CP
+CPD
+CPDR
+CPI
+CPIR
+CPL
+DAA
+DEC
+DI
+DJNZ
+EI
+EX
+EXX
+HALT
+IM
+IN
+INC
+IND
+INDR
+INI
+INIR
+JP
+JR
+LD
+LDD
+LDDR
+LDI
+LDIR
+NEG
+NOP
+OR
+OTDR
+OTIR
+OUT
+OUTD
+OUTI
+POP
+PUSH
+RES
+RET
+RETI
+RETN
+RL
+RLA
+RLC
+RLCA
+RLD
+RR
+RRA
+RRC
+RRCA
+RRD
+RST
+SBC
+SCF
+SET
+SLA
+SLL
+SRA
+SRL
+SUB
+XOR
+
+register :=
+A
+F
+B
+C
+D
+E
+H
+L
+I
+R
+IXh
+IXl
+IYh
+IYl
+AF
+AF'
+BC
+DE
+HL
+IX
+IY
+SP
+
+flag :=
+C
+M
+NC
+NZ
+P
+PE
+PO
+Z
+
+directive :=
+ORG
+EQU
+DATA
+RESERVE
+DEFL
+DEFB
+DEFW
+DEFS
+DEFM
+END
+MACRO
+ENDM
+ENT
+EXT
+
+(p595 de zaks book)

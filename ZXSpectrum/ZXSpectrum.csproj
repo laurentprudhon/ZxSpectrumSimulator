@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5B5C1C44-562E-4A55-8DB1-05BD7F4EFB08}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZXSpectrum</RootNamespace>
+    <AssemblyName>ZXSpectrum</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic\BasicProgram.cs" />
+    <Compile Include="Basic\BasicReader.cs" />
+    <Compile Include="Joystick.cs" />
+    <Compile Include="MemoryDevices.cs" />
+    <Compile Include="TapeFiles\Tape.cs" />
+    <Compile Include="TapeFiles\TapeSection.cs" />
+    <Compile Include="TapeFiles\TapeSoundSequence.cs" />
+    <Compile Include="ULA_Debug.cs" />
+    <Compile Include="Keyboard.cs" />
+    <Compile Include="ROM\ROM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ROM\PlatformSpecific.cs" />
+    <Compile Include="Screen.cs" />
+    <Compile Include="Speaker.cs" />
+    <Compile Include="TapeFiles\TapDataBlock.cs" />
+    <Compile Include="TapeFiles\TapFile.cs" />
+    <Compile Include="TapeFiles\TapFileReader.cs" />
+    <Compile Include="TapeFiles\TzxDataBlock.cs" />
+    <Compile Include="TapeFiles\TzxFile.cs" />
+    <Compile Include="TapeFiles\TzxFileReader.cs" />
+    <Compile Include="TapeRecorder.cs" />
+    <Compile Include="ULA.cs" />
+    <Compile Include="ZXSpectrumComputer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj">
+      <Project>{86d7ef8a-d0c3-4961-8a89-47611a3fe7f7}</Project>
+      <Name>Z80Simulator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ROM\zxspectrum.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation\BasicSyntax.docx" />
+    <None Include="Documentation\Loading routines study.docx" />
+    <None Include="Documentation\ROM routines study.docx" />
+    <None Include="Documentation\ROM_routines.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\basic_study.txt" />
+    <Content Include="Documentation\Rom Routines.htm" />
+    <Content Include="Documentation\ROM tape loader tutorial.txt" />
+    <Content Include="Documentation\SpectrumTapeInterface.txt" />
+    <Content Include="Documentation\Speedlock loader tutorial 1.txt" />
+    <Content Include="Documentation\Speedlock loader tutorial 2.txt" />
+    <Content Include="Documentation\Speedlock loader tutorial 3.txt" />
+    <Content Include="Documentation\TAP file format.htm" />
+    <Content Include="Documentation\How to use videos.txt" />
+    <Content Include="Documentation\_bookmarks.txt" />
+    <Content Include="Documentation\TZX file format.htm" />
+    <Content Include="Documentation\TZX technical specifications.htm" />
+    <Content Include="Documentation\ULA_timing_summary.txt" />
+    <Content Include="Documentation\ZX Spectrum ROM disassembly.htm" />
+    <Content Include="Documentation\ZXSpectrum+2Schematics.png" />
+    <Content Include="Documentation\ZX_Spectrum_keyboard.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

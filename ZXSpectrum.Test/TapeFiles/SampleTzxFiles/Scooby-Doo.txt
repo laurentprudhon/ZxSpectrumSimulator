@@ -1,0 +1,7 @@
+﻿[TZX file v1.13 : Scooby-Doo]
+ + ID 32 - ArchiveInfo : Full title="Scooby Doo (Encore)" Software house/publisher="Elite Systems Ltd / Encore" Author(s)="Gargoyle GamesGreg FollisRoy Carter" Year of publication="1986" Language="English" Game/utility type="Arcade: Action" Price="£1.99" Protection scheme/loader="Uni-Loader" Origin="Re-release" Comment(s)="TZXed by Andrew Barker" 
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=scooby, FollowingDataLength=1502, AutoStartLine=10, ProgramLength=1502 }, PauseInMs=965
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=1502, TapeData=|0 A ... 2E D| }, PauseInMs=6309
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=, FollowingDataLength=220, StartAddress=64000 }, PauseInMs=973
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=220, TapeData=|F3 21 ... 0 0| }, PauseInMs=7153
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=47616, TapeData=|CA CA ... CA CA| }, PauseInMs=11612

@@ -1,0 +1,47 @@
+ BATTY
+ Elite Software 1987
+
+ CONTROLS : Keyboard, Kempston
+ ---------------------------------------------------------------------
+ AIM : The object of the game is to knock blocks out of the court by
+ bouncing a ball off your racket and hitting them. You advance to the
+ next level by knocking out every block in the court.
+
+ GAMEPLAY : Doing the above is not as easy as it sounds, as some
+ blocks require more than one hit and others speed up your ball. To
+ make things even more interesting, strange creatures enter from the
+ top of the court and float around, causing the ball to rebound
+ randomly when they touch it. These creatures also throw bombs at your
+ racket which, if they hit, will destroy it. Fortunately the creatures
+ will be destroyed when they come into contact with the ball.
+
+  Some blocks release helpful features when they are knocked out. These
+ must be caught by the racket to be used. Some will only last for a
+ short time. The features are:
+
+ 1. Extended racket
+ 2. Slow ball
+ 3. Smart bomb      - destroys all creatures
+ 4. Hand            - lets you hold on to the ball
+ 5. Gun             - allows you to shoot the creatures and blocks
+ 6. Extra life
+ 7. Triple ball
+ 8. Rocket pack     - transports you to the next level
+ 9. Bonus points
+10. Smash ball      - destroys everything in its path
+
+  In the double play mode the court is divided into two halves and the
+ players work together to clear the court.
+
+ COMMENTS : "The best BREAKOUT clone we've seen so far."
+ RATING : 85% (CRASH #44, September 1987)
+
+ NOW : An excellent Arkanoid clone, Batty is still a very nice game to
+ play. It's one of those simple games that doesn't really need flashy
+ graphics to be good...
+ ---------------------------------------------------------------------
+ KEYS : Pause           - Top row
+        Left & right    - Middle row         - Joystick controls
+        Release ball    - Bottom row         - Joystick fire
+
+ For two-player option split keyboard down middle!

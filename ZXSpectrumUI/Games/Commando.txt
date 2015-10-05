@@ -1,0 +1,30 @@
+COMMANDO - ELITE
+
+INTRODUCTION
+
+You are Super Joe the crack combat soldier of the eighties battling against all
+odds to defeat the advancing rebel forces. Equipped with only an M60 machine
+gun and six hand grenades you carry out your lone crusade, forcing your way
+into hostile territory. Mortars, grenades and dynamite rain from the skies and
+explode around you. Enemy bullets fly past you in all directions, trenches,
+cliffs and lakes block your path. Rebel forces appear from caves, strong holds
+and troop carriers to stop your progress. You must show no mercy. You must not
+retreat. You must keep pushing yourself further and further into enemy lines,
+collecting supplies of hand-grenades from defeated outposts, until you reach
+your final objective, the fortress. Developed with the aid of Capcom to produce
+the closest possible re-computer simulation of the original arcade No. 1 hit
+game. Have you got the skill and stamina to defeat the enemy!
+
+SPECTRUM
+To load the game:
+
+1. Ensure the cassette is fully rewound
+2. Type LOAD "" (Enter).
+3. Press PLAY on the cassette player.
+
+OBJECT
+
+The object of the game in to advance as far as possible into enemy lines whilst
+destroying rebel forces, installations and vehicles. Along the way you should
+pick up as many boxes of hand grenades as possible so as to replenish our
+stock.

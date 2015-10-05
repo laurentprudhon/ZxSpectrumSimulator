@@ -1,0 +1,16 @@
+Oh Mummy!
+---------
+
+
+The ancient magic of the Pharoes of Egypt, await those who would dare
+desicrate their tombs, disturbing their slumber. Hoards of riches are to
+be found, if you have the courage to face the guardians of the pyramids!!.
+
+A = Move Up
+Z = Move Down
+K = Move Left
+L = Move Right
+
+Or redefine keys to use joystick.
+
+(Transcribed by Robin Stuart)

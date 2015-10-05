@@ -1,0 +1,59 @@
+BATTLESHIPS
+
+COMMODORE, SPECTRUM, AMSTRAD
+
+
+ESCENARIO
+
+El frío aire de la mañana hiela tus huesos, cuando tú, como Almirante de la Marina de tu país miras desde el puente el manto de niebla que cubre el océano.
+
+«¿Dónde están?» Te preguntas dándote cuenta de que tú sólo debes hundir y destruir la flota enemiga antes de que localicen la tuya.
+
+¿Tienes coraje para hacer frente al supremo desafío naval y traer la victoria a tu país?
+
+
+INSTRUCCIONES DE JUEGO
+
+Tras cargar, se te presentará un menú de opciones. La selección de éstas se puede hacer presionando la tecla indicada o bien, moviendo el cursor hasta la opción elegida y presionando fuego.
+
+Las opciones son:
+1. Un jugador contra la computadora.
+2. Dos jugadores.
+3. Torneo entre varios jugadores (dos o más). Dos juegan en cualquier momento: el ganador puede entonces tomar otro contrincante y mediante triunfos repetidos contra todos los que se presentan, lograr una puntuación alta.
+4. Salvo Fire: Te da cuatro disparos por cada barco que quede.
+
+Al empezar el juego se te pedirá colocar tus barcos en el mapa cuadriculado. Si juegas contra otra persona asegúrate de hacer tus movimientos en secreto. Mueve el cursor sobre el gráfico de un barco al lado del mapa. Presiona fuego otra vez, para establecer la posición del barco. Los barcos pueden rotarse, seleccionando el icono con símbolo TURN y presionando fuego sobre el barco en cuestión. Mueve a izquierda y derecha para rotar, después presiona fuego para fijarlo.
+
+Cuando todos los barcos estén colocados a tu gusto mueve el cursor sobre el icono con símbolo END y presiona fuego. Ahora tu oponente debe colocar sus barcos, en completo secreto, por supuesto. En este momento comienza el juego debiendo a cada jugador, por turno, disparar sobre el mapa cuadriculado, presionando fuego, para seleccionar un blanco. Ten cuidado de no desperdiciar disparos sobre blancos ya destruidos o barcos ya hundidos. Si seleccionas un blanco incorrecto puedes cambiarlo moviendo la mira sobre el blanco incorrecto y presionando fuego una vez más.
+
+Tras seleccionar el último blanco la pantalla cambiará, y verás la flota en el mar. Se dispararán misiles desde tu barco al tiempo que los aviones sobrevuelan, y también verás la progresiva destrucción de tu flota enemiga. Comienza la batalla con precaución y estrategia. ¡Almirante! ¿Qué te espera?
+
+La Gloria y el Honor de la victoria, ¿o la total aniquilación de tu flota?
+
+
+INSTRUCCIONES DE CARGA
+
+Commodore 64
+Cassette: Presiona SHIFT y RUN/STOP simultáneamente.
+Disc: LOAD"BATTLE, 8,1.
+
+Spectrum
+Cassette: LOAD"".
+
+Amstrad CPC
+Cassette: RUN"". Disc: RUN"ELITE".
+
+
+INSTRUCCIONES DE JUEGO
+
+Commodore 64
+Tu cursor se controla por un joystick en puerto 2.
+
+Spectrum
+Tu cursor se controla por teclas redefinibles o por cualquier joystick, seleccionable mediante la opción CONTROL del menú principal.
+
+Amstrad CPC
+Tu cursor se controla por teclas redefinibles o por cualquier joystick, seleccionable mediante la opción CONTROL del menú principal.
+
+
+© 1987 Elite Systems Ltd.

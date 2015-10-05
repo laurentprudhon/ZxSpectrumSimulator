@@ -1,0 +1,5 @@
+﻿[TAP file : OhMummy]
+ + StandardHeader : HeaderType=ProgramHeader, FileName=OH MUMMY, FollowingDataLength=3234, AutoStartLine=1, ProgramLength=3203
+ + StandardDataBlock : TapeDataLength=3234, TapeData=|0 1 ... FF 2|
+ + StandardHeader : HeaderType=ByteArrayHeader, FileName=CODE, FollowingDataLength=8100, StartAddress=33000
+ + StandardDataBlock : TapeDataLength=8100, TapeData=|21 FC ... 0 0|

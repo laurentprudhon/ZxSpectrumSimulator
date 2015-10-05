@@ -1,0 +1,7 @@
+﻿[TZX file v1.10 : Saboteur]
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=SABOTEUR, FollowingDataLength=592, AutoStartLine=1, ProgramLength=592 }, PauseInMs=974
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=592, TapeData=|0 1 ... 0 0| }, PauseInMs=5904
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=SABPIC, FollowingDataLength=6912, StartAddress=40000 }, PauseInMs=975
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6912, TapeData=|0 0 ... E E| }, PauseInMs=6915
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=00, FollowingDataLength=40336, StartAddress=25200 }, PauseInMs=977
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=40336, TapeData=|3E 0 ... FF 8| }, PauseInMs=0

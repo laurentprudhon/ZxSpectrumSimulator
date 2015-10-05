@@ -1,0 +1,58 @@
+﻿; **************************************************************************
+; * Decompiled assembly program for : Assembly/Samples/basmul.obj
+; **************************************************************************
+
+ORG 0000H
+
+	LD IX,FF00H
+	LD SP,FEFAH
+	LD A,00H
+	LD (IX-2),A
+	LD (IX-1),A
+	LD A,00H
+	LD (IX-4),A
+	LD (IX-3),A
+	LD A,00H
+	LD (IX-6),A
+	LD (IX-5),A
+	LD HL,007BH
+	LD (IX-2),L
+	LD (IX-1),H
+	LD HL,00EAH
+	LD (IX-4),L
+	LD (IX-3),H
+	LD L,(IX-2)
+	LD H,(IX-1)
+	LD E,(IX-4)
+	LD D,(IX-3)
+	CALL L0047
+	LD (IX-6),L
+	LD (IX-5),H
+	HALT
+L0047:	PUSH BC
+	LD B,H
+	LD C,L
+	LD HL,0000H
+	LD A,10H
+L004F:	DEC D
+	INC D
+	JR NZ,L0062
+	CP 09H
+	JR C,L0062
+	SUB 08H
+	PUSH AF
+	LD D,E
+	LD E,H
+	LD H,L
+	LD L,00H
+	POP AF
+	JR L004F
+L0062:	ADD HL,HL
+	RL E
+	RL D
+	JR NC,L006A
+	ADD HL,BC
+L006A:	DEC A
+	JR NZ,L004F
+	POP BC
+	RET

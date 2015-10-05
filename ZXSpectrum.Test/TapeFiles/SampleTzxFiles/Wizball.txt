@@ -1,0 +1,38 @@
+﻿[TZX file v1.13 : Wizball]
+ + ID 32 - ArchiveInfo : Full title="Wizball (EDOS)" Software house/publisher="Ocean Software Ltd / EDOS" Author(s)="Sensible SoftwareMark R. Jones" Year of publication="1987" Language="English" Game/utility type="Arcade: Action" Price="£3.99" Protection scheme/loader="SpeedLock 4 + EDOS" Origin="Re-Release" Comment(s)="TZXed by Andrew Barker.Sample supplied by Tony Barnett.EDOS Release uses pure tone instead of multiwave decryption tones." 
+ + ID 11 - TurboSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=WIZBALL, FollowingDataLength=65, AutoStartLine=0, ProgramLength=65 }, PauseInMs=623, ZeroBitPulseLength=796, OneBitPulseLength=1594, UsedBitsOfTheLastByte=8, PilotTonePulseLength=2168, FirstSyncPulseLength=667, SecondSyncPulseLength=735, PilotTonePulseCount=8063
+ + ID 11 - TurboSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=65, TapeData=|0 0 ... 0 D| }, PauseInMs=2345, ZeroBitPulseLength=796, OneBitPulseLength=1594, UsedBitsOfTheLastByte=8, PilotTonePulseLength=2168, FirstSyncPulseLength=667, SecondSyncPulseLength=735, PilotTonePulseCount=8063
+ + ID 11 - TurboSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=, FollowingDataLength=6979, StartAddress=58557 }, PauseInMs=551, ZeroBitPulseLength=796, OneBitPulseLength=1594, UsedBitsOfTheLastByte=8, PilotTonePulseLength=2168, FirstSyncPulseLength=667, SecondSyncPulseLength=735, PilotTonePulseCount=8063
+ + ID 11 - TurboSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6979, TapeData=|6 C8 ... 7A 46| }, PauseInMs=158, ZeroBitPulseLength=796, OneBitPulseLength=1594, UsedBitsOfTheLastByte=8, PilotTonePulseLength=2168, FirstSyncPulseLength=667, SecondSyncPulseLength=735, PilotTonePulseCount=8063
+ + ID 12 - PureTone : LengthOfOnePulse=1620, PulseCount=49500
+ + ID 20 - PauseOrStopTheTape : PauseInMs=4621
+ + ID 21 - GroupStart : GroupName=Speedlock 4 Block 1
+ + ID 12 - PureTone : LengthOfOnePulse=2165, PulseCount=1541
+ + ID 13 - PulseSequence : PulseCount=16, PulsesLengths={714, 714 ... 714, 714}
+ + ID 14 - PureDataBlock : TapeDataBlock={ FragmentedDataBlock : TapeDataLength=1, TapeData=|E8 | }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=6
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=16, TapeData=|DC 33 ... CF 12| }, PauseInMs=5502, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 22 - GroupEnd : 
+ + ID 21 - GroupStart : GroupName=Speedlock 4 Block 2
+ + ID 12 - PureTone : LengthOfOnePulse=2165, PulseCount=1541
+ + ID 13 - PulseSequence : PulseCount=16, PulsesLengths={714, 714 ... 714, 714}
+ + ID 14 - PureDataBlock : TapeDataBlock={ FragmentedDataBlock : TapeDataLength=1, TapeData=|E8 | }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=6
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=6142, TapeData=|72 72 ... 61 4| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=766, TapeData=|C8 C8 ... C9 9| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=14846, TapeData=|7 B3 ... C9 C9| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=0 }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=2, TapeData=|4E F2 | }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=36, TapeData=|3F 25 ... 71 24| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=8190, TapeData=|F6 94 ... 27 27| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=8190, TapeData=|7 44 ... CF A5| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=4094, TapeData=|27 27 ... 27 5F| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=1, TapeData=|FF | }, PauseInMs=0, ZeroBitPulseLength=875, OneBitPulseLength=1750, UsedBitsOfTheLastByte=5
+ + ID 14 - PureDataBlock : TapeDataBlock={ CustomDataBlock (invalid checksum) : TapeDataLength=3839, TapeData=|5F 27 ... 27 27| }, PauseInMs=0, ZeroBitPulseLength=564, OneBitPulseLength=1129, UsedBitsOfTheLastByte=8
+ + ID 22 - GroupEnd : 

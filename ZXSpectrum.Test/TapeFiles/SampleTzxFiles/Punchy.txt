@@ -1,0 +1,9 @@
+﻿[TZX file v1.10 : Punchy]
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=PUNCHY, FollowingDataLength=155, AutoStartLine=0, ProgramLength=155 }, PauseInMs=626
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=155, TapeData=|0 0 ... 0 D| }, PauseInMs=4932
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=ISSI, FollowingDataLength=6912, StartAddress=30000 }, PauseInMs=622
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6912, TapeData=|0 0 ... 42 42| }, PauseInMs=806
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=CODE, FollowingDataLength=36680, StartAddress=24330 }, PauseInMs=968
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=36680, TapeData=|D8 5F ... 0 0| }, PauseInMs=2
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=256, TapeData=|37 3E ... 0 FF| }, PauseInMs=1
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=2034, TapeData=|11 0 ... 42 42| }, PauseInMs=0

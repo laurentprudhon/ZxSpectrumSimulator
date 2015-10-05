@@ -1,0 +1,32 @@
+ AIRWOLF
+ Elite 1984
+
+ CONTROLS : Keyboard, Kempston
+ ---------------------------------------------------------------------
+ AIM : As ace helicopter pilot Stringfellow Hawke, you have been
+ chosen to fly the top-secret AIRWOLF helicopter. To test your prowess,
+ the CIA has assigned you to a dangerous rescue mission: five important
+ US scientists are being held hostage in an underground base deep
+ underneath the Arizona desert. It's your task to guide AIRWOLF through
+ the caverns to destroy the base's defence control boxes so that you
+ can penetrate to the heart of the complex and rescue the scientists...
+
+ GAMEPLAY : AIRWOLF bears some slight similarities to the old arcade
+ classic DEFENDER, with a nod in the direction of GALAXIANS as well.
+ You must shoot your way through the defence fields and electric fields
+ protecting the caverns within the base, and avoid the incoming fire
+ from the large and strategically-positioned guns. As well as this, you
+ must also prevent the AIRWOLF from crashing into the base's walls and
+ the various obstacles around it, which is not an easy task!
+
+ COMMENTS : "Addictive, playable and fun, excellent."
+ RATING : 90% (CRASH #13, February 1985)
+
+ NOW : As they said at the time, it is a love or hate game. It is
+ hard, so be warned!
+ ---------------------------------------------------------------------
+ KEYS : Up		- Q to T
+	Down		- A to G
+	Left		- Z
+	Right		- X
+	Fire		- C

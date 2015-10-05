@@ -1,0 +1,13 @@
+﻿[TZX file v1.10 : Batty]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=bat, FollowingDataLength=1402, AutoStartLine=100, ProgramLength=1331 }, PauseInMs=1004
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=1402, TapeData=|0 64 ... 0 79| }, PauseInMs=3398
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=batLoad, FollowingDataLength=783, StartAddress=64753 }, PauseInMs=996
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=783, TapeData=|21 0 ... 0 0| }, PauseInMs=5690
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=6912, TapeData=|0 0 ... 5 5| }, PauseInMs=4542
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|F3 31 ... 98 83| }, PauseInMs=4064
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|A6 83 ... E0 C0| }, PauseInMs=5099
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|1F F ... C9 0| }, PauseInMs=4766
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|0 DD ... 72 7| }, PauseInMs=4399
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=4096, TapeData=|FD 71 ... 42 B8| }, PauseInMs=4318
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=2676, TapeData=|3E C ... 0 19| }, PauseInMs=20953

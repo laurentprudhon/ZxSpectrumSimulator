@@ -1,0 +1,17 @@
+﻿[TZX file v1.10 : AlienDestroyer]
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=DESTROY, FollowingDataLength=461, AutoStartLine=0, ProgramLength=461 }, PauseInMs=993
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=461, TapeData=|0 A ... 22 D| }, PauseInMs=1961
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=5, FollowingDataLength=16, StartAddress=32000 }, PauseInMs=999
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=16, TapeData=|1 0 ... 0 1| }, PauseInMs=607
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=4, FollowingDataLength=6037, StartAddress=54034 }, PauseInMs=993
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6037, TapeData=|18 0 ... FF FF| }, PauseInMs=624
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=3, FollowingDataLength=167, StartAddress=65368 }, PauseInMs=995
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=167, TapeData=|1 1 ... 1 1| }, PauseInMs=878
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=2, FollowingDataLength=9288, StartAddress=40000 }, PauseInMs=999
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=9288, TapeData=|3E 0 ... C9 C9| }, PauseInMs=784
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=1, FollowingDataLength=2303, StartAddress=33002 }, PauseInMs=993
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=2303, TapeData=|21 0 ... FF FF| }, PauseInMs=1404
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=LIFTOFF!, FollowingDataLength=4873, StartAddress=60490 }, PauseInMs=989
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=4873, TapeData=|CC 8A ... 13 C9| }, PauseInMs=3833
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=DESTROY, FollowingDataLength=1573, AutoStartLine=0, ProgramLength=1398 }, PauseInMs=994
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=1573, TapeData=|0 A ... 0 0| }, PauseInMs=0

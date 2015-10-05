@@ -1,0 +1,83 @@
+THE SPECTRUM GAME DATABASE
+
+WIZBALL
+
+PUBLISHER
+Ocean
+
+AUTHOR
+Sensible Software
+
+YEAR
+1987
+
+CATEGORY
+Arcade
+
+DESCRIPTION
+Wizball is a side-view arcade game.
+
+CONTROLS
+Keyboard, Kempston.  The keys are redefinable.
+
+INSTRUCTIONS
+For many years, Wiz and his magical cat lived happily in brightly
+coloured Wizworld. All was not well however as a malevolent force
+had discovered the vista and intended to stamp out brilliance
+once and for all. The evil Zark and his horrible sprites have
+moved in to eliminate the spectrum and render all landscpes drab
+and grey. So jump in your transporter and with the help of your
+faithful servant Catelite, restore Wizworld to its former glory.
+
+The landscapes in Wizworld are comprised of three colours each.
+Your task is to restore the original colours by shooting the Red,
+Green and Blue colour bubbles and then using Cat to collect the
+droplets of colour as they fall to the ground. Droplets collected
+will be stored in the cauldron displayed at the bottom of the
+screen, until such time as you have enough of each colour to make
+the target colour displayed in the cauldron on the far bottom
+right of the screen.
+
+In the three levels which have aliens on: one has red, one has
+green and one has blue. It is therefore necessary to move between
+the three levels using the tunnels to collect all three colours.
+To complete a level, you must colour in the whole landscape.
+After each colour is collected there is a bonus stage. After
+this, Wiz enters Wiz-Lab and is given a Wiz-Perk by his guardian
+angel. You may select one weapon or control, which will be
+magically endowed up on all subsequent Wizballs from birth, or
+opt for the bonus of 1000 points x Wiz-Level number.
+
+When certain aliens are killed they will deposit a green pearl
+which will remain stationary on the screen. If Wizball passes
+over this pearl and picks it up the first icon on the top of the
+screen will glow; this indicates that Wiz has the option to
+select a feature representated on the icon. If you want to select
+another feature collect more pearls until the icon you want is
+glowing. Several icons have two possible functions. The icons
+are, from left to right:
+
+
+ 1) Thrust     - Gives Wiz more control over the Wizball and
+                 allows him to move it left or right.
+    Antigrav   - Gives Wiz total control over the Wizball and
+                 stops the bouncing.
+ 2) Beam       - Gives Wiz supa-beam weapon.
+    Double     - Gives Wiz and cat automatic two-directional
+                 firepower.
+ 3) Catellite  - Gives Wiz a cat fresh from training college.
+ 4) Blazers    - Gives Wiz and Cat super rapid fire blazers.
+ 5) Wiz Spray  - Gives Wiz mega spray protection.
+    Cat Spray  - Does the same for Cat (but Wiz and Cat cannot
+                 have spray at the same time).
+ 6) Smart Bomb - Kills every sprite in sight.
+ 7) Shields    - Gives Wiz and Cat shields for a limited period
+                 only.
+
+SCORES RECEIVED
+Crash: "An entertaining and playable game". 92% (CRASH #45,
+October 1987)
+
+SEQUELS/PREQUELS
+A sequel was released, but not on the Spectrum.  It was called
+WizKid, and is pretty good.

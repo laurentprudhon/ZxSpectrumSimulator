@@ -1,0 +1,7 @@
+﻿Known limitations :
+- fourth machine cycle of four bytes opcodes has been implemented as OCF(5), which triggers M1 and increases the Refresh register
+(this is logical but contradicts Sean Young's assertion that four bytes opcodes increase only twice the Refresh register)
+- only supports single byte opcodes on the databus in maskable interrupt mode 0
+- did not know how to emulate the undocumented flags YF and XF in the BIT n,(HL) instruction : chose to copy them fom ALULeftBuffer
+(are copied from "some sort of internal register related to 16 bits additions")
+- not sure if the input/output/memory block instructions flags are accurate

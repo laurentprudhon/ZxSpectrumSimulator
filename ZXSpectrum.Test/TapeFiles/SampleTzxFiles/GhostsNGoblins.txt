@@ -1,0 +1,7 @@
+﻿[TZX file v1.10 : GhostsNGoblins]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=ghosts, FollowingDataLength=100, AutoStartLine=10, ProgramLength=100 }, PauseInMs=1009
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=100, TapeData=|0 A ... 0 D| }, PauseInMs=3619
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=goblins3, FollowingDataLength=524, StartAddress=65024 }, PauseInMs=1002
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=524, TapeData=|0 0 ... 5C 22| }, PauseInMs=5175
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=48896, TapeData=|79 79 ... BF 79| }, PauseInMs=20767

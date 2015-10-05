@@ -1,0 +1,5 @@
+﻿[TAP file : z80tests]
+ + StandardHeader : HeaderType=ProgramHeader, FileName=loader, FollowingDataLength=71, AutoStartLine=10, ProgramLength=71
+ + StandardDataBlock : TapeDataLength=71, TapeData=|0 A ... 0 D|
+ + StandardHeader : HeaderType=ByteArrayHeader, FileName=code, FollowingDataLength=5452, StartAddress=32768
+ + StandardDataBlock : TapeDataLength=5452, TapeData=|C3 39 ... 0 0|

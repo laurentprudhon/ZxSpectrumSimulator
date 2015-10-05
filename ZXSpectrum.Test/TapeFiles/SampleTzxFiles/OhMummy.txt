@@ -1,0 +1,6 @@
+﻿[TZX file v1.10 : OhMummy]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=OH MUMMY, FollowingDataLength=3234, AutoStartLine=1, ProgramLength=3203 }, PauseInMs=1011
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=3234, TapeData=|0 1 ... FF 2| }, PauseInMs=2254
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=CODE, FollowingDataLength=8100, StartAddress=33000 }, PauseInMs=1002
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=8100, TapeData=|21 FC ... 0 0| }, PauseInMs=16088

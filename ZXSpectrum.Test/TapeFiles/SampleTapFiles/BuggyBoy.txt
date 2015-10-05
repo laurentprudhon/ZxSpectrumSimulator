@@ -1,0 +1,8 @@
+﻿[TAP file : BuggyBoy]
+ + StandardHeader : HeaderType=ProgramHeader, FileName=BUGGY BOY, FollowingDataLength=23, AutoStartLine=10, ProgramLength=23
+ + StandardDataBlock : TapeDataLength=23, TapeData=|0 A ... 0 D|
+ + StandardHeader : HeaderType=ByteArrayHeader, FileName=128K, FollowingDataLength=128, StartAddress=26624
+ + StandardDataBlock : TapeDataLength=128, TapeData=|F3 DD ... 0 0|
+ + StandardDataBlock : TapeDataLength=6912, TapeData=|0 1 ... 4D F|
+ + StandardDataBlock : TapeDataLength=32768, TapeData=|0 C3 ... 0 0|
+ + StandardDataBlock : TapeDataLength=33280, TapeData=|16 6E ... 0 0|

@@ -1,0 +1,48 @@
+CRAZY GOLF
+----------
+
+BY MR MICRO
+
+Loading Instructions:
+Turn on the computer, and select 48K mode by pressing cursor up (the key to
+the right of the space bar) followed by ENTER. The message
+
+(C) 1982 Amstrad
+
+will appear. Press J""; and the words LOAD"" will appear on the screen.
+Press ENTER, and the screen should go blank. Place the rewound tape in the
+datacorder, and press PLAY. After a short while, the edge of the screen will
+change colour, and some writing will appear at the top of the screen. The
+program will then start to load, and everything will run automatically.
+
+CRAZY GOLF
+This fun game features unique graphic obstacles which must be circumvented
+before the ball can be "putted" into the hole.
+
+The part for each hole is displayed, and a novel direction pointed combined
+with the force indicator enable you to try to equal or better par.
+
+Owners of the Currah U-Speech add-on Module will be able to hear the "useful"
+and "enlightened" comments of the speaking caddy. Use with keyboard or
+joystick.
+
+CRAZY GOLF IS CRAZY BUT FUN FOR EVERYONE.
+
+                                          Joystick      Keyboard
+Move Club Anti-Clockwise                = Left          O
+Move Club Clockwise                     = Right         P
+Increase Force (Range)                  = Up            W
+Decrease Force (Range)                  = Down          Enter
+Move to Next Hole (With Penalty)        = Space
+Re-Start New Game                       = A
+
+(C) Mr Micro Ltd.
+
+Program copyright is the property of Mr Micro Ltd. No unauthorised copying for
+sale, loan or gift. This tape may not be offered for hire or form part of
+any commercial offer without the express permission of Mr MICRO Ltd. All
+rights will be rigorously enforced, please do not be tempted to infringe them.
+
+SINCLAIR IS A REGISTERED TRADEMARK OF AMSTRAD CONSUMER ELECTRONICS PLC
+
+(Transcribed by Robin Stuart)

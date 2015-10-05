@@ -1,0 +1,103 @@
+BARBARIAN 2
+Publisher: Palace Software, 1988.
+
+PROLOGUE
+--------
+At the finale of BARBARIAN - THE ULTIMATE WARRIOR, the Barbarian 
+defeated the warriors of Drax and thus freed Princess Mariana from his 
+evil spell. 
+
+Drax fled to the dungeons beneath his black castle, vowing to wreak 
+disaster on the jewelled Kingdom. It is decided that there is only one 
+way to stop Drax. The Barbarian and Mariana- herself an accomplished 
+swordsman - are the only two warriors skilled enough to survive the 
+perilous journey to Drax's lair. They must stop him before it's too 
+late. 
+
+LEVELS 
+------
+You must fight your way through three levels - the Wastelands, the 
+Caverns, and the Dungeons - before arriving at the fourth level, the 
+inner Sanctum of Drax. These sections must be played in the correct 
+order. 
+
+Each of the first three levels is a maze consisting of approximately 
+28 screens. As you view each screen it is possible to walk left, right 
+or into doors or caves at the back of the screen. 
+
+The direction you are walking, as viewed on a map, is continually 
+changing and therefore a compass (in which sword always points north) 
+has been provided at the bottom of the screen. When you reach the exit 
+to the next level Display will pulse as a warning. It is not advisable 
+to leave without first collecting all available magical objects (see 
+below.) 
+
+MONSTERS 
+On each of the first three levels you must fight six different types 
+of monster, some of which can be killed with one well placed blow. 
+They are: 
+
+The Wastelands: Wastelands Saurian beasts, Neanderthal men*, Apes, 
+                Mutant Chickens*, Stabbers, Floaters. 
+
+The Caverns: Caverns Carnivores, Orc Guards*, Crabs, Slithering Things*
+             Cave Trolls, Stingers. 
+
+The Dungeons: Dungeon Pit Things, Dungeon Masters*, Giant Grubs, 
+              Gobblers*, Eyes, Orclets. 
+
+*= These Monsters can be killed with a single blow !! 
+
+If you survive to the Sanctum of Drax you must face The Living idol, a 
+great Demon and finally the dreaded Drax. 
+
+MAGICAL OBJECTS 
+---------------
+In each of the three levels there are 2 magical objects that you will 
+need to collect in order to survive throughout the quest. 
+
+* The AXE increases your strength 
+* The GLOBE guards against death from Drax's magic 
+* The POTION increases your resistance 
+* The KEY opens portcullis doors 
+* The SHIELD guards against instant death from the Demon's fire 
+* The JEWEL disables the Living Idol when the idol is reached. 
+
+
+ENERGY AND LIVES 
+Your energy is displayed as a bar at the top right of the screen. When 
+it runs out you lose a life. 
+
+You start the game with five lives. More lives can be gained 
+throughout the game by collecting skulls you may find. These contain 
+the life-force of warriors who have preceded you. When you lose all 
+your lives you restart the current level. 
+
+The energy of the current monster you are fighting is displayed as a 
+bar at the top left of the screen. When it runs out the monster is 
+destroyed. 
+
+SCORING 
+The more difficult fighting moves will score highly and do more damage.
+
+KEYBOARD MOVES 
+      Q = run
+      A = "U turn"
+    O/P = walk left/right
+  Space = fire (hold and then Q/A/O/P to make different attacks)
+Caps Sh.= PAUSE 
+      N = THROUGH DOOR 
+Space (while paused) = QUIT 
+Space (while running) = JUMP
+
+To jump across holes or pits you will need to make a running jump. If 
+you do not far enough you will find yourself teetering on the far edge 
+of the hole. By swiftly waggling the joystick left or right you may 
+save yourself. 
+
+*********
+The instructions are taken from an c64 or CPC site (I can't remember 
+now), sometimes these people can be usefull ;-) To be honest, I love 
+them everyday more and more :-)
+'Speccy adaptation' (keys etc.) was done by Aleksandar Lukic, 
+alexlux@eunet.yu . 

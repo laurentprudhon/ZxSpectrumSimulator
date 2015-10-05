@@ -1,0 +1,8 @@
+﻿[TZX file v1.10 : BombJack]
+ + ID 32 - ArchiveInfo : Full title="BOMBJACK" Software house/publisher="ENCORE / M.C.M. SOFTWARE" Year of publication="1988" Language="ENGLISH" Game/utility type="ARCADE" Protection scheme/loader="NONE" Origin="M-42632-1988" 
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=BOMBJACK, FollowingDataLength=177, AutoStartLine=0, ProgramLength=177 }, PauseInMs=994
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=177, TapeData=|0 A ... 22 D| }, PauseInMs=1745
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=$, FollowingDataLength=6912, StartAddress=16384 }, PauseInMs=1001
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6912, TapeData=|0 0 ... 45 45| }, PauseInMs=11
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=c, FollowingDataLength=36095, StartAddress=29440 }, PauseInMs=999
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=36095, TapeData=|FF 0 ... 0 0| }, PauseInMs=16863

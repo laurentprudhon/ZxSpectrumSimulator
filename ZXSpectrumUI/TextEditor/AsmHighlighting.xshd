@@ -1,0 +1,159 @@
+﻿<SyntaxDefinition name="Asm" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+
+  <Color name="Comment" foreground="Green" />
+  <Color name="OpCode" foreground="Red" />
+  <Color name="Directive" foreground="DarkRed" />
+  <Color name="Register" foreground="Blue" />
+  <Color name="Flag" foreground="DarkBlue" />
+  <Color name="String" foreground="Magenta" />
+  <Color name="Number" foreground="DarkMagenta" />
+
+  <RuleSet>
+    
+    <Span color="Comment" begin=";|#" />
+
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+    </Span>
+    <Span color="String">
+      <Begin>'</Begin>
+      <End>'</End>
+    </Span>
+    
+    <Keywords color="OpCode">
+      <Word>ADC</Word>
+      <Word>ADD</Word>
+      <Word>AND</Word>
+      <Word>BIT</Word>
+      <Word>CALL</Word>
+      <Word>CCF</Word>
+      <Word>CP</Word>
+      <Word>CPD</Word>
+      <Word>CPDR</Word>
+      <Word>CPI</Word>
+      <Word>CPIR</Word>
+      <Word>CPL</Word>
+      <Word>DAA</Word>
+      <Word>DEC</Word>
+      <Word>DI</Word>
+      <Word>DJNZ</Word>
+      <Word>EI</Word>
+      <Word>EX</Word>
+      <Word>EXX</Word>
+      <Word>HALT</Word>
+      <Word>IM</Word>
+      <Word>IN</Word>
+      <Word>INC</Word>
+      <Word>IND</Word>
+      <Word>INDR</Word>
+      <Word>INI</Word>
+      <Word>INIR</Word>
+      <Word>JP</Word>
+      <Word>JR</Word>
+      <Word>LD</Word>
+      <Word>LDD</Word>
+      <Word>LDDR</Word>
+      <Word>LDI</Word>
+      <Word>LDIR</Word>
+      <Word>NEG</Word>
+      <Word>NONI</Word>
+      <Word>NOP</Word>
+      <Word>OR</Word>
+      <Word>OTDR</Word>
+      <Word>OTIR</Word>
+      <Word>OUT</Word>
+      <Word>OUTD</Word>
+      <Word>OUTI</Word>
+      <Word>POP</Word>
+      <Word>PUSH</Word>
+      <Word>RES</Word>
+      <Word>RESET</Word>
+      <Word>RET</Word>
+      <Word>RETI</Word>
+      <Word>RETN</Word>
+      <Word>RL</Word>
+      <Word>RLA</Word>
+      <Word>RLC</Word>
+      <Word>RLCA</Word>
+      <Word>RLD</Word>
+      <Word>RR</Word>
+      <Word>RRA</Word>
+      <Word>RRC</Word>
+      <Word>RRCA</Word>
+      <Word>RRD</Word>
+      <Word>RST</Word>
+      <Word>SBC</Word>
+      <Word>SCF</Word>
+      <Word>SET</Word>
+      <Word>SLA</Word>
+      <Word>SLL</Word>
+      <Word>SRA</Word>
+      <Word>SRL</Word>
+      <Word>SUB</Word>
+      <Word>XOR</Word>
+   </Keywords>
+   
+    <Keywords color="Register">
+      <Word>A</Word>
+      <Word>F</Word>
+      <Word>B</Word>
+      <Word>C</Word>
+      <Word>D</Word>
+      <Word>E</Word>
+      <Word>H</Word>
+      <Word>L</Word>
+      <Word>I</Word>
+      <Word>R</Word>
+      <Word>IXh</Word>
+      <Word>IXl</Word>
+      <Word>IYh</Word>
+      <Word>IYl</Word>
+      <Word>AF</Word>
+      <Word>AF'</Word>
+      <Word>BC</Word>
+      <Word>DE</Word>
+      <Word>HL</Word>
+      <Word>IX</Word>
+      <Word>IY</Word>
+      <Word>SP</Word>
+    </Keywords>
+
+    <Keywords color="Flag">
+      <Word>C</Word>
+      <Word>M</Word>
+      <Word>NC</Word>
+      <Word>NZ</Word>
+      <Word>P</Word>
+      <Word>PE</Word>
+      <Word>PO</Word>
+      <Word>Z</Word>
+    </Keywords>
+      
+    <Keywords color="Directive">
+        <Word>ORG</Word>
+        <Word>EQU</Word>
+        <Word>DATA</Word>
+        <Word>RESERVE</Word>
+        <Word>DEFL</Word>
+        <Word>DEFB</Word>
+        <Word>DEFW</Word>
+        <Word>DEFS</Word>
+        <Word>DEFM</Word>
+        <Word>END</Word>
+        <Word>MACRO</Word>
+        <Word>ENDM</Word>
+        <Word>ENT</Word>
+        <Word>EXT</Word>
+    </Keywords>
+
+    <!-- Digits 
+    <Rule color="Number">
+      ([01]{1,16})B |
+      ([0-7]{1,8})(O|Q) |
+      ([0-9]{1,5})D? |
+      ((0[A-F]|\?)[0-9A-F]{1,3}|[0-9][0-9A-F]{1,3})H
+    </Rule>-->
+    
+  </RuleSet>
+</SyntaxDefinition>

@@ -1,0 +1,30 @@
+﻿http://www.worldofspectrum.org/forums/showthread.php?t=20345
+http://www.worldofspectrum.org/forums/showthread.php?t=41704
+
+ 06-12-2012    #20  
+Patrik Rak 
+
+The test vectors took quite some time to create, but now it's finally finished. The test now features about 150 test vectors and thoroughly tests almost all Z80 instructions The good news is that it runs in a fraction of time compared to ZEXALL, while using even more specific tests at the same time. I'll be releasing it in few days, after I add bit of documentation and wrap the whole package.
+
+I have also prepared a variant which ran CCF before each tested instruction and another variant which ran CCF after each tested instruction. Both were run on real Spectrum as well as various emulators.
+
+As I have reported before, the pre-CCF variant indicates that no other instruction except CCF and SCF is affected by the Q register, which is good. It means that single bit is enough to keep track of its state, which simplifies things.
+
+The post-CCF variant proved what I have stated before - if an instruction modifies the flags, the immediately following SCF/CCF does move of bits 5+3 from A to F, whereas if an instruction doesn't modify the flags, the SCF/CCF does OR of bits 5+3 from A to F. 
+
+Finally, I also explicitly tested how an interrupt might affect the Q register. And it turns out that an interrupt clears the Q register as well, so regardless of the instruction interrupted, the SCF/CCF executed as first instruction of the interrupt handler always does OR, rather than move. (At least for IM 2 mode. I believe that IM 0 does the same thing, as does standard IM 1 case, but I can only speculate what happens if weird instruction is on the bus in case of IM 1.)
+
+In either case, I think this is enough information for anyone willing to update their Z80 emulation core to match the real CPU behavior.
+
+Patrik  
+
+BTW, to make it explicitly clear - by modifying flags I mean updating the individual flag bits as part of the instruction operation. The EX AF,AF' and POP AF instructions, which technically change the value of F as well, are not considered modifying the flags in this regard, so the following SCF/CCF does OR.
+
+Of course, the Z80 CCF test I posted would detect incorrect implementation, but I thought I'll mention it explicitly so the available info is as clear as possible.
+
+Patrik 
+
+http://www.worldofspectrum.org/forums/showthread.php?t=41834
+
+
+   

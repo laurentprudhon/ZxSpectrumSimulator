@@ -1,0 +1,31 @@
+﻿A 'T-state' is the counting value as used by the Z80 processor itself and is the time length of 1 clock pulse. 
+As the Z80 in a ZX Spectrum runs at 3.5 MHz, 1 T-state has a duration of 1/3,500,000 seconds. 
+
+A 'pulse' is one half sine wave (1) and a 'joined pulse' is one full sine wave (2). 
+So 2 pulses make a complete sine wave cycle. 
+
+First of all, let's see how a tape block is organised: 
+
+1.A block starts with a pilot signal. 
+This 'tells' the loading routine that a new block is starting. 
+The Spectrum ROM needs this pilot tone to be more than 1 second in duration. 
+
+2.After the pilot come 2 sync pulses, which are significantly smaller than a pilot pulse. 
+This marks the end of the pilot. 
+
+3.Then comes the datablock. 
+1 bit of data is composed of 2 equal pulses. 
+The length of the pulses determines whether it's a '0' or a '1' bit. 
+Usually, a '1' bit pulse will be twice as long as a '0' bit pulse. 
+The amplitude of each pulse is not important, as the loading routines are 'edge-triggered' rather than 'level-triggered'. 
+
+4.A block is always ended in one of two ways: 
+- a pause 
+- the next pilot 
+
+Standard timings :
+
+Pilot tone: before each block is a sequence of 8063 (header) or 3223 (data) pulses, each of length 2168 T-states. 
+Sync pulses: the pilot tone is followed by two sync pulses of 667 and 735 T-states resp. 
+A '0' bit is encoded as 2 pulses of 855 T-states each. 
+A '1' bit is encoded as 2 pulses of 1710 T-states each (ie. twice the length of a '0') .

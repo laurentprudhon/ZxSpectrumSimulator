@@ -1,0 +1,37 @@
+	LD A,0
+	NEG
+	LD A,1
+	NEG
+	LD A,2
+	NEG
+	LD A,3
+	NEG
+	LD A,4
+	NEG
+	LD A,7
+	NEG
+	LD A,8
+	NEG
+	LD A,15
+	NEG
+	LD A,16
+	NEG
+	LD A,31
+	NEG
+	LD A,32
+	NEG
+	LD A,63
+	NEG
+	LD A,64
+	NEG
+	LD A,85
+	NEG
+	LD A,127
+	NEG
+	LD A,128
+	NEG
+	LD A,170
+	NEG
+	LD A,255
+	NEG
+	HALT

@@ -1,0 +1,9 @@
+﻿[TZX file v1.10 : Airwolf]
+ + ID 32 - ArchiveInfo : Full title="AIRWOLF" Software house/publisher="ENCORE / M.C.M. SOFTWARE" Year of publication="1988" Language="ENGLISH" Game/utility type="ARCADE" Protection scheme/loader="NONE" Origin="M-42634-1988" Comment(s)="LS-036" 
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ProgramHeader, FileName=Airwolf, FollowingDataLength=100, AutoStartLine=10, ProgramLength=81 }, PauseInMs=1070
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=100, TapeData=|0 A ... FF 2| }, PauseInMs=1084
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardHeader : HeaderType=ByteArrayHeader, FileName=Dilk, FollowingDataLength=59, StartAddress=45000 }, PauseInMs=1077
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=59, TapeData=|3E 0 ... 5C CD| }, PauseInMs=1066
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=6912, TapeData=|FF F0 ... 7 7| }, PauseInMs=8016
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=41535, TapeData=|3E 1 ... BE 2| }, PauseInMs=7758
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=256, TapeData=|38 38 ... 0 0| }, PauseInMs=15694

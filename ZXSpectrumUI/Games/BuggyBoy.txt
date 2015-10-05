@@ -1,0 +1,60 @@
+Buggy Boy 
+Copyright/Publisher: Elite, Developed by: Tatsumi, Release Year: 
+1987
+Programming: Dave Thomas, Graphics: Rob Thomas, 
+Genre: Racing Sports, Number Of Players: 1
+
+INTRODUCTION
+Buggy Boy is the ultimate driving challenge. Be prepared for 
+the bumpiest ride of your life, over five of the roughest 
+courses ever devised for four wheels. You must race across 
+terrain littered with boulders, trees, brickwalls and fences 
+whilst following the rough outline of the track through narrow 
+valleys, across even narrower bridges and through dark 
+tunnels. 
+Use your skill to dodge these obstacles or a jump over them by 
+hitting the logs that lie across the track, sending your buggy 
+soaring through the air. Driving over tree stumps and small 
+rocks will tilt your buggy onto two wheels allowing you to 
+squeeze through narrow gaps; but don´t oversteer, as you will 
+lose control and return to four wheel drive! 
+The course is not your only eneamy. The clock is ticking and 
+you will be disqualified from the race if you do not complete 
+each leg in the allowed time limit. Extra time for the next 
+leg can be collected by driving through the dangerously placed 
+"time" gates. For each "time" gate you drive through, you get 
+two seconds bonus time for the next leg after completion of 
+the actual one. 
+Additional points are scored by collecting the flags and 
+driving through the score gates. Collecting the flags in the 
+specified order (displayed in the upper right corner of the 
+screen) will give you a larger bonus, as will bumping into the 
+football! 
+When the going gets tough, put your foot to the floor (finger 
+on the button?) and get ready for more thrills and spills then 
+ever before. 
+
+PLAYING INTSTRUCTIONS
+
+KEYBOARD
+X - Turn Left
+C - Turn Right
+P - Accelerate
+L - Decelerate
+SPACE - Change Gear
+
+Keyboard can be redefined.
+
+JOYSTICK
+Use Kempston joystick.
+
+[UP] - Accelerate
+[DOWN] - Decelerate
+[LEFT] - Turn Left
+[RIGHT] - Turn Right
+[FIRE] - Change Gear
+
+==========================================================
+Taken from Project 64 http://project64.c64.org
+Readapted for the Spectrum in 2001 AD by Alessandro Grussu
+http://www.ag-online.da.ru

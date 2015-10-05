@@ -1,0 +1,212 @@
+column = 0
+line = 0
+frame = 0
+border = false
+videoEnable = false
+hsync = false
+vsync = false
+flashClock = false
+detectContention = false
+clockWait = false
+
+if(line == 248)
+{
+	if(column == 0)
+	{
+		start INTerrupt
+	}
+	else if(column == 32)
+	{
+		stop INTerrupt
+	}
+}
+
+if(!clockWait)
+{
+	CPU.Tick()
+
+	if(detectContention)
+	{
+		if(CheckCPUAddressBus#A15A14=01 || IORQ && A0=0)
+		{
+			clockWait = true
+		}
+	}
+	else
+	{
+		if(IORQ && A0=0)
+		{
+			// handle ULA port
+			write borderColor
+		}
+	}
+}
+
+switch(column % 16)
+{
+	if(!border)
+	{
+		0
+		detectContention = false
+		clockWait = false
+
+		4
+		detectContention = true
+
+		7
+		row address -> address bus
+            
+		8
+		display colum address -> address bus
+		start RAS
+		start CAS
+
+		9.1
+		DataLatch
+		9.2
+		stop CAS
+
+		10 
+		attribute column adress -> address bus
+		start CAS
+
+		11.1
+		stop RAS
+		AttributeLatch
+		row address -> address bus
+		11.2
+		stop CAS
+
+		12
+		display colum address -> address bus
+		start RAS
+		start CAS
+
+		13.1
+		DataLatch
+		13.2
+		stop CAS
+
+		14 
+		attribute column adress -> address bus
+		start CAS
+
+		15.1
+		stop RAS
+		AttributeLatch
+		15.2
+		stop CAS
+	}
+	if(videoEnable)
+	{
+		4
+		SLoad
+
+		12
+		SLoad
+	}
+	// always
+		5
+		AOLatch
+
+		13
+		AOLatch
+}
+// for each pixel
+pixel shift
+compute output 
+
+column++;
+if(column == 8)
+{
+	videoEnable = true
+}
+else if(column == 256)
+{
+	border = true
+	detectContention = false
+}
+else if(column == 264)
+{
+	videoEnable = false
+}
+else if(column == 320)
+{
+	hsync = true
+}
+else if(column == 416)
+{
+	hsync = false
+}
+else if(column == 448)
+{
+	column = 0
+	line++
+
+	if(line < 192)
+	{
+		border = false
+	}
+	else
+	{
+		border = true
+	}
+
+	if(line == 248)
+	{
+		vsync = true
+	}
+	else if(line == 256)
+	{
+		vsync = false
+	}
+	else if (line == 312)
+	{
+		line = 0
+		border = false
+		frame ++
+
+		if(frame == 16)
+		{
+			frame = 0
+			flashClock = ! flashClock
+		}
+	}
+}
+
+// ----------------------
+
+row address =             v4 v3 c7 c6 c5 c4 c3
+display column address =   0 v7 v6 v2 v1 v0 v5
+attribute column address = 0  1  1  0 v7 v6 v5
+
+// -----------------------
+
+Memory timing for CPU                       Memory behavior
+
+1 - memory address
+2 - + MREQ + RD								data bus set value
+...	1 TState wait
+5 - read value
+6 - - RD - MREQ								data bus release value	
+7 - release address bus
+
+IO timing for CPU                         
+
+Read
+
+1 - port address
+3 - + IORQ + RD
+... 1 TSTate wait
+7 - read value
+8 - - IORQ - RD
+9 - release address bus
+
+Write
+
+1 - port address
+2 - data bus
+3 - + IORQ + WR
+... 1 TSTate wait
+8 - - IORQ - WR
+9 - release address bus     

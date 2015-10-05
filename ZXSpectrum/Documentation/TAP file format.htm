@@ -1,0 +1,553 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://www.zxmodules.de/fileformats/tapformat.html -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+ 
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<META name="GENERATOR" content="MSHTML 10.00.9200.16458"> <TITLE>Claus Jahn's ZX 
+Spectrum Homepage</TITLE> </HEAD> 
+<BODY background="TAP%20file%20format_fichiers/backgrnd.jpg" style="font-family: Arial;" 
+bgcolor="#33cccc">
+<P align="center"><B><U><FONT size="4">TAP- and BLK tape 
+format</FONT></U></B></P>
+<P align="center">The TAP- (and BLK-) format is nearly a direct copy of the data
+ that is stored in real tapes, as it is 'written' by the ROM save routine of the
+ ZX-Spectrum. It is supported by many Spectrum emulators:</P>
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD width="708" align="center" nowrap="" bgcolor="#00ffff" 
+      colspan="5"><FONT color="#0000ff"><B>TAP        file 
+  format:</B></FONT></TD></TR>
+  <TR>
+    <TD width="52" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD width="191" align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+      type:</B></FONT></TD>
+    <TD width="60" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD width="118" align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD width="284" align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD width="52" align="center" nowrap="">0</TD>
+    <TD width="191" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#any_datablock"><IMG 
+      width="160" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/datablock.jpg" 
+      border="0"></A>        #1</TD>
+    <TD width="60" align="center" nowrap="">?</TD>
+    <TD width="118" align="center" nowrap="">first datablock</TD>
+    <TD width="284" align="center" rowspan="4">        a TAP file is simply 
+      one datablock or&nbsp;<BR>        a group of 2 or more datablocks, one 
+      followed after the other. The TAP file may be&nbsp;empty. Then it has a 
+      size of 0 bytes.&nbsp;There's no real file size limit, like real tapes,    
+          TAP files can also contain huge amounts of data blocks.     </TD></TR>
+  <TR>
+    <TD width="52" align="center" nowrap="">???</TD>
+    <TD width="191" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#any_datablock"><IMG 
+      width="160" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/datablock.jpg" 
+      border="0"></A>        #2</TD>
+    <TD width="60" align="center" nowrap="">?</TD>
+    <TD width="118" align="center" nowrap="">second datablock</TD></TR>
+  <TR>
+    <TD width="420" align="center" nowrap="" colspan="4"><IMG width="64" 
+      height="32" src="TAP%20file%20format_fichiers/arrow-gap.gif" 
+  border="0"></TD></TR>
+  <TR>
+    <TD width="52" align="center" nowrap="">???</TD>
+    <TD width="191" align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#any_datablock"><IMG 
+      width="160" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/datablock.jpg" 
+      border="0"></A>        #N</TD>
+    <TD width="60" align="center" nowrap="">?</TD>
+    <TD width="118" align="center" nowrap="">last (Nth) 
+datablock</TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="center">TAP files use the following sub-format only:</P>
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5"><B><IMG width="160" 
+      height="20" align="absmiddle" src="TAP%20file%20format_fichiers/datablock.jpg" 
+      border="0"><FONT color="#0000ff">        (2+</FONT><FONT 
+      color="#ff0000">[data length]</FONT><FONT color="#0000ff" size="4">        
+      bytes):</FONT></B></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><FONT color="#ff0000"><B>[data 
+      length]</B></FONT></TD>
+    <TD align="center">
+      <P align="left">length of the following datablock in bytes (0..65535)     
+      </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><A href="http://www.zxmodules.de/fileformats/tapformat.html#tape data"><IMG 
+      width="160" height="20" src="TAP%20file%20format_fichiers/tape_data.jpg" 
+      border="0"></A></TD>
+    <TD align="center" nowrap=""><FONT color="#ff0000"><B>[data 
+      length]</B></FONT></TD>
+    <TD align="center" nowrap="">&nbsp;</TD>
+    <TD align="center">
+      <P align="left">data as it is stored on tape, may be a header or any       
+       data from ZX-Spectrum     </P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<HR>
+
+<P align="center">Here follows the description of <A name="tape data"></A><IMG 
+width="160" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/tape_data.jpg" 
+border="0"> blocks. Please note that these are re-used for the <A href="http://www.zxmodules.de/fileformats/tzxformat.html" 
+target="Hauptframe"><SPAN style="background-color: rgb(255, 255, 255);"><B>TZX
+ file format</B></SPAN></A> as well. Data blocks must have at least 2 bytes, to 
+build up a valid tape data block, because each block should have a flag and a 
+checksum byte.&nbsp;Shorter data blocks (1 or 0 bytes long) are so-called 
+"fragmented" ones.</P>
+<P align="left"><SPAN style="background-color: rgb(255, 255, 0);"><B>Valid data 
+blocks - headers (always 19 bytes long):</B></SPAN></P>
+<TABLE bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD width="100%" align="center" bgcolor="#ffff00" colspan="5">
+      <P align="left"><IMG width="50" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/arrow-case.gif" 
+      border="0">case #1: <IMG width="16" height="16" src="TAP%20file%20format_fichiers/programheader.bmp" 
+      border="0">        program header or <IMG width="16" height="16" src="TAP%20file%20format_fichiers/programlineheader.bmp" 
+      border="0">        program autostart header - for storing BASIC 
+      programs</P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">flag byte</TD>
+    <TD align="center">
+      <P align="left">always 0. Byte indicating a standard ROM loading header    
+       </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">data type</TD>
+    <TD align="center">
+      <P align="left">always 0: Byte indicating a program header     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TAP%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TAP%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="center" nowrap="">file name</TD>
+    <TD align="center">
+      <P align="left">loading name of the program. filled with spaces        
+      (CHR$(32))     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">12</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><B><FONT color="#008000">[data 
+      length]</FONT></B></TD>
+    <TD align="center">
+      <P align="left">length of the following data (after the header)<BR>        
+      = length of BASIC program + variables     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">14</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">autostart line</TD>
+    <TD align="left">        LINE parameter of SAVE command. Value 32768 means 
+      "no        auto-loading"; 0..9999 are valid line numbers.     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">16</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><FONT color="#0000ff"><B>[program&nbsp;<BR> 
+      length]</B></FONT></TD>
+    <TD align="left">        length of BASIC program; <BR>        remaining 
+      bytes (<FONT color="#008000"><B>[data length]</B></FONT> - <B><FONT color="#0000ff">[program 
+             length]</FONT></B>) = offset of variables     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">18</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">checksum byte</TD>
+    <TD align="left">        simply all bytes (including flag byte) XORed     
+    </TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5">
+      <P align="left"><IMG width="50" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/arrow-case.gif" 
+      border="0">case        #2: <IMG width="16" height="16" src="TAP%20file%20format_fichiers/numheader.bmp" 
+      border="0">        numeric data array header - for storing numeric 
+      arrays</P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">flag byte</TD>
+    <TD align="center">
+      <P align="left">always 0. Byte indicating a standard ROM loading header    
+       </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">data type</TD>
+    <TD align="center">
+      <P align="left">always 1: Byte indicating a numeric array     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TAP%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TAP%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="center" nowrap="">file name</TD>
+    <TD align="center">
+      <P align="left">loading name of the program. filled with spaces        
+      (CHR$(32))     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">12</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><B><FONT color="#008000">[data 
+      length]</FONT></B></TD>
+    <TD align="center">
+      <P align="left">length of the following data (after the header)<BR>        
+      = length of number array * 5 +3     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">14</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/0-byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">unused</TD>
+    <TD align="left">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">15</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/char.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">variable name</TD>
+    <TD align="left">        = (1..26 meaning A..Z) +128     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">16</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">unused</TD>
+    <TD align="left">        = 32768     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">17</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">checksum byte</TD>
+    <TD align="left">        simply all bytes (including flag byte) XORed     
+    </TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5">
+      <P align="left"><IMG width="50" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/arrow-case.gif" 
+      border="0">case        #3: <IMG width="16" height="16" src="TAP%20file%20format_fichiers/alphaheader.bmp" 
+      border="0">        alphanumeric data array header - for storing string 
+      arrays</P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">flag byte</TD>
+    <TD align="center">
+      <P align="left">always 0. Byte indicating a standard ROM loading header    
+       </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">data type</TD>
+    <TD align="center">
+      <P align="left">always 2: Byte indicating an alphanumeric array     
+  </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TAP%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TAP%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="center" nowrap="">file name</TD>
+    <TD align="center">
+      <P align="left">loading name of the program. filled with spaces        
+      (CHR$(32))     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">12</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><B><FONT color="#008000">[data 
+      length]</FONT></B></TD>
+    <TD align="center">
+      <P align="left">length of the following data (after the header)<BR>        
+      = length of string array +3     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">14</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/0-byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">unused</TD>
+    <TD align="left">        &nbsp;    </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">15</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/char.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">variable name</TD>
+    <TD align="left">        = (1..26 meaning A$..Z$) +192     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">16</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">unused</TD>
+    <TD align="left">        = 32768     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">17</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">checksum byte</TD>
+    <TD align="left">        simply all bytes (including flag byte) XORed     
+    </TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" nowrap="" bgcolor="#ffff00" colspan="5">
+      <P align="left"><IMG width="50" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/arrow-case.gif" 
+      border="0">case        #4: <IMG width="16" height="16" src="TAP%20file%20format_fichiers/byteheader.bmp" 
+      border="0">        byte header or <IMG width="16" height="16" src="TAP%20file%20format_fichiers/screensheader.bmp" 
+      border="0">        SCREEN$ header - for storing machine code or 
+    screens</P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">flag byte</TD>
+    <TD align="center">
+      <P align="left">always 0. Byte indicating a standard ROM loading header    
+       </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">data type</TD>
+    <TD align="center">
+      <P align="left">always 3: Byte indicating a byte header     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/char.jpg" 
+      border="0"><IMG width="20" height="20" src="TAP%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TAP%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">10</TD>
+    <TD align="center" nowrap="">file name</TD>
+    <TD align="center">
+      <P align="left">loading name of the program. filled with spaces        
+      (CHR$(32))     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">12</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap=""><B><FONT color="#008000">[data 
+      length]</FONT></B></TD>
+    <TD align="center">
+      <P align="left">length of the following data (after the header)<BR>        
+      in case of a <IMG width="16" height="16" src="TAP%20file%20format_fichiers/screensheader.bmp" 
+      border="0">        SCREEN$ header = 6912     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">14</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">start address</TD>
+    <TD align="left">        in case of a <IMG width="16" height="16" src="TAP%20file%20format_fichiers/screensheader.bmp" 
+      border="0">        SCREEN$ header = 16384     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">16</TD>
+    <TD align="left" nowrap=""><IMG width="80" height="20" src="TAP%20file%20format_fichiers/word.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">2</TD>
+    <TD align="center" nowrap="">unused</TD>
+    <TD align="left">        = 32768     </TD></TR>
+  <TR>
+    <TD align="center" nowrap="">17</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">checksum byte</TD>
+    <TD align="left">        simply all bytes (including flag byte) XORed     
+    </TD></TR></TBODY></TABLE>
+<P><SPAN style="background-color: rgb(255, 255, 0);"><B>Valid data blocks - data 
+blocks:</B></SPAN></P>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5">
+      <P align="left"><IMG width="50" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/arrow-case.gif" 
+      border="0">case        #5: <IMG width="16" height="16" src="TAP%20file%20format_fichiers/standardblock.bmp" 
+      border="0">        standard data blocks or <IMG width="16" height="16" 
+      src="TAP%20file%20format_fichiers/customblock.bmp" border="0">        
+      custom data blocks - (2+<B><FONT color="#008000">[data length]</FONT></B>) 
+             bytes</P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">flag byte</TD>
+    <TD align="center">
+      <P align="left">always 255 indicating a standard ROM loading data block or 
+      any other value to build a custom data block     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="20" height="20" src="TAP%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TAP%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap=""><FONT color="#008000"><B>[data 
+      length]</B></FONT></TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="center">
+      <P align="left">the essential data (may be empty)     </P></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">1+<FONT color="#008000"><B>[data 
+      length]</B></FONT></TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"></TD>
+    <TD align="center" nowrap="">1</TD>
+    <TD align="center" nowrap="">checksum byte</TD>
+    <TD align="center">
+      <P align="left">simply all bytes (including flag byte) XORed     
+  </P></TD></TR></TBODY></TABLE>
+<P align="left"><SPAN style="background-color: rgb(255, 255, 0);"><B>Fragmented 
+data  blocks:</B></SPAN></P>
+<P align="center">Fragmented data blocks cannot be produced by ROM saving  
+routines - they must be produced with machine code programs. They have less  
+than 2 bytes. In some games you really find zero length fragment data 
+blocks:</P>
+<DIV align="center">
+<CENTER>
+<TABLE width="100%" bgcolor="#ccffff" border="3" cellspacing="0">
+  <TBODY>
+  <TR>
+    <TD align="center" bgcolor="#ffff00" colspan="5">
+      <P align="left"><IMG width="50" height="20" align="absmiddle" src="TAP%20file%20format_fichiers/arrow-case.gif" 
+      border="0">case        #6: <IMG width="16" height="16" src="TAP%20file%20format_fichiers/fragmentblock.bmp" 
+      border="0">        fragment data blocks - without flag or checksum 
+    byte</P></TD></TR>
+  <TR>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Offset:</B></FONT></TD>
+    <TD align="left" nowrap=""><FONT color="#0000ff"><B>Field 
+    type:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+color="#0000ff"><B>Length:</B></FONT></TD>
+    <TD align="center" nowrap=""><FONT 
+      color="#0000ff"><B>Description:</B></FONT></TD>
+    <TD align="center"><FONT color="#0000ff"><B>Additional        
+      information:</B></FONT></TD></TR>
+  <TR>
+    <TD align="center" nowrap="">0</TD>
+    <TD align="left" nowrap=""><IMG width="40" height="20" src="TAP%20file%20format_fichiers/byte.jpg" 
+      border="0"><IMG width="20" height="20" src="TAP%20file%20format_fichiers/array-left.gif" 
+      border="0"><IMG width="50" height="20" src="TAP%20file%20format_fichiers/array-addition.gif" 
+      border="0"></TD>
+    <TD align="center" nowrap="">&lt; 2</TD>
+    <TD align="center" nowrap="">data block</TD>
+    <TD align="center">
+      <P align="left">the essential data (may be empty)     
+</P></TD></TR></TBODY></TABLE></CENTER></DIV>
+<P align="left">&nbsp;</P></BODY></HTML>

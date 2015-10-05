@@ -1,0 +1,7 @@
+﻿[TZX file v1.10 : 1942]
+ + ID 30 - TextDescription : Length=28, Text=Created with Ramsoft MakeTZX
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=18, TapeData=|0 31 ... 4 E| }, PauseInMs=577
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=1046, TapeData=|0 5 ... D 30| }, PauseInMs=5883
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ CustomDataBlock : TapeDataLength=18, TapeData=|3 20 ... 80 90| }, PauseInMs=576
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=229, TapeData=|F3 21 ... C9 CE| }, PauseInMs=4652
+ + ID 10 - StandardSpeedDataBlock : TapeDataBlock={ StandardDataBlock : TapeDataLength=48617, TapeData=|0 0 ... 7 8A| }, PauseInMs=31544

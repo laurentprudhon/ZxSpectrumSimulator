@@ -1,0 +1,37 @@
+	LD A,0
+	CPL
+	LD A,1
+	CPL
+	LD A,2
+	CPL
+	LD A,3
+	CPL
+	LD A,4
+	CPL
+	LD A,7
+	CPL
+	LD A,8
+	CPL
+	LD A,15
+	CPL
+	LD A,16
+	CPL
+	LD A,31
+	CPL
+	LD A,32
+	CPL
+	LD A,63
+	CPL
+	LD A,64
+	CPL
+	LD A,85
+	CPL
+	LD A,127
+	CPL
+	LD A,128
+	CPL
+	LD A,170
+	CPL
+	LD A,255
+	CPL
+	HALT

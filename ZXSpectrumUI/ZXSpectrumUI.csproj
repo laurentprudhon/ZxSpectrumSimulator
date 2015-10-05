@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5903D757-AF64-4FAC-B017-509D442E3F3E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZXSpectrumUI</RootNamespace>
+    <AssemblyName>ZXSpectrumUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=4.3.1.9429, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AvalonEdit.4.3.1.9430\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpDX.2.5.0\lib\net40\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpDX.DirectInput.2.5.0\lib\net40\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="PlatformAdapters\JoystickAdapter.cs" />
+    <Compile Include="TextEditor\TextEditorConfig.cs" />
+    <Compile Include="UserControls\Bus.xaml.cs">
+      <DependentUpon>Bus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InputPin.xaml.cs">
+      <DependentUpon>InputPin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OutputPin.xaml.cs">
+      <DependentUpon>OutputPin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Register.xaml.cs">
+      <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Z80CPU.xaml.cs">
+      <DependentUpon>Z80CPU.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlatformAdapters\KeyboardAdapter.cs" />
+    <Compile Include="PlatformAdapters\ScreenAdapter.cs" />
+    <Compile Include="PlatformAdapters\SpeakerAdapter.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UserControls\Bus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\InputPin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\OutputPin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Z80CPU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NAudio-1.6\AdpcmWaveFormat.cs" />
+    <Compile Include="NAudio-1.6\AudioMediaSubtypes.cs" />
+    <Compile Include="NAudio-1.6\Gsm610WaveFormat.cs" />
+    <Compile Include="NAudio-1.6\IWaveBuffer.cs" />
+    <Compile Include="NAudio-1.6\IWavePlayer.cs" />
+    <Compile Include="NAudio-1.6\IWaveProvider.cs" />
+    <Compile Include="NAudio-1.6\IWaveProviderFloat.cs" />
+    <Compile Include="NAudio-1.6\MmException.cs" />
+    <Compile Include="NAudio-1.6\MmResult.cs" />
+    <Compile Include="NAudio-1.6\MmTime.cs" />
+    <Compile Include="NAudio-1.6\PlaybackState.cs" />
+    <Compile Include="NAudio-1.6\StoppedEventArgs.cs" />
+    <Compile Include="NAudio-1.6\WaveBuffer.cs" />
+    <Compile Include="NAudio-1.6\WaveCallbackInfo.cs" />
+    <Compile Include="NAudio-1.6\WaveCallbackStrategy.cs" />
+    <Compile Include="NAudio-1.6\WaveFormat.cs" />
+    <Compile Include="NAudio-1.6\WaveFormatEncoding.cs" />
+    <Compile Include="NAudio-1.6\WaveFormatExtensible.cs" />
+    <Compile Include="NAudio-1.6\WaveFormatExtraData.cs" />
+    <Compile Include="NAudio-1.6\WaveHeader.cs" />
+    <Compile Include="NAudio-1.6\WaveHeaderFlags.cs" />
+    <Compile Include="NAudio-1.6\WaveInCapabilities.cs" />
+    <Compile Include="NAudio-1.6\WaveInterop.cs" />
+    <Compile Include="NAudio-1.6\WaveOut.cs" />
+    <Compile Include="NAudio-1.6\WaveOutBuffer.cs" />
+    <Compile Include="NAudio-1.6\WaveOutCapabilities.cs" />
+    <Compile Include="NAudio-1.6\WaveOutSupport.cs" />
+    <Compile Include="NAudio-1.6\WaveProvider32.cs" />
+    <Compile Include="NAudio-1.6\WaveWindow.cs" />
+    <Compile Include="PlatformAdapters\WPFSpectrum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Games\1942.tzx" />
+    <EmbeddedResource Include="Games\Airwolf .tzx" />
+    <EmbeddedResource Include="Games\AlienDestroyer.tzx" />
+    <EmbeddedResource Include="Games\BarbarianII-TheDungeonOfDrax.tzx" />
+    <EmbeddedResource Include="Games\BattleShips.tzx" />
+    <EmbeddedResource Include="Games\Batty.tzx" />
+    <EmbeddedResource Include="Games\BeyondTheIcePalace.tzx" />
+    <EmbeddedResource Include="Games\BombJack.pdf" />
+    <EmbeddedResource Include="Games\BombJack.tzx" />
+    <EmbeddedResource Include="Games\BuggyBoy.tzx" />
+    <EmbeddedResource Include="Games\Commando.tzx" />
+    <EmbeddedResource Include="Games\CrazyGolf.tzx" />
+    <EmbeddedResource Include="Games\DiscoDan.tzx" />
+    <EmbeddedResource Include="Games\GhostsNGoblins.tzx" />
+    <EmbeddedResource Include="Games\OhMummy.tzx" />
+    <EmbeddedResource Include="Games\Punchy.tzx" />
+    <EmbeddedResource Include="Games\Saboteur.tzx" />
+    <EmbeddedResource Include="Games\Scooby-Doo.tzx" />
+    <EmbeddedResource Include="Games\Thundercats.tzx" />
+    <EmbeddedResource Include="Games\TreasureIsland.tzx" />
+    <EmbeddedResource Include="Games\Wizball.tzx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="TextEditor\AsmHighlighting.xshd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj">
+      <Project>{86d7ef8a-d0c3-4961-8a89-47611a3fe7f7}</Project>
+      <Name>Z80Simulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZXSPectrum.Test\ZXSpectrum.Test.csproj">
+      <Project>{18c4750f-8b56-460a-9989-bf719535d1a3}</Project>
+      <Name>ZXSpectrum.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZXSpectrum\ZXSpectrum.csproj">
+      <Project>{5b5c1c44-562e-4a55-8db1-05bd7f4efb08}</Project>
+      <Name>ZXSpectrum</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Games\1942.gif" />
+    <EmbeddedResource Include="Games\1942.jpg" />
+    <EmbeddedResource Include="Games\1942.txt" />
+    <EmbeddedResource Include="Games\Airwolf.gif" />
+    <EmbeddedResource Include="Games\Airwolf.jpg" />
+    <EmbeddedResource Include="Games\Airwolf.txt" />
+    <EmbeddedResource Include="Games\AlienDestroyer.gif" />
+    <EmbeddedResource Include="Games\AlienDestroyer.jpg" />
+    <EmbeddedResource Include="Games\AlienDestroyer.txt" />
+    <EmbeddedResource Include="Games\BarbarianII-TheDungeonOfDrax.gif" />
+    <EmbeddedResource Include="Games\BarbarianII-TheDungeonOfDrax.jpg" />
+    <EmbeddedResource Include="Games\BarbarianII-TheDungeonOfDrax.txt" />
+    <EmbeddedResource Include="Games\BattleShips.gif" />
+    <EmbeddedResource Include="Games\BattleShips.jpg" />
+    <EmbeddedResource Include="Games\BattleShips.txt" />
+    <EmbeddedResource Include="Games\Batty.gif" />
+    <EmbeddedResource Include="Games\Batty.jpg" />
+    <EmbeddedResource Include="Games\Batty.txt" />
+    <EmbeddedResource Include="Games\BeyondTheIcePalace.gif" />
+    <EmbeddedResource Include="Games\BeyondTheIcePalace.jpg" />
+    <EmbeddedResource Include="Games\BeyondTheIcePalace.txt" />
+    <EmbeddedResource Include="Games\BombJack.gif" />
+    <EmbeddedResource Include="Games\BombJack.jpg" />
+    <EmbeddedResource Include="Games\BuggyBoy.gif" />
+    <EmbeddedResource Include="Games\BuggyBoy.jpg" />
+    <EmbeddedResource Include="Games\BuggyBoy.txt" />
+    <EmbeddedResource Include="Games\Commando.gif" />
+    <EmbeddedResource Include="Games\Commando.jpg" />
+    <EmbeddedResource Include="Games\Commando.txt" />
+    <EmbeddedResource Include="Games\CrazyGolf.gif" />
+    <EmbeddedResource Include="Games\CrazyGolf.jpg" />
+    <EmbeddedResource Include="Games\CrazyGolf.txt" />
+    <EmbeddedResource Include="Games\DiscoDan.gif" />
+    <EmbeddedResource Include="Games\DiscoDan.jpg" />
+    <EmbeddedResource Include="Games\DiscoDan.txt" />
+    <EmbeddedResource Include="Games\GhostNGoblins.gif" />
+    <EmbeddedResource Include="Games\GhostNGoblins.jpg" />
+    <EmbeddedResource Include="Games\GhostNGoblins.txt" />
+    <EmbeddedResource Include="Games\OhMummy.gif" />
+    <EmbeddedResource Include="Games\OhMummy.jpg" />
+    <EmbeddedResource Include="Games\OhMummy.txt" />
+    <EmbeddedResource Include="Games\Punchy.gif" />
+    <EmbeddedResource Include="Games\Punchy.jpg" />
+    <EmbeddedResource Include="Games\Punchy.txt" />
+    <EmbeddedResource Include="Games\Saboteur.gif" />
+    <EmbeddedResource Include="Games\Saboteur.jpg" />
+    <EmbeddedResource Include="Games\Saboteur.txt" />
+    <EmbeddedResource Include="Games\Scooby-Doo.gif" />
+    <EmbeddedResource Include="Games\Scooby-Doo.jpg" />
+    <EmbeddedResource Include="Games\Scooby-Doo.txt" />
+    <EmbeddedResource Include="Games\Thundercats.gif" />
+    <EmbeddedResource Include="Games\Thundercats.jpg" />
+    <EmbeddedResource Include="Games\Thundercats.txt" />
+    <EmbeddedResource Include="Games\TreasureIsland.gif" />
+    <EmbeddedResource Include="Games\TreasureIsland.jpg" />
+    <EmbeddedResource Include="Games\TreasureIsland.txt" />
+    <EmbeddedResource Include="Games\Wizball.gif" />
+    <EmbeddedResource Include="Games\Wizball.jpg" />
+    <EmbeddedResource Include="Games\Wizball.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserControls\keyboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\Datacorder.png" />
+    <Resource Include="Documentation\spectrum+2 photo big.jpg" />
+    <Resource Include="Documentation\ZX Spectrum +2 issue 3 component layout.png" />
+    <Resource Include="Documentation\ZX Spectrum +2 issue 3 PCB big.jpg" />
+    <Resource Include="Documentation\ZX Spectrum +2 issue 3 PCB.jpg" />
+    <Resource Include="Documentation\ZX Spectrum +2 issue 3 schematics.png" />
+    <Resource Include="Documentation\ZX Spectrum +2 photo small.png" />
+    <Resource Include="Documentation\ZX Spectrum +2 photo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

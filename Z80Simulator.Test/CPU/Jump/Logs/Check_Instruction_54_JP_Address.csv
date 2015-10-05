@@ -1,0 +1,8 @@
+﻿event type;instruction count;instruction address;instruction text;machine cycle index;machine cycle type;half Tstate index;Tstate count;A;SZYHXPNC;B;C;D;E;H;L;PC;SP;IX;IY;IFF1;IFF2;IM;I;R;
+ME;1;0;LD A,n;0;OCF;7;4;FF;11111111;0;0;0;0;0;0;1;FFFF;0;0;0;0;0;0;1;
+ME;1;0;LD A,n;1;OD;5;7;0;11111111;0;0;0;0;0;0;2;FFFF;0;0;0;0;0;0;1;
+ME;2;2;JP nn;0;OCF;7;11;0;11111111;0;0;0;0;0;0;3;FFFF;0;0;0;0;0;0;2;
+ME;2;2;JP nn;1;ODL;5;14;0;11111111;0;0;0;0;0;0;4;FFFF;0;0;0;0;0;0;2;
+ME;2;2;JP nn;2;ODH;5;17;0;11111111;0;0;0;0;0;0;64;FFFF;0;0;0;0;0;0;2;
+ME;3;100;LD A,n;0;OCF;7;21;0;11111111;0;0;0;0;0;0;65;FFFF;0;0;0;0;0;0;3;
+ME;3;100;LD A,n;1;OD;5;24;1;11111111;0;0;0;0;0;0;66;FFFF;0;0;0;0;0;0;3;

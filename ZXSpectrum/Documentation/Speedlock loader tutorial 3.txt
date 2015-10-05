@@ -1,0 +1,1233 @@
+                               Ramsoft presents
+
+                     -= The ZX Spectrum Loaders Guide =-
+
+                                   VOLUME 4
+
+                         The Speedlock 3 Tape-Loader
+
+
+INDEX
+
+Introduction...........................................
+PART I............Basic Knowledges And Signal Structure
+PART II........The Speedlock 3 Loading Routine Analysis
+Appendix.......................Frequencies And T-states
+
+
+------------------------------------------------------------------------------
+Introduction
+
+Welcome to Ramsoft's ZX Spectrum loader guide.
+These documents are intended to provide a useful help for anyone interested on
+learning loader working. All the most common loader types have been treated to
+give a complete view of the mainly used protection systems. The very first
+volume of this guide is dedicated to the normal speed loader in the Spectrum 
+ROM, which is the base for understanding loaders like Speedlock and Alkatraz
+and their amazing effects.
+
+NOTE: the author takes NO responsibility and won't be liable, under any
+      circumstances, for copyright infringements or any other direct or 
+      indirect damage.      
+
+Last revised on 10-9-1997
+
+------------------------------------------------------------------------------
+
+PART I - Basic knowledges and signal structure.
+
+Version 3 is the one that brings the features that everyone reminds when
+talking about Speedlocks: these are the sudden-appearing screenshot and the
+on-screen timer. The old clicking leader and the mid-syncs are still present
+so, apart from these new effects, Speedlock 3 is the same as version 2, but
+the authors have found a better use of the time wasted for waiting edges...
+
+So the signal structure is the same as version 2:
+                           
+                                   KLRBC
+
+for the first block and
+
+                            KLRB [DB] [DB] ... C
+                             
+for the second where K=clicKing leader, L=Long sync, R=short maRker, B=bytes,
+D=miD-sync and C=Checksum.
+
+------------------------------------------------------------------------------
+
+PART II - The Speedlock 3 loading routine analysis.
+
+We are now going to follow each step of Speedlock 3 loading routine. I took 
+Leviathan 128K as example since is one of the few Speedlock 3 files I have.
+This routine is very similar to Speedlock 2 loader, so only different parts
+will have a detailed description; for more details see volume 3 of this guide.
+Here we go...
+
+NOTE: Some of the labels used in this disassembled piece of code are not
+      official, while others are taken from:
+
+      "The complete ZX Spectrum ROM disassembly" , Melbourne House 1983.
+
+      by Dr. Ian Logan & Dr. Franklin O'Hara    ISBN 0 86759 117 X
+                                              
+------------------------------------------------------------------------------
+
+
+B000 Ld-Error  LD   IY,0000h     
+B004 Fill-mem  LD   (IY+75h),00h  
+B008           INC  IY          
+B00A           JR   B004h         (Fill-mem)        
+
+This piece of code completely resets the computer's memory preserving the
+locations from FD25h to FFFFh; it is called in case of tape loading error.
+
+B00C Ld-Fx-1   EXX              
+B00D           EX   AF,AF'      
+
+Here starts the first routine for special loading effects.
+First of all switch to the alternate register set to preserve the main one
+
+B00E           LD   A,(82FFh)    
+
+Load the last byte of the attribute loading buffer in A
+
+B011           CP   00h          
+
+Check if the byte has been loaded (loaded byte must be different from 0)
+
+B013           LD   B,0Ch        
+
+Set B to lose 101 T 
+
+B015           JR   Z,B02Eh       (No-Full)     
+
+Jump forward if the buffer is not full
+
+B017           LD   HL,B031h     
+B01A           LD   (B1F6h),HL    (Fx-Call)+1
+
+Otherwise change the address of the second CALL to search the second edge
+of a bit to the second routine for special effects
+
+B01D           LD   HL,8000h     
+B020           LD   DE,5800h     
+B023           LD   A,41h        
+
+Prepare the registers for attributes transfer:
+
+HL=start of attributes buffer
+DE=start of attributes area
+A=number of transfer repetitions+1
+
+B025           LD   B,09h        
+
+Set B to lose 77 T
+
+B027 Waste-1   DJNZ B027h         (Waste-1)
+
+Waste time
+
+B029           EX   AF,AF'      
+B02A           EXX              
+
+Restore the main register set
+
+B02B           JP   B106h         (Ld-Edge-1)
+
+Jump to find the second edge
+
+B02E No-Full   NOP              
+B02F           JR   B027h         (
+
+Lose 4 T and jump back to waste necessary time
+
+B031 Ld-Fx-2   EXX              
+B032           EX   AF,AF'      
+
+This is the second routine for special effects.
+Swap to alternate register set.
+
+B033           DEC  A           
+
+Check if the last transfer has been performed by decreasing repetitions number
+(that's why A holds rapetitions+1)
+
+B034           JR   Z,B054h        (Xfer-End)
+
+Jump forward if the last repetition has been made
+
+B036           EX   AF,AF'      
+
+Otherwise AF is swapped, since it won't be used anymore in the routine
+
+B037           LDI              
+B039           LDI              
+B03B           LDI              
+B03D           LDI              
+B03F           LDI              
+B041           LDI              
+B043           LDI              
+B045           LDI              
+B047           LDI              
+B049           LDI              
+B04B           LDI              
+B04D           LDI              
+
+Transfer 12 attribute bytes at a time from buffer to screen
+
+B04F           NOP              
+B050           EXX              
+
+Lose 4 T and restore the main registers set
+
+B051           JP   B106h          (Ld-Edge-1)
+
+Jump to load the second edge
+
+B054 Xfer-End  LD   A,01h        
+B056           EX   AF,AF'      
+
+Prepare A for timer initialisation and swap with the main register
+
+B057           LD   HL,B06Bh     
+B05A           LD   (B1F6h),HL     (Fx-Call)+1
+
+Change the address of the second CALL to search the second edge of a bit to
+the third routine for special effects
+
+B05D           XOR  A           
+B05E           LD   (B117h),A      (Bord-Clr)
+
+Change border colour to fixed BLACK (i.e. turn off border colours)
+
+B061           NOP              
+B062           NOP              
+B063           LD   B,0Ah        
+
+Lose 8 T and set B to waste 85 T
+
+B065 Waste-2   DJNZ B065h          (Waste-2)
+
+Waste the necessary time
+
+B067           EXX              
+
+Swap to main register set
+
+B068           JP   B106h          (Ld-Edge-1)
+
+Jump to search second edge
+
+B06B Ld-Fx-3   EXX              
+B06C           EX   AF,AF'      
+
+This is the second routine for special effects; at the first call A holds 1
+so the timer is updated and printed to screen
+
+Swap to alternate register set; at this point, A and C hold some sort of
+"commands" for the timer routine:
+
+if A=1 then update and dispose things to print timer 
+if 01h< A <CAh then waste time and decrease A
+if CAh<= A <CEh then
+   if C=1 set registers to print the digit ID specified in A (*)
+   if C=2 print second half of digit
+   if C=3 print first half of digit
+
+(*) CAh=minutes, CBh=seconds/10, CCh=seconds-seconds/10, CE=10ths of second
+
+B06D           CP   CAh          
+
+Check if we are processing a digit (CAh is the last one)
+
+B06F           JR   C,B0CEh        (No-Digit)
+
+Jump forward if the last (minutes) digit has been processed.
+
+B071           DEC  C
+
+Otherwise check if all of the work for the current digit has been performed
+
+B072           JR   Z,B082h        (Nxt-Dgt)
+
+Shift to next digit if there's nothing else to do
+
+B074           EX   AF,AF'      
+
+Otherwise keep A (the digit ID) safe
+
+B075           LD   B,04h        
+
+Set B to print half of the character
+
+B077 Print-Dgt LD   A,(HL)      
+B078           LD   (DE),A      
+B079           INC  HL          
+B07A           INC  D           
+B07B           DJNZ B077h          (Print-Dgt)
+
+Print half character: HL points to the new charset area and DE to screen
+
+
+B07D           NOP              
+
+Lose 4 T
+
+B07E           LD   B,01h        
+B080           JR   B0BBh          (Waste-4)
+
+Set B to lose 13 T and jump to waste time
+
+B082 Nxt-Digit DEC  A           
+
+Move to next digit ID
+
+B083           CP   CAh          
+
+Check if it is valid
+
+B085           JR   C,B0C1h        (No-Dgt-1)
+
+Jump forward if not
+
+B087           LD   C,03h        
+
+Set C to perform all needed operations for that digit
+
+B089           LD   HL,B102h       (Timer-DGT)+4
+
+HL points to the location that holds the 10th of second digit
+
+B08C           LD   DE,5005h     
+
+DE points to the screen position where the digit will be printed
+
+B08F           LD   B,08h        
+
+Set B to lose 69 T
+
+B091           JR   Z,B0AEh        (Waste-3)
+
+A has been compared to CAh and the result is tested again: jump forward if
+we are about to print the 10ths of second digit
+
+B093           DEC  HL          
+B094           DEC  E           
+B095           DEC  E           
+
+Otherwise move HL to the next digit location and DE to its position
+
+B096           NOP              
+B097           NOP              
+
+Lose 8 T
+
+B098           LD   B,05h        
+
+Set B to lose 45 T
+
+B09A           CP   CBh          
+
+Check if we are processing the seconds-seconds/10 digit
+
+B09C           JR   Z,B0AEh        (Waste-3)
+
+Jump forward if it's so
+
+B09E           DEC  HL          
+B09F           DEC  E           
+
+Otherwise move again HL and DE
+
+B0A0           NOP              
+
+Lose 4 T
+
+B0A1           LD   B,03h        
+
+Set B to lose 29 T
+
+B0A3           CP   CCh          
+
+Check if we are processing the seconds/10 digit
+
+B0A5           JR   Z,B0AEh        (Waste-3)
+
+Jump forward if it's so
+
+B0A7           DEC  HL          
+B0A8           DEC  E           
+B0A9           DEC  E           
+
+Otherwise the digit to update is obviusly the minute's one
+
+B0AA           NOP              
+B0AB           NOP              
+
+Lose 8 T
+
+B0AC           LD   B,01h        
+
+Set B to lose 13 T
+
+B0AE Waste-3   DJNZ B0AEh          (Waste-3)
+
+Waste the specified time
+
+B0B0           LD   L,(HL)      
+
+Fetch the offset to character in the new set from the digit location
+
+B0B1           LD   H,B3h        
+
+Set H to the high byte of the address of the new charset
+
+B0B3           EX   AF,AF'      
+B0B4           EXX              
+
+Restore the main register set
+
+B0B5           JP   B106h          (Ld-Edge-1)
+
+Jump to search for the second edge
+
+B0B8 Timr-Skip LD   B,0Dh        
+
+Set B to lose 109 T
+
+B0BA ID-Safe   EX   AF,AF'      
+
+Keep the ID safe
+
+B0BB Waste-4   DJNZ B0BBh          (Waste-4)
+
+Waste the specified time
+
+B0BD           EXX              
+
+Switch to main register set
+
+B0BE           JP   B106h          (Ld-Edge-1)
+
+Search for the second edge
+
+B0C1 No-Dgt-1  LD   B,0Bh        
+
+Set B to lose 93 T
+
+B0C3           JR   B0BAh          (ID-Safe)
+
+Jump to keep ID safe and to waste time
+
+B0C5 Restr-1   LD   (HL),A      
+
+Restore the offset in its location (main purpose is to waste 7 T)
+
+B0C6 Waste-5   DJNZ B0C6h          (Waste-5)
+
+Waste the specified time
+
+B0C8           JR   B0F8h          (Restr-Ofs)
+
+Jump to restore the offset in its location
+
+B0CA Restr-2   NOP              
+B0CB           NOP              
+
+Lose 8 T
+
+B0CC           JR   B0F8h          (Restr-Ofs)
+
+Jump to restore the offset in its location
+
+B0CE Timer-Cmd DEC  A           
+B0CF           JR   NZ,B0B8h       (Timr-Skip)
+
+Check if the timer has to be updated and jump back if not
+
+B0D1           LD   A,CEh        
+
+Set A to process the first (10ths of second) digit
+
+B0D3           EX   AF,AF'      
+
+Keep that ID safe
+
+B0D4           LD   HL,B102h       (Timer-DGT)+4
+
+HL points to the 10ths of second digit location
+
+B0D7           LD   DE,8EF8h     
+
+E holds -8 to move to the previous character and D holds the limit offset
+to reset the offset to make it point to '9' after '0'
+
+B0DA           LD   A,E         
+B0DB           ADD  A,(HL)      
+
+Subtract 8 from the offset currently pointed by HL
+
+B0DC           CP   D           
+
+Check if it's beyond the limit (i.e. if it needs to be reset so next digit has
+to be updated too)
+
+B0DD           LD   B,07h        
+
+Set B to lose 61 T
+
+B0DF           JR   NZ,B0C5h       (Restr-1)
+
+Jump forward if not
+
+B0E1           LD   (HL),DE     
+
+Otherwise reset the offset to point to '9'
+
+B0E3           DEC  HL          
+
+Point to the next offset
+
+B0E4           LD   A,E         
+B0E5           ADD  A,(HL)      
+
+Subtract 8 from it
+
+B0E6           CP   D           
+
+Check if it's beyond limit
+
+B0E7           LD   B,04h        
+
+Set B to lose 37 T
+
+B0E9           JR   NZ,B0C6h       (Waste-5)
+
+Jump forward if not
+
+B0EB           LD   (HL),DE     
+
+Otherwise reset the offset to point to '9'
+
+B0ED           DEC  HL          
+
+Point to the next offset
+
+B0EE           LD   A,E         
+B0EF           ADD  A,(HL)      
+
+Subtract 8 from it
+
+B0F0           CP   D           
+
+Check if it's beyond limit
+
+B0F1           JR   NZ,B0CAh       (Restr-2)
+
+Jump forward if not
+
+B0F3           LD   (HL),BE     
+
+Otherwise reset the offset to point to '5'
+
+B0F5           DEC  HL          
+
+Point to the next offset
+
+B0F6           LD   A,E         
+B0F7           ADD  A,(HL)      
+
+Subtract 8 from it
+
+B0F8 Restr-Ofs LD   (HL),A      
+
+And restore it in its location
+
+B0F9           LD   C,01h        
+
+Set C to print the digit
+
+B0FB           EXX              
+
+Restore the main register set
+
+B0FC           JP   B106h          (Ld-Edge-1)
+
+Jump to search second edge
+
+B0FF Timer-DGT DEFB 9Eh,AEh,AEh,BEh      
+
+This is the digit offsets area: these locations hold the LSB of the address of
+the byte sequence for the character to be printed.
+
+96h='0' 9Eh='1' A6h='2' ... DEh='9'
+
+The MSB is fixed and in this case is B3h.
+
+B103 Ld-Edge   DEC  A           
+B104           JR   NZ,B103h      (Ld-Edge)     
+B106 Ld-Edge-1 AND  A           
+B107 Ld-Sample INC  B           
+B108           RET  Z           
+B109           LD   A,7Fh        
+B10B           IN   A,(FEh)      
+B10D           RRA              
+B10E           XOR  C           
+B10F           AND  20h          
+B111           JR   Z,B107h       (Ld-Sample)      
+B113           LD   A,C         
+B114           CPL              
+B115           LD   C,A         
+B116           AND  02h          
+B118           OR   08h          
+B11A           OUT  (FEh),A      
+B11C           SCF              
+B11D           RET              
+
+This routine looks for one edge and is very similar to the one held in the
+Spectrum ROM (LD-EDGE-1): it only lacks the A register intialisation and BREAK
+key status check. For detailed informations see volume 1 of this guide.
+
+B11E Loader    DI               
+B11F           INC  D           
+B120           DEC  D           
+B121           LD   A,02h        
+B123           LD   (B117h),A     (Bord-Clr)    
+B126           LD   A,0Fh        
+B128           OUT  (FEh),A      
+B12A           LD   HL,B355h      (Ld-Ret)     
+B12D           PUSH HL          
+B12E           IN   A,(FEh)      
+B130           RRA              
+B131           AND  20h         
+B133           LD   C,A         
+B134           CP   A           
+B135 Ld-Start  CALL B103h         (Ld-Edge)        
+B138           JR   NC,B135h      (Ld-Start)     
+B13A           LD   HL,0415h     
+B13D Ld-Wait   DJNZ B13Dh         (Ld-Wait)        
+B13F           DEC  HL          
+B140           LD   A,H         
+B141           OR   L           
+B142           JR   NZ,B13Dh      (Ld-Wait)     
+B144           LD   A,0Ah       
+B146           CALL B103h         (Ld-Edge)        
+B149           JR   NC,B135h      (Ld-Start)     
+
+This piece of code waits for an incoming signal and is the same as in
+Speedlock 2. Please refer to volume 3 for details.
+
+B14B Ld-Lead-1 LD   B,C4h
+B14D           LD   A,16h        
+B14F           CALL B103h         (Ld-Edge)        
+B152           JR   NC,B135h      (Ld-Start)     
+B154           LD   A,D6h        
+B156           CP   B           
+B157           JR   C,B14Bh       (Ld-Lead-1)      
+B159 Ld-Lead-2 LD   B,C4h        
+B15B           LD   A,16h        
+B15D           CALL B103h         (Ld-Edge)        
+B160           JR   NC,B135h      (Ld-Start)     
+B162           LD   A,DFh        
+B164           CP   B           
+B165           JR   C,B14Bh       (Ld-Lead-1)      
+B167 Rst-Table LD   IY,B35Fh      (Click-Tbl)     
+B16B Rd-Table  LD   H,(IY)      
+B16E Ld-Lead-3 LD   B,C4h        
+B170           LD   A,16h        
+B172           CALL B103h         (Ld-Edge)        
+B175           JR   NC,B135h      (Ld-Start)     
+B177           LD   A,CDh        
+B179           CP   B           
+B17A           JR   NC,B159h      (Ld-Lead-2)     
+B17C           INC  H           
+B17D           JR   NZ,B16Eh      (Ld-Lead-3)     
+B17F           LD   B,60h        
+B181           LD   A,16h        
+B183           CALL B103h         (Ld-Edge)        
+B186           JR   NC,B135h      (Ld-Start)     
+B188           LD   A,16h        
+B18A           CALL B103h         (Ld-Edge)        
+B18D           JR   NC,B135h      (Ld-Start)     
+B18F           LD   A,ABh        
+B191           CP   B           
+B192           JR   C,B19Eh       (Ld-Data)      
+B194           INC  IY          
+B196           LD   A,IYL       
+B198           CP   64h          
+B19A           JR   NZ,B16Bh      (Rd-Table)     
+B19C           JR   B167h         (Rst-Table)
+
+This is the clicking leader loading part: it's the very same of Speedlock 2
+loader, so please refer to volume 3 for details.
+
+B19E           LD   A,01h
+B1A0           LD   (B117h),A     (Bord-Clr)    
+
+Change border colours from RED/BLACK to BLUE/BLACK
+
+B1A3           LD   B,B0h
+B1A5           LD   L,04h        
+B1A7           LD   A,0Bh        
+B1A9           JR   B1ADh         (Ld-Marker)        
+
+Set L to load 6 bits and load A and B with the timing constants
+
+B1AB Ld-Mark-1 LD   A,0Ch
+B1AD Ld-Marker CALL B103h         (Ld-Edge)        
+B1B0           RET  NC          
+B1B1           NOP              
+B1B2           NOP              
+B1B3           LD   A,0Eh        
+B1B5           CALL B103h         (Ld-Edge)        
+B1B8           RET  NC          
+B1B9           LD   A,13h        
+B1BB           LD   A,C3h        
+B1BD           CP   B           
+B1BE           RL   L           
+B1C0           LD   B,B0h        
+B1C2           JP   NC,B1ABh      (Ld-Mark-1)     
+
+Load the 6-bit marker at high speed
+
+B1C5           LD   A,3Ah
+B1C7           CP   L           
+B1C8           JP   NZ,B000h      (Ld-Err)     
+
+Check if the marker is the expected one
+
+B1CB           LD   H,86h
+B1CD           LD   H,00h       
+B1CF           LD   B,C4h       
+B1D1           LD   L,01h        
+
+Prepare L to load 8 bits, reset the checksum register H, set b with the timing
+constant after having lost 4 T
+
+B1D3           LD   IY,B364h      (Block-Tbl)
+
+Make IY point to the start of the table that holds the values for the next
+block to load
+
+B1D7           LD   A,07h
+B1D9           JR   B1F1h         (Ld-8-Bits)        
+
+Set A with timing constant and jump forward to load data
+                                              (*)
+B1DB Stor-Data LD   A,51h
+B1DD           XOR  L           
+B1DE           ADD  A,3Eh       
+
+Decrypt the loaded byte in L
+
+(*) The value loaded in A will be overwritten with a new value while loading
+
+B1E0           LD   (IX),A
+
+Store it in memory
+
+B1E3           INC  IX
+B1E5           DEC  DE          
+
+Fixup pointer and byte counter
+
+B1E6           LD   B,C4h
+B1E8           LD   L,01h        
+B1EA           NOP              
+B1EB           LD   A,05h        
+B1ED           JR   B1F1h         (Ld-8-Bits)        
+
+Prepare to load another 8 bits, lose 4 T and set A and B with the appropriate
+timing constants
+
+B1EF Ld-8-Bt-1 LD   A,0Ch
+B1F1 Ld-8-Bits CALL B103h         (Ld-Edge)        
+B1F4           RET  NC          
+B1F5 Fx-Call   CALL B00Ch         (Ld-Fx-1)
+                    B031h         (Ld-Fx-2)
+                    B06Bh         (Ld-Fx-3)              
+
+B1F8           RET  NC          
+B1F9           LD   A,13h        
+B1FB           LD   A,D7h        
+B1FD           CP   B           
+B1FE           RL   L           
+B200           LD   B,C4h        
+B202           JP   NC,B1EFh      (Ld-8-Bt-1)     
+
+Load a byte with the usual procedure
+
+B205           LD   A,H
+B206           XOR  L           
+B207           LD   H,A         
+
+Update the checksum register
+
+B208           LD   A,D
+B209           OR   E           
+B20A           JR   NZ,B1DBh      (Stor-Data)     
+
+Check for end of loading; if not then jump to decrypt the byte that has been
+just loaded
+
+B20C Ld-Ret    JP   B354h         (Ld-End-1)
+                    B20Fh         (Ld-End-2)
+        
+
+Otherwise jump somewhere. The jump address is changed after loading the first
+block and after loading the last sub-block; the initial value is FF7Ah.
+
+B20F Ld-End-2  LD   A,51h
+B211           XOR  L           
+B212           ADD  A,3Eh        
+B214           LD   (IX),A      
+
+This is the end-of-loading manager: start decrypting the loaded byte and
+storing it in memory
+
+B217           INC  IX          
+B219           DEC  DE          
+
+Then update the memory pointer and the byte counter (increasing DE actually
+only loses 6 T since DE content will be overwritten
+
+B21A           LD   L,02h        
+
+Prepare L to load the first part of mid-sync (7 bits)
+
+B21C           LD   A,04h        
+B21E           LD   B,B3h        
+
+Set A and B with timing constants for normal speed
+
+B220           CALL B286h         (Ld-7-Bits)        
+
+Load 7 bits
+
+B223           RET  NC          
+
+Return if error
+
+B224           LD   A,(IY+04h)   
+
+Get the page number to swap to from table
+
+B227           OR   A           
+
+Check if it's good
+
+B228           JR   Z,B280h       (No-IX-Upd)      
+
+Jump forward if not: this won't alter the loading address and the RAM page
+
+B22A           LD   L,C         
+
+Keep EAR status safe
+
+B22B           LD   BC,7FFDh
+
+FE5B           OUT  (C),A
+
+B22E           OUT  (C),A       
+
+Change RAM page
+
+B230           LD   C,(IY)      
+B233           LD   B,(IY+01h)   
+
+Load BC with the new block start from table
+
+B236           LD   IX,0000h     
+B23A           ADD  IX,BC       
+
+Load IX with BC
+
+B23C           LD   C,L         
+
+Restore EAR port status
+
+B23D           LD   A,01h        
+B23F Ld-M-Mid  LD   L,02h        
+B241           LD   B,B3h        
+
+Prepare to load the second part of mid-sync
+
+B243           CALL B286h         (Ld-7-Bits)        
+B246           RET  NC          
+
+Load 7 bits
+
+B247           LD   A,7Fh        
+B249           CP   L           
+B24A           JR   Z,B24Fh       (No-Copy)
+
+Check if mid-sync has been loaded correctly; if so jump forward
+
+B24C           LD   (B309h),A     (Copy-Flag)    
+
+Otherwise alter the "copy flag"
+
+B24F No-Copy   LD   L,02h        
+B251           LD   A,08h        
+B253           LD   B,B3h        
+B255           CALL B286h         (Ld-7-Bits)        
+B258           RET  NC          
+
+Load the last 7 bits of mid-sync
+
+B259           LD   E,(IY+02h)   
+B25C           LD   D,(IY+03h)   
+
+Fetch the new sub-block length from table
+
+B25F           LD   L,C         
+
+Save EAR port status
+
+B260           LD   BC,0005h     
+B263           ADD  IY,BC       
+
+Update table pointer
+
+B265           LD   C,L         
+
+Restore EAR status
+
+B266           LD   A,E         
+B267           OR   D           
+
+Check if there are more blocks to load (DE=0 means no more blocks)
+
+B268           LD   B,C4h       
+B26A           LD   L,01h        
+B26C           LD   A,05h        
+
+Set L to load 8 bits and A and B with the appropriate timing constants
+
+B26E           JP   NZ,B1F1h      (Ld-8-Bits)     
+
+Jump to load the first byte of the new sub-block
+
+B271           LD   DE,B354h      (Ld-End-1)     
+
+Load DE with the address of the other end-of-loading routine
+
+B274           LD   (B20Dh),DE    (Ld-Ret)+1   
+
+Change the JP address at the end of loading
+
+B278           LD   DE,006Ah     
+
+Prepare DE to load 106 bytes (this value is often different)
+
+B27B           LD   A,01h        
+B27D           JP   B1F1h         (Ld-8-Bits)        
+
+Set A with the appropriate timing constant and jump back for loading
+
+B280 No-IX-Upd LD   A,06h        
+B282           JR   B23Fh         (Ld-M-Mid)        
+
+In case that the fetched page number is not good, then set A to lose more time
+and then jump back
+
+B284 Ld-7-Bits LD   A,0Ch        
+B286           CALL B103h         (Ld-Edge)        
+B289           NOP              
+B28A           NOP              
+B28B           LD   A,0Eh        
+B28D           CALL B103h         (Ld-Edge)        
+B290           RET  NC          
+B291           LD   A,DBh        
+B293           CP   B           
+B294           RL   L           
+B296           LD   B,B3h        
+B298           JP   NC,B284h      (Ld-7-Bits)     
+B29B           RET              
+
+This is the routine that loads 7 bits at normal speed with the usual procedure
+and then returns control to the end-of-loading program part
+
+B29C           CALL B11Eh         (Loader)        
+B29F           LD   HL,8000h     
+B2A2           LD   B,FF        
+B2A4           PUSH BC          
+B2A5           CALL B2B1h         (Samp-255)        
+B2A8           LD   (HL),E      
+B2A9           INC  HL          
+B2AA           POP  BC          
+B2AB           DJNZ B2A4h        
+B2AD           CALL B2CDh         (Chk-Near)       
+B2B0           RET              
+
+Call the loader to load first Speedlock 3 block and then call the pause check
+routines as in Speedlock 2
+
+B2B1 Samp-255  LD   E,00h        
+B2B3           LD   C,E         
+B2B4           LD   B,FFh        
+B2B6 Get-Samp  LD   A,7Fh        
+B2B8           IN   A,(FEh)      
+B2BA           AND  40h          
+B2BC           XOR  C           
+B2BD           JR   Z,B2C8h       (Same-Lev)      
+B2BF           INC  E           
+B2C0           LD   A,C         
+B2C1           CPL              
+B2C2           AND  40h          
+B2C4           LD   C,A         
+B2C5 Nxt-Samp  DJNZ B2B6h         (Get-Samp)        
+B2C7           RET              
+B2C8 Same-Lev  NOP              
+B2C9           NOP              
+B2CA           JP   B2C5h         (Nxt-Samp)        
+
+This is the same sampling routine as Speedlock 1
+
+B2CD Chk-Near  LD   HL,0000h     
+B2D0           LD   DE,8032h     
+B2D3           LD   B,32h        
+B2D5 Add-Edg-1 PUSH BC          
+B2D6           LD   A,(DE)      
+B2D7           LD   B,00h        
+B2D9           LD   C,A         
+B2DA           ADD  HL,BC       
+B2DB           INC  DE          
+B2DC           POP  BC          
+B2DD           DJNZ B2D5h         (Add-Edg-1)        
+B2DF           PUSH HL          
+B2E0           LD   HL,0000h     
+B2E3           LD   DE,80CDh     
+B2E6           LD   B,32        
+B2E8 Add-Edg-2 PUSH BC          
+B2E9           LD   A,(DE)      
+B2EA           LD   B,00h        
+B2EC           LD   C,A         
+B2ED           ADD  HL,BC       
+B2EE           INC  DE          
+B2EF           POP  BC          
+B2F0           DJNZ B2E8h         (Add-Edg-2)        
+B2F2           POP  BC          
+B2F3           LD   A,H         
+B2F4           CP   0Dh          
+B2F6           JR   NC,B305h      (Set-Near)     
+B2F8           AND  A           
+B2F9           SBC  HL,BC       
+B2FB           RET  C           
+B2FC           LD   BC,0032h     
+B2FF           AND  A           
+B300           SBC  HL,BC       
+B302           RET  C           
+B303           LD   A,01h        
+B305 Set-Near  LD   (B309h),A     (Copy-Flag)    
+B308           RET              
+
+This is the same pause checking routine as Speedlock 2
+
+B309 Copy-Flag DEFB 00h              
+
+This location holds the copy protection flag and is initially set to 0
+(no error)
+
+B30A Start     DI               
+
+Disable interrupts
+
+B30B           LD   HL,4000h     
+B30E           LD   BC,0028h     
+B311           LD   (HL),00h     
+B313           INC  HL          
+B314           DJNZ B311h        
+B316           DEC  C           
+B317           JR   NZ,B311h     
+
+Clear the whole screen area
+
+B319           LD   SP,BFFEh     
+
+Set the stack to a safe address
+
+B31C           LD   IX,5C00h     
+B320           LD   DE,0011h     
+B323           CALL B29Ch         (Ld-Blk-1)        
+
+Load 17 bytes at 23552 and then check the pause duration
+
+B326           XOR  A           
+B327           LD   (82FFh),A    
+B32A           LD   IX,4000h     
+B32E           LD   DE,17FFh     
+
+Prepare IX and DE to load at 16384 for 6912 bytes; DE is 6912-1 because the
+last byte will be managed by the end-of-loading routine at FE3Ch
+
+B331           LD   HL,B20Fh     
+B334           LD   (B20Dh),HL   
+
+Change the end-of-loading routine JP address
+
+B337           CALL B11E         (Loader)        
+
+Call the loader to load the second Speedlock block
+
+B33A           LD   A,(B309h)    
+B33D           OR   A           
+B33E           CALL NZ,B000h      (Ld-Error)     
+B341           LD   IY,5C3Ah     
+B345           IM   1           
+B347           LD   HL,2758     
+B34A           EXX              
+B34B           XOR  A           
+B34C           LD   R,A         
+B34E           LD   SP,7FFFh     
+B351           JP   8000h        
+B354 Ld-End-1  POP  DE          
+B355           XOR  A           
+B356           OUT  (FEh),A      
+B358           LD   A,H         
+B359           CP   01h          
+B35B           RET  C           
+B35C           CALL B000h
+
+This routine will be completely overwritten while loading, but the only thing
+that changes is the address of stack pointer and jump to
+
+B34E           LD   SP,D000h     
+B351           JP   5B00h        
+
+However this will delete any breakpoint inserted by a possible pirate...
+        
+B35F Click-Tbl DEFB 1Ah,26h,28h,1Eh,22h
+
+This is the "preloaded half periods" table as in Speedlock 2 (needed for
+clicking leader)
+       
+B364 Block-Tbl  DEFW 8000h,02FFh; DEFB 10h
+                DEFW 6400h,1527h; DEFB 10h
+                DEFW B1DBh,0001h; DEFB 10h
+                DEFW B20Fh,0003h; DEFB 10h
+                DEFW B33Ah,0024h; DEFB 10h
+                DEFW C000h,141Fh; DEFB 11h
+                DEFW 5B00h,08FFh; DEFB 10h
+                DEFW F900h,06FFh; DEFB 10h
+                DEFW 7928h,27FFh; DEFB 10h
+                DEFW 0000h,0000h; DEFB 00h
+
+
+This is the table for the new values of the sub-blocks. Each entry is arranged
+as follows:
+
+Offset 0 = LSB of start address
+  "    1 = MSB of start address
+  "    2 = LSB of (length-1)
+  "    3 = MSB of (length-1)
+  "    4 = RAM page number
+
+The group of five zeros is the end marker.
+
+B396 Char-Set   00000000 (00h)            
+                01111110 (7Eh)     ****** 
+                01000110 (46h)     *   ** 
+                01001010 (4Ah)     *  * * 
+                01010110 (56h)     * * ** 
+                01100110 (66h)     **  ** 
+                01111110 (7Eh)     ****** 
+                00000000 (00h)            
+
+B39E            00000000 (00h)            
+                00001000 (08h)        *  
+                00001000 (08h)        *   
+                00001000 (08h)        *   
+                00011000 (18h)       **   
+                00011000 (18h)       **   
+                00011000 (18h)       **   
+                00000000 (00h)            
+
+B3A6            00000000 (00h)
+                01111110 (7Eh)     ******
+                01000010 (42h)     *    *
+                00000010 (02h)          *
+                01111110 (7Eh)     ******
+                01100000 (60h)     **
+                01111110 (7Eh)     ******
+                00000000 (00h)
+
+B3AE            00000000 (00h)
+                01111100 (7Ch)     *****
+                01000100 (44h)     *   *
+                00011110 (1Eh)       ****
+                00000110 (06h)         **
+                01000110 (46h)     *   ** 
+                01111110 (7Eh)     ******
+                00000000 (00h)
+
+B3B6            00000000 (00h)
+                01111100 (7Ch)     *****
+                01000100 (44h)     *   *
+                01000100 (44h)     *   *
+                01000100 (44h)     *   *
+                01111110 (7Eh)     ******
+                00001100 (0Ch)        **
+                00000000 (00h)            
+
+B3BE            00000000 (00h)
+                01111110 (7Eh)     ******
+                01000000 (40h)     *      
+                01111110 (7Eh)     ******
+                00000110 (06h)         **
+                01000110 (46h)         **
+                01111110 (7Eh)     ******
+                00000000 (00h)
+
+B3C6            00000000 (00h)
+                01111110 (7Eh)     ******
+                01000000 (40h)     *
+                01111110 (7Eh)     ******
+                01000110 (46h)     *   **
+                01000110 (46h)     *   **
+                01111110 (7Eh)     ******
+                00000000 (00h)
+
+B3CE            00000000 (00h)
+                01111100 (7Ch)     *****
+                00000100 (04h)         *
+                00000100 (04h)         *
+                00001100 (0Ch)        **
+                00001100 (0Ch)        **
+                00001100 (0Ch)        **
+                00000000 (00h)
+
+B3D6            00000000 (00h)
+                00111100 (3Ch)      ****
+                00100100 (24h)      *  *
+                01111110 (7Eh)     ******
+                01000110 (46h)     *   **
+                01000110 (46h)     *   **
+                01111110 (7Eh)     ******
+                00000000 (00h)
+
+B3DE            00000000 (00h)
+                01111110 (7Eh)     ******
+                01000010 (42h)     *    *
+                01000010 (42h)     *    *
+                01111110 (7Eh)     ******
+                00000110 (06h)         **
+                00000110 (06h)         **
+                00000000 (00h)
+
+This is the new charset of 10 digits for the on-screen counter.
+
+------------------------------------------------------------------------------
+
+Appendix - Frequencies and T-states
+
+Some of the values in this document may appear strange or maybe someone's
+wondering how to calculate them. There's a well known formula to do this and
+it's the following:
+
+                 CPU Clock                             CPU Clock
+     T-States = -----------     or vice-versa    f =  ------------
+                   2 * f                              2 * T-States  
+
+The CPU Clock and the frequency are given in Hz; so for the ZX Spectrum 48K
+the value for CPU Clock is 3500000 and for 128K is 3540000.

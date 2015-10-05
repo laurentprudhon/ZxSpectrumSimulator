@@ -1,0 +1,451 @@
+<html>
+<head><title>Rom Routines</title></head>
+<body>
+<H1>Rom Routines</H1>
+
+<H3>Introduction</H3>
+
+If you've ever read any books on Z80 machine code and the like, no 
+doubt you'll be able to write some limited machine code programs.<BR> 
+However, there are a lot of things which haven't been covered, 
+such as drawing lines, boxes and circles on screen, printing 
+sprites or even multiplying and dividing numbers. The simple 
+reason is because a program to do these things would be quite 
+complex.<p>
+ But fear not! You are probably aware of the fact that your 
+computer has at least 16K of ROM, memory which you can read, but 
+not write to. What you may not know that in ROM, there are 
+hundreds of small routines already built in to do something 
+useful, and can be used in conjunction with your main machine 
+code program in RAM. Most of the routines are fairly fast and 
+reliable, and can save memory by not having to write similar 
+routines in RAM.<p>
+ To execute a ROM routine, you have to put certain values into 
+certain registers (these are the "inputs"), CALL the routine, and 
+get certain results in certain registers (these are the 
+"outputs").<p>
+ You may already be familiar with a few ROM routines already, such
+as the <b>LD-BYTES</b> routine. This takes the following inputs:<ul>
+
+<li>IX = Start of code
+<li>DE = Length of code
+<li>A  = Header type</ul>
+
+ The value of a can be anything from 0 to 255 (FFh) and 
+determines the length of the tone header (that's the "wheee" bit 
+with blue and red stripes at the start!) In addition to this, you 
+need to set the carry flag (done by the command SCF).<BR>
+ The routine is then called by using CALL 1366 (0556h). Its 
+outputs are:<ul>
+
+<li>IX = Address of last byte loaded in
+<li>DE = Number of bytes not loaded in</ul>
+
+ This outputs can be quite useful, because if a loading error 
+occurs, you can inspect the value of the IX register to see what 
+address it got up to.<BR>
+You can find a full list of Spectrum 
+ROM routines in the book "The Complete Spectrum ROM Disassembly" 
+by Dr. Ian Logan and Dr. Frank O'Hara (ISBN 0 86161 116 0). 
+Unfortunately this book is out of print, but your local library 
+may be able to get you a copy. <i>(And pigs might fly...)</i><p>
+Another useful routine is the <b>START/NEW</b> routine, used to
+partially reset a Spectrum. This is used as follows.
+<pre>
+Inputs : DE=Last address to be NEWed
+         A =0
+         Plus the DI command (243d,F3h)        
+</pre><BR>
+ This routine resets the computer, but only up to a certain 
+address. All the memory beyond this address is preserved. When 
+the machine is switched on, this routine is called with the value 
+of DE being 65535 (FFFFh), thereby wiping all the memory.<BR>
+ The best use of this routine is during a crash. By using a 
+multiface, you can restore normality and still keep some of the 
+memory intact. For example, put the following POKEs into memory.<BR><pre>
+
+5B00,F3     5B01,AF     5B02,11     5B03,FF   5B04,5F
+5B05,C3     5B06,CB     5B07,11     2000,00   2001,5B    2002,01
+</pre>
+ Now pres the "j" key (which will now jump to 5B00), and you'll 
+find that the computer has reset, but left intact all the memory 
+from 6000 (24576d) onwards.<p>
+
+<H3>Graphics routines</H3>
+
+One of the most common uses of ROM routines is to produce graphics.<p>
+
+ Before we do that, it might be a good idea to explain how 
+graphics are made up in the Spectrum. When you get down to 
+machine code, there is essentially only one way to display text 
+or pictures, and that's to change bytes in the display file.
+ As you might be aware, the Spectrum's screen memory map runs 
+from addresses 16384 (#4000) to 22527 (#57FF). Each byte of the 
+screen memory controls the state of eight adjacent pixels, a 
+pixel being a single square which can either be on (coloured) or 
+off (blank). Hence, a single bit is used to give information on 
+the state of each individual pixel. In BASIC, try POKE 16384,n 
+where n is any number between 0 and 255 to get an idea of how 
+this works.<p>
+ The bad news is that the Spectrum's screen memory is laid out in 
+a rather unusal way. You can find this out for yourself by 
+running the following program:<pre>
+
+10 FOR N=16384 TO 22527:POKE N,255:NEXT N
+</pre>
+ Now watch the order that the lines build up in. As you can see, 
+it's not going to be easy to find the right addresses to POKE in 
+order to get your picture on the screen in the right place!<p>
+ Fortunately, there's a ROM routine to work it all out for you!
+The routine is at address 8874 (#22AA). Its inputs are the 
+pixel's x-co ordinate in C, and the pixel's y-co ordinate in B. 
+Its outputs are the address in the display file of that pixel in 
+HL, and the position of the pixel within that byte is held in A 
+(0=rightmost bit, 7=leftmost bit). For example, try this:<pre>
+
+10 ORG 32768
+20 LD B,87
+30 LD C,127
+40 CALL 8874
+50 LD (33000),HL
+60 LD (33002),A
+70 RET
+</pre>
+ Assemble and RUN this program using RANDOMIZE USR 32768. The 
+values of the registers have to be put into memory locations, 
+because BASIC will almost immediately use the registers for 
+something else when we return. You should find that the value in 
+HL (which you get by PRINT PEEK 33000+256*PEEK 33001) is 18543, 
+and the value in A (which you get by PRINT PEEK 33002) is 7, 
+which is roughly the middle of the screen (try POKE 18543, BIN 
+10000000 to prove this).<p>
+
+ On the other hand, there is a ROM routine which allows you to 
+display graphics without bothering with the screen memory, and 
+can be found at address 8933 (#22E5). In a nutshell, it is a 
+direct equivalent of the BASIC PLOT command. The inputs are the 
+co-ordinates you want to plot at, which are stored in B and C in 
+the same way as the previous routine. Try this program:<pre>
+
+10 ORG 32768
+20 LD B,87
+30 LD C,127
+40 CALL 8933
+50 RET
+</pre>
+ Assemble the program and run it with RANDOMIZE USR 32768, and a 
+dot will be printed in the middle of the screen.<p>
+ To make a full picture, you will need to call the ROM routine 
+many times, and the best way to to this is to set up all the 
+pixel co-ordinates in memory, using this routine:<pre>
+
+10       ORG 32768
+20       LD HL,DATA
+30 LOOP  PUSH HL
+40       LD B,(HL)
+50       CP 255
+60       RET Z
+70       INC HL
+80       LD C,(HL)
+90       CALL 8933
+100      POP HL
+110      INC HL
+120      JR LOOP
+130 DATA DEFB y1,x1,y2,x2,y3,x3.....
+</pre>
+ Replace y1, x1 etc. with the values of each pair of co-
+ordinates; y first, then x. Put the value 255 instead of a y co-
+ordinate to signify the end of the list.
+<p>
+ And that's not all, because there's still a third way of getting 
+graphics up onto the screen. This method is best used for 
+sprites, and it involves printing UDGs using the RST 16. This routine
+is quite simple to use - just execute the RST 16 instruction with
+the ASCII character to you want to print out in the A register. For
+example :
+<pre>
+10       ORG 32768
+20       LD A,2
+30       CALL 5633
+40       RST 16
+50       RET 
+</pre>
+...will print the character 'A' on screen, seeing as 65 is the decimal
+ASCII value for 'A'.
+
+ Lines 20 and 30 mean we want to use the main screen for printing.
+This has to be done because the Spectrum can output information to
+various places, the main screen, the bottom two lines of the screen,
+the printer, or even a microdrive / disk file. We have to specify
+which we're dealing with.<p>
+
+To print characters other than basic letters and numbers, you'll need to
+write your own character set, get the computer 
+to point to it, and call the RST 16 command. The easiest way to 
+do this is to copy your graphics into the UDG area, ten use RST 
+16 to print them. Run the following BASIC program to POKE these 
+UDGs A to J into memory (can you work out how to do a similar 
+routine in machine code?)
+<pre>
+10 FOR N=65 TO 74:FOR M=0 TO 7
+20 READ X:POKE USR (CHR$ N)+M,X
+30 NEXT M:NEXT N
+40 DATA 0,0,7,8,16,63,0,1
+50 DATA 0,0,255,2,4,200,144,33
+60 DATA 0,0,48,72,68,132,148,42
+70 DATA 0,0,255,64,32,28,2,2
+80 DATA 0,0,248,4,2,62,32,32
+90 DATA 2,4,9,19,32,127,0,0
+100 DATA 65,130,2,244,36,207,0,0
+110 DATA 58,2,113,137,137,30,0,0
+120 DATA 1,1,0,0,0,0,0,0
+130 DATA 16,16,136,136,68,68,56,0
+</pre>
+ Now assemble and run this machine code program with the UDGs 
+still in memory, and you should see a nice <i>ZAT</i> logo
+apprear. <i>Quick note here : ZAT was a small home run fanzine
+which these articles originally appeared in</i>
+<pre>
+10        ORG 32768
+20        LD A,2
+30        CALL 5633
+40        LD HL,DATA
+50 LOOP   LD A,(HL)
+60        CP 255
+70        RET Z
+80        PUSH HL
+90        RST 16
+100       POP HL
+110       INC HL
+120       JR LOOP
+130 DATA  DEFB 144,145,146,147,148,13
+140       DEFB 149,150,151,152,153,255
+</pre>
+The numbers 144-153 are the ASCII codes for UDGs A to J. There is a carriage 
+return (ASCII 13) after the 5th UDG because the second five UDGs 
+are to be printed on a new line.
+<p>
+ Another useful routine is that which is used to clear the screen. This
+can be found at #0D6B (3435 decimal). Just type RANDOMIZE USR 3435 from
+BASIC to see the effect, or CALL to it from a machine code routine.
+
+<h3>Sound routines</h3>
+
+ The Spectrum has several ROM routines dealing with sound.
+ It helps if you know how a sound is actually created. All sounds 
+are created from vibrating waves. Most ordinary sounds, such as 
+the human voice or an orchestral instrument consist of a wave 
+which varies between two extreme values. You can see an example 
+of this on your Spectrum by typing the following program:<pre>
+
+10 FOR N=0 TO 255
+20 PLOT N,88+80*SIN (N/128*PI)
+30 NEXT N
+</pre>
+ RUN this, and you should see a curved line, which goes up, then 
+down, and back up again. You may well recognise the shape of the 
+graph; it represents a sine wave, the bane of Maths lessons! 
+Anyway, most ordinary sounds have soundwaves which look like 
+this curve.<p>
+ Some things however, like a CD player, a syntheziser, and your 
+beloved Spectrum make sound in quite a different way. The 
+soundwave has only two values. Type this in:
+<pre>
+10 PLOT 0,44:DRAW 64,0:DRAW 0,88
+20 DRAW 64,0:DRAW 0,-88
+30 DRAW 64,0:DRAW 0,88
+40 DRAW 64,0:DRAW 0,-88
+</pre>
+ RUN this, and you'll see what I mean. And this is how sound is 
+created on a Spectrum. You can think of the high value as ON, and 
+the low value as OFF. To create a sound, you send an ON signal, 
+wait a while, send an OFF signal, wait a while, then send an ON 
+signal and so on ad infinitum.<p>
+ It is quite possible to create sound using this method, by using 
+the output port 254. Apart from setting the border colour and 
+sending a signal out to cassette, it can also send a signal to 
+the beeper. Try this program:<pre>
+
+10     ORG #5B00
+20 L1  LD A,#17
+30     OUT (#FE),A
+40 L2  LD B,#20
+50     DJNZ L2
+60     LD A,#7
+70     OUT (#FE),A
+80 L3  LD B,#20
+90     DJNZ L3
+100    LD BC,#7FFE
+110    IN A,(C)
+120    BIT 0,A
+130    RET Z
+140    JR L1
+</pre>
+ A quick explanation of the program. Lines 20 and 30 send an ON 
+signal to the beeper. Lines 40 and 50 wait a while. Lines 60 and 
+70 send an OFF signal to the beeper. Lines 80 and 90 wait a while 
+again. Lines 100 to 140 check for the SPACE key being pressed, 
+and stops the program if it is, otherwise the program loops to do 
+the whole thing again. (You can find more information on how to
+read the keyboard under machine code in the Sinclair FAQ).<p> 
+
+ Assemble and run this program with RANDOMIZE USR 23296. You will 
+hear a gargling beep; press SPACE to stop it and return to BASIC. 
+You can change the LD B,#20 in lines 40 and 80 to other values to 
+get various types of beeps.<p> 
+ Now, change the ORG #5B00 in line 10 to ORG #8000. Assemble and 
+run the program with RANDOMIZE USR 32768. And....good grief! The 
+gargle's gone and you can hear a "pure" sound. But how's this 
+possible when we haven't changed any of the program; merely 
+relocated it?<p>
+ The answer lies with what is technically called CONTENDED and 
+UNCONTENDED RAM. All the memory from #4000 to #7FFF is contended, 
+which means the ULA inside your Spectrum is always accessing it. 
+A good thing too, because the screen memory resides there, and if 
+the ULA didn't continually access this memory, the screen would 
+never be updated! However, the memory from #8000 to #FFFF in 
+uncontended, which means the ULA leaves it alone.<p>
+ The upshot of all this is that a sound program in contended RAM 
+will be continiually interrupted by the ULA, and hence the sound 
+will be generated in irregular bursts. Hence the gargle.<p>
+ That's the first problem with creating sound this way, although 
+if you want sound effects then it's probably okay. If you want to 
+play notes, you can use uncontended RAM, but you'd have to 
+calculate lots of important timing loops, which can be both 
+complicated and boring. So, why not use a ROM routine?
+<p>
+ And, lo and behold, there is a ROM routine specifically designed 
+at playing notes. It can be found at address #03B5, and takes the 
+following inputs:
+<pre>
+HL= frequency in hz * duration in seconds
+DE= (437500/frequency in hz) - 30.125
+</pre>
+ The frequency is another way of expressing the pitch of the 
+note. The higher the frequency, the higher the note will be. A 
+very low value will sound more like clicking, whereas a very high 
+value will probably sound inaudible (just <i>don't</i> let any dogs hear 
+it!!!).<p>
+ Two notes, one of which has exactly double the frequency of the 
+other will sound similar. This is called an octave (because on a 
+piano, these notes are eight white keys apart). If you know 
+music, you can now work out that each note has a frequency 2^1/12
+or 1.059 times that of the note directly below it. In standard 
+tuning, the note A on octave 3 has a frequency of 440hz, so given 
+that, you can work out the frequencies for every other note.<p> 
+
+<H3> Plus D ROM Routines </H3>
+
+ Most of the +D's functions are accessed as follows :
+<pre>
+RST #08
+DEFB hookcode
+</pre>
+  The +D is designed to intercept any call to address  #0008  and
+will  access the disk drive rather than report a  rather  strange
+error  message  if  a  hook  code is  given  after  the  RST  #08
+instruction.
+<p>
+ To start with,  here are the routines to save and load files  to
+and from disk,  probably the most useful routines of all,  as  it
+means  that,  with a bit of hacking expertise,  you  can  convert
+multiloading games to disk!
+<p><ul>
+<li>Code #35 (53 decimal) opens a file ready for use.  You have  to
+open  a  file before you can save to it. The value
+in  IX  points to what's called the User  File  Information  Area
+(UFIA for short). The structure of the UFIA is as follows :
+<pre>
+OFFSET   INFORMATION HELD
+
+#00      Drive number (1 or 2)
+#01      Program number (ie: entry in catalogue)
+#02      Stream number (ie: channel file is attached to)
+#03      Device Type (#42 (68 decimal) for disk)
+#04      Catalogue Description:
+         1=Basic,2=Num array,3=Char array,4=Bytes,
+         5=48K Snapshot,6=Microdrive file,7=Screen$,
+         8=Special file,9=128K Snapshot,10=Opentype,
+         11=Executable file
+#05-#0E  Filename in ASCII (padded out with spaces if required)
+#0F      File type:
+         0=Basic,1=Num array,2=Char array,3=Everything else
+#10-#11  Length of file (if file type 3)
+#12-#13  Start address of file (if file type 3)
+#14-#15  Length of variables (if file type 1)
+#16-#17  Line number to be run from (if file type 1, anything
+         over 9999 decimal means no line) 
+</pre>
+
+<li>Code #38 (56 decimal) closes the file.
+
+<li>  Code #37 (55 decimal) saves a block of code to the current  open
+file. The start address is in DE and the length in in BC.
+
+<li>  Code  #3B (59 decimal) reopens a file ready  for  loading.  The
+value in IX points to the UFIA.
+
+<li> Code #3D (61 decimal) loads a block of code from the file.  Note
+that  the  first nine bytes of a file are always  the  last  nine
+bytes in the UFIA when the file was saved (so you can load  files
+with  different start and length values using the  same  routine)
+and you should load these into the last nine bytes of the UFIA.
+
+<li> Code #41  (65 decimal) erases a file from disk.  The value in IX
+points to the UFIA.
+</ul>
+ Hopefully all will become clear with this example!  Suppose  you
+want to save a screen (start=#4000,  length=#1B00) with  filename
+"MYSCREEN").  First of all you'll have to set up your UFIA.  This
+can be done as follows:
+<pre>
+UFIA DEFB #01; Save to drive 1
+     DEFB #00; Program number not relevant
+     DEFB #00; Stream number not relevant
+     DEFB #44; Load from disk
+     DEFB #04; Appear as a CODE file in the disk catalogue
+     DEFM 'MYSCREEN  ';Ten character filename
+HDR  DEFB #03; Save a code file
+     DEFW #1B00; Length #1B00 bytes
+     DEFW #4000; Start #4000 bytes
+     DEFW #0000; Variable length not relevant
+     DEFW #0000; Line number not relevant
+</pre>
+ Then to save the file do the following
+<pre>
+LD IX,UFIA;    Point to UFIA
+PUSH IX;       Store UFIA address on stack
+RST #08
+DEFB #35;      Open the file for saving
+POP IX;        Restore UFIA address
+LD C,(IX+#10)
+LD B,(IX+#11); Load BC with length
+LD E,(IX+#12)
+LD D,(IX+#13); Load DE with start
+RST #08
+DEFB #37;      Save the screen
+RST #08
+DEFB #38;      Close the file 
+RET            Finished
+</pre>
+ To reload the file, do the following
+<pre>
+LD IX,UFIA;    Load IX with UFIA
+PUSH IX;       Store UFIA address on stack
+RST #08
+DEFB #3B;      Reopen the file
+POP IX;        Restore UFIA address
+LD BC,#09      Load nine bytes
+LD DE,HDR      Load into last nine bytes of UFIA
+RST #08
+DEFB #3D;      Load header
+LD C,(IX+#10)
+LD B,(IX+#11); Load BC with length
+LD E,(IX+#12)
+LD D,(IX+#13); Load DE with start
+RST #08
+DEFB #3D;      Load the screen
+RET;           Finished
+</pre>
+</body>
+</html>
