@@ -1,15 +1,10 @@
-﻿#if NETFX_CORE
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#else
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-#endif
+﻿using Xunit;
 
 namespace Z80Simulator.Test
 {
-    [TestClass]
     public class TestLauncher
     {
-        /*[TestMethod]
+        /*[Fact]
         public void TableGeneratorLauncher()
         {
             Z80Simulator.GenerateTables.TableGenerator gen = new Z80Simulator.GenerateTables.TableGenerator();
@@ -17,49 +12,49 @@ namespace Z80Simulator.Test
             gen.GenerateOpCodesTable();
         }*/
 
-        [TestMethod]
+        [Fact]
         public void RunInstructionsDefinitionTests()
         {
             TestCollection.RunInstructionsDefinitionTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunAssemblyTests()
         {
             TestCollection.RunAssemblyTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunMachineCyclesTests()
         {
             TestCollection.RunMachineCyclesTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunCPUTests()
         {
             TestCollection.RunCPUTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunALUTests()
         {
             TestCollection.RunALUTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunMicroInstructionsTests()
         {
             TestCollection.RunMicroInstructionsTests();
         }
                 
-        [TestMethod]
+        [Fact]
         public void RunFullInstructionSetTests()
         {
             TestCollection.RunFullInstructionSetTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunFlagsAndMemptrTests()
         {
             TestCollection.RunFlagsAndMemptrTests();

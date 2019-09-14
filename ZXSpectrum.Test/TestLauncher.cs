@@ -1,48 +1,43 @@
-﻿#if NETFX_CORE
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-#else
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-#endif
+﻿using Xunit;
 
 namespace ZXSpectrum.Test
 {
-    [TestClass]
     public class TestLauncher
     {
-        [TestMethod]
+        /*[Fact]
+        public void GenerateHtmlForROM()
+        {
+            ZXSpectrum.Test.Utils.AsmHtmlFormatter.GenerateHtmlForROM();
+        }*/
+
+        [Fact]
         public void RunBasicTests()
         {
             TestCollection.RunBasicTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunTapeFilesLoadTests()
         {
             TestCollection.RunTapeFilesLoadTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunTapeRecorderTests()
         {
             TestCollection.RunTapeRecorderTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunULAVideoTests()
         {
             TestCollection.RunULAVideoTests();
         }
 
-        [TestMethod]
+        [Fact]
         public void RunComputerTests()
         {
             TestCollection.RunComputerTests();
-        }
-
-        [TestMethod]
-        public void GenerateHtmlForROM()
-        {
-            ZXSpectrum.Test.Utils.AsmHtmlFormatter.GenerateHtmlForROM();
         }
     }
 }

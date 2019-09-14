@@ -1,105 +1,374 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFE48C75-A02B-465B-862F-6920F132D85F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Z80Simulator.Test</RootNamespace>
-    <AssemblyName>Z80Simulator.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <SccProjectName>%24/z80simulator/Z80VisualSimulator/Z80Simulator.Test</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
-    <SccAuxPath>https://z80.visualstudio.com/defaultcollection</SccAuxPath>
-    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
+    <None Remove="ALU\Arithmetic16bits\Logs\Check_Instruction_10_ADD_Register16_Register16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Logs\Check_Instruction_127_SBC_Register16_Register16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Logs\Check_Instruction_34_DEC_Register16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Logs\Check_Instruction_49_INC_Register16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Logs\Check_Instruction_5_ADC_Register16_Register16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Samples\resultadc16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Samples\resultadd16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Samples\resultdec16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Samples\resultinc16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Samples\resultsbc16.csv" />
+    <None Remove="ALU\Arithmetic16bits\Samples\testadc16.asm" />
+    <None Remove="ALU\Arithmetic16bits\Samples\testadd16.asm" />
+    <None Remove="ALU\Arithmetic16bits\Samples\testdec16.asm" />
+    <None Remove="ALU\Arithmetic16bits\Samples\testinc16.asm" />
+    <None Remove="ALU\Arithmetic16bits\Samples\testsbc16.asm" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Logs\Check_Instruction_128_SCF.csv" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Logs\Check_Instruction_20_CCF.csv" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Samples\resultcpl.csv" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Samples\resultdaa.csv" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Samples\resultneg.csv" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Samples\testcpl.asm" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Samples\testdaa.asm" />
+    <None Remove="ALU\ArithmeticGeneralPurpose\Samples\testneg.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_124_SBC_Register_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_125_SBC_Register_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_126_SBC_Register_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_12_AND_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_13_AND_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_14_AND_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_150_SUB_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_151_SUB_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_152_SUB_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_154_XOR_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_155_XOR_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_156_XOR_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_22_CP_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_23_CP_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_24_CP_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_2_ADC_Register_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_32_DEC_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_33_DEC_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_3_ADC_Register_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_47_INC_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_48_INC_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_4_ADC_Register_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_7_ADD_Register_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_80_OR_Register.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_81_OR_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_82_OR_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_8_ADD_Register_Register16Address.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Logs\Check_Instruction_9_ADD_Register_IndexedAddress.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultadc.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultadd.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultand.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultcp.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultdec.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultinc.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultor.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultsbc.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultsub.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\resultxor.csv" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testadc.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testadd.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testand.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testcp.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testdec.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testinc.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testor.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testsbc.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testsub.asm" />
+    <None Remove="ALU\Arithmetic_8bits\Samples\testxor.asm" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_129_SET_Bit_Register.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_130_SET_Bit_Register16Address.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_131_SET_Bit_IndexedAddress.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_132_SET_Bit_IndexedAddress_Register.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_15_BIT_Bit_Register.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_16_BIT_Bit_Register16Address.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_17_BIT_Bit_IndexedAddress.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_92_RES_Bit_Register.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_93_RES_Bit_Register16Address.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_94_RES_Bit_IndexedAddress.csv" />
+    <None Remove="ALU\BitSetResetAndTest\Logs\Check_Instruction_95_RES_Bit_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_100_RL_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_101_RL_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_102_RL_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_103_RL_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_104_RLA.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_105_RLC_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_106_RLC_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_107_RLC_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_108_RLC_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_109_RLCA.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_110_RLD.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_111_RR_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_112_RR_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_113_RR_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_114_RR_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_115_RRA.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_116_RRC_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_117_RRC_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_118_RRC_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_119_RRC_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_120_RRCA.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_121_RRD.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_133_SLA_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_134_SLA_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_135_SLA_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_136_SLA_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_137_SLL_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_138_SLL_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_139_SLL_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_140_SLL_IndexedAddress_Registe.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_141_SRA_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_142_SRA_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_143_SRA_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_144_SRA_IndexedAddress_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_145_SRL_Register.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_146_SRL_Register16Address.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_147_SRL_IndexedAddress.csv" />
+    <None Remove="ALU\RotateAndShift\Logs\Check_Instruction_148_SRL_IndexedAddress_Register.csv" />
+    <None Remove="Assembly\DisassemblerResults\basmul.disasm" />
+    <None Remove="Assembly\DisassemblerResults\basprint.disasm" />
+    <None Remove="Assembly\Samples\basmul.asm" />
+    <None Remove="Assembly\Samples\basmul.obj" />
+    <None Remove="Assembly\Samples\basprint.asm" />
+    <None Remove="Assembly\Samples\basprint.obj" />
+    <None Remove="Assembly\Samples\bin2bcd.asm" />
+    <None Remove="Assembly\Samples\bin2bcd.obj" />
+    <None Remove="Assembly\Samples\CPM22.asm" />
+    <None Remove="Assembly\Samples\interrupt.asm" />
+    <None Remove="Assembly\Samples\interrupt.obj" />
+    <None Remove="Assembly\Samples\memfill.asm" />
+    <None Remove="Assembly\Samples\memfill.obj" />
+    <None Remove="Assembly\Samples\memfill2.asm" />
+    <None Remove="Assembly\Samples\memfill2.obj" />
+    <None Remove="Assembly\Samples\zx80.asm" />
+    <None Remove="Assembly\Samples\zx80.obj" />
+    <None Remove="Assembly\Samples\zx81.asm" />
+    <None Remove="Assembly\Samples\zx81.obj" />
+    <None Remove="Assembly\Samples\zxspectrum.asm" />
+    <None Remove="Assembly\Samples\zxspectrum.obj" />
+    <None Remove="Assembly\Samples\zxSpectrum128_ROM0.asm" />
+    <None Remove="Assembly\Samples\zxSpectrum128_ROM0.obj" />
+    <None Remove="Assembly\Samples\zxSpectrum128_ROM1.asm" />
+    <None Remove="Assembly\Samples\zxSpectrum128_ROM1.obj" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_122_RST_ResetAddress.csv" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_18_CALL_Address.csv" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_19_CALL_FlagCondition_Address.csv" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_96_RET.csv" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_97_RET_FlagCondition.csv" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_98_RETI.csv" />
+    <None Remove="CPU\CallAndReturn\Logs\Check_Instruction_99_RETN.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_157_NMI.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_158_INT_0.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_159_INT_1.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_160_INT_2.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_161_RESET.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_35_DI.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_37_EI.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_41_HALT.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_42_IM_InterruptMode.csv" />
+    <None Remove="CPU\CPUControl\Logs\Check_Instruction_78_NOP.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_25_CPD.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_26_CPDR.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_27_CPI.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_28_CPIR.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_38_EX_Register16_Register16.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_39_EX_Register16Address_Register16.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_40_EXX.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_73_LDD.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_74_LDDR.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_75_LDI.csv" />
+    <None Remove="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_76_LDIR.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_43_IN_Register_IOPort.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_44_IN_Register_RegisterIOPort.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_45_IN_Flags_RegisterIOPort.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_50_IND.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_51_INDR.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_52_INI.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_53_INIR.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_83_OTDR.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_84_OTIR.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_85_OUT_IOPort_Register.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_86_OUT_RegisterIOPort.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_87_OUT_RegisterIOPort_Register.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_88_OUTD.csv" />
+    <None Remove="CPU\InputAndOutput\Logs\Check_Instruction_89_OUTI.csv" />
+    <None Remove="CPU\Jump\Logs\Check_Instruction_36_DJNZ_RelativeDisplacement.csv" />
+    <None Remove="CPU\Jump\Logs\Check_Instruction_54_JP_Address.csv" />
+    <None Remove="CPU\Jump\Logs\Check_Instruction_55_JP_Register16Address.csv" />
+    <None Remove="CPU\Jump\Logs\Check_Instruction_56_JP_FlagCondition_Address.csv" />
+    <None Remove="CPU\Jump\Logs\Check_Instruction_57_JR_RelativeDisplacement.csv" />
+    <None Remove="CPU\Jump\Logs\Check_Instruction_58_JR_FlagCondition_RelativeDisplacement.csv" />
+    <None Remove="CPU\Load16Bit\Logs\Check_Instruction_64_LD_Register16_Number16.csv" />
+    <None Remove="CPU\Load16Bit\Logs\Check_Instruction_65_LD_Register16_Register16.csv" />
+    <None Remove="CPU\Load16Bit\Logs\Check_Instruction_66_LD_Register16_Address.csv" />
+    <None Remove="CPU\Load16Bit\Logs\Check_Instruction_68_LD_Address_Register16.csv" />
+    <None Remove="CPU\Load16Bit\Logs\Check_Instruction_90_POP_Register16.csv" />
+    <None Remove="CPU\Load16Bit\Logs\Check_Instruction_91_PUSH_Register16.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_59_LD_Register_Number8.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_60_LD_Register_Register.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_61_LD_Register_Address.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_62_LD_Register_Register16Address.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_63_LD_Register_IndexedAddress.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_67_LD_Address_Register.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_69_LD_Register16Address_Number8.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_70_LD_Register16Address_Register.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_71_LD_IndexedAddress_Number8.csv" />
+    <None Remove="CPU\Load_8Bit\Logs\Check_Instruction_72_LD_IndexedAddress_Register.csv" />
+    <None Remove="FlagsAndMemptr\z80tests-Flags.asm" />
+    <None Remove="FlagsAndMemptr\z80tests-Memptr.asm" />
+    <None Remove="MachineCycles\Logs\Check_BusRequestAcknowledge.csv" />
+    <None Remove="MachineCycles\Logs\Check_FetchOpcode.csv" />
+    <None Remove="MachineCycles\Logs\Check_FetchOpcode_wait.csv" />
+    <None Remove="MachineCycles\Logs\Check_FourBytesOpCodes.csv" />
+    <None Remove="MachineCycles\Logs\Check_Input.csv" />
+    <None Remove="MachineCycles\Logs\Check_Input_wait.csv" />
+    <None Remove="MachineCycles\Logs\Check_InterruptRequestAcknowledge.csv" />
+    <None Remove="MachineCycles\Logs\Check_MemoryRead.csv" />
+    <None Remove="MachineCycles\Logs\Check_MemoryRead_wait.csv" />
+    <None Remove="MachineCycles\Logs\Check_MemoryWrite.csv" />
+    <None Remove="MachineCycles\Logs\Check_MemoryWrite_wait.csv" />
+    <None Remove="MachineCycles\Logs\Check_MicroInstructions.csv" />
+    <None Remove="MachineCycles\Logs\Check_Output.csv" />
+    <None Remove="MachineCycles\Logs\Check_Output_wait.csv" />
+    <None Remove="MachineCycles\Logs\Check_StackMemoryReadAndWrite.csv" />
+    <None Remove="MachineCycles\Logs\Check_TwoBytesOpCodesAndDDFDPrefixes.csv" />
+    <None Remove="Zexall\zexall2-Tests.asm" />
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
+
   <ItemGroup>
-    <Compile Include="ALU\ALUInstructionTests.cs" />
-    <Compile Include="ALU\Arithmetic16bits\ALUInstructionsTests.cs" />
-    <Compile Include="ALU\ArithmeticGeneralPurpose\ALUInstructionsTests.cs" />
-    <Compile Include="ALU\Arithmetic_8bits\ALUInstructionsTests.cs" />
-    <Compile Include="ALU\BitSetResetAndTest\ALUInstructionsTests.cs" />
-    <Compile Include="ALU\RotateAndShift\ALUInstructionsTests.cs" />
-    <Compile Include="Assembly\AssemblerTests.cs" />
-    <Compile Include="Assembly\DisassemblerTests.cs" />
-    <Compile Include="CPU\CallAndReturn\CPUInstructionsTests.cs" />
-    <Compile Include="CPU\CPUControl\CPUInstructionsTests.cs" />
-    <Compile Include="CPU\ExchangeBlockTransferAndSearch\CPUInstructionsTests.cs" />
-    <Compile Include="CPU\InputAndOutput\CPUInstructionsTests.cs" />
-    <Compile Include="CPU\Jump\CPUInstructionsTests.cs" />
-    <Compile Include="CPU\Load16Bit\CPUInstructionsTests.cs" />
-    <Compile Include="CPU\Load_8Bit\CPUInstructionsTests.cs" />
-    <Compile Include="FlagsAndMemptr\FlagsAndMemptrTests.cs" />
-    <Compile Include="MachineCycles\CPUMachineCyclesTests.cs" />
-    <Compile Include="CPU\CPUStateLogger.cs" />
-    <Compile Include="Instructions\Z80InstructionTypesTests.cs" />
-    <Compile Include="Instructions\Z80OpCodesTests.cs" />
-    <Compile Include="MicroInstructions\InstructionSetGenerator.cs" />
-    <Compile Include="PlatformSpecific.cs" />
-    <Compile Include="System\FifoBuffer.cs" />
-    <Compile Include="System\TestSystemWithTestSignals.cs" />
-    <Compile Include="System\TestSystemWithInterruptingDevice.cs" />
-    <Compile Include="System\TestSystemWithMultiportDevice.cs" />
-    <Compile Include="System\TestSystem.cs" />
-    <Compile Include="System\TestInterruptingDevice.cs" />
-    <Compile Include="System\TestMultiportDevice.cs" />
-    <Compile Include="System\TestSignal.cs" />
-    <Compile Include="System\TestDevice.cs" />
-    <Compile Include="System\TestMemory.cs" />
-    <Compile Include="System\TestSystemWithTwoDevices.cs" />
-    <Compile Include="TestCollection.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestLauncher.cs" />
-    <Compile Include="Zexall\ZexallTests.cs" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_129_SET_Bit_Register.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_130_SET_Bit_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_131_SET_Bit_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_132_SET_Bit_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_15_BIT_Bit_Register.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_16_BIT_Bit_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_17_BIT_Bit_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_92_RES_Bit_Register.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_93_RES_Bit_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_94_RES_Bit_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_95_RES_Bit_IndexedAddress_Register.csv" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Assembly\Samples\CPM22.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_10_ADD_Register16_Register16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_127_SBC_Register16_Register16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_34_DEC_Register16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_49_INC_Register16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_5_ADC_Register16_Register16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultadc16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultadd16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultdec16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultinc16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultsbc16.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testadc16.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testadd16.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testdec16.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testinc16.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testsbc16.asm" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Logs\Check_Instruction_128_SCF.csv" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Logs\Check_Instruction_20_CCF.csv" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\resultcpl.csv" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\resultdaa.csv" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\resultneg.csv" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\testcpl.asm" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\testdaa.asm" />
+    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\testneg.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_124_SBC_Register_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_125_SBC_Register_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_126_SBC_Register_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_12_AND_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_13_AND_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_14_AND_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_150_SUB_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_151_SUB_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_152_SUB_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_154_XOR_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_155_XOR_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_156_XOR_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_22_CP_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_23_CP_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_24_CP_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_2_ADC_Register_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_32_DEC_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_33_DEC_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_3_ADC_Register_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_47_INC_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_48_INC_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_4_ADC_Register_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_7_ADD_Register_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_80_OR_Register.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_81_OR_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_82_OR_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_8_ADD_Register_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_9_ADD_Register_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultadc.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultadd.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultand.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultcp.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultdec.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultinc.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultor.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultsbc.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultsub.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultxor.csv" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testadc.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testadd.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testand.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testcp.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testdec.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testinc.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testor.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testsbc.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testsub.asm" />
+    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testxor.asm" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_100_RL_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_101_RL_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_102_RL_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_103_RL_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_104_RLA.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_105_RLC_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_106_RLC_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_107_RLC_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_108_RLC_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_109_RLCA.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_110_RLD.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_111_RR_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_112_RR_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_113_RR_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_114_RR_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_115_RRA.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_116_RRC_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_117_RRC_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_118_RRC_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_119_RRC_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_120_RRCA.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_121_RRD.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_133_SLA_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_134_SLA_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_135_SLA_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_136_SLA_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_137_SLL_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_138_SLL_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_139_SLL_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_140_SLL_IndexedAddress_Registe.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_141_SRA_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_142_SRA_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_143_SRA_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_144_SRA_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_145_SRL_Register.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_146_SRL_Register16Address.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_147_SRL_IndexedAddress.csv" />
+    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_148_SRL_IndexedAddress_Register.csv" />
+    <EmbeddedResource Include="Assembly\DisassemblerResults\basmul.disasm" />
+    <EmbeddedResource Include="Assembly\DisassemblerResults\basprint.disasm" />
     <EmbeddedResource Include="Assembly\Samples\basmul.asm" />
     <EmbeddedResource Include="Assembly\Samples\basmul.obj" />
     <EmbeddedResource Include="Assembly\Samples\basprint.asm" />
     <EmbeddedResource Include="Assembly\Samples\basprint.obj" />
     <EmbeddedResource Include="Assembly\Samples\bin2bcd.asm" />
     <EmbeddedResource Include="Assembly\Samples\bin2bcd.obj" />
+    <EmbeddedResource Include="Assembly\Samples\CPM22.asm" />
     <EmbeddedResource Include="Assembly\Samples\interrupt.asm" />
     <EmbeddedResource Include="Assembly\Samples\interrupt.obj" />
     <EmbeddedResource Include="Assembly\Samples\memfill.asm" />
@@ -112,202 +381,27 @@
     <EmbeddedResource Include="Assembly\Samples\zx81.obj" />
     <EmbeddedResource Include="Assembly\Samples\zxspectrum.asm" />
     <EmbeddedResource Include="Assembly\Samples\zxspectrum.obj" />
+    <EmbeddedResource Include="Assembly\Samples\zxSpectrum128_ROM0.asm" />
     <EmbeddedResource Include="Assembly\Samples\zxSpectrum128_ROM0.obj" />
     <EmbeddedResource Include="Assembly\Samples\zxSpectrum128_ROM1.asm" />
     <EmbeddedResource Include="Assembly\Samples\zxSpectrum128_ROM1.obj" />
-    <EmbeddedResource Include="Assembly\Samples\zxSpectrum128_ROM0.asm" />
-    <EmbeddedResource Include="Assembly\DisassemblerResults\basmul.disasm" />
-    <EmbeddedResource Include="Assembly\DisassemblerResults\basprint.disasm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultadc.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultadd.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultsbc.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultsub.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testadc.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testadd.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testsbc.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testsub.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_2_ADC_Register_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_3_ADC_Register_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_4_ADC_Register_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testand.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testor.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testxor.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testcp.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testdec.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\testinc.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultand.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultcp.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultdec.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultinc.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultor.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Samples\resultxor.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_7_ADD_Register_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_8_ADD_Register_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_9_ADD_Register_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_12_AND_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_13_AND_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_14_AND_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_22_CP_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_23_CP_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_24_CP_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_32_DEC_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_33_DEC_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_47_INC_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_48_INC_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_80_OR_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_81_OR_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_82_OR_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_124_SBC_Register_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_125_SBC_Register_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_126_SBC_Register_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_150_SUB_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_151_SUB_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_152_SUB_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_154_XOR_Register.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_155_XOR_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic_8bits\Logs\Check_Instruction_156_XOR_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultadc16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultadd16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultdec16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultinc16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\resultsbc16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testadc16.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testadd16.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testdec16.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testinc16.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Samples\testsbc16.asm" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_5_ADC_Register16_Register16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_10_ADD_Register16_Register16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_34_DEC_Register16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_49_INC_Register16.csv" />
-    <EmbeddedResource Include="ALU\Arithmetic16bits\Logs\Check_Instruction_127_SBC_Register16_Register16.csv" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\testcpl.asm" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\testneg.asm" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\testdaa.asm" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\resultcpl.csv" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\resultdaa.csv" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Samples\resultneg.csv" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Logs\Check_Instruction_20_CCF.csv" />
-    <EmbeddedResource Include="ALU\ArithmeticGeneralPurpose\Logs\Check_Instruction_128_SCF.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_62_LD_Register_Register16Address.csv" />
-    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_78_NOP.csv" />
-    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_37_EI.csv" />
-    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_42_IM_InterruptMode.csv" />
-    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_57_JR_RelativeDisplacement.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_43_IN_Register_IOPort.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_85_OUT_IOPort_Register.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_59_LD_Register_Number8.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_60_LD_Register_Register.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_63_LD_Register_IndexedAddress.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_69_LD_Register16Address_Number8.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_70_LD_Register16Address_Register.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_71_LD_IndexedAddress_Number8.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_72_LD_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_61_LD_Register_Address.csv" />
-    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_67_LD_Address_Register.csv" />
-    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_64_LD_Register16_Number16.csv" />
-    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_65_LD_Register16_Register16.csv" />
-    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_66_LD_Register16_Address.csv" />
-    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_68_LD_Address_Register16.csv" />
-    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_90_POP_Register16.csv" />
-    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_91_PUSH_Register16.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_BusRequestAcknowledge.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_MicroInstructions.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_StackMemoryReadAndWrite.csv" />
-    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_161_RESET.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_Input.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_FetchOpcode.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryRead.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryWrite.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_Output.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_FetchOpcode_wait.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryRead_wait.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryWrite_wait.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_Input_wait.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_Output_wait.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_36_DJNZ_RelativeDisplacement.csv" />
-    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_54_JP_Address.csv" />
-    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_55_JP_Register16Address.csv" />
-    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_56_JP_FlagCondition_Address.csv" />
-    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_58_JR_FlagCondition_RelativeDisplacement.csv" />
+    <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_122_RST_ResetAddress.csv" />
     <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_18_CALL_Address.csv" />
     <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_19_CALL_FlagCondition_Address.csv" />
     <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_96_RET.csv" />
     <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_97_RET_FlagCondition.csv" />
     <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_98_RETI.csv" />
     <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_99_RETN.csv" />
-    <EmbeddedResource Include="CPU\CallAndReturn\Logs\Check_Instruction_122_RST_ResetAddress.csv" />
     <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_157_NMI.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_InterruptRequestAcknowledge.csv" />
-    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_159_INT_1.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_TwoBytesOpCodesAndDDFDPrefixes.csv" />
-    <EmbeddedResource Include="MachineCycles\Logs\Check_FourBytesOpCodes.csv" />
     <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_158_INT_0.csv" />
+    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_159_INT_1.csv" />
     <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_160_INT_2.csv" />
+    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_161_RESET.csv" />
+    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_35_DI.csv" />
+    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_37_EI.csv" />
     <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_41_HALT.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_15_BIT_Bit_Register.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_16_BIT_Bit_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_17_BIT_Bit_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_92_RES_Bit_Register.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_93_RES_Bit_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_94_RES_Bit_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_95_RES_Bit_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_129_SET_Bit_Register.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_130_SET_Bit_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_131_SET_Bit_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\BitSetResetAndTest\Logs\Check_Instruction_132_SET_Bit_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_100_RL_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_101_RL_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_102_RL_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_103_RL_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_104_RLA.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_110_RLD.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_121_RRD.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_105_RLC_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_109_RLCA.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_111_RR_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_115_RRA.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_116_RRC_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_120_RRCA.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_133_SLA_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_137_SLL_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_141_SRA_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_145_SRL_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_106_RLC_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_107_RLC_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_108_RLC_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_112_RR_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_113_RR_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_114_RR_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_117_RRC_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_118_RRC_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_119_RRC_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_134_SLA_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_135_SLA_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_136_SLA_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_138_SLL_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_139_SLL_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_140_SLL_IndexedAddress_Registe.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_142_SRA_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_143_SRA_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_144_SRA_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_146_SRL_Register16Address.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_147_SRL_IndexedAddress.csv" />
-    <EmbeddedResource Include="ALU\RotateAndShift\Logs\Check_Instruction_148_SRL_IndexedAddress_Register.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_44_IN_Register_RegisterIOPort.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_45_IN_Flags_RegisterIOPort.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_50_IND.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_52_INI.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_51_INDR.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_53_INIR.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_83_OTDR.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_84_OTIR.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_86_OUT_RegisterIOPort.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_87_OUT_RegisterIOPort_Register.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_88_OUTD.csv" />
-    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_89_OUTI.csv" />
+    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_42_IM_InterruptMode.csv" />
+    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_78_NOP.csv" />
     <EmbeddedResource Include="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_25_CPD.csv" />
     <EmbeddedResource Include="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_26_CPDR.csv" />
     <EmbeddedResource Include="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_27_CPI.csv" />
@@ -319,53 +413,75 @@
     <EmbeddedResource Include="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_74_LDDR.csv" />
     <EmbeddedResource Include="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_75_LDI.csv" />
     <EmbeddedResource Include="CPU\ExchangeBlockTransferAndSearch\Logs\Check_Instruction_76_LDIR.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Z80Simulator.GenerateTables\Z80Simulator.GenerateTables.csproj">
-      <Project>{803a492e-b5e9-47f5-af24-9d2ffff5b866}</Project>
-      <Name>Z80Simulator.GenerateTables</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj">
-      <Project>{86d7ef8a-d0c3-4961-8a89-47611a3fe7f7}</Project>
-      <Name>Z80Simulator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="CPU\CPUControl\Logs\Check_Instruction_35_DI.csv" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_43_IN_Register_IOPort.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_44_IN_Register_RegisterIOPort.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_45_IN_Flags_RegisterIOPort.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_50_IND.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_51_INDR.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_52_INI.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_53_INIR.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_83_OTDR.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_84_OTIR.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_85_OUT_IOPort_Register.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_86_OUT_RegisterIOPort.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_87_OUT_RegisterIOPort_Register.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_88_OUTD.csv" />
+    <EmbeddedResource Include="CPU\InputAndOutput\Logs\Check_Instruction_89_OUTI.csv" />
+    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_36_DJNZ_RelativeDisplacement.csv" />
+    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_54_JP_Address.csv" />
+    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_55_JP_Register16Address.csv" />
+    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_56_JP_FlagCondition_Address.csv" />
+    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_57_JR_RelativeDisplacement.csv" />
+    <EmbeddedResource Include="CPU\Jump\Logs\Check_Instruction_58_JR_FlagCondition_RelativeDisplacement.csv" />
+    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_64_LD_Register16_Number16.csv" />
+    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_65_LD_Register16_Register16.csv" />
+    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_66_LD_Register16_Address.csv" />
+    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_68_LD_Address_Register16.csv" />
+    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_90_POP_Register16.csv" />
+    <EmbeddedResource Include="CPU\Load16Bit\Logs\Check_Instruction_91_PUSH_Register16.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_59_LD_Register_Number8.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_60_LD_Register_Register.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_61_LD_Register_Address.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_62_LD_Register_Register16Address.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_63_LD_Register_IndexedAddress.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_67_LD_Address_Register.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_69_LD_Register16Address_Number8.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_70_LD_Register16Address_Register.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_71_LD_IndexedAddress_Number8.csv" />
+    <EmbeddedResource Include="CPU\Load_8Bit\Logs\Check_Instruction_72_LD_IndexedAddress_Register.csv" />
     <EmbeddedResource Include="FlagsAndMemptr\z80tests-Flags.asm" />
     <EmbeddedResource Include="FlagsAndMemptr\z80tests-Memptr.asm" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
+    <EmbeddedResource Include="MachineCycles\Logs\Check_BusRequestAcknowledge.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_FetchOpcode.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_FetchOpcode_wait.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_FourBytesOpCodes.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_Input.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_Input_wait.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_InterruptRequestAcknowledge.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryRead.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryRead_wait.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryWrite.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_MemoryWrite_wait.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_MicroInstructions.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_Output.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_Output_wait.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_StackMemoryReadAndWrite.csv" />
+    <EmbeddedResource Include="MachineCycles\Logs\Check_TwoBytesOpCodesAndDDFDPrefixes.csv" />
     <EmbeddedResource Include="Zexall\zexall2-Tests.asm" />
   </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Z80Simulator.GenerateTables\Z80Simulator.GenerateTables.csproj" />
+    <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj" />
+  </ItemGroup>
+
 </Project>

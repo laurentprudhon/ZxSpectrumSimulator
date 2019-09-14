@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ZXSpectrumUI</RootNamespace>
     <AssemblyName>ZXSpectrumUI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,6 +17,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -211,10 +212,6 @@
     <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj">
       <Project>{86d7ef8a-d0c3-4961-8a89-47611a3fe7f7}</Project>
       <Name>Z80Simulator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZXSPectrum.Test\ZXSpectrum.Test.csproj">
-      <Project>{18c4750f-8b56-460a-9989-bf719535d1a3}</Project>
-      <Name>ZXSpectrum.Test</Name>
     </ProjectReference>
     <ProjectReference Include="..\ZXSpectrum\ZXSpectrum.csproj">
       <Project>{5b5c1c44-562e-4a55-8db1-05bd7f4efb08}</Project>

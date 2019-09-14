@@ -1,295 +1,142 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18C4750F-8B56-460A-9989-BF719535D1A3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZXSpectrum.Test</RootNamespace>
-    <AssemblyName>ZXSpectrum.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
+    <None Remove="TapeFiles\Logs\Arkanoid.overview.txt" />
+    <None Remove="TapeFiles\Logs\CheckTapeRecorderPlayback.csv" />
+    <None Remove="TapeFiles\Logs\CheckTapeRecorderStates.txt" />
+    <None Remove="TapeFiles\SampleTapFiles\Arkanoid.tap" />
+    <None Remove="TapeFiles\SampleTapFiles\Arkanoid.txt" />
+    <None Remove="TapeFiles\SampleTapFiles\BuggyBoy.tap" />
+    <None Remove="TapeFiles\SampleTapFiles\BuggyBoy.txt" />
+    <None Remove="TapeFiles\SampleTapFiles\OhMummy.tap" />
+    <None Remove="TapeFiles\SampleTapFiles\OhMummy.txt" />
+    <None Remove="TapeFiles\SampleTapFiles\TreasureIsland.tap" />
+    <None Remove="TapeFiles\SampleTapFiles\TreasureIsland.txt" />
+    <None Remove="TapeFiles\SampleTapFiles\Wizzball.tap" />
+    <None Remove="TapeFiles\SampleTapFiles\Wizzball.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\1942.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\1942.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Airwolf.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Airwolf.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\AlienDestroyer.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\AlienDestroyer.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\BarbarianII-TheDungeonOfDrax.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\BarbarianII-TheDungeonOfDrax.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\BattleShips.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\BattleShips.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Batty.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Batty.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\BeyondTheIcePalace.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\BeyondTheIcePalace.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\BombJack.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\BombJack.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\BuggyBoy.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\BuggyBoy.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Commando.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Commando.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\CrazyGolf.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\CrazyGolf.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\DiscoDan.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\DiscoDan.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\GhostsNGoblins.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\GhostsNGoblins.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\OhMummy.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\OhMummy.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Punchy.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Punchy.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Saboteur.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Saboteur.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Scooby-Doo.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Scooby-Doo.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Thundercats.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Thundercats.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\TreasureIsland.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\TreasureIsland.tzx" />
+    <None Remove="TapeFiles\SampleTzxFiles\Wizball.txt" />
+    <None Remove="TapeFiles\SampleTzxFiles\Wizball.tzx" />
+    <None Remove="ULA\Video\Logs\Check_CompleteScreenCycle.csv" />
+    <None Remove="ULA\Video\ScreenSamples\BuggyBoy.scr" />
+    <None Remove="ULA\Video\ScreenSamples\CrazyGolf.scr" />
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
+
   <ItemGroup>
-    <Compile Include="Basic\BasicTests.cs" />
-    <Compile Include="Computer\ComputerTests.cs" />
-    <Compile Include="PlatformSpecific.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\ULATestSystem.cs" />
-    <Compile Include="TapeFiles\TapeRecorderTests.cs" />
-    <Compile Include="TapeFiles\TapFileLoadTests.cs" />
-    <Compile Include="TapeFiles\TzxFileLoadTests.cs" />
-    <Compile Include="TestCollection.cs" />
-    <Compile Include="TestLauncher.cs" />
-    <Compile Include="ULA\ULAStateLogger.cs" />
-    <Compile Include="ULA\Video\ULAVideoTests.cs" />
-    <Compile Include="Utils\AsmHtmlFormatter.cs" />
-    <Compile Include="Utils\SpectrumMemoryMap.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TapeFiles\SampleTapFiles\Arkanoid.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Z80Simulator\Z80Simulator.csproj">
-      <Project>{86d7ef8a-d0c3-4961-8a89-47611a3fe7f7}</Project>
-      <Name>Z80Simulator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ZXSpectrum\ZXSpectrum.csproj">
-      <Project>{5b5c1c44-562e-4a55-8db1-05bd7f4efb08}</Project>
-      <Name>ZXSpectrum</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="TapeFiles\Logs\Arkanoid.overview.txt" />
+    <EmbeddedResource Include="TapeFiles\Logs\CheckTapeRecorderPlayback.csv" />
+    <EmbeddedResource Include="TapeFiles\Logs\CheckTapeRecorderStates.txt" />
     <EmbeddedResource Include="TapeFiles\SampleTapFiles\Arkanoid.tap" />
+    <EmbeddedResource Include="TapeFiles\SampleTapFiles\Arkanoid.txt" />
     <EmbeddedResource Include="TapeFiles\SampleTapFiles\BuggyBoy.tap" />
-    <EmbeddedResource Include="TapeFiles\SampleTapFiles\OhMummy.tap" />
-    <EmbeddedResource Include="TapeFiles\SampleTapFiles\TreasureIsland.tap" />
-    <EmbeddedResource Include="TapeFiles\SampleTapFiles\Wizzball.tap" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\1942.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Airwolf.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\AlienDestroyer.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BarbarianII-TheDungeonOfDrax.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BattleShips.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Batty.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BeyondTheIcePalace.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BombJack.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BuggyBoy.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Commando.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\CrazyGolf.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\DiscoDan.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\GhostsNGoblins.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\OhMummy.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Punchy.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Saboteur.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Scooby-Doo.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Thundercats.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\TreasureIsland.tzx" />
-    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Wizball.tzx" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TapeFiles\SampleTapFiles\BuggyBoy.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="TapeFiles\SampleTapFiles\OhMummy.tap" />
     <EmbeddedResource Include="TapeFiles\SampleTapFiles\OhMummy.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="TapeFiles\SampleTapFiles\TreasureIsland.tap" />
     <EmbeddedResource Include="TapeFiles\SampleTapFiles\TreasureIsland.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="TapeFiles\SampleTapFiles\Wizzball.tap" />
     <EmbeddedResource Include="TapeFiles\SampleTapFiles\Wizzball.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\1942.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\1942.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Airwolf.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Airwolf.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\AlienDestroyer.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\AlienDestroyer.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BarbarianII-TheDungeonOfDrax.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BarbarianII-TheDungeonOfDrax.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BattleShips.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BattleShips.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Batty.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Batty.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BeyondTheIcePalace.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BeyondTheIcePalace.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BombJack.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BombJack.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BuggyBoy.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\BuggyBoy.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Commando.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Commando.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\CrazyGolf.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\CrazyGolf.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\DiscoDan.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\DiscoDan.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\GhostsNGoblins.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\GhostsNGoblins.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\OhMummy.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\OhMummy.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Punchy.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Punchy.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Saboteur.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Saboteur.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Scooby-Doo.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Scooby-Doo.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Thundercats.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Thundercats.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\TreasureIsland.txt" />
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\TreasureIsland.tzx" />
     <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Wizball.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="TapeFiles\SampleTzxFiles\Wizball.tzx" />
+    <EmbeddedResource Include="ULA\Video\Logs\Check_CompleteScreenCycle.csv" />
     <EmbeddedResource Include="ULA\Video\ScreenSamples\BuggyBoy.scr" />
     <EmbeddedResource Include="ULA\Video\ScreenSamples\CrazyGolf.scr" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="ULA\CPUClock\Logs\" />
     <Folder Include="ULA\Keyboard\Logs\" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="ULA\Video\Logs\Check_CompleteScreenCycle.csv" />
+    <ProjectReference Include="..\ZXSpectrum\ZXSpectrum.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TapeFiles\Logs\CheckTapeRecorderStates.txt" />
-    <EmbeddedResource Include="TapeFiles\Logs\Arkanoid.overview.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TapeFiles\Logs\CheckTapeRecorderPlayback.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Perfs\ANTS Profiler 2013_06_29\perf_test_2013_06_29.xlsx" />
-    <None Include="TestTapes\demos\Infinity.TZX" />
-    <None Include="TestTapes\demos\OVERSCAN.TAP" />
-    <None Include="TestTapes\demos\SHOCK.TAP" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\src\Makefile" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\z80ccf.tap" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\z80doc.tap" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\z80docflags.tap" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\z80flags.tap" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\z80full.tap" />
-    <None Include="TestTapes\z80\sources\z80test-1.0\z80memptr.tap" />
-    <None Include="TestTapes\z80\sources\zexall2-0.1\Makefile" />
-    <None Include="TestTapes\z80\sources\zexall2-0.1\zexall2.szx" />
-    <None Include="TestTapes\z80\sources\zexall2-0.1\zexall2.tap" />
-    <None Include="TestTapes\z80\sources\zexall2-0.1\zexccfb.tap" />
-    <None Include="TestTapes\z80\z80full.tap" />
-    <None Include="TestTapes\z80\z80memptr.tap" />
-    <None Include="TestTapes\z80\z80tests.tap" />
-    <None Include="TestTapes\z80\zexall2.tap" />
-    <None Include="TestTapes\zxspectrum\contention\contention.tap" />
-    <None Include="TestTapes\zxspectrum\contention\fusetest.tap" />
-    <None Include="TestTapes\zxspectrum\contention\timing.tap" />
-    <None Include="TestTapes\zxspectrum\floatingbus\floatspy.tap" />
-    <None Include="TestTapes\zxspectrum\floatingbus\ulatest3-modified.tap" />
-    <None Include="TestTapes\zxspectrum\floatingbus\ulatest3.tap" />
-    <None Include="TestTapes\zxspectrum\sources\fusetest\contention.tap" />
-    <None Include="TestTapes\zxspectrum\sources\fusetest\COPYING" />
-    <None Include="TestTapes\zxspectrum\sources\fusetest\fusetest.tap" />
-    <None Include="TestTapes\zxspectrum\sources\fusetest\Makefile" />
-    <None Include="TestTapes\zxspectrum\sources\fusetest\README" />
-    <None Include="TestTapes\zxspectrum\sources\timingtest-0.2\Makefile" />
-    <None Include="TestTapes\zxspectrum\sources\timingtest-0.2\timing.tap" />
-    <None Include="TestTapes\zxspectrum\sources\zxtests-3\Makefile" />
-    <None Include="TestTapes\zxspectrum\sources\zxtests-3\README" />
-    <None Include="TestTapes\zxspectrum\timing\btime.tap" />
-    <None Include="TestTapes\zxspectrum\timing\minfo.tap" />
-    <None Include="TestTapes\zxspectrum\timing\stime.tap" />
-    <None Include="TestTapes\zxspectrum\timing\Timing_Tests-48k_v1.0.tzx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TestTapes\z80\sources\z80test-1.0\changes.txt" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\license.txt" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\readme.txt" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\crctab.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\idea.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\loader.bas" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\main.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\print.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\testmacros.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\tests.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\z80ccf.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\z80doc.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\z80docflags.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\z80flags.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\z80full.asm" />
-    <Content Include="TestTapes\z80\sources\z80test-1.0\src\z80memptr.asm" />
-    <Content Include="TestTapes\z80\sources\z80tests-decompiled\z80tests_0_blocks.txt" />
-    <Content Include="TestTapes\z80\sources\z80tests-decompiled\z80tests_1_loader_basic.txt" />
-    <Content Include="TestTapes\z80\sources\z80tests-decompiled\z80tests_2_code_asm.html" />
-    <Content Include="TestTapes\z80\sources\z80tests-decompiled\z80tests_2_code_asm.txt" />
-    <Content Include="TestTapes\z80\sources\zexall2-0.1\loader.bas" />
-    <Content Include="TestTapes\z80\sources\zexall2-0.1\zexall2-DellXPS8300.asm" />
-    <Content Include="TestTapes\z80\sources\zexall2-0.1\zexall2-Original.asm" />
-    <Content Include="TestTapes\z80\sources\zexall2-0.1\zexall2.asm" />
-    <Content Include="TestTapes\z80\sources\zexall2-0.1\zexall2.html" />
-    <Content Include="TestTapes\z80\sources\zexall2-0.1\zexccfb.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\atiming.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\contention.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\delay.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\first.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\framelength.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\fusetest.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\guessmachine.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\print.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\sync.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\fusetest\tests.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\codetime.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\delay.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\frametime.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\getvar.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\interrupt.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\setvar.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\timing.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\timingtest-0.2\timing.bas" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\alignint.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\btime.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\btime.bas" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\delay.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\frametime.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\getvar.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\instint.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\minfo.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\minfo.bas" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\print.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\setvar.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\stime.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\stime.bas" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\ulatest3.asm" />
-    <Content Include="TestTapes\zxspectrum\sources\zxtests-3\ulatest3.bas" />
-    <Content Include="TestTapes\zxspectrum_test_programs.txt" />
-  </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

@@ -84,7 +84,7 @@ namespace ZXSpectrumUI.PlatformAdapters
                 {
                     zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
                     zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num0);
-                }
+                }               
                 else if (windowsKey == System.Windows.Input.Key.Left)
                 {
                     zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
@@ -144,6 +144,51 @@ namespace ZXSpectrumUI.PlatformAdapters
                 {
                     zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
                     zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Space);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F1)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num1);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F2)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num2);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F3)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num3);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F4)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num4);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F5)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num5);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F6)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num6);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F7)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num7);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F8)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num8);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F9)
+                {
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyPress(ZXSpectrum.Keyboard.Keys.Num9);
                 }
                 // French Logitech keyboard map
                 //  !	Oem8
@@ -371,6 +416,51 @@ namespace ZXSpectrumUI.PlatformAdapters
                 {
                     zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
                     zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Space);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F1)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num1);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F2)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num2);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F3)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num3);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F4)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num4);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F5)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num5);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F6)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num6);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F7)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num7);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F8)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num8);
+                }
+                else if (windowsKey == System.Windows.Input.Key.F9)
+                {
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.CapsShift);
+                    zxKeyboard.OnKeyRelease(ZXSpectrum.Keyboard.Keys.Num9);
                 }
                 // French Logitech keyboard map
                 //  !	Oem8

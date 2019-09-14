@@ -119,7 +119,10 @@ namespace ZXSpectrumUI
             long currentTime = frameWatch.ElapsedMilliseconds;
             if (currentTime - lastDisplayTime >= 1000)
             {
-                frameRate.Text = (framesCount - lastFrameCount) + " frames/sec (max speed : " + (int)(100.0 / fiveFramesDurationMs * 100) + "%)";
+                if (framesCount > lastFrameCount)
+                {
+                    frameRate.Text = (framesCount - lastFrameCount) + " frames/sec (max speed : " + (int)(100.0 / fiveFramesDurationMs * 100) + "%)";
+                }
                 lastFrameCount = framesCount;
                 lastDisplayTime = currentTime;
 
@@ -215,9 +218,9 @@ namespace ZXSpectrumUI
             zxSpectrum.JoystickAdapter.ReleaseJoysticks();
         }
 
-        private void Button_Reset(object sender, RoutedEventArgs e)
+        private void KeyboardImage_Click(object sender, RoutedEventArgs e)
         {
-            //zxSpectrum.Reset();
+            this.Focus();
         }
 
         private void TapeRecorder_InsertTape(object sender, RoutedEventArgs e)
@@ -226,9 +229,14 @@ namespace ZXSpectrumUI
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
             // Set filter for file extension and default file extension 
-            dlg.InitialDirectory = @"C:\Users\Laurent\SkyDrive\Dev\Visual Studio 2012\Projects\Z80VisualSimulator\ZXSPectrum.Test\TestTapes";
-            dlg.DefaultExt = ".tap";
-            dlg.Filter = "TAP Files (*.tap)|*.tap|TZX Files (*.tzx)|*.tzx";
+            DirectoryInfo initialDir = new DirectoryInfo(@"..\..\Games");
+            if(!initialDir.Exists)
+            {
+                initialDir = new DirectoryInfo(".");
+            }
+            dlg.InitialDirectory = initialDir.FullName;
+            dlg.DefaultExt = ".tzx";
+            dlg.Filter = "TZX Files (*.tzx)|*.tzx|TAP Files (*.tap)|*.tap";
 
             // Display OpenFileDialog by calling ShowDialog method 
             bool? fileSelected = dlg.ShowDialog();

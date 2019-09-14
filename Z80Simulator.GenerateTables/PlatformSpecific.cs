@@ -13,11 +13,7 @@ namespace Z80Simulator.GenerateTables
         public static Stream GetStreamForProjectFile(string relativeFilePath)
         {
             string resourcePath = String.Format("Z80Simulator.GenerateTables.{0}", relativeFilePath.Replace('/', '.'));
-#if NETFX_CORE
-            Stream resourceStream = typeof(PlatformSpecific).GetTypeInfo().Assembly.GetManifestResourceStream(resourcePath);
-#else
             Stream resourceStream = typeof(PlatformSpecific).Assembly.GetManifestResourceStream(resourcePath);
-#endif
             return resourceStream;
         }
     }
